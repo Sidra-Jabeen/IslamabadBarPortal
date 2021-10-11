@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29.461" height="27.57" viewBox="0 0 29.461 27.57">
+  <g id="Layer_25" data-name="Layer 25" transform="translate(-1.059 -2)">
+    <path id="Path_252" data-name="Path 252" d="M23.771,21.694a.985.985,0,0,1-.63-.226L18.69,17.755H16.878A7.878,7.878,0,0,1,16.878,2h5.908a7.878,7.878,0,0,1,1.969,15.5v3.21a.978.978,0,0,1-.985.985ZM16.878,3.969a5.908,5.908,0,0,0,0,11.817h2.166a.985.985,0,0,1,.63.226l3.112,2.59v-1.91a.985.985,0,0,1,.847-.985,5.908,5.908,0,0,0-.847-11.738Z" transform="translate(-0.121)" fill="#fff"/>
+    <rect id="Rectangle_1464" data-name="Rectangle 1464" width="1.969" height="1.969" transform="translate(18.715 9.508)" fill="#deab52"/>
+    <rect id="Rectangle_1465" data-name="Rectangle 1465" width="1.969" height="1.969" transform="translate(13.791 9.508)" fill="#deab52"/>
+    <rect id="Rectangle_1466" data-name="Rectangle 1466" width="1.969" height="1.969" transform="translate(23.638 9.508)" fill="#deab52"/>
+    <path id="Path_253" data-name="Path 253" d="M7.894,29.7a.978.978,0,0,1-.985-.985v-3.21a7.878,7.878,0,0,1-1.26-14.771.985.985,0,1,1,.807,1.792A5.908,5.908,0,0,0,8.032,23.756a.985.985,0,0,1,.847.985v1.91l3.112-2.59a.985.985,0,0,1,.63-.266h2.166A5.849,5.849,0,0,0,19.011,22a.989.989,0,0,1,1.418,1.379,7.878,7.878,0,0,1-5.642,2.383H12.975L8.524,29.477A.985.985,0,0,1,7.894,29.7Z" transform="translate(0 -0.132)" fill="#deab52"/>
+  </g>
+</svg>

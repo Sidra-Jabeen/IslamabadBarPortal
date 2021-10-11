@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="49" viewBox="0 0 50 49">
+  <g id="_21-List" data-name="21-List" transform="translate(-0.037)">
+    <line id="Line_2" data-name="Line 2" x2="35" transform="translate(15.037 3)" fill="none" stroke="#165248" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Line_3" data-name="Line 3" x2="16" transform="translate(15.037 9)" fill="none" stroke="#deab52" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Line_4" data-name="Line 4" x2="35" transform="translate(15.037 22)" fill="none" stroke="#deab52" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Line_5" data-name="Line 5" x2="16" transform="translate(15.037 28)" fill="none" stroke="#165248" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Line_6" data-name="Line 6" x2="35" transform="translate(15.037 41)" fill="none" stroke="#165248" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Line_7" data-name="Line 7" x2="16" transform="translate(15.037 47)" fill="none" stroke="#deab52" stroke-linejoin="round" stroke-width="2"/>
+    <circle id="Ellipse_7" data-name="Ellipse 7" cx="4.5" cy="4.5" r="4.5" transform="translate(1.037 1)" fill="none" stroke="#deab52" stroke-linejoin="round" stroke-width="2"/>
+    <circle id="Ellipse_8" data-name="Ellipse 8" cx="4.5" cy="4.5" r="4.5" transform="translate(1.037 20)" fill="none" stroke="#165248" stroke-linejoin="round" stroke-width="2"/>
+    <circle id="Ellipse_9" data-name="Ellipse 9" cx="4.5" cy="4.5" r="4.5" transform="translate(1.037 39)" fill="none" stroke="#deab52" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

@@ -7,15 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D061BA82714296B00DFCCF8 /* SearchForBarCouncilViewController.swift */; };
+		3D061BAB2714296B00DFCCF8 /* SearchForBarCouncilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D061BA92714296B00DFCCF8 /* SearchForBarCouncilViewController.xib */; };
 		3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509B92710A44C00786786 /* AppDelegate.swift */; };
 		3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BB2710A44C00786786 /* SceneDelegate.swift */; };
 		3D6509BE2710A44C00786786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BD2710A44C00786786 /* ViewController.swift */; };
 		3D6509C12710A44C00786786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509BF2710A44C00786786 /* Main.storyboard */; };
 		3D6509C32710A44D00786786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509C22710A44D00786786 /* Assets.xcassets */; };
 		3D6509C62710A44D00786786 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509C42710A44D00786786 /* LaunchScreen.storyboard */; };
+		3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509CD271186BA00786786 /* WelcomeToIslamabadViewController.swift */; };
+		3D6509D0271186BA00786786 /* WelcomeToIslamabadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509CE271186BA00786786 /* WelcomeToIslamabadViewController.xib */; };
+		3D6509D427118FAF00786786 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509D327118FAF00786786 /* UIView.swift */; };
+		3D6509D7271196BC00786786 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509D5271196BC00786786 /* SignInViewController.swift */; };
+		3D6509D8271196BC00786786 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509D6271196BC00786786 /* SignInViewController.xib */; };
+		3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509DA2711F2AF00786786 /* DashboardViewController.swift */; };
+		3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509DB2711F2AF00786786 /* DashboardViewController.xib */; };
+		3D6509E127120B1B00786786 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509DF27120B1B00786786 /* SideMenuTableViewController.swift */; };
+		3D6509E227120B1B00786786 /* SideMenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509E027120B1B00786786 /* SideMenuTableViewController.xib */; };
+		3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509E427120BF800786786 /* UserNameTableViewCell.swift */; };
+		3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509E527120BF800786786 /* UserNameTableViewCell.xib */; };
+		3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509E927120DB400786786 /* MenuListTableViewCell.swift */; };
+		3D6509EC27120DB400786786 /* MenuListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509EA27120DB400786786 /* MenuListTableViewCell.xib */; };
+		3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509ED2712B51000786786 /* LegalQuestionsAnswersViewController.swift */; };
+		3D6509F02712B51000786786 /* LegalQuestionsAnswersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509EE2712B51000786786 /* LegalQuestionsAnswersViewController.xib */; };
+		3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509F22712BC1C00786786 /* QuestionAnswerTableViewCell.swift */; };
+		3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509F32712BC1C00786786 /* QuestionAnswerTableViewCell.xib */; };
+		3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509F72712CC3E00786786 /* QuestionAnswerViewController.swift */; };
+		3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509F82712CC3E00786786 /* QuestionAnswerViewController.xib */; };
+		3D6509FE2712D30100786786 /* PostAQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509FC2712D30100786786 /* PostAQuestionViewController.swift */; };
+		3D6509FF2712D30100786786 /* PostAQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509FD2712D30100786786 /* PostAQuestionViewController.xib */; };
+		3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A012712DF9500786786 /* GeneralAnnouncementsViewController.swift */; };
+		3D650A042712DF9500786786 /* GeneralAnnouncementsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A022712DF9500786786 /* GeneralAnnouncementsViewController.xib */; };
+		3D650A082712E11200786786 /* GeneralAnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A062712E11200786786 /* GeneralAnnouncementTableViewCell.swift */; };
+		3D650A092712E11200786786 /* GeneralAnnouncementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A072712E11200786786 /* GeneralAnnouncementTableViewCell.xib */; };
+		3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A0B2712E5EE00786786 /* AnnouncementViewController.swift */; };
+		3D650A0E2712E5EE00786786 /* AnnouncementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A0C2712E5EE00786786 /* AnnouncementViewController.xib */; };
+		3D650A122712E7B400786786 /* MemberDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A102712E7B400786786 /* MemberDirectoryViewController.swift */; };
+		3D650A132712E7B400786786 /* MemberDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A112712E7B400786786 /* MemberDirectoryViewController.xib */; };
+		3D650A172712E89200786786 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A152712E89200786786 /* MemberCollectionViewCell.swift */; };
+		3D650A182712E89200786786 /* MemberCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A162712E89200786786 /* MemberCollectionViewCell.xib */; };
+		3D650A1C2712EDE100786786 /* MemberNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A1A2712EDE100786786 /* MemberNameViewController.swift */; };
+		3D650A1D2712EDE100786786 /* MemberNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A1B2712EDE100786786 /* MemberNameViewController.xib */; };
+		3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A1F2712F6EA00786786 /* OfficialDirectoryViewController.swift */; };
+		3D650A222712F6EA00786786 /* OfficialDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A202712F6EA00786786 /* OfficialDirectoryViewController.xib */; };
+		3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A242712F84900786786 /* OfficialDirectoryTableViewCell.swift */; };
+		3D650A272712F84900786786 /* OfficialDirectoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A252712F84900786786 /* OfficialDirectoryTableViewCell.xib */; };
+		3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A292713026800786786 /* ProfileViewController.swift */; };
+		3D650A2C2713026800786786 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A2A2713026800786786 /* ProfileViewController.xib */; };
+		3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A2E27131B9A00786786 /* SearchFilterViewController.swift */; };
+		3D650A3127131B9A00786786 /* SearchFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A2F27131B9A00786786 /* SearchFilterViewController.xib */; };
+		3D650A342713252F00786786 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A332713252F00786786 /* UIButton.swift */; };
+		3D650A372713455000786786 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A352713455000786786 /* SignUpViewController.swift */; };
+		3D650A382713455000786786 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A362713455000786786 /* SignUpViewController.xib */; };
+		3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A3A2713479B00786786 /* UserTableViewCell.swift */; };
+		3D650A3D2713479B00786786 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A3B2713479B00786786 /* UserTableViewCell.xib */; };
+		3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A3F2714082B00786786 /* BarCouncilViewController.swift */; };
+		3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A402714082B00786786 /* BarCouncilViewController.xib */; };
+		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LawyerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D061BA82714296B00DFCCF8 /* SearchForBarCouncilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForBarCouncilViewController.swift; sourceTree = "<group>"; };
+		3D061BA92714296B00DFCCF8 /* SearchForBarCouncilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchForBarCouncilViewController.xib; sourceTree = "<group>"; };
 		3D6509B62710A44C00786786 /* LawyerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LawyerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6509B92710A44C00786786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D6509BB2710A44C00786786 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +78,56 @@
 		3D6509C22710A44D00786786 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D6509C52710A44D00786786 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D6509C72710A44D00786786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D6509CD271186BA00786786 /* WelcomeToIslamabadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeToIslamabadViewController.swift; sourceTree = "<group>"; };
+		3D6509CE271186BA00786786 /* WelcomeToIslamabadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeToIslamabadViewController.xib; sourceTree = "<group>"; };
+		3D6509D327118FAF00786786 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		3D6509D5271196BC00786786 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		3D6509D6271196BC00786786 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		3D6509DA2711F2AF00786786 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		3D6509DB2711F2AF00786786 /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		3D6509DF27120B1B00786786 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		3D6509E027120B1B00786786 /* SideMenuTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewController.xib; sourceTree = "<group>"; };
+		3D6509E427120BF800786786 /* UserNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameTableViewCell.swift; sourceTree = "<group>"; };
+		3D6509E527120BF800786786 /* UserNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserNameTableViewCell.xib; sourceTree = "<group>"; };
+		3D6509E927120DB400786786 /* MenuListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListTableViewCell.swift; sourceTree = "<group>"; };
+		3D6509EA27120DB400786786 /* MenuListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuListTableViewCell.xib; sourceTree = "<group>"; };
+		3D6509ED2712B51000786786 /* LegalQuestionsAnswersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalQuestionsAnswersViewController.swift; sourceTree = "<group>"; };
+		3D6509EE2712B51000786786 /* LegalQuestionsAnswersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalQuestionsAnswersViewController.xib; sourceTree = "<group>"; };
+		3D6509F22712BC1C00786786 /* QuestionAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerTableViewCell.swift; sourceTree = "<group>"; };
+		3D6509F32712BC1C00786786 /* QuestionAnswerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionAnswerTableViewCell.xib; sourceTree = "<group>"; };
+		3D6509F72712CC3E00786786 /* QuestionAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerViewController.swift; sourceTree = "<group>"; };
+		3D6509F82712CC3E00786786 /* QuestionAnswerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionAnswerViewController.xib; sourceTree = "<group>"; };
+		3D6509FC2712D30100786786 /* PostAQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAQuestionViewController.swift; sourceTree = "<group>"; };
+		3D6509FD2712D30100786786 /* PostAQuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostAQuestionViewController.xib; sourceTree = "<group>"; };
+		3D650A012712DF9500786786 /* GeneralAnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAnnouncementsViewController.swift; sourceTree = "<group>"; };
+		3D650A022712DF9500786786 /* GeneralAnnouncementsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralAnnouncementsViewController.xib; sourceTree = "<group>"; };
+		3D650A062712E11200786786 /* GeneralAnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAnnouncementTableViewCell.swift; sourceTree = "<group>"; };
+		3D650A072712E11200786786 /* GeneralAnnouncementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralAnnouncementTableViewCell.xib; sourceTree = "<group>"; };
+		3D650A0B2712E5EE00786786 /* AnnouncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementViewController.swift; sourceTree = "<group>"; };
+		3D650A0C2712E5EE00786786 /* AnnouncementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnouncementViewController.xib; sourceTree = "<group>"; };
+		3D650A102712E7B400786786 /* MemberDirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryViewController.swift; sourceTree = "<group>"; };
+		3D650A112712E7B400786786 /* MemberDirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberDirectoryViewController.xib; sourceTree = "<group>"; };
+		3D650A152712E89200786786 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		3D650A162712E89200786786 /* MemberCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D650A1A2712EDE100786786 /* MemberNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberNameViewController.swift; sourceTree = "<group>"; };
+		3D650A1B2712EDE100786786 /* MemberNameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberNameViewController.xib; sourceTree = "<group>"; };
+		3D650A1F2712F6EA00786786 /* OfficialDirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryViewController.swift; sourceTree = "<group>"; };
+		3D650A202712F6EA00786786 /* OfficialDirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfficialDirectoryViewController.xib; sourceTree = "<group>"; };
+		3D650A242712F84900786786 /* OfficialDirectoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryTableViewCell.swift; sourceTree = "<group>"; };
+		3D650A252712F84900786786 /* OfficialDirectoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfficialDirectoryTableViewCell.xib; sourceTree = "<group>"; };
+		3D650A292713026800786786 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3D650A2A2713026800786786 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		3D650A2E27131B9A00786786 /* SearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
+		3D650A2F27131B9A00786786 /* SearchFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFilterViewController.xib; sourceTree = "<group>"; };
+		3D650A332713252F00786786 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		3D650A352713455000786786 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3D650A362713455000786786 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		3D650A3A2713479B00786786 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		3D650A3B2713479B00786786 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		3D650A3F2714082B00786786 /* BarCouncilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCouncilViewController.swift; sourceTree = "<group>"; };
+		3D650A402714082B00786786 /* BarCouncilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarCouncilViewController.xib; sourceTree = "<group>"; };
+		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
+		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +135,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D061BAC2714297000DFCCF8 /* SearchCouncilVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D061BA82714296B00DFCCF8 /* SearchForBarCouncilViewController.swift */,
+				3D061BA92714296B00DFCCF8 /* SearchForBarCouncilViewController.xib */,
+			);
+			path = SearchCouncilVC;
+			sourceTree = "<group>";
+		};
 		3D6509AD2710A44B00786786 = {
 			isa = PBXGroup;
 			children = (
 				3D6509B82710A44C00786786 /* LawyerApp */,
 				3D6509B72710A44C00786786 /* Products */,
+				ECFC89F527E7106A3B7C0D08 /* Pods */,
+				B92BFA6F9DAB006D7D3E20B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +172,7 @@
 		3D6509B82710A44C00786786 /* LawyerApp */ = {
 			isa = PBXGroup;
 			children = (
+				3D6509D227118F9B00786786 /* Extensions */,
 				3D6509B92710A44C00786786 /* AppDelegate.swift */,
 				3D6509BB2710A44C00786786 /* SceneDelegate.swift */,
 				3D6509BD2710A44C00786786 /* ViewController.swift */,
@@ -63,8 +180,257 @@
 				3D6509C22710A44D00786786 /* Assets.xcassets */,
 				3D6509C42710A44D00786786 /* LaunchScreen.storyboard */,
 				3D6509C72710A44D00786786 /* Info.plist */,
+				3D6509D1271186C300786786 /* WelcomeToIslamabadVC */,
+				3D650A392713455600786786 /* SignUpVC */,
+				3D6509D9271196C100786786 /* SignInVC */,
+				3D6509DE2711F2B500786786 /* DashboardVC */,
+				3D6509E327120B8000786786 /* SideMenu */,
+				3D6509F12712B51500786786 /* LegalQuesAnsVC */,
+				3D650A052712DFA900786786 /* GeneralAnnouncementsVC */,
+				3D650A432714082F00786786 /* BarCouncilVC */,
+				3D650A142712E7BB00786786 /* MemberDirectoryVC */,
+				3D650A232712F6F000786786 /* OfficialDirectoryVC */,
+				3D650A2D2713026D00786786 /* ProfileVC */,
+				3D650A3227131BA200786786 /* SearchVC */,
 			);
 			path = LawyerApp;
+			sourceTree = "<group>";
+		};
+		3D6509D1271186C300786786 /* WelcomeToIslamabadVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509CD271186BA00786786 /* WelcomeToIslamabadViewController.swift */,
+				3D6509CE271186BA00786786 /* WelcomeToIslamabadViewController.xib */,
+			);
+			path = WelcomeToIslamabadVC;
+			sourceTree = "<group>";
+		};
+		3D6509D227118F9B00786786 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509D327118FAF00786786 /* UIView.swift */,
+				3D650A332713252F00786786 /* UIButton.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3D6509D9271196C100786786 /* SignInVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509D5271196BC00786786 /* SignInViewController.swift */,
+				3D6509D6271196BC00786786 /* SignInViewController.xib */,
+			);
+			path = SignInVC;
+			sourceTree = "<group>";
+		};
+		3D6509DE2711F2B500786786 /* DashboardVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509DA2711F2AF00786786 /* DashboardViewController.swift */,
+				3D6509DB2711F2AF00786786 /* DashboardViewController.xib */,
+			);
+			path = DashboardVC;
+			sourceTree = "<group>";
+		};
+		3D6509E327120B8000786786 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509DF27120B1B00786786 /* SideMenuTableViewController.swift */,
+				3D6509E027120B1B00786786 /* SideMenuTableViewController.xib */,
+				3D6509E827120BFF00786786 /* TableViewCells */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		3D6509E827120BFF00786786 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509E427120BF800786786 /* UserNameTableViewCell.swift */,
+				3D6509E527120BF800786786 /* UserNameTableViewCell.xib */,
+				3D6509E927120DB400786786 /* MenuListTableViewCell.swift */,
+				3D6509EA27120DB400786786 /* MenuListTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		3D6509F12712B51500786786 /* LegalQuesAnsVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509ED2712B51000786786 /* LegalQuestionsAnswersViewController.swift */,
+				3D6509EE2712B51000786786 /* LegalQuestionsAnswersViewController.xib */,
+				3D6509F62712BC2200786786 /* QuesAnsCell */,
+				3D6509FB2712CC4400786786 /* QuestionAnswerVC */,
+				3D650A002712D30700786786 /* PostAQuesVC */,
+			);
+			path = LegalQuesAnsVC;
+			sourceTree = "<group>";
+		};
+		3D6509F62712BC2200786786 /* QuesAnsCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509F22712BC1C00786786 /* QuestionAnswerTableViewCell.swift */,
+				3D6509F32712BC1C00786786 /* QuestionAnswerTableViewCell.xib */,
+			);
+			path = QuesAnsCell;
+			sourceTree = "<group>";
+		};
+		3D6509FB2712CC4400786786 /* QuestionAnswerVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509F72712CC3E00786786 /* QuestionAnswerViewController.swift */,
+				3D6509F82712CC3E00786786 /* QuestionAnswerViewController.xib */,
+			);
+			path = QuestionAnswerVC;
+			sourceTree = "<group>";
+		};
+		3D650A002712D30700786786 /* PostAQuesVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6509FC2712D30100786786 /* PostAQuestionViewController.swift */,
+				3D6509FD2712D30100786786 /* PostAQuestionViewController.xib */,
+			);
+			path = PostAQuesVC;
+			sourceTree = "<group>";
+		};
+		3D650A052712DFA900786786 /* GeneralAnnouncementsVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A012712DF9500786786 /* GeneralAnnouncementsViewController.swift */,
+				3D650A022712DF9500786786 /* GeneralAnnouncementsViewController.xib */,
+				3D650A0A2712E11800786786 /* AnnouncementsCell */,
+				3D650A0F2712E5F300786786 /* AnnouncementVC */,
+			);
+			path = GeneralAnnouncementsVC;
+			sourceTree = "<group>";
+		};
+		3D650A0A2712E11800786786 /* AnnouncementsCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A062712E11200786786 /* GeneralAnnouncementTableViewCell.swift */,
+				3D650A072712E11200786786 /* GeneralAnnouncementTableViewCell.xib */,
+			);
+			path = AnnouncementsCell;
+			sourceTree = "<group>";
+		};
+		3D650A0F2712E5F300786786 /* AnnouncementVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A0B2712E5EE00786786 /* AnnouncementViewController.swift */,
+				3D650A0C2712E5EE00786786 /* AnnouncementViewController.xib */,
+			);
+			path = AnnouncementVC;
+			sourceTree = "<group>";
+		};
+		3D650A142712E7BB00786786 /* MemberDirectoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A102712E7B400786786 /* MemberDirectoryViewController.swift */,
+				3D650A112712E7B400786786 /* MemberDirectoryViewController.xib */,
+				3D650A192712EBBB00786786 /* MembersCell */,
+				3D650A1E2712EDE600786786 /* MembersVC */,
+			);
+			path = MemberDirectoryVC;
+			sourceTree = "<group>";
+		};
+		3D650A192712EBBB00786786 /* MembersCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A152712E89200786786 /* MemberCollectionViewCell.swift */,
+				3D650A162712E89200786786 /* MemberCollectionViewCell.xib */,
+			);
+			path = MembersCell;
+			sourceTree = "<group>";
+		};
+		3D650A1E2712EDE600786786 /* MembersVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A1A2712EDE100786786 /* MemberNameViewController.swift */,
+				3D650A1B2712EDE100786786 /* MemberNameViewController.xib */,
+			);
+			path = MembersVC;
+			sourceTree = "<group>";
+		};
+		3D650A232712F6F000786786 /* OfficialDirectoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A1F2712F6EA00786786 /* OfficialDirectoryViewController.swift */,
+				3D650A202712F6EA00786786 /* OfficialDirectoryViewController.xib */,
+				3D650A282712F84D00786786 /* DirectoryCell */,
+			);
+			path = OfficialDirectoryVC;
+			sourceTree = "<group>";
+		};
+		3D650A282712F84D00786786 /* DirectoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A242712F84900786786 /* OfficialDirectoryTableViewCell.swift */,
+				3D650A252712F84900786786 /* OfficialDirectoryTableViewCell.xib */,
+			);
+			path = DirectoryCell;
+			sourceTree = "<group>";
+		};
+		3D650A2D2713026D00786786 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A292713026800786786 /* ProfileViewController.swift */,
+				3D650A2A2713026800786786 /* ProfileViewController.xib */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		3D650A3227131BA200786786 /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A2E27131B9A00786786 /* SearchFilterViewController.swift */,
+				3D650A2F27131B9A00786786 /* SearchFilterViewController.xib */,
+			);
+			path = SearchVC;
+			sourceTree = "<group>";
+		};
+		3D650A392713455600786786 /* SignUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A352713455000786786 /* SignUpViewController.swift */,
+				3D650A362713455000786786 /* SignUpViewController.xib */,
+				3D650A3E2713480600786786 /* SignUpCell */,
+			);
+			path = SignUpVC;
+			sourceTree = "<group>";
+		};
+		3D650A3E2713480600786786 /* SignUpCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A3A2713479B00786786 /* UserTableViewCell.swift */,
+				3D650A3B2713479B00786786 /* UserTableViewCell.xib */,
+			);
+			path = SignUpCell;
+			sourceTree = "<group>";
+		};
+		3D650A432714082F00786786 /* BarCouncilVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D650A3F2714082B00786786 /* BarCouncilViewController.swift */,
+				3D650A402714082B00786786 /* BarCouncilViewController.xib */,
+				3D061BAC2714297000DFCCF8 /* SearchCouncilVC */,
+			);
+			path = BarCouncilVC;
+			sourceTree = "<group>";
+		};
+		B92BFA6F9DAB006D7D3E20B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECFC89F527E7106A3B7C0D08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */,
+				66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +440,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D6509CA2710A44D00786786 /* Build configuration list for PBXNativeTarget "LawyerApp" */;
 			buildPhases = (
+				4004FFF2E7F864A1AFB6D11C /* [CP] Check Pods Manifest.lock */,
 				3D6509B22710A44C00786786 /* Sources */,
 				3D6509B32710A44C00786786 /* Frameworks */,
 				3D6509B42710A44C00786786 /* Resources */,
+				0D6BB81C003DF4B8137338E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,22 +493,114 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D650A132712E7B400786786 /* MemberDirectoryViewController.xib in Resources */,
+				3D6509D8271196BC00786786 /* SignInViewController.xib in Resources */,
+				3D6509FF2712D30100786786 /* PostAQuestionViewController.xib in Resources */,
+				3D650A092712E11200786786 /* GeneralAnnouncementTableViewCell.xib in Resources */,
 				3D6509C62710A44D00786786 /* LaunchScreen.storyboard in Resources */,
+				3D6509F02712B51000786786 /* LegalQuestionsAnswersViewController.xib in Resources */,
+				3D650A042712DF9500786786 /* GeneralAnnouncementsViewController.xib in Resources */,
+				3D650A3127131B9A00786786 /* SearchFilterViewController.xib in Resources */,
+				3D650A1D2712EDE100786786 /* MemberNameViewController.xib in Resources */,
+				3D650A3D2713479B00786786 /* UserTableViewCell.xib in Resources */,
+				3D6509D0271186BA00786786 /* WelcomeToIslamabadViewController.xib in Resources */,
+				3D061BAB2714296B00DFCCF8 /* SearchForBarCouncilViewController.xib in Resources */,
+				3D6509EC27120DB400786786 /* MenuListTableViewCell.xib in Resources */,
 				3D6509C32710A44D00786786 /* Assets.xcassets in Resources */,
+				3D650A272712F84900786786 /* OfficialDirectoryTableViewCell.xib in Resources */,
+				3D650A182712E89200786786 /* MemberCollectionViewCell.xib in Resources */,
+				3D650A0E2712E5EE00786786 /* AnnouncementViewController.xib in Resources */,
+				3D650A222712F6EA00786786 /* OfficialDirectoryViewController.xib in Resources */,
 				3D6509C12710A44C00786786 /* Main.storyboard in Resources */,
+				3D650A2C2713026800786786 /* ProfileViewController.xib in Resources */,
+				3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */,
+				3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */,
+				3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */,
+				3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */,
+				3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */,
+				3D650A382713455000786786 /* SignUpViewController.xib in Resources */,
+				3D6509E227120B1B00786786 /* SideMenuTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D6BB81C003DF4B8137338E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LawyerApp/Pods-LawyerApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LawyerApp/Pods-LawyerApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LawyerApp/Pods-LawyerApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4004FFF2E7F864A1AFB6D11C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LawyerApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D6509B22710A44C00786786 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */,
+				3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */,
+				3D650A122712E7B400786786 /* MemberDirectoryViewController.swift in Sources */,
+				3D650A1C2712EDE100786786 /* MemberNameViewController.swift in Sources */,
+				3D6509FE2712D30100786786 /* PostAQuestionViewController.swift in Sources */,
+				3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */,
+				3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */,
+				3D650A342713252F00786786 /* UIButton.swift in Sources */,
+				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
+				3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */,
+				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
+				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
+				3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */,
+				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
+				3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */,
+				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
+				3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */,
 				3D6509BE2710A44C00786786 /* ViewController.swift in Sources */,
+				3D6509D7271196BC00786786 /* SignInViewController.swift in Sources */,
+				3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */,
+				3D650A172712E89200786786 /* MemberCollectionViewCell.swift in Sources */,
+				3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */,
 				3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */,
+				3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */,
 				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,
+				3D650A082712E11200786786 /* GeneralAnnouncementTableViewCell.swift in Sources */,
+				3D6509E127120B1B00786786 /* SideMenuTableViewController.swift in Sources */,
+				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,
+				3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +744,7 @@
 		};
 		3D6509CB2710A44D00786786 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,8 +756,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,12 +769,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		3D6509CC2710A44D00786786 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -323,8 +787,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,7 +800,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

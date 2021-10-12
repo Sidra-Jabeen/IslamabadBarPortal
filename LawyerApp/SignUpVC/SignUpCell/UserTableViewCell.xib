@@ -94,6 +94,7 @@
                 <outlet property="btn" destination="76E-6U-leU" id="mH3-Fw-H06"/>
                 <outlet property="lblInfo" destination="LOJ-3G-aVI" id="93b-SY-cwj"/>
                 <outlet property="txtInfo" destination="lq9-7D-DeT" id="zIh-Iw-aKS"/>
+                <outlet property="txtfield" destination="lq9-7D-DeT" id="Dzd-Ym-qlV"/>
                 <outlet property="viewFirstName" destination="Iuc-9g-PNx" id="WeC-Y0-g0P"/>
             </connections>
             <point key="canvasLocation" x="346" y="61"/>

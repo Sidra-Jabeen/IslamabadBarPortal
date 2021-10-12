@@ -8,5 +8,9 @@ target 'LawyerApp' do
   # Pods for LawyerApp
  pod 'SideMenu'
  pod 'IQKeyboardManagerSwift'
+pod 'DropDown'
+pod 'Alamofire'
+pod 'SwiftyJSON'
+pod 'FSCalendar'
 
 end

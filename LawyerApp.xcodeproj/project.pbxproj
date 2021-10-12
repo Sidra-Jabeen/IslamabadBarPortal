@@ -3,12 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D061BA82714296B00DFCCF8 /* SearchForBarCouncilViewController.swift */; };
 		3D061BAB2714296B00DFCCF8 /* SearchForBarCouncilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D061BA92714296B00DFCCF8 /* SearchForBarCouncilViewController.xib */; };
+		3D1426F12714783D00DE03BB /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426F02714783D00DE03BB /* BaseService.swift */; };
+		3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426F227147D3000DE03BB /* SignUpRequestModel.swift */; };
+		3D1426F5271483B400DE03BB /* SignUpServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426F4271483B400DE03BB /* SignUpServices.swift */; };
+		3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426F62714902200DE03BB /* SignUpResponseModel.swift */; };
+		3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426F82714903E00DE03BB /* SignInRequestModel.swift */; };
+		3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426FA2714905D00DE03BB /* SignInResponseModel.swift */; };
+		3D1426FD2714907A00DE03BB /* SignInServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426FC2714907A00DE03BB /* SignInServices.swift */; };
+		3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426FE2715520700DE03BB /* CalenderView.swift */; };
+		3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1427002715523400DE03BB /* CalenderViewController.swift */; };
+		3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1427012715523400DE03BB /* CalenderViewController.xib */; };
 		3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509B92710A44C00786786 /* AppDelegate.swift */; };
 		3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BB2710A44C00786786 /* SceneDelegate.swift */; };
 		3D6509BE2710A44C00786786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BD2710A44C00786786 /* ViewController.swift */; };
@@ -70,6 +80,16 @@
 		30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LawyerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D061BA82714296B00DFCCF8 /* SearchForBarCouncilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForBarCouncilViewController.swift; sourceTree = "<group>"; };
 		3D061BA92714296B00DFCCF8 /* SearchForBarCouncilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchForBarCouncilViewController.xib; sourceTree = "<group>"; };
+		3D1426F02714783D00DE03BB /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		3D1426F227147D3000DE03BB /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
+		3D1426F4271483B400DE03BB /* SignUpServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpServices.swift; sourceTree = "<group>"; };
+		3D1426F62714902200DE03BB /* SignUpResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseModel.swift; sourceTree = "<group>"; };
+		3D1426F82714903E00DE03BB /* SignInRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequestModel.swift; sourceTree = "<group>"; };
+		3D1426FA2714905D00DE03BB /* SignInResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseModel.swift; sourceTree = "<group>"; };
+		3D1426FC2714907A00DE03BB /* SignInServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInServices.swift; sourceTree = "<group>"; };
+		3D1426FE2715520700DE03BB /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		3D1427002715523400DE03BB /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		3D1427012715523400DE03BB /* CalenderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderViewController.xib; sourceTree = "<group>"; };
 		3D6509B62710A44C00786786 /* LawyerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LawyerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6509B92710A44C00786786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D6509BB2710A44C00786786 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +212,10 @@
 				3D650A232712F6F000786786 /* OfficialDirectoryVC */,
 				3D650A2D2713026D00786786 /* ProfileVC */,
 				3D650A3227131BA200786786 /* SearchVC */,
+				3D1426F02714783D00DE03BB /* BaseService.swift */,
+				3D1426FE2715520700DE03BB /* CalenderView.swift */,
+				3D1427002715523400DE03BB /* CalenderViewController.swift */,
+				3D1427012715523400DE03BB /* CalenderViewController.xib */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -219,6 +243,9 @@
 			children = (
 				3D6509D5271196BC00786786 /* SignInViewController.swift */,
 				3D6509D6271196BC00786786 /* SignInViewController.xib */,
+				3D1426F82714903E00DE03BB /* SignInRequestModel.swift */,
+				3D1426FA2714905D00DE03BB /* SignInResponseModel.swift */,
+				3D1426FC2714907A00DE03BB /* SignInServices.swift */,
 			);
 			path = SignInVC;
 			sourceTree = "<group>";
@@ -392,6 +419,9 @@
 			children = (
 				3D650A352713455000786786 /* SignUpViewController.swift */,
 				3D650A362713455000786786 /* SignUpViewController.xib */,
+				3D1426F227147D3000DE03BB /* SignUpRequestModel.swift */,
+				3D1426F4271483B400DE03BB /* SignUpServices.swift */,
+				3D1426F62714902200DE03BB /* SignUpResponseModel.swift */,
 				3D650A3E2713480600786786 /* SignUpCell */,
 			);
 			path = SignUpVC;
@@ -471,7 +501,7 @@
 				};
 			};
 			buildConfigurationList = 3D6509B12710A44B00786786 /* Build configuration list for PBXProject "LawyerApp" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -497,6 +527,7 @@
 				3D6509D8271196BC00786786 /* SignInViewController.xib in Resources */,
 				3D6509FF2712D30100786786 /* PostAQuestionViewController.xib in Resources */,
 				3D650A092712E11200786786 /* GeneralAnnouncementTableViewCell.xib in Resources */,
+				3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */,
 				3D6509C62710A44D00786786 /* LaunchScreen.storyboard in Resources */,
 				3D6509F02712B51000786786 /* LegalQuestionsAnswersViewController.xib in Resources */,
 				3D650A042712DF9500786786 /* GeneralAnnouncementsViewController.xib in Resources */,
@@ -580,18 +611,23 @@
 				3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */,
 				3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */,
 				3D650A342713252F00786786 /* UIButton.swift in Sources */,
+				3D1426F12714783D00DE03BB /* BaseService.swift in Sources */,
+				3D1426F5271483B400DE03BB /* SignUpServices.swift in Sources */,
 				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
 				3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */,
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
+				3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */,
 				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
 				3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */,
 				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
 				3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */,
 				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
 				3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */,
+				3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */,
 				3D6509BE2710A44C00786786 /* ViewController.swift in Sources */,
 				3D6509D7271196BC00786786 /* SignInViewController.swift in Sources */,
 				3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */,
+				3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */,
 				3D650A172712E89200786786 /* MemberCollectionViewCell.swift in Sources */,
 				3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */,
 				3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */,
@@ -599,8 +635,12 @@
 				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,
 				3D650A082712E11200786786 /* GeneralAnnouncementTableViewCell.swift in Sources */,
 				3D6509E127120B1B00786786 /* SideMenuTableViewController.swift in Sources */,
+				3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */,
+				3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */,
 				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,
 				3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */,
+				3D1426FD2714907A00DE03BB /* SignInServices.swift in Sources */,
+				3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

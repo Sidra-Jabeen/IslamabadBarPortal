@@ -10,6 +10,8 @@ import UIKit
 class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var tblBarCouncilList: UITableView!
+    @IBOutlet weak var scrollBar: UIScrollView!
+    @IBOutlet weak var HStack: UIStackView!
     
     var search: SearchForBarCouncilViewController?
 
@@ -18,6 +20,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tblBarCouncilList.register(UINib(nibName: "GeneralAnnouncementTableViewCell", bundle: nil), forCellReuseIdentifier: "GeneralAnnouncementTableViewCell")
         self.navigationController?.isNavigationBarHidden = true
+        self.scrollBar.contentSize = (CGSize(width: self.view.frame.size.width + self.view.frame.size.width, height: 30))
     }
     
     @IBAction func tappedOnBack( _sender: UIButton) {

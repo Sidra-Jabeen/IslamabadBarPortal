@@ -141,6 +141,9 @@
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Sign Up"/>
+                                    <connections>
+                                        <action selector="tappedOnSignUpWith_sender:" destination="-1" eventType="touchUpInside" id="DoZ-3A-VTm"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.71386259789999995" green="0.54778027529999995" blue="0.26319298149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -49,6 +49,12 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         present(menu!, animated: true)
     }
     
+    @IBAction func tappedOnApproval( _sender: UIButton) {
+        
+        let approveVC = ApprovalViewController(nibName: "ApprovalViewController", bundle: nil)
+        self.navigationController?.pushViewController(approveVC, animated: true)
+    }
+    
     @IBAction func tappedOnProfile( _sender: UIButton) {
         
         let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)

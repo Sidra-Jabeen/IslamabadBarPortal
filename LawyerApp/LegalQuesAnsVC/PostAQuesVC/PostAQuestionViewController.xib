@@ -65,7 +65,23 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpI-Nm-4nn" userLabel="BorderView">
                                             <rect key="frame" x="0.0" y="0.0" width="293" height="190"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nwn-tW-TKN">
+                                                    <rect key="frame" x="0.0" y="15" width="293" height="129"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="Nwn-tW-TKN" firstAttribute="top" secondItem="IpI-Nm-4nn" secondAttribute="top" constant="15" id="2Kk-md-OHV"/>
+                                                <constraint firstItem="Nwn-tW-TKN" firstAttribute="leading" secondItem="IpI-Nm-4nn" secondAttribute="leading" id="GB9-vG-K1O"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nwn-tW-TKN" secondAttribute="bottom" constant="46" id="cOO-f9-IE3"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nwn-tW-TKN" secondAttribute="trailing" id="rvV-uz-sZG"/>
+                                            </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f77-gf-gVx">
                                             <rect key="frame" x="15" y="-15" width="63.5" height="30"/>
@@ -227,6 +243,9 @@
         <image name="multiply" catalog="system" width="128" height="111"/>
         <image name="smiley" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

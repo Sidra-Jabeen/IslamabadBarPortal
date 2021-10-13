@@ -9,6 +9,10 @@ import UIKit
 
 class MemberCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var lblMemberName: UILabel!
+    @IBOutlet weak var lblCourtName: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

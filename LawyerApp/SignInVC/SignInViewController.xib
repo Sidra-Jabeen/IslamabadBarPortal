@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="LawyerApp" customModuleProvider="target">
             <connections>
                 <outlet property="btnSignIn" destination="brV-00-5UF" id="MCj-3P-9hP"/>
+                <outlet property="txtEnterFullNameOnLisence" destination="11x-A4-K1F" id="dGU-0i-1WC"/>
+                <outlet property="txtPassword" destination="RT4-9A-ODY" id="Mss-ba-Nyr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewCircleImage" destination="Zhx-g4-tiq" id="Ng3-rI-f6J"/>
                 <outlet property="viewFirstName" destination="KPf-uP-kTU" id="7p4-QP-khP"/>
@@ -182,7 +184,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RT4-9A-ODY">
                                                     <rect key="frame" x="15" y="10" width="240" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-hM-oWl">
                                                     <rect key="frame" x="255" y="10" width="30" height="30"/>

@@ -75,6 +75,11 @@
                 <constraint firstItem="7Zb-6A-dX5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="tIc-dY-GZr"/>
             </constraints>
             <size key="customSize" width="80" height="70"/>
+            <connections>
+                <outlet property="lblCourtName" destination="ZgQ-Cy-BFR" id="3Mt-ZS-qSc"/>
+                <outlet property="lblMemberName" destination="u4n-V2-qxN" id="2WV-Yq-l5B"/>
+                <outlet property="profileImage" destination="40J-Kt-z4f" id="9oJ-Be-39d"/>
+            </connections>
             <point key="canvasLocation" x="159.42028985507247" y="102.45535714285714"/>
         </collectionViewCell>
     </objects>

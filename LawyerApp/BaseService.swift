@@ -12,7 +12,9 @@ class BaseServices {
 
     func baseServicesPostMethod(urlString: String, dataModel: [String:Any], completion: @escaping ([String: Any]) -> Void) {
 
-        let strURL = "http://10.250.10.221/IsbBarPortal.Api/api/\(urlString)"
+//    http://10.250.10.221/IsbBarPortal.Api/api/Account/Registration
+//    http://10.250.10.139/ISBBar.APP/
+        let strURL = "http://10.250.10.139/ISBBar.APP/\(urlString)"
         guard let url = URL(string: strURL) else {
             print("Error: cannot create URL")
             return
@@ -24,8 +26,13 @@ class BaseServices {
 //            print("Error: Trying to convert model to JSON data")
 //            return
 //        }
+        let token = Generic.getToken()
+//        let headers = ["Authorization" : "Bearer" + token]
+        let headers: HTTPHeaders = [
+                .authorization(bearerToken: token)
+            ]
         
-        AF.request(url, method: .post, parameters: dataModel, encoding: JSONEncoding.default, headers: nil).responseJSON { AFdata in
+        AF.request(url, method: .post, parameters: dataModel, encoding: JSONEncoding.default, headers: headers).responseJSON { AFdata in
             do {
                 guard let jsonObject = try JSONSerialization.jsonObject(with: AFdata.data!) as? [String: Any] else {
                     print("Error: Cannot convert data to JSON object")

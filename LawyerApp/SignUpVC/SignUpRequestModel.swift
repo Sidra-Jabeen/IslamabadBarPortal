@@ -9,19 +9,59 @@ import Foundation
 
 
 
+//struct Request {
+//
+//    let source: String
+//    let licenseFile: String
+//    let profileFile: String
+//    let user: User
+//
+//    var params: [String: Any] {
+//        return [
+//            "source": source,
+//            "licenseFile": licenseFile,
+//            "profileFile" : profileFile,
+//            "user" : user.params
+//        ]
+//    }
+//}
+
 struct Request {
     
-    let source: String
+    let Source: String
     let licenseFile: String
-    let profileFile: String
-    let user: User
+    let profilePicture: String
+    let fullName: String
+    let cnic: String
+    let licenseNumber: String
+    let contactNumber: String
+    let email: String
+    let officeAddress: String
+    let password: String
+    let licenseType: String
+    let issuanceDateLowerCourt: String
+    let issuanceDateHighCourt: String
+    let issuanceDateSupremeCourt: String
+    let dob: String
+    
     
     var params: [String: Any] {
         return [
-            "source": source,
+            "Source": Source,
             "licenseFile": licenseFile,
-            "profileFile" : profileFile,
-            "user" : user.params
+            "profilePicture" : profilePicture,
+            "fullName" : fullName,
+            "cnic": cnic,
+            "licenseNumber": licenseNumber,
+            "contactNumber" : contactNumber,
+            "email" : email,
+            "officeAddress": officeAddress,
+            "password": password,
+            "licenseType" : licenseType,
+            "issuanceDateLowerCourt" : issuanceDateLowerCourt,
+            "issuanceDateHighCourt": issuanceDateHighCourt,
+            "issuanceDateSupremeCourt" : issuanceDateSupremeCourt,
+            "dob" : dob
         ]
     }
 }

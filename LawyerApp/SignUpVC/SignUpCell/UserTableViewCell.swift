@@ -8,7 +8,7 @@
 import UIKit
 import DropDown
 
-class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, SignUpControllerDelegate {
+class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     
     @IBOutlet weak var lblInfo: UILabel!
@@ -16,12 +16,13 @@ class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerCont
     @IBOutlet weak var viewFirstName: UIView!
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var txtfield: UITextField!
+    @IBOutlet weak var btnTextFiled: UIButton!
     
     let dropDown = DropDown()
     let dropDownValues = ["Issue Date of Lower Court","Issue Date of High Court","Issue Date of Supreme Court"]
     var imagePicker = UIImagePickerController()
     var values: String?
-    let signup = SignUpViewController()
+    public var delegate: SignUpControllerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,52 +33,11 @@ class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerCont
         
         self.viewFirstName.setCornerRadiusToView()
         self.viewFirstName.setBorderColorToView()
-        self.txtfield.delegate = self
-        self.signup.delegate = self
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    @IBAction func tappedOnTextfieldButtons( _sender: UIButton) {
         
-//        self.clickedOnTextField()
-        didSelectItem(txt: textField, view: self.signup)
-        return true
-    }
-    
-    func didSelectItem(txt: UITextField, view: UIViewController) {
-        
-        if self.values == "text" {
-            
-            txt.keyboardType = .alphabet
-        }
-        else if self.values == "number" {
-            
-            txt.keyboardType = .numberPad
-        }
-        else if self.values == "calender" {
-            
-            txt.keyboardType = .numberPad
-        }
-        else if self.values == "photo library" {
-            txt.isEnabled = false
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
-                imagePicker.delegate = self
-                imagePicker.allowsEditing = true
-                imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-                view.present(imagePicker, animated: true, completion: nil)
-            }
-        } else if self.values == "dropdown" {
-            self.txtfield.isEnabled = false
-            txt.placeholder = "Select"
-            dropDown.anchorView = txt
-            dropDown.dataSource = dropDownValues
-            dropDown.direction = .bottom
-            dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-                print("Selected item: \(item) at index: \(index)")
-                self.dropDown.hide()
-            }
-            dropDown.show()
-            
-        }
+        delegate?.didSelectItem(txt: self.txtInfo, val: self.values ?? "")
     }
     
     func clickedOnTextField() {
@@ -122,5 +82,9 @@ class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerCont
             
         }
     }
+}
+
+protocol SignUpControllerDelegate {
+    func didSelectItem( txt : UITextField, val: String)
 }
 

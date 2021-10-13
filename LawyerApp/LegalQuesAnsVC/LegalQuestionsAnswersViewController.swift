@@ -22,6 +22,25 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
         self.viewPostQuesBtn.setCornerRadiusToView()
         self.tblQuesAnswers.register(UINib(nibName: "QuestionAnswerTableViewCell", bundle: nil), forCellReuseIdentifier: "QuestionAnswerTableViewCell")
         self.navigationController?.isNavigationBarHidden = true
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+            swipeLeft.direction = .left
+            self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+       if gesture.direction == .right {
+            print("Swipe Right")
+       }
+       else if gesture.direction == .left {
+            print("Swipe Left")
+       }
+       else if gesture.direction == .up {
+            print("Swipe Up")
+       }
+       else if gesture.direction == .down {
+            print("Swipe Down")
+       }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

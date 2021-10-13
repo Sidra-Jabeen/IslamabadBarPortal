@@ -73,6 +73,12 @@
 		3D650A3D2713479B00786786 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A3B2713479B00786786 /* UserTableViewCell.xib */; };
 		3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A3F2714082B00786786 /* BarCouncilViewController.swift */; };
 		3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A402714082B00786786 /* BarCouncilViewController.xib */; };
+		3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */; };
+		3DD92BAE2715E03200C5D0F6 /* ApprovalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */; };
+		3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */; };
+		3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */; };
+		3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */; };
+		3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB627160A5D00C5D0F6 /* Generic.swift */; };
 		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +152,12 @@
 		3D650A3B2713479B00786786 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		3D650A3F2714082B00786786 /* BarCouncilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCouncilViewController.swift; sourceTree = "<group>"; };
 		3D650A402714082B00786786 /* BarCouncilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarCouncilViewController.xib; sourceTree = "<group>"; };
+		3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalViewController.swift; sourceTree = "<group>"; };
+		3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalViewController.xib; sourceTree = "<group>"; };
+		3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalServices.swift; sourceTree = "<group>"; };
+		3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalRequestModel.swift; sourceTree = "<group>"; };
+		3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalResponseModel.swift; sourceTree = "<group>"; };
+		3DD92BB627160A5D00C5D0F6 /* Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generic.swift; sourceTree = "<group>"; };
 		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +228,8 @@
 				3D1426FE2715520700DE03BB /* CalenderView.swift */,
 				3D1427002715523400DE03BB /* CalenderViewController.swift */,
 				3D1427012715523400DE03BB /* CalenderViewController.xib */,
+				3DD92BAF2715E03900C5D0F6 /* ApprovalsVC */,
+				3DD92BB627160A5D00C5D0F6 /* Generic.swift */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -446,6 +460,18 @@
 			path = BarCouncilVC;
 			sourceTree = "<group>";
 		};
+		3DD92BAF2715E03900C5D0F6 /* ApprovalsVC */ = {
+			isa = PBXGroup;
+			children = (
+				3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */,
+				3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */,
+				3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */,
+				3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */,
+				3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */,
+			);
+			path = ApprovalsVC;
+			sourceTree = "<group>";
+		};
 		B92BFA6F9DAB006D7D3E20B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +573,7 @@
 				3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */,
 				3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */,
 				3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */,
+				3DD92BAE2715E03200C5D0F6 /* ApprovalViewController.xib in Resources */,
 				3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */,
 				3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */,
 				3D650A382713455000786786 /* SignUpViewController.xib in Resources */,
@@ -603,6 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */,
 				3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */,
 				3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */,
 				3D650A122712E7B400786786 /* MemberDirectoryViewController.swift in Sources */,
@@ -618,8 +646,10 @@
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
 				3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */,
 				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
+				3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */,
 				3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */,
 				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
+				3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */,
 				3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */,
 				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
 				3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */,
@@ -633,8 +663,10 @@
 				3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */,
 				3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */,
 				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,
+				3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */,
 				3D650A082712E11200786786 /* GeneralAnnouncementTableViewCell.swift in Sources */,
 				3D6509E127120B1B00786786 /* SideMenuTableViewController.swift in Sources */,
+				3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */,
 				3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */,
 				3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */,
 				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,

@@ -11,7 +11,17 @@ class MemberNameViewController: UIViewController {
     
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var btnCancel: UIButton!
+    
+    @IBOutlet weak var lblMemberName: UILabel!
+    @IBOutlet weak var lblPhoneNumber: UILabel!
+    @IBOutlet weak var lblLisenceDateOfHigh: UILabel!
+    @IBOutlet weak var lblLisenceDateOflower: UILabel!
+    @IBOutlet weak var lblLisenceDateOfSupreme: UILabel!
+    @IBOutlet weak var lblOfcAddress: UILabel!
 
+    var approveUsersArray = [String]()
+    var tblApprovals: UITableView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,11 +33,18 @@ class MemberNameViewController: UIViewController {
         self.view.frame.size.width = UIScreen.main.bounds.width
     }
     
+    
     @IBAction func tappedOnCancel( _sender: UIButton) {
         
         self.willMove(toParent: nil)
         self.view.removeFromSuperview()
         self.removeFromParent()
+        self.tblApprovals?.reloadData()
     }
 
+    @IBAction func tappedOnBlockUser(_sender: UIButton) {
+        
+        
+    }
+    
 }

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalenderViewController" customModule="LawyerApp" customModuleProvider="target">
             <connections>
+                <outlet property="calendar" destination="vqa-KJ-9WR" id="y7n-op-dCt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,14 +20,33 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqa-KJ-9WR" userLabel="CalenderView" customClass="FSCalendar">
-                    <rect key="frame" x="46" y="188" width="264" height="239"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqa-KJ-9WR" userLabel="CalenderView" customClass="FSCalendar">
+                    <rect key="frame" x="77.5" y="233.5" width="220" height="200"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="IZB-CT-Mae"/>
+                        <constraint firstAttribute="width" constant="220" id="Rks-ab-1gb"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="eventDefaultColor">
+                            <color key="value" red="1" green="0.0" blue="0.0093617555430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="eventSelectionColor">
+                            <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
+                            <real key="value" value="-1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="dd/mm/yyyy"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.30439267040000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vqa-KJ-9WR" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AQU-Nx-DWv"/>
+                <constraint firstItem="vqa-KJ-9WR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KMN-7N-nqh"/>
+            </constraints>
             <point key="canvasLocation" x="138.40000000000001" y="71.514242878560722"/>
         </view>
     </objects>

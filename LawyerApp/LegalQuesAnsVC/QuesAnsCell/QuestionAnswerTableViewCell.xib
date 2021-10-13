@@ -37,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bj0-9a-OC4" userLabel="LawLegalView">
-                                <rect key="frame" x="8" y="43" width="304" height="20"/>
+                                <rect key="frame" x="8" y="38" width="304" height="20"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trf-Rv-8Hm" userLabel="View1">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="20"/>
@@ -154,7 +154,7 @@
                             <constraint firstItem="bj0-9a-OC4" firstAttribute="leading" secondItem="Txx-oG-Zkc" secondAttribute="leading" id="TYy-tk-uo8"/>
                             <constraint firstItem="TLP-X4-MGW" firstAttribute="top" secondItem="Txx-oG-Zkc" secondAttribute="bottom" constant="3" id="Xc1-ZZ-KGH"/>
                             <constraint firstItem="Txx-oG-Zkc" firstAttribute="top" secondItem="hQG-ma-Msa" secondAttribute="top" id="bWu-Mm-aoO"/>
-                            <constraint firstItem="bj0-9a-OC4" firstAttribute="top" secondItem="TLP-X4-MGW" secondAttribute="bottom" constant="10" id="bfU-B5-hHS"/>
+                            <constraint firstItem="bj0-9a-OC4" firstAttribute="top" secondItem="TLP-X4-MGW" secondAttribute="bottom" constant="5" id="bfU-B5-hHS"/>
                             <constraint firstItem="TLP-X4-MGW" firstAttribute="leading" secondItem="Txx-oG-Zkc" secondAttribute="leading" id="yfN-HN-IBy"/>
                         </constraints>
                     </view>

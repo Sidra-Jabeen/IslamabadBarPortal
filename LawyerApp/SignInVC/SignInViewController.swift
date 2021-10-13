@@ -15,6 +15,9 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var viewSignInBtn: UIView!
     @IBOutlet weak var btnSignIn: UIButton!
     
+    @IBOutlet weak var txtEnterFullNameOnLisence: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,11 +55,24 @@ class SignInViewController: UIViewController {
     
     func callSignInAPI() {
         
-        let data = Request(source: "2", licenseFile: "", profileFile: "", user: User(FULL_NAME: "Sidra jabeen", CNIC: "3740599261522", LICENSE_NUMBER: "1234567", CONTACT_NUMBER: "1234567", EMAIL: "sidra.jabeen@gmail.com", OFFICE_ADDRESS: "abjawd akhgdhw", PASSWORD: "12345678", LICENSE_TYPE: "Lower Court", ISSUANCE_DATE_LOWER_COURT: "14/02/1998", ISSUANCE_DATE_HIGH_COURT: "14/02/1998", ISSUANCE_DATE_SUPREME_COURT: "14/02/1998"))
-        let signUpUrl = "Account/Registeration"
+        let dataModel = SignInRequestModel(source: "2", user: SignInUser(licenseNumber: self.txtEnterFullNameOnLisence.text ?? "", password: self.txtPassword.text ?? ""))
+        let signUpUrl = "api/Account/Login"
         let services = SignInServices()
-        services.postMethod(urlString: signUpUrl, dataModel: data.params) { (responseData) in
+        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
             print(responseData)
+            UserDefaults.standard.set("TEST", forKey: "Key")
+            let response = SignInResponseModel(code: responseData["code"] as? String ?? "", desc: responseData["code"] as? String ?? "", success: responseData["success"] as? String ?? "", user: responseUser(userId:  responseData["code"] as? Int ?? 0 , loginToken:  responseData["loginToken"] as? String ?? "", isAdmin:  (responseData["code"] as? Bool ?? false)))
+            print(response)
+            let user = responseData["user"] as? [String: Any]
+            let usertoken = user?["loginToken"]
+            Generic.setToken(token: usertoken as? String ?? "")
+            print(responseData["success"] ?? "")
+            let id = responseData["success"] as? Bool ?? false
+            if id {
+                
+                        let dashboardVC = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
+                        self.navigationController?.pushViewController(dashboardVC, animated: true)
+            }
         }
     }
 

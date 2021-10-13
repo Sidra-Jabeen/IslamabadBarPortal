@@ -20,3 +20,5 @@ class Generic {
         return ""
     }
 }
+
+let spinnerView = SpinnerViewController()

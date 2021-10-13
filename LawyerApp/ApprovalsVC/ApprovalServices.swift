@@ -10,10 +10,16 @@ import Foundation
 class ApprovalServices: BaseServices {
     
     
-    func postMethod(urlString: String, dataModel: [String:Any], completion: @escaping ([String: Any]) -> Void) {
+    func postMethod(urlString: String, dataModel: [String:Any], completion: @escaping (GenericResponseModel<ResponseUsers>) -> Void) {
         
         baseServicesPostMethod(urlString: urlString, dataModel: dataModel, completion: {(responseData) in
-            completion(responseData)
+//            completion(responseData)
+            do {
+                let responseModel = try JSONDecoder().decode(GenericResponseModel<ResponseUsers>.self, from: responseData)
+                completion(responseModel)
+            } catch let err {
+                print("class ApprovalVC -> Error \(err)")
+            }
         })
         
     }

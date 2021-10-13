@@ -55,23 +55,19 @@ class SignInViewController: UIViewController {
     
     func callSignInAPI() {
         
+        startAnimation()
         let dataModel = SignInRequestModel(source: "2", user: SignInUser(licenseNumber: self.txtEnterFullNameOnLisence.text ?? "", password: self.txtPassword.text ?? ""))
         let signUpUrl = "api/Account/Login"
         let services = SignInServices()
         services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
             print(responseData)
-            UserDefaults.standard.set("TEST", forKey: "Key")
-            let response = SignInResponseModel(code: responseData["code"] as? String ?? "", desc: responseData["code"] as? String ?? "", success: responseData["success"] as? String ?? "", user: responseUser(userId:  responseData["code"] as? Int ?? 0 , loginToken:  responseData["loginToken"] as? String ?? "", isAdmin:  (responseData["code"] as? Bool ?? false)))
-            print(response)
-            let user = responseData["user"] as? [String: Any]
-            let usertoken = user?["loginToken"]
-            Generic.setToken(token: usertoken as? String ?? "")
-            print(responseData["success"] ?? "")
-            let id = responseData["success"] as? Bool ?? false
-            if id {
-                
-                        let dashboardVC = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
-                        self.navigationController?.pushViewController(dashboardVC, animated: true)
+            let user = responseData.user
+            let token = user?.loginToken
+            Generic.setToken(token: token ?? "")
+            let status = responseData.success ?? false
+            if status {
+                let dashboardVC = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
+                self.navigationController?.pushViewController(dashboardVC, animated: true)
             }
         }
     }

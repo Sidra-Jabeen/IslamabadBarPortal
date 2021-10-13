@@ -138,7 +138,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
             member.lblLisenceDateOfHigh.text = arrayOfMembers[indexPath.item]["issuanceDateHighCourt"] as? String ?? ""
             member.lblLisenceDateOfSupreme.text = arrayOfMembers[indexPath.item]["issuanceDateSupremeCourt"] as? String ?? ""
             member.lblOfcAddress.text = arrayOfMembers[indexPath.item]["officeAddress"] as? String ?? ""
-//            member.approveUsersArray = arrayOfMembers[indexPath.item]
+            member.approveUsersArray = arrayOfMembers[indexPath.item]
         }
     }
     
@@ -157,17 +157,25 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
     
     func callGetUsersApi() {
         
+        startAnimation()
         let dataModel = ApprovalRequestModel(source: "2", user: ApprovalUser(fullName: "", cnic: "", licenseNumber: "", contactNumber: "", email: "", licenseType: "", status: "0"))
         let signUpUrl = "api/User/GetUsers"
-        let services = SignUpServices()
+        let services = ApprovalServices()
         services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
             print(responseData)
-            if let members = responseData["users"] as? [[String: Any]] {
-             self.arrayOfMembers = members
-                print(self.arrayOfMembers)
-                self.approvalsCollection.reloadData()
-            }
         }
+        
+//        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+////            print(responseData)
+////            let responseModel = ApprovalResponseModel(desc: responseData["desc"] as? String ?? "", success: responseData["success"] as? String ?? "", users:  responseData["users"] as! [[String: Any]], code: responseData["code"] as? String ?? "")
+//            
+//            print(responseData)
+//            if let members = responseData["users"] as? [[String: Any]] {
+//             self.arrayOfMembers = members
+//                print(self.arrayOfMembers)
+//                self.approvalsCollection.reloadData()
+//            }
+//        }
     }
     
     func setViewColorLine() {

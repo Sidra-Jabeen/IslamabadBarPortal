@@ -79,6 +79,9 @@
 		3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */; };
 		3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */; };
 		3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB627160A5D00C5D0F6 /* Generic.swift */; };
+		3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */; };
+		3DE9333E2716F57D00B80B7D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333D2716F57D00B80B7D /* UIViewController.swift */; };
+		3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */; };
 		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +161,9 @@
 		3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalRequestModel.swift; sourceTree = "<group>"; };
 		3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalResponseModel.swift; sourceTree = "<group>"; };
 		3DD92BB627160A5D00C5D0F6 /* Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generic.swift; sourceTree = "<group>"; };
+		3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseModel.swift; sourceTree = "<group>"; };
+		3DE9333D2716F57D00B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,6 +236,8 @@
 				3D1427012715523400DE03BB /* CalenderViewController.xib */,
 				3DD92BAF2715E03900C5D0F6 /* ApprovalsVC */,
 				3DD92BB627160A5D00C5D0F6 /* Generic.swift */,
+				3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */,
+				3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -248,6 +256,7 @@
 			children = (
 				3D6509D327118FAF00786786 /* UIView.swift */,
 				3D650A332713252F00786786 /* UIButton.swift */,
+				3DE9333D2716F57D00B80B7D /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -646,6 +655,7 @@
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
 				3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */,
 				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
+				3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */,
 				3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */,
 				3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */,
 				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
@@ -657,7 +667,9 @@
 				3D6509BE2710A44C00786786 /* ViewController.swift in Sources */,
 				3D6509D7271196BC00786786 /* SignInViewController.swift in Sources */,
 				3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */,
+				3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */,
 				3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */,
+				3DE9333E2716F57D00B80B7D /* UIViewController.swift in Sources */,
 				3D650A172712E89200786786 /* MemberCollectionViewCell.swift in Sources */,
 				3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */,
 				3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */,

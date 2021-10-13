@@ -32,3 +32,28 @@ struct SignInUser {
         ]
     }
 }
+
+
+
+struct SignInResponseModel: Codable {
+    
+    var userId: Int?
+    var loginToken: String?
+    var isAdmin: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case userId = "userId"
+        case loginToken = "loginToken"
+        case isAdmin = "isAdmin"
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        userId = try values.decodeIfPresent(Int.self, forKey: .userId)
+        loginToken = try values.decodeIfPresent(String.self, forKey: .loginToken)
+        isAdmin = try values.decodeIfPresent(Bool.self, forKey: .isAdmin)
+    }
+}
+

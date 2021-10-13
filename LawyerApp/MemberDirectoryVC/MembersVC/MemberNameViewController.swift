@@ -19,8 +19,7 @@ class MemberNameViewController: UIViewController {
     @IBOutlet weak var lblLisenceDateOfSupreme: UILabel!
     @IBOutlet weak var lblOfcAddress: UILabel!
 
-    var approveUsersArray = [String]()
-    var tblApprovals: UITableView?
+    var approveUsersArray = [String: Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +38,6 @@ class MemberNameViewController: UIViewController {
         self.willMove(toParent: nil)
         self.view.removeFromSuperview()
         self.removeFromParent()
-        self.tblApprovals?.reloadData()
     }
 
     @IBAction func tappedOnBlockUser(_sender: UIButton) {

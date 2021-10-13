@@ -162,12 +162,12 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func callSignUpAPI() {
         
-        let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "", fullName: "Sidra jabeen", cnic: "3740599261522", licenseNumber: "1234567", contactNumber: "1234567", email: "sidra.jabeen@gmail.com", officeAddress: "abjawd akhgdhw", password: "12345678", licenseType: "Lower Court", issuanceDateLowerCourt: "14/02/1998", issuanceDateHighCourt: "14/02/1998", issuanceDateSupremeCourt: "14/02/1998", dob: "14/02/1998")
-        let signUpUrl = "api/Account/Registration"
-        let services = SignUpServices()
-        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
-            print(responseData)
-        }
+//        let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "", fullName: "Sidra jabeen", cnic: "3740599261522", licenseNumber: "1234567", contactNumber: "1234567", email: "sidra.jabeen@gmail.com", officeAddress: "abjawd akhgdhw", password: "12345678", licenseType: "Lower Court", issuanceDateLowerCourt: "14/02/1998", issuanceDateHighCourt: "14/02/1998", issuanceDateSupremeCourt: "14/02/1998", dob: "14/02/1998")
+//        let signUpUrl = "api/Account/Registration"
+//        let services = SignUpServices()
+//        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+//            print(responseData)
+//        }
     }
     
 //    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){

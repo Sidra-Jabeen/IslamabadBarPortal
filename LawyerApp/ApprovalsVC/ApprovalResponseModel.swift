@@ -7,54 +7,137 @@
 
 import Foundation
 
-struct ApprovalResponseModel {
+//struct ApprovalResponseModel {
+//
+//    let desc: String
+//    let success: Bool
+//    let users: [ResponseUsers]
+//    let code: String
+//
+//    var params: [String:Any] {
+//        return [
+//            "desc": desc,
+//            "success": success,
+//            "ResponseUsers": users,
+//            "code": code
+//        ]
+//    }
+//}
+//
+//    struct ResponseUsers {
+//
+//        let cnic: String
+//        let contactNumber: String
+//        let dob: String
+//        let fullName: String
+//        let isAdmin: String
+//        let issuanceDateHighCourt: String
+//        let issuanceDateLowerCourt: String
+//        let issuanceDateSupremeCourt: String
+//        let licenseNumber: String
+//        let licenseType: String
+//        let officeAddress: String
+//        let profileUrl: String
+//        let userId: String
+//        let PORDER_BY: String
+//
+//        var params: [String:Any] {
+//            return [
+//                "cnic": cnic,
+//                "contactNumber": contactNumber,
+//                "dob": dob,
+//                "fullName": fullName,
+//                "isAdmin": isAdmin,
+//                "issuanceDateHighCourt": issuanceDateHighCourt,
+//                "issuanceDateLowerCourt": issuanceDateLowerCourt,
+//                "issuanceDateSupremeCourt": issuanceDateSupremeCourt,
+//                "licenseNumber": licenseNumber,
+//                "licenseType": licenseType,
+//                "officeAddress": officeAddress,
+//                "profileUrl": profileUrl,
+//                "userId": userId,
+//                "PORDER_BY": PORDER_BY,
+//            ]
+//        }
+//    }
+
+
+//struct ApprovalResponseModel: Codable {
+//
+//    var desc: String?
+//    var success: Bool?
+//    var users: [ResponseUsers]?
+//    var code: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//
+//        case desc = "desc"
+//        case success = "success"
+//        case users = "users"
+//        case code = "code"
+//    }
+//
+//    init(from decoder: Decoder) throws {
+//
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        desc = try values.decodeIfPresent(String.self, forKey: .desc)
+//        success = try values.decodeIfPresent(Bool.self, forKey: .success)
+//        users = try values.decodeIfPresent([ResponseUsers].self, forKey: .users)
+//        code = try values.decodeIfPresent(String.self, forKey: .code)
+//    }
+//}
+
+struct ResponseUsers: Codable {
     
-    let desc: String
-    let success: String
-    let users: ResponseUsers
-    let code: String
+    var cnic: String?
+    var contactNumber: String?
+    var dob: String?
+    var fullName: String?
+    var isAdmin: String?
+    var issuanceDateHighCourt: String?
+    var issuanceDateLowerCourt: String?
+    var issuanceDateSupremeCourt: String?
+    var licenseNumber: String?
+    var licenseType: String?
+    var officeAddress: String?
+    var profileUrl: String?
+    var userId: String?
+    var PORDER_BY: String?
     
-    var params: [String:Any] {
-        return [
-            "desc": desc,
-            "success": success,
-            "ResponseUsers": users.params,
-            "code": code
-        ]
+    enum CodingKeys: String, CodingKey {
+        
+        case cnic = "cnic"
+        case contactNumber = "contactNumber"
+        case dob = "dob"
+        case fullName = "fullName"
+        case isAdmin = "isAdmin"
+        case issuanceDateHighCourt = "issuanceDateHighCourt"
+        case issuanceDateLowerCourt = "issuanceDateLowerCourt"
+        case issuanceDateSupremeCourt = "issuanceDateSupremeCourt"
+        case licenseNumber = "licenseNumber"
+        case licenseType = "licenseType"
+        case officeAddress = "officeAddress"
+        case profileUrl = "profileUrl"
+        case userId = "userId"
+        case PORDER_BY = "PORDER_BY"
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        cnic = try values.decodeIfPresent(String.self, forKey: .cnic)
+        contactNumber = try values.decodeIfPresent(String.self, forKey: .contactNumber)
+        dob = try values.decodeIfPresent(String.self, forKey: .dob)
+        fullName = try values.decodeIfPresent(String.self, forKey: .fullName)
+        isAdmin = try values.decodeIfPresent(String.self, forKey: .isAdmin)
+        issuanceDateHighCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateHighCourt)
+        issuanceDateLowerCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateLowerCourt)
+        issuanceDateSupremeCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateSupremeCourt)
+        licenseNumber = try values.decodeIfPresent(String.self, forKey: .licenseNumber)
+        licenseType = try values.decodeIfPresent(String.self, forKey: .licenseType)
+        officeAddress = try values.decodeIfPresent(String.self, forKey: .officeAddress)
+        profileUrl = try values.decodeIfPresent(String.self, forKey: .profileUrl)
+        userId = try values.decodeIfPresent(String.self, forKey: .userId)
+        PORDER_BY = try values.decodeIfPresent(String.self, forKey: .PORDER_BY)
     }
 }
-    
-    struct ResponseUsers {
-        
-        let cnic: String
-        let contactNumber: String
-        let dob: String
-        let fullName: String
-        let isAdmin: String
-        let issuanceDateHighCourt: String
-        let issuanceDateLowerCourt: String
-        let issuanceDateSupremeCourt: String
-        let licenseNumber: String
-        let licenseType: String
-        let officeAddress: String
-        let profileUrl: String
-        let userId: String
-        
-        var params: [String:Any] {
-            return [
-                "cnic": cnic,
-                "contactNumber": contactNumber,
-                "dob": dob,
-                "fullName": fullName,
-                "isAdmin": isAdmin,
-                "issuanceDateHighCourt": issuanceDateHighCourt,
-                "issuanceDateLowerCourt": issuanceDateLowerCourt,
-                "issuanceDateSupremeCourt": issuanceDateSupremeCourt,
-                "licenseNumber": licenseNumber,
-                "licenseType": licenseType,
-                "officeAddress": officeAddress,
-                "profileUrl": profileUrl,
-                "userId": userId
-            ]
-        }
-    }

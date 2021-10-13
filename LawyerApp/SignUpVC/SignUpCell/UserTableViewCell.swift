@@ -8,9 +8,10 @@
 import UIKit
 import DropDown
 
-class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
     
+    var validate = Validate()
     @IBOutlet weak var lblInfo: UILabel!
     @IBOutlet weak var txtInfo: UITextField!
     @IBOutlet weak var viewFirstName: UIView!
@@ -87,4 +88,3 @@ class UserTableViewCell: UITableViewCell, UITextFieldDelegate, UIImagePickerCont
 protocol SignUpControllerDelegate {
     func didSelectItem( txt : UITextField, val: String)
 }
-

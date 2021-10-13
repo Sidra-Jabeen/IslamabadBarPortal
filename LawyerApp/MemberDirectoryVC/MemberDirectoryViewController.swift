@@ -60,4 +60,37 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         self.navigationController?.popViewController(animated: true)
     }
     
+//    func getUserDirectory() {
+//        
+//        let dataModel = MemberDirectoryRequestModel(source: "2", user: GetUsers(fullName: "", cnic: "", licenseNumber: "", contactNumber: "", email: "", licenseType: "", status: "0"))
+//        
+//        let memberDirectory = "api/User/GetUsers"
+//        
+//        let services = MemberDirectoryService()
+//        services.postMethod(urlString: memberDirectory, dataModel: dataModel.params) { (responseData) in
+//            print(responseData)
+//            UserDefaults.standard.set("TEST", forKey: "Key")
+//            
+//            
+//            let response = MenberDirectoryResponeModel(code: responseData["code"] as? String ?? "", desc: responseData["code"] as? String ?? "", success: responseData["success"] as? String ?? "", user: memberDirectoryUser(userId: responseData["userId"] as? Int ?? 0, fullName: responseData["fullName"] as? String ?? "", cnic: responseData["cnic"] as? String ?? "", dob: responseData["dob"] as? String ?? "", licenseNumber: responseData[""], contactNumber: <#T##String#>, licenseType: <#T##String#>, issuanceDateLowerCourt: <#T##String#>, issuanceDateHighCourt: <#T##String#>, issuanceDateSupremeCourt: <#T##String#>, officeAddress: <#T##String#>, profileUrl: <#T##String#>, isAdmin: <#T##Bool#>) )
+//            
+//            
+//            (code: responseData["code"] as? String ?? "", desc: responseData["code"] as? String ?? "", success: responseData["success"] as? String ?? "", user: responseUser(userId:  responseData["code"] as? Int ?? 0 , loginToken:  responseData["loginToken"] as? String ?? "", isAdmin:  (responseData["code"] as? Bool ?? false)))
+//            
+//            print(response)
+//            let user = responseData["user"] as? [String: Any]
+//            let usertoken = user?["loginToken"]
+//            Generic.setToken(token: usertoken as? String ?? "")
+//            print(responseData["success"] ?? "")
+//            let id = responseData["success"] as? Bool ?? false
+//            if id {
+//                
+//                        let dashboardVC = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
+//                        self.navigationController?.pushViewController(dashboardVC, animated: true)
+//            }
+//        }
+//    }
+//    
+    
+    
 }

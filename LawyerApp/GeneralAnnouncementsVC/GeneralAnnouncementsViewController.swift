@@ -18,6 +18,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     var listArrays = [GeneralAnnouncementResponseModel]()
     var intValue = 0
     var bitValueForAscDes = 0
+    var strValue = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -246,7 +247,13 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "asc", limit: 10, offset: listArrays.count), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, startDate: strtDate, fromDate: frmDate, duration: duration))
+            
+            if bitValueForAscDes == 1 {
+                self.strValue = "asc"
+            } else {
+                self.strValue = "des"
+            }
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: listArrays.count), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, startDate: strtDate, fromDate: frmDate, duration: duration))
             let url = "api/MemberAnnouncement/GetAnnouncements"
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in

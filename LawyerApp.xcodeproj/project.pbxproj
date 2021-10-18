@@ -166,6 +166,10 @@
 		3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
+		956AFA332716C6770005C826 /* Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
+		956AFA352716E3D60005C826 /* MemberDirectoryRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryRequestModel.swift; sourceTree = "<group>"; };
+		956AFA37271716940005C826 /* MenberDirectoryResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenberDirectoryResponeModel.swift; sourceTree = "<group>"; };
+		956AFA3927171A840005C826 /* MemberDirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,7 +260,7 @@
 			children = (
 				3D6509D327118FAF00786786 /* UIView.swift */,
 				3D650A332713252F00786786 /* UIButton.swift */,
-				3DE9333D2716F57D00B80B7D /* UIViewController.swift */,
+				956AFA332716C6770005C826 /* Validate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -598,12 +602,23 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LawyerApp/Pods-LawyerApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LawyerApp/Pods-LawyerApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LawyerApp/Pods-LawyerApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -639,6 +654,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				956AFA3A27171A840005C826 /* MemberDirectoryService.swift in Sources */,
 				3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */,
 				3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */,
 				3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */,
@@ -648,6 +664,7 @@
 				3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */,
 				3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */,
 				3D650A342713252F00786786 /* UIButton.swift in Sources */,
+				956AFA38271716940005C826 /* MenberDirectoryResponeModel.swift in Sources */,
 				3D1426F12714783D00DE03BB /* BaseService.swift in Sources */,
 				3D1426F5271483B400DE03BB /* SignUpServices.swift in Sources */,
 				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
@@ -680,10 +697,12 @@
 				3D6509E127120B1B00786786 /* SideMenuTableViewController.swift in Sources */,
 				3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */,
 				3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */,
+				956AFA342716C6770005C826 /* Validate.swift in Sources */,
 				3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */,
 				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,
 				3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */,
 				3D1426FD2714907A00DE03BB /* SignInServices.swift in Sources */,
+				956AFA362716E3D60005C826 /* MemberDirectoryRequestModel.swift in Sources */,
 				3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

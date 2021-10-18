@@ -34,7 +34,6 @@ class BaseServices {
         
         AF.request(url, method: .post, parameters: dataModel, encoding: JSONEncoding.default, headers: headers).responseJSON { AFdata in
             do {
-                
                 switch AFdata.result {
                 case .success:
                     do {
@@ -46,6 +45,7 @@ class BaseServices {
                         print("Error accured on base request")
                     }
                 case .failure:
+                    
                     
                     break
                     
@@ -92,6 +92,39 @@ class BaseServices {
                 return
             }
         }
+    }
+    
+    func upload(image: Data, to url: Alamofire.URLRequestConvertible, params: [String: Any]) {
+        AF.upload(multipartFormData: { multiPart in
+            for (key, value) in params {
+                if let temp = value as? String {
+                    multiPart.append(temp.data(using: .utf8)!, withName: key)
+                }
+                if let temp = value as? Int {
+                    multiPart.append("\(temp)".data(using: .utf8)!, withName: key)
+                }
+                if let temp = value as? NSArray {
+                    temp.forEach({ element in
+                        let keyObj = key + "[]"
+                        if let string = element as? String {
+                            multiPart.append(string.data(using: .utf8)!, withName: keyObj)
+                        } else
+                            if let num = element as? Int {
+                                let value = "\(num)"
+                                multiPart.append(value.data(using: .utf8)!, withName: keyObj)
+                        }
+                    })
+                }
+            }
+            multiPart.append(image, withName: "file", fileName: "file.png", mimeType: "image/png")
+        }, with: url)
+            .uploadProgress(queue: .main, closure: { progress in
+                //Current upload progress of file
+                print("Upload Progress: \(progress.fractionCompleted)")
+            })
+            .responseJSON(completionHandler: { data in
+                //Do what ever you want to do with response
+            })
     }
 }
 

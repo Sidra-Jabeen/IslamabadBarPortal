@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ("Office Address","Office Address","0","text",true)
     ]
     var signUpArray = [String]()
-    
+    let validate = Validate()
     let dropDown = DropDown()
     let dropDownValues = ["Issue Date of Lower Court","Issue Date of High Court","Issue Date of Supreme Court"]
     var imagePicker = UIImagePickerController()
@@ -66,8 +66,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func tappedOnSignUp( _sender: UIButton) {
-        
-        self.callSignUpAPI()
+        self.validation(dataModel: dataModel)
+        //self.callSignUpAPI()
     }
     
     //MARK: - UITableViewDelegate&UITableViewDataSource
@@ -136,12 +136,9 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.view.addSubview(calenderView.view)
         }
         else if val == "photo library" {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
-                imagePicker.delegate = self
-                imagePicker.allowsEditing = true
-                imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-                self.present(imagePicker, animated: true, completion: nil)
-            }
+            
+            showAlert()
+
         } else if val == "dropdown" {
             txt.placeholder = "Select"
             dropDown.anchorView = txt
@@ -154,20 +151,68 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             dropDown.show()
             
         }
-        
-//        self.arrayOfUserInfo.append(txt)
+       // self.arrayOfUserInfo.append(txt)
     }
+
     
+    func validation(dataModel:Request){
+        
+        if validate.isValidName(testStr: dataModel.fullName) == false{
+            
+            alert( message: "Please Enter Valid Full Name")
+            return
+        }else if validate.IsValidCNIC(cnicStr: dataModel.cnic) == false{
+            
+            alert(message: "Please Enter Valid CNIC Without Dashes")
+            
+        }else if validate.isValidPhone(testStr: dataModel.contactNumber)  == false{
+            
+            alert(message: "Please Enter Valid Contact Number")
+            
+        }else if validate.isEmailValid(emailStr: dataModel.email)  == false{
+            
+            alert(message: "Please Enter Valid Email")
+            
+        }else if validate.isValidAddress(testStr: dataModel.officeAddress) == false{
+            
+            alert(message: "Please Enter Valid Office Address")
+            
+        }
+        else if validate.isValidDate(dateString: dataModel.dob) == false{
+            
+            alert(message: "Please Enter Valid Office Address")
+            
+        }else if validate.isValidDate(dateString: dataModel.issuanceDateHighCourt) == false{
+            
+            alert(message: "Please Enter Valid Office Address")
+            
+        }
+        else if validate.isValidDate(dateString: dataModel.issuanceDateLowerCourt) == false{
+            
+            alert(message: "Please Enter Valid Office Address")
+            
+        }else if validate.isValidDate(dateString: dataModel.issuanceDateSupremeCourt) == false{
+            
+            alert(message: "Please Enter Valid Office Address")
+            
+        }else { callSignUpAPI(data:dataModel)
+            
+        }
+        
+    }
     //MARK: - CallingAPiMethod
     
-    func callSignUpAPI() {
+    func callSignUpAPI(data:Request) {
+        
         
 //        let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "", fullName: "Sidra jabeen", cnic: "3740599261522", licenseNumber: "1234567", contactNumber: "1234567", email: "sidra.jabeen@gmail.com", officeAddress: "abjawd akhgdhw", password: "12345678", licenseType: "Lower Court", issuanceDateLowerCourt: "14/02/1998", issuanceDateHighCourt: "14/02/1998", issuanceDateSupremeCourt: "14/02/1998", dob: "14/02/1998")
-//        let signUpUrl = "api/Account/Registration"
-//        let services = SignUpServices()
-//        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
-//            print(responseData)
-//        }
+        
+        
+        let signUpUrl = "api/Account/Registration"
+        let services = SignUpServices()
+        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+            print(responseData)
+        }
     }
     
 //    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
@@ -186,7 +231,36 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //    }
     
     //MARK: - UIImagePickerControllerDelegate
+
+  
     
+     func showAlert() {
+
+            let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+                self.getImage(fromSourceType: .camera)
+            }))
+            alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+                self.getImage(fromSourceType: .photoLibrary)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+
+        //get image from source type
+        func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
+
+            if UIImagePickerController.isSourceTypeAvailable(sourceType){
+                imagePicker.delegate = self
+                imagePicker.allowsEditing = true
+                imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+                imagePicker.modalPresentationStyle = .fullScreen
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+            
+        }
+
+        //MARK:- UIImagePickerViewDelegate.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let url = info[.imageURL] as? NSURL else { return }
         let filename = url.lastPathComponent!
@@ -196,6 +270,13 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print(filename)
         }
     }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+        }
+    
+    
+    
     
     //MARK: - CalenderControllerDetegate
     
@@ -204,6 +285,12 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.textTemp.text = date
     }
     
+    func alert(message:String){
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+   
 }
 
 extension UIImage {

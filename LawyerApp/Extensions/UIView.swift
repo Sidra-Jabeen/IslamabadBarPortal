@@ -26,4 +26,9 @@ extension UIView {
         self.layer.borderWidth = 1
         self.layer.borderColor = #colorLiteral(red: 0.8391239047, green: 0.8392685056, blue: 0.8391147852, alpha: 1)
     }
+    
+    func removeBorderColorToView() {
+        
+        self.layer.borderWidth = 0
+    }
 }

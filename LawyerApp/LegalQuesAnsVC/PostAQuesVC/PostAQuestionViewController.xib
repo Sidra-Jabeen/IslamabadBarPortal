@@ -13,7 +13,10 @@
             <connections>
                 <outlet property="borderView" destination="IpI-Nm-4nn" id="tTs-mN-fwF"/>
                 <outlet property="btnCancel" destination="o9X-d6-hcC" id="riU-bq-fzN"/>
+                <outlet property="btnPostAQuestion" destination="uMN-qm-7ex" id="cdK-Yc-sdk"/>
                 <outlet property="postQuesView" destination="MXw-uY-iAr" id="pMl-6j-wep"/>
+                <outlet property="questionTextView" destination="Nwn-tW-TKN" id="QxM-Ye-7YB"/>
+                <outlet property="txtwriteSomething" destination="Xvf-oG-wxu" id="kVJ-gk-O5a"/>
                 <outlet property="uploadButnView" destination="7TS-kz-3GT" id="0hX-TO-dZk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="writeSomethingView" destination="1wP-3i-gXN" id="2eq-Yb-fmq"/>
@@ -69,7 +72,6 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nwn-tW-TKN">
                                                     <rect key="frame" x="0.0" y="15" width="293" height="129"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

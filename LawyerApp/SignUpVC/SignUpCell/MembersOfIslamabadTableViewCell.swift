@@ -8,6 +8,17 @@
 import UIKit
 
 class MembersOfIslamabadTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var txtfield: UITextField!
+    @IBOutlet weak var viewFirstName: UIView!
+    @IBOutlet weak var btn1: UIButton!
+    @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var btn3: UIButton!
+    
+    @IBOutlet weak var img1: UIImageView!
+    @IBOutlet weak var img2: UIImageView!
+    @IBOutlet weak var img3: UIImageView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +28,8 @@ class MembersOfIslamabadTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+//        self.viewFirstName.setCornerRadiusToView()
+//        self.viewFirstName.setBorderColorToView()
     }
     
 }

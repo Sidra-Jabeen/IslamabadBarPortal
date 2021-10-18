@@ -18,8 +18,12 @@ class MemberNameViewController: UIViewController {
     @IBOutlet weak var lblLisenceDateOflower: UILabel!
     @IBOutlet weak var lblLisenceDateOfSupreme: UILabel!
     @IBOutlet weak var lblOfcAddress: UILabel!
+    @IBOutlet weak var btnAccepted: UIButton!
+    @IBOutlet weak var btnRejected: UIButton!
+    @IBOutlet weak var btnMakeAAdmin: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
 
-    var approveUsersArray = [String: Any]()
+    var memberId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +31,12 @@ class MemberNameViewController: UIViewController {
         self.btnCancel.layer.cornerRadius = self.btnCancel.frame.size.height / 2
         self.centerView.setCornerRadiusToView()
         self.navigationController?.isNavigationBarHidden = true
-        
         self.view.frame.size.height = UIScreen.main.bounds.height
         self.view.frame.size.width = UIScreen.main.bounds.width
+        self.btnAccepted.setCornerRadiusToButton()
+        self.btnAccepted.setCornerRadiusToButton()
+        self.btnRejected.setCornerRadiusToButton()
+        self.profileImage.applyCircledView()
     }
     
     
@@ -40,7 +47,12 @@ class MemberNameViewController: UIViewController {
         self.removeFromParent()
     }
 
-    @IBAction func tappedOnBlockUser(_sender: UIButton) {
+    @IBAction func tappedOnAccept(_sender: UIButton) {
+        
+        
+    }
+    
+    @IBAction func tappedOnReject(_sender: UIButton) {
         
         
     }

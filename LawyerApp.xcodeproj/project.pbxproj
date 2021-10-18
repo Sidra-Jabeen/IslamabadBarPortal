@@ -73,6 +73,34 @@
 		3D650A3D2713479B00786786 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A3B2713479B00786786 /* UserTableViewCell.xib */; };
 		3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D650A3F2714082B00786786 /* BarCouncilViewController.swift */; };
 		3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D650A402714082B00786786 /* BarCouncilViewController.xib */; };
+		3D66A4B32717502200221832 /* MembersOfIslamabadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4B12717502200221832 /* MembersOfIslamabadTableViewCell.swift */; };
+		3D66A4B42717502200221832 /* MembersOfIslamabadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4B22717502200221832 /* MembersOfIslamabadTableViewCell.xib */; };
+		3D66A4B7271758F300221832 /* IssuseDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4B5271758F300221832 /* IssuseDateTableViewCell.swift */; };
+		3D66A4B8271758F300221832 /* IssuseDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4B6271758F300221832 /* IssuseDateTableViewCell.xib */; };
+		3D66A4BB271759FF00221832 /* HighCourtTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4B9271759FF00221832 /* HighCourtTableViewCell.swift */; };
+		3D66A4BC271759FF00221832 /* HighCourtTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4BA271759FF00221832 /* HighCourtTableViewCell.xib */; };
+		3D66A4BF27175A8100221832 /* SupremeCourtTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4BD27175A8100221832 /* SupremeCourtTableViewCell.swift */; };
+		3D66A4C027175A8100221832 /* SupremeCourtTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4BE27175A8100221832 /* SupremeCourtTableViewCell.xib */; };
+		3D66A4C327175B0000221832 /* OfficeAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C127175B0000221832 /* OfficeAddressTableViewCell.swift */; };
+		3D66A4C427175B0000221832 /* OfficeAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4C227175B0000221832 /* OfficeAddressTableViewCell.xib */; };
+		3D66A4C6271965C100221832 /* Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C5271965C100221832 /* Validate.swift */; };
+		3D66A4C827197D8700221832 /* LocalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C727197D8700221832 /* LocalAuth.swift */; };
+		3D66A4CA2719951C00221832 /* MemberDirectoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C92719951C00221832 /* MemberDirectoryModels.swift */; };
+		3D66A4CD2719AB0600221832 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4CB2719AB0600221832 /* CommentsViewController.swift */; };
+		3D66A4CE2719AB0600221832 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4CC2719AB0600221832 /* CommentsViewController.xib */; };
+		3D66A4D02719B0DA00221832 /* QuestionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4CF2719B0DA00221832 /* QuestionRequestModel.swift */; };
+		3D66A4D22719B68700221832 /* QuestionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4D12719B68700221832 /* QuestionServices.swift */; };
+		3D66A4D42719CBDC00221832 /* PostQuestionsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4D32719CBDC00221832 /* PostQuestionsServices.swift */; };
+		3D66A4D7271AC9BA00221832 /* PostAnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4D5271AC9BA00221832 /* PostAnnouncementViewController.swift */; };
+		3D66A4D8271AC9BA00221832 /* PostAnnouncementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4D6271AC9BA00221832 /* PostAnnouncementViewController.xib */; };
+		3D66A4DA271AD47600221832 /* AnnouncementModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4D9271AD47600221832 /* AnnouncementModels.swift */; };
+		3D66A4DC271AD48D00221832 /* AnnouncementServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4DB271AD48D00221832 /* AnnouncementServices.swift */; };
+		3D66A4DE271B140600221832 /* GeneralAnnouncementRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4DD271B140600221832 /* GeneralAnnouncementRequestModel.swift */; };
+		3D66A4E0271B14ED00221832 /* GeneralAnnouncementServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4DF271B14ED00221832 /* GeneralAnnouncementServices.swift */; };
+		3D66A4E2271C049600221832 /* BiometricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E1271C049600221832 /* BiometricsManager.swift */; };
+		3D66A4E4271C0C2800221832 /* NetworkConectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */; };
+		3D66A4E6271C83E000221832 /* UIString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E5271C83DF00221832 /* UIString.swift */; };
+		3D66A4E8271D5CF300221832 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E7271D5CF300221832 /* DateTimePicker.swift */; };
 		3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */; };
 		3DD92BAE2715E03200C5D0F6 /* ApprovalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */; };
 		3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */; };
@@ -80,8 +108,8 @@
 		3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */; };
 		3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB627160A5D00C5D0F6 /* Generic.swift */; };
 		3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */; };
-		3DE9333E2716F57D00B80B7D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333D2716F57D00B80B7D /* UIViewController.swift */; };
 		3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */; };
+		3DE93343271726A800B80B7D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE93342271726A800B80B7D /* UIViewController.swift */; };
 		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +183,34 @@
 		3D650A3B2713479B00786786 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		3D650A3F2714082B00786786 /* BarCouncilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCouncilViewController.swift; sourceTree = "<group>"; };
 		3D650A402714082B00786786 /* BarCouncilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarCouncilViewController.xib; sourceTree = "<group>"; };
+		3D66A4B12717502200221832 /* MembersOfIslamabadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersOfIslamabadTableViewCell.swift; sourceTree = "<group>"; };
+		3D66A4B22717502200221832 /* MembersOfIslamabadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembersOfIslamabadTableViewCell.xib; sourceTree = "<group>"; };
+		3D66A4B5271758F300221832 /* IssuseDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuseDateTableViewCell.swift; sourceTree = "<group>"; };
+		3D66A4B6271758F300221832 /* IssuseDateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssuseDateTableViewCell.xib; sourceTree = "<group>"; };
+		3D66A4B9271759FF00221832 /* HighCourtTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighCourtTableViewCell.swift; sourceTree = "<group>"; };
+		3D66A4BA271759FF00221832 /* HighCourtTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighCourtTableViewCell.xib; sourceTree = "<group>"; };
+		3D66A4BD27175A8100221832 /* SupremeCourtTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupremeCourtTableViewCell.swift; sourceTree = "<group>"; };
+		3D66A4BE27175A8100221832 /* SupremeCourtTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupremeCourtTableViewCell.xib; sourceTree = "<group>"; };
+		3D66A4C127175B0000221832 /* OfficeAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeAddressTableViewCell.swift; sourceTree = "<group>"; };
+		3D66A4C227175B0000221832 /* OfficeAddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfficeAddressTableViewCell.xib; sourceTree = "<group>"; };
+		3D66A4C5271965C100221832 /* Validate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
+		3D66A4C727197D8700221832 /* LocalAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuth.swift; sourceTree = "<group>"; };
+		3D66A4C92719951C00221832 /* MemberDirectoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryModels.swift; sourceTree = "<group>"; };
+		3D66A4CB2719AB0600221832 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		3D66A4CC2719AB0600221832 /* CommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		3D66A4CF2719B0DA00221832 /* QuestionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRequestModel.swift; sourceTree = "<group>"; };
+		3D66A4D12719B68700221832 /* QuestionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionServices.swift; sourceTree = "<group>"; };
+		3D66A4D32719CBDC00221832 /* PostQuestionsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuestionsServices.swift; sourceTree = "<group>"; };
+		3D66A4D5271AC9BA00221832 /* PostAnnouncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnnouncementViewController.swift; sourceTree = "<group>"; };
+		3D66A4D6271AC9BA00221832 /* PostAnnouncementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostAnnouncementViewController.xib; sourceTree = "<group>"; };
+		3D66A4D9271AD47600221832 /* AnnouncementModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementModels.swift; sourceTree = "<group>"; };
+		3D66A4DB271AD48D00221832 /* AnnouncementServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementServices.swift; sourceTree = "<group>"; };
+		3D66A4DD271B140600221832 /* GeneralAnnouncementRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAnnouncementRequestModel.swift; sourceTree = "<group>"; };
+		3D66A4DF271B14ED00221832 /* GeneralAnnouncementServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAnnouncementServices.swift; sourceTree = "<group>"; };
+		3D66A4E1271C049600221832 /* BiometricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsManager.swift; sourceTree = "<group>"; };
+		3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConectionModel.swift; sourceTree = "<group>"; };
+		3D66A4E5271C83DF00221832 /* UIString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIString.swift; sourceTree = "<group>"; };
+		3D66A4E7271D5CF300221832 /* DateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
 		3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalViewController.swift; sourceTree = "<group>"; };
 		3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalViewController.xib; sourceTree = "<group>"; };
 		3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalServices.swift; sourceTree = "<group>"; };
@@ -164,12 +220,10 @@
 		3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseModel.swift; sourceTree = "<group>"; };
 		3DE9333D2716F57D00B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		3DE93342271726A800B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
 		956AFA332716C6770005C826 /* Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
-		956AFA352716E3D60005C826 /* MemberDirectoryRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryRequestModel.swift; sourceTree = "<group>"; };
-		956AFA37271716940005C826 /* MenberDirectoryResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenberDirectoryResponeModel.swift; sourceTree = "<group>"; };
-		956AFA3927171A840005C826 /* MemberDirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +254,7 @@
 				3D6509B72710A44C00786786 /* Products */,
 				ECFC89F527E7106A3B7C0D08 /* Pods */,
 				B92BFA6F9DAB006D7D3E20B2 /* Frameworks */,
+				3DE933412717264C00B80B7D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +269,7 @@
 		3D6509B82710A44C00786786 /* LawyerApp */ = {
 			isa = PBXGroup;
 			children = (
+				3D66A4C5271965C100221832 /* Validate.swift */,
 				3D6509D227118F9B00786786 /* Extensions */,
 				3D6509B92710A44C00786786 /* AppDelegate.swift */,
 				3D6509BB2710A44C00786786 /* SceneDelegate.swift */,
@@ -242,6 +298,10 @@
 				3DD92BB627160A5D00C5D0F6 /* Generic.swift */,
 				3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */,
 				3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */,
+				3D66A4C727197D8700221832 /* LocalAuth.swift */,
+				3D66A4E1271C049600221832 /* BiometricsManager.swift */,
+				3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */,
+				3D66A4E7271D5CF300221832 /* DateTimePicker.swift */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -258,9 +318,11 @@
 		3D6509D227118F9B00786786 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3DE93342271726A800B80B7D /* UIViewController.swift */,
 				3D6509D327118FAF00786786 /* UIView.swift */,
 				3D650A332713252F00786786 /* UIButton.swift */,
 				956AFA332716C6770005C826 /* Validate.swift */,
+				3D66A4E5271C83DF00221832 /* UIString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +377,10 @@
 				3D6509F62712BC2200786786 /* QuesAnsCell */,
 				3D6509FB2712CC4400786786 /* QuestionAnswerVC */,
 				3D650A002712D30700786786 /* PostAQuesVC */,
+				3D66A4CB2719AB0600221832 /* CommentsViewController.swift */,
+				3D66A4CC2719AB0600221832 /* CommentsViewController.xib */,
+				3D66A4CF2719B0DA00221832 /* QuestionRequestModel.swift */,
+				3D66A4D12719B68700221832 /* QuestionServices.swift */,
 			);
 			path = LegalQuesAnsVC;
 			sourceTree = "<group>";
@@ -342,6 +408,7 @@
 			children = (
 				3D6509FC2712D30100786786 /* PostAQuestionViewController.swift */,
 				3D6509FD2712D30100786786 /* PostAQuestionViewController.xib */,
+				3D66A4D32719CBDC00221832 /* PostQuestionsServices.swift */,
 			);
 			path = PostAQuesVC;
 			sourceTree = "<group>";
@@ -351,6 +418,8 @@
 			children = (
 				3D650A012712DF9500786786 /* GeneralAnnouncementsViewController.swift */,
 				3D650A022712DF9500786786 /* GeneralAnnouncementsViewController.xib */,
+				3D66A4DD271B140600221832 /* GeneralAnnouncementRequestModel.swift */,
+				3D66A4DF271B14ED00221832 /* GeneralAnnouncementServices.swift */,
 				3D650A0A2712E11800786786 /* AnnouncementsCell */,
 				3D650A0F2712E5F300786786 /* AnnouncementVC */,
 			);
@@ -380,6 +449,7 @@
 			children = (
 				3D650A102712E7B400786786 /* MemberDirectoryViewController.swift */,
 				3D650A112712E7B400786786 /* MemberDirectoryViewController.xib */,
+				3D66A4C92719951C00221832 /* MemberDirectoryModels.swift */,
 				3D650A192712EBBB00786786 /* MembersCell */,
 				3D650A1E2712EDE600786786 /* MembersVC */,
 			);
@@ -459,6 +529,16 @@
 			children = (
 				3D650A3A2713479B00786786 /* UserTableViewCell.swift */,
 				3D650A3B2713479B00786786 /* UserTableViewCell.xib */,
+				3D66A4B12717502200221832 /* MembersOfIslamabadTableViewCell.swift */,
+				3D66A4B22717502200221832 /* MembersOfIslamabadTableViewCell.xib */,
+				3D66A4B5271758F300221832 /* IssuseDateTableViewCell.swift */,
+				3D66A4B6271758F300221832 /* IssuseDateTableViewCell.xib */,
+				3D66A4B9271759FF00221832 /* HighCourtTableViewCell.swift */,
+				3D66A4BA271759FF00221832 /* HighCourtTableViewCell.xib */,
+				3D66A4BD27175A8100221832 /* SupremeCourtTableViewCell.swift */,
+				3D66A4BE27175A8100221832 /* SupremeCourtTableViewCell.xib */,
+				3D66A4C127175B0000221832 /* OfficeAddressTableViewCell.swift */,
+				3D66A4C227175B0000221832 /* OfficeAddressTableViewCell.xib */,
 			);
 			path = SignUpCell;
 			sourceTree = "<group>";
@@ -469,6 +549,10 @@
 				3D650A3F2714082B00786786 /* BarCouncilViewController.swift */,
 				3D650A402714082B00786786 /* BarCouncilViewController.xib */,
 				3D061BAC2714297000DFCCF8 /* SearchCouncilVC */,
+				3D66A4D5271AC9BA00221832 /* PostAnnouncementViewController.swift */,
+				3D66A4D6271AC9BA00221832 /* PostAnnouncementViewController.xib */,
+				3D66A4D9271AD47600221832 /* AnnouncementModels.swift */,
+				3D66A4DB271AD48D00221832 /* AnnouncementServices.swift */,
 			);
 			path = BarCouncilVC;
 			sourceTree = "<group>";
@@ -483,6 +567,14 @@
 				3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */,
 			);
 			path = ApprovalsVC;
+			sourceTree = "<group>";
+		};
+		3DE933412717264C00B80B7D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3DE9333D2716F57D00B80B7D /* UIViewController.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B92BFA6F9DAB006D7D3E20B2 /* Frameworks */ = {
@@ -562,31 +654,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D66A4CE2719AB0600221832 /* CommentsViewController.xib in Resources */,
 				3D650A132712E7B400786786 /* MemberDirectoryViewController.xib in Resources */,
 				3D6509D8271196BC00786786 /* SignInViewController.xib in Resources */,
 				3D6509FF2712D30100786786 /* PostAQuestionViewController.xib in Resources */,
 				3D650A092712E11200786786 /* GeneralAnnouncementTableViewCell.xib in Resources */,
 				3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */,
 				3D6509C62710A44D00786786 /* LaunchScreen.storyboard in Resources */,
+				3D66A4D8271AC9BA00221832 /* PostAnnouncementViewController.xib in Resources */,
 				3D6509F02712B51000786786 /* LegalQuestionsAnswersViewController.xib in Resources */,
 				3D650A042712DF9500786786 /* GeneralAnnouncementsViewController.xib in Resources */,
+				3D66A4C027175A8100221832 /* SupremeCourtTableViewCell.xib in Resources */,
 				3D650A3127131B9A00786786 /* SearchFilterViewController.xib in Resources */,
 				3D650A1D2712EDE100786786 /* MemberNameViewController.xib in Resources */,
 				3D650A3D2713479B00786786 /* UserTableViewCell.xib in Resources */,
+				3D66A4B42717502200221832 /* MembersOfIslamabadTableViewCell.xib in Resources */,
 				3D6509D0271186BA00786786 /* WelcomeToIslamabadViewController.xib in Resources */,
 				3D061BAB2714296B00DFCCF8 /* SearchForBarCouncilViewController.xib in Resources */,
 				3D6509EC27120DB400786786 /* MenuListTableViewCell.xib in Resources */,
 				3D6509C32710A44D00786786 /* Assets.xcassets in Resources */,
 				3D650A272712F84900786786 /* OfficialDirectoryTableViewCell.xib in Resources */,
+				3D66A4C427175B0000221832 /* OfficeAddressTableViewCell.xib in Resources */,
 				3D650A182712E89200786786 /* MemberCollectionViewCell.xib in Resources */,
 				3D650A0E2712E5EE00786786 /* AnnouncementViewController.xib in Resources */,
 				3D650A222712F6EA00786786 /* OfficialDirectoryViewController.xib in Resources */,
+				3D66A4B8271758F300221832 /* IssuseDateTableViewCell.xib in Resources */,
 				3D6509C12710A44C00786786 /* Main.storyboard in Resources */,
 				3D650A2C2713026800786786 /* ProfileViewController.xib in Resources */,
 				3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */,
 				3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */,
 				3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */,
 				3DD92BAE2715E03200C5D0F6 /* ApprovalViewController.xib in Resources */,
+				3D66A4BC271759FF00221832 /* HighCourtTableViewCell.xib in Resources */,
 				3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */,
 				3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */,
 				3D650A382713455000786786 /* SignUpViewController.xib in Resources */,
@@ -608,6 +707,7 @@
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -617,6 +717,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -654,28 +755,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				956AFA3A27171A840005C826 /* MemberDirectoryService.swift in Sources */,
+				3D66A4B32717502200221832 /* MembersOfIslamabadTableViewCell.swift in Sources */,
 				3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */,
 				3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */,
 				3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */,
 				3D650A122712E7B400786786 /* MemberDirectoryViewController.swift in Sources */,
 				3D650A1C2712EDE100786786 /* MemberNameViewController.swift in Sources */,
+				3D66A4D7271AC9BA00221832 /* PostAnnouncementViewController.swift in Sources */,
 				3D6509FE2712D30100786786 /* PostAQuestionViewController.swift in Sources */,
+				3D66A4D02719B0DA00221832 /* QuestionRequestModel.swift in Sources */,
 				3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */,
 				3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */,
 				3D650A342713252F00786786 /* UIButton.swift in Sources */,
-				956AFA38271716940005C826 /* MenberDirectoryResponeModel.swift in Sources */,
 				3D1426F12714783D00DE03BB /* BaseService.swift in Sources */,
+				3D66A4E4271C0C2800221832 /* NetworkConectionModel.swift in Sources */,
+				3D66A4C327175B0000221832 /* OfficeAddressTableViewCell.swift in Sources */,
+				3D66A4DA271AD47600221832 /* AnnouncementModels.swift in Sources */,
 				3D1426F5271483B400DE03BB /* SignUpServices.swift in Sources */,
+				3D66A4CD2719AB0600221832 /* CommentsViewController.swift in Sources */,
 				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
 				3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */,
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
 				3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */,
+				3D66A4E0271B14ED00221832 /* GeneralAnnouncementServices.swift in Sources */,
 				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
 				3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */,
+				3D66A4DC271AD48D00221832 /* AnnouncementServices.swift in Sources */,
+				3D66A4CA2719951C00221832 /* MemberDirectoryModels.swift in Sources */,
 				3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */,
 				3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */,
 				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
+				3D66A4D42719CBDC00221832 /* PostQuestionsServices.swift in Sources */,
 				3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */,
 				3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */,
 				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
@@ -686,24 +796,32 @@
 				3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */,
 				3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */,
 				3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */,
-				3DE9333E2716F57D00B80B7D /* UIViewController.swift in Sources */,
+				3DE93343271726A800B80B7D /* UIViewController.swift in Sources */,
+				3D66A4BB271759FF00221832 /* HighCourtTableViewCell.swift in Sources */,
+				3D66A4E8271D5CF300221832 /* DateTimePicker.swift in Sources */,
 				3D650A172712E89200786786 /* MemberCollectionViewCell.swift in Sources */,
 				3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */,
 				3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */,
 				3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */,
+				3D66A4BF27175A8100221832 /* SupremeCourtTableViewCell.swift in Sources */,
 				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,
+				3D66A4B7271758F300221832 /* IssuseDateTableViewCell.swift in Sources */,
 				3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */,
 				3D650A082712E11200786786 /* GeneralAnnouncementTableViewCell.swift in Sources */,
 				3D6509E127120B1B00786786 /* SideMenuTableViewController.swift in Sources */,
 				3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */,
 				3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */,
-				956AFA342716C6770005C826 /* Validate.swift in Sources */,
 				3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */,
 				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,
+				3D66A4DE271B140600221832 /* GeneralAnnouncementRequestModel.swift in Sources */,
 				3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */,
 				3D1426FD2714907A00DE03BB /* SignInServices.swift in Sources */,
-				956AFA362716E3D60005C826 /* MemberDirectoryRequestModel.swift in Sources */,
+				3D66A4E6271C83E000221832 /* UIString.swift in Sources */,
+				3D66A4D22719B68700221832 /* QuestionServices.swift in Sources */,
+				3D66A4C827197D8700221832 /* LocalAuth.swift in Sources */,
 				3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */,
+				3D66A4E2271C049600221832 /* BiometricsManager.swift in Sources */,
+				3D66A4C6271965C100221832 /* Validate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

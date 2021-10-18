@@ -93,7 +93,7 @@ struct ResponseUsers: Codable {
     var contactNumber: String?
     var dob: String?
     var fullName: String?
-    var isAdmin: String?
+    var isAdmin: Bool?
     var issuanceDateHighCourt: String?
     var issuanceDateLowerCourt: String?
     var issuanceDateSupremeCourt: String?
@@ -101,8 +101,8 @@ struct ResponseUsers: Codable {
     var licenseType: String?
     var officeAddress: String?
     var profileUrl: String?
-    var userId: String?
-    var PORDER_BY: String?
+    var userId: Int?
+    var status: String?
     
     enum CodingKeys: String, CodingKey {
         
@@ -119,7 +119,7 @@ struct ResponseUsers: Codable {
         case officeAddress = "officeAddress"
         case profileUrl = "profileUrl"
         case userId = "userId"
-        case PORDER_BY = "PORDER_BY"
+        case status = "status"
     }
     
     init(from decoder: Decoder) throws {
@@ -129,7 +129,7 @@ struct ResponseUsers: Codable {
         contactNumber = try values.decodeIfPresent(String.self, forKey: .contactNumber)
         dob = try values.decodeIfPresent(String.self, forKey: .dob)
         fullName = try values.decodeIfPresent(String.self, forKey: .fullName)
-        isAdmin = try values.decodeIfPresent(String.self, forKey: .isAdmin)
+        isAdmin = try values.decodeIfPresent(Bool.self, forKey: .isAdmin)
         issuanceDateHighCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateHighCourt)
         issuanceDateLowerCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateLowerCourt)
         issuanceDateSupremeCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateSupremeCourt)
@@ -137,7 +137,7 @@ struct ResponseUsers: Codable {
         licenseType = try values.decodeIfPresent(String.self, forKey: .licenseType)
         officeAddress = try values.decodeIfPresent(String.self, forKey: .officeAddress)
         profileUrl = try values.decodeIfPresent(String.self, forKey: .profileUrl)
-        userId = try values.decodeIfPresent(String.self, forKey: .userId)
-        PORDER_BY = try values.decodeIfPresent(String.self, forKey: .PORDER_BY)
+        userId = try values.decodeIfPresent(Int.self, forKey: .userId)
+        status = try values.decodeIfPresent(String.self, forKey: .status)
     }
 }

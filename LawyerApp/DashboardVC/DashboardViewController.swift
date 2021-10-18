@@ -7,14 +7,21 @@
 
 import UIKit
 import SideMenu
+import LocalAuthentication
 
 class DashboardViewController: UIViewController, MenuControllerDelegate {
     
     @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var approvalView: UIView!
+    @IBOutlet weak var helpView: UIView!
+    @IBOutlet weak var mainhelpView:UIView!
 
     var sideMenu: SideMenuTableViewController?
     var menu: SideMenuNavigationController?
     var navController: UINavigationController?
+    var isFingerLogin = false
+    var strLisenceNo = ""
+    var password = ""
     var homeController: DashboardViewController?
     var legalQuestionsAnswers: LegalQuestionsAnswersViewController?
     var generalAnnouncements: GeneralAnnouncementsViewController?
@@ -22,12 +29,16 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
     var memberDirectory: MemberDirectoryViewController?
     var profileController: ProfileViewController?
     var officialDirectory: OfficialDirectoryViewController?
+    var requestApproval: ApprovalViewController?
     
+//    let kc = KeyChainManager(KeyChain())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
+        self.helpView.applyCircledView()
+        self.helpView.applyCircledView()
         
         self.sideMenu = SideMenuTableViewController()
         if let list = sideMenu {
@@ -42,6 +53,46 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
             
         }
         
+        if UserDefaults.standard.string(forKey: "isBiometricLogin") == nil {
+            
+            let alert = UIAlertController(title: "Islamabad Bar Connect", message: "Do you want to enabled Finger ID", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { alert in
+                self.dismiss(animated: true, completion: nil)
+                self.authenticateUserTouchID()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { alert in
+                
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+
+        }
+        
+        
+        let admin = Generic.getAdminValue()
+        if admin == "0" {
+//            self.approvalView.isHidden = true
+        }
+//        self.authenticateUserTouchID()
+        
+    }
+    
+    func authenticateUserTouchID() {
+        
+        BiometricsManager().authenticateUser(completion: { [weak self] (response) in
+            switch response {
+            case .failure:
+               print("Failed")
+                UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+                self?.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Authentication Failed")
+            case .success:
+                print("Success")
+                UserDefaults.standard.set("1", forKey: "isBiometricLogin")
+                UserDefaults.standard.set(self?.strLisenceNo, forKey: "lisenceNumber")
+                UserDefaults.standard.set(self?.password, forKey: "password")
+            }
+        })
     }
     
     @IBAction func showSideMenu() {
@@ -94,7 +145,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
     }
     
     func didSelectMenuItem(named: String) {
-            if named == "Legal Questions Answers" {
+            if named == "Queries" {
                 legalQuestionsAnswers = LegalQuestionsAnswersViewController()
                 if let controller = legalQuestionsAnswers  {
                     setupUI(controller: controller)
@@ -129,10 +180,15 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
                     removeViewController(controller: controller)
                     barCouncil = nil
                 }
+                
+                if let controller = requestApproval {
+                    removeViewController(controller: controller)
+                    requestApproval = nil
+                }
 
             }
 
-            else if named == "General Announcememts" {
+            else if named == "Member Announcememts" {
                 generalAnnouncements = GeneralAnnouncementsViewController()
                 if let controller = generalAnnouncements  {
                     setupUI(controller: controller)
@@ -167,10 +223,15 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
                     removeViewController(controller: controller)
                     barCouncil = nil
                 }
+                
+                if let controller = requestApproval {
+                    removeViewController(controller: controller)
+                    requestApproval = nil
+                }
 
             }
         
-        else if named == "Bar Council Announcememts" {
+        else if named == "Bar Announcements" {
             barCouncil = BarCouncilViewController()
             if let controller = barCouncil  {
                     setupUI(controller: controller)
@@ -206,6 +267,10 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
                 homeController = nil
             }
 
+            if let controller = requestApproval {
+                removeViewController(controller: controller)
+                requestApproval = nil
+            }
 
         }
 
@@ -245,6 +310,11 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
                     removeViewController(controller: controller)
                     barCouncil = nil
                 }
+                
+                if let controller = requestApproval {
+                    removeViewController(controller: controller)
+                    requestApproval = nil
+                }
 
             }
 
@@ -282,6 +352,11 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
                 if let controller = barCouncil {
                     removeViewController(controller: controller)
                     barCouncil = nil
+                }
+                
+                if let controller = requestApproval {
+                    removeViewController(controller: controller)
+                    requestApproval = nil
                 }
 
             }
@@ -321,9 +396,56 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
                     removeViewController(controller: controller)
                     barCouncil = nil
                 }
+                
+                if let controller = requestApproval {
+                    removeViewController(controller: controller)
+                    requestApproval = nil
+                }
             }
         
-        else  {
+        else if named == "Request Approval" {
+            requestApproval = ApprovalViewController()
+            if let controller = requestApproval  {
+                setupUI(controller: controller)
+            }
+            
+            if let controller = legalQuestionsAnswers {
+                removeViewController(controller: controller)
+                legalQuestionsAnswers = nil
+            }
+            
+            if let controller = generalAnnouncements {
+                removeViewController(controller: controller)
+                generalAnnouncements = nil
+            }
+            
+            if let controller = memberDirectory {
+                removeViewController(controller: controller)
+                memberDirectory = nil
+            }
+            
+            if let controller = profileController {
+                removeViewController(controller: controller)
+                profileController = nil
+            }
+            
+            if let controller = homeController {
+                removeViewController(controller: controller)
+                homeController = nil
+            }
+            
+            if let controller = barCouncil {
+                removeViewController(controller: controller)
+                barCouncil = nil
+            }
+            
+            if let controller = officialDirectory {
+                removeViewController(controller: controller)
+                officialDirectory = nil
+            }
+        }
+        
+         else if named == "Logout"  {
             
             self.navigationController?.popViewController(animated: true)
         }

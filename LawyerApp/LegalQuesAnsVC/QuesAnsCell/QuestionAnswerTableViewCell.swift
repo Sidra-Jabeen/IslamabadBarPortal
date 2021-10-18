@@ -8,6 +8,12 @@
 import UIKit
 
 class QuestionAnswerTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var lblQuestion: UILabel!
+    @IBOutlet weak var lblAnswer: UILabel!
+    @IBOutlet weak var lblUsr: UILabel!
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblTotalComments: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

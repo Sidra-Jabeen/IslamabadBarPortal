@@ -14,8 +14,8 @@ class SideMenuTableViewController: UITableViewController {
     
     var navigation:SideMenuTableViewController?
     let tableViewColor: UIColor = #colorLiteral(red: 0.130608201, green: 0.3541451395, blue: 0.3179354072, alpha: 1)
-    var arrMenuList = ["Legal Questions Answers","General Announcememts","Bar Council Announcememts","Members Directory","My Profile","Official Directory","Logout"]
-    var listImages: [String] = [ "Layer 25", "Notification", "Notification", "21-List-1", "Layer 19", "Path 288", "logout"]
+    var arrMenuList = ["Queries","Member Announcememts","Bar Announcements","Members Directory","Help","My Profile","Official Directory", "Request Approval", "Logout"]
+    var listImages: [String] = [ "Layer 25", "Notification", "Notification", "21-List-1","Group 241", "Layer 19", "Path 288","listing_search_magnifier_magnifying_glass_loupe", "logout"]
     
     public var delegate: MenuControllerDelegate?
     
@@ -26,6 +26,11 @@ class SideMenuTableViewController: UITableViewController {
         self.tblSideMenuList.separatorStyle = .none
         self.tblSideMenuList.register(UINib(nibName: "UserNameTableViewCell", bundle: nil), forCellReuseIdentifier: "UserNameTableViewCell")
         self.tblSideMenuList.register(UINib(nibName: "MenuListTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuListTableViewCell")
+        
+        let admin = Generic.getAdminValue()
+        if admin == "1" {
+            self.arrMenuList.remove(at: 7)
+        }
     }
     
     // MARK: - Table view data source
@@ -51,6 +56,7 @@ class SideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuListTableViewCell", for: indexPath) as! MenuListTableViewCell
             
             //        cell.imgMenuItem.image = menuListImages[indexPath.row]
+            
             cell.lblMenuItem?.text = arrMenuList[indexPath.row]
             cell.lblMenuItem?.textColor = .white
             cell.imgMenuItem.image = UIImage(named: listImages[indexPath.row])
@@ -61,7 +67,7 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 100 : 65
+        return indexPath.section == 0 ? 100 : 55
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

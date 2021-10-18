@@ -13,5 +13,6 @@ pod 'DropDown'
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'FSCalendar'
+pod 'Kingfisher', '~> 7.0'
 
 end

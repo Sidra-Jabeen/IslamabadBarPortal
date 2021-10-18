@@ -1,8 +1,9 @@
 PODS:
-  - Alamofire (5.4.3)
+  - Alamofire (5.4.4)
   - DropDown (2.3.13)
   - FSCalendar (2.8.2)
   - IQKeyboardManagerSwift (6.5.6)
+  - Kingfisher (7.0.0)
   - SideMenu (6.5.0)
   - SwiftyJSON (5.0.1)
 
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - DropDown
   - FSCalendar
   - IQKeyboardManagerSwift
+  - Kingfisher (~> 7.0)
   - SideMenu
   - SwiftyJSON
 
@@ -20,17 +22,19 @@ SPEC REPOS:
     - DropDown
     - FSCalendar
     - IQKeyboardManagerSwift
+    - Kingfisher
     - SideMenu
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: be380be8b63fbe59209ac2b9bf2ee3745ca5ad15
+PODFILE CHECKSUM: 362c0f4a358c4c74fadc3a1ca8b539585f376909
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

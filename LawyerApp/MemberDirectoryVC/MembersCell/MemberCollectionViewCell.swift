@@ -15,7 +15,11 @@ class MemberCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        self.profileImage.layer.cornerRadius = 25
+//        self.profileImage.layer.masksToBounds = false
+//        self.profileImage.layer.cornerRadius = self.profileImage.frame.height/2
+//        self.profileImage.clipsToBounds = true
+        self.profileImage.applyCircledView()
     }
 
 }

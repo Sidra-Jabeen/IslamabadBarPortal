@@ -11,16 +11,34 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchForBarCouncilViewController" customModule="LawyerApp" customModuleProvider="target">
             <connections>
+                <outlet property="btnAll" destination="mza-YO-vBO" id="CKO-xD-Fh5"/>
+                <outlet property="btnAscending" destination="LtZ-er-rBq" id="GRg-Lw-GfV"/>
                 <outlet property="btnCancel" destination="Rxx-vw-O9f" id="Qns-HZ-kvp"/>
+                <outlet property="btnFromDate" destination="8px-fX-lwP" id="sDG-yU-beX"/>
+                <outlet property="btnLastweek" destination="TLE-87-WJ6" id="Mgg-PX-SZX"/>
+                <outlet property="btnSearch" destination="QuI-YM-ncj" id="6un-qB-jiG"/>
                 <outlet property="btnSearchView" destination="QN8-5S-FT0" id="yYu-t5-vk8"/>
+                <outlet property="btnToDate" destination="mAU-zg-VaU" id="yFR-L8-USU"/>
+                <outlet property="btnToday" destination="ShA-H2-nfY" id="sHc-ME-F6a"/>
+                <outlet property="btnYesterday" destination="C7t-SP-eLr" id="xxK-LK-XBu"/>
+                <outlet property="btndescending" destination="lcY-kV-gpx" id="181-C2-lEa"/>
+                <outlet property="calenderViewHeight" destination="g8O-eb-ud4" id="5r0-vn-v30"/>
+                <outlet property="imgAsc" destination="Nj0-TK-Hv1" id="YeM-08-IO9"/>
+                <outlet property="imgDes" destination="v3x-h8-Muy" id="O2W-oA-6Nq"/>
                 <outlet property="mainView" destination="ujK-QL-A1X" id="uYQ-rN-YfS"/>
+                <outlet property="postAnnouncementView" destination="ZgS-9b-T6E" id="puQ-xh-253"/>
+                <outlet property="searchByDateView" destination="g9c-J6-3pz" id="nT3-7v-sbg"/>
+                <outlet property="serachByViewHeight" destination="gC3-1k-YSS" id="ZFv-pp-piW"/>
+                <outlet property="toAndFromView" destination="Zih-SU-59U" id="pXf-az-mHl"/>
+                <outlet property="txtFromDate" destination="9w8-4y-zmJ" id="gcw-wf-mx6"/>
+                <outlet property="txtToDate" destination="oOk-rV-aNj" id="nP5-49-42C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewAll" destination="dBj-zx-eHn" id="bum-Bv-81Y"/>
                 <outlet property="viewFromDate" destination="Wh7-w0-bnP" id="gqA-mO-HBM"/>
-                <outlet property="viewLastweak" destination="H3x-UP-RPi" id="aoC-oX-EGN"/>
+                <outlet property="viewLastweek" destination="H3x-UP-RPi" id="1kc-Ai-3x3"/>
                 <outlet property="viewToDate" destination="iW5-tS-De0" id="U5h-V7-Ixy"/>
                 <outlet property="viewToday" destination="dzh-HW-TML" id="r3G-vy-jp0"/>
-                <outlet property="viewYesterdar" destination="TEk-Rk-Xhp" id="Nt8-xi-MW3"/>
+                <outlet property="viewYesterday" destination="TEk-Rk-Xhp" id="3Zd-wX-jb9"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -75,14 +93,14 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mza-YO-vBO">
                                                             <rect key="frame" x="0.0" y="0.0" width="45.5" height="24"/>
-                                                            <color key="backgroundColor" red="0.71386259789999995" green="0.54778027529999995" blue="0.26319298149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="All"/>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" red="0.8715899587" green="0.66993445159999998" blue="0.32021686430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="mza-YO-vBO" firstAttribute="top" secondItem="dBj-zx-eHn" secondAttribute="top" id="3t9-ZR-SoQ"/>
                                                         <constraint firstAttribute="bottom" secondItem="mza-YO-vBO" secondAttribute="bottom" id="Kyy-By-PUE"/>
@@ -96,7 +114,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShA-H2-nfY">
                                                             <rect key="frame" x="1" y="0.0" width="52.5" height="23"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
                                                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Today"/>
@@ -116,7 +134,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-SP-eLr">
                                                             <rect key="frame" x="1" y="0.0" width="52.5" height="23"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
                                                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Yesterday"/>
@@ -136,7 +154,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLE-87-WJ6">
                                                             <rect key="frame" x="1" y="0.0" width="57.5" height="24"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Last week"/>
@@ -197,12 +215,19 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iW5-tS-De0" userLabel="TxtfieldView">
                                                             <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="dd/mm/yyyy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oOk-rV-aNj">
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAU-zg-VaU">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                </button>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="dd/mm/yyyy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oOk-rV-aNj">
                                                                     <rect key="frame" x="5" y="10" width="91" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="-1" id="AjS-jJ-UyD"/>
+                                                                    </connections>
                                                                 </textField>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFX-M1-oat">
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFX-M1-oat">
                                                                     <rect key="frame" x="96" y="12" width="20" height="26"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="VPV-Pg-Bwe"/>
@@ -214,8 +239,12 @@
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="oOk-rV-aNj" firstAttribute="leading" secondItem="iW5-tS-De0" secondAttribute="leading" constant="5" id="3WZ-d2-8Jl"/>
+                                                                <constraint firstAttribute="trailing" secondItem="mAU-zg-VaU" secondAttribute="trailing" id="6Sn-G3-SR4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="MFX-M1-oat" secondAttribute="trailing" constant="8" id="JwO-Sw-VGP"/>
                                                                 <constraint firstAttribute="bottom" secondItem="MFX-M1-oat" secondAttribute="bottom" constant="12" id="K4n-ry-vZX"/>
+                                                                <constraint firstAttribute="bottom" secondItem="mAU-zg-VaU" secondAttribute="bottom" id="Y4u-VP-pbP"/>
+                                                                <constraint firstItem="mAU-zg-VaU" firstAttribute="leading" secondItem="iW5-tS-De0" secondAttribute="leading" id="aMx-b3-vVX"/>
+                                                                <constraint firstItem="mAU-zg-VaU" firstAttribute="top" secondItem="iW5-tS-De0" secondAttribute="top" id="eSW-46-aEO"/>
                                                                 <constraint firstAttribute="bottom" secondItem="oOk-rV-aNj" secondAttribute="bottom" constant="10" id="eTy-Ru-DNp"/>
                                                                 <constraint firstItem="MFX-M1-oat" firstAttribute="top" secondItem="iW5-tS-De0" secondAttribute="top" constant="12" id="mYE-tO-2Kh"/>
                                                                 <constraint firstItem="MFX-M1-oat" firstAttribute="leading" secondItem="oOk-rV-aNj" secondAttribute="trailing" id="rUi-y4-Ilg"/>
@@ -260,12 +289,19 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wh7-w0-bnP" userLabel="TxtfieldView">
                                                             <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="dd/mm/yyyy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9w8-4y-zmJ">
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8px-fX-lwP">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                </button>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="dd/mm/yyyy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9w8-4y-zmJ">
                                                                     <rect key="frame" x="5" y="10" width="94" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="-1" id="1N1-J0-yuf"/>
+                                                                    </connections>
                                                                 </textField>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FW2-Tg-ya7">
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FW2-Tg-ya7">
                                                                     <rect key="frame" x="99" y="12" width="20" height="26"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="ecI-JK-OMk"/>
@@ -276,12 +312,16 @@
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
+                                                                <constraint firstItem="8px-fX-lwP" firstAttribute="leading" secondItem="Wh7-w0-bnP" secondAttribute="leading" id="5Mu-QW-JgT"/>
                                                                 <constraint firstAttribute="bottom" secondItem="FW2-Tg-ya7" secondAttribute="bottom" constant="12" id="LC5-2S-hnP"/>
                                                                 <constraint firstItem="FW2-Tg-ya7" firstAttribute="leading" secondItem="9w8-4y-zmJ" secondAttribute="trailing" id="OAQ-Zt-rok"/>
                                                                 <constraint firstItem="9w8-4y-zmJ" firstAttribute="top" secondItem="Wh7-w0-bnP" secondAttribute="top" constant="10" id="QAd-wg-89T"/>
+                                                                <constraint firstAttribute="trailing" secondItem="8px-fX-lwP" secondAttribute="trailing" id="QEi-SE-1fl"/>
                                                                 <constraint firstItem="FW2-Tg-ya7" firstAttribute="top" secondItem="Wh7-w0-bnP" secondAttribute="top" constant="12" id="Vt2-8R-ODP"/>
                                                                 <constraint firstItem="9w8-4y-zmJ" firstAttribute="leading" secondItem="Wh7-w0-bnP" secondAttribute="leading" constant="5" id="XzS-2t-PsZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="FW2-Tg-ya7" secondAttribute="trailing" constant="5" id="a5o-Wz-htA"/>
+                                                                <constraint firstAttribute="bottom" secondItem="8px-fX-lwP" secondAttribute="bottom" id="fgc-q5-NwL"/>
+                                                                <constraint firstItem="8px-fX-lwP" firstAttribute="top" secondItem="Wh7-w0-bnP" secondAttribute="top" id="mxx-oW-BiI"/>
                                                                 <constraint firstAttribute="bottom" secondItem="9w8-4y-zmJ" secondAttribute="bottom" constant="10" id="pFU-7b-wJn"/>
                                                             </constraints>
                                                         </view>
@@ -361,8 +401,8 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="136.5" height="30"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         </button>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nj0-TK-Hv1">
-                                                            <rect key="frame" x="0.0" y="3.5" width="20" height="22.5"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle" translatesAutoresizingMaskIntoConstraints="NO" id="Nj0-TK-Hv1">
+                                                            <rect key="frame" x="0.0" y="2.5" width="20" height="25"/>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="1Rd-n4-GK2"/>
@@ -399,8 +439,8 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="136.5" height="30"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         </button>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v3x-h8-Muy">
-                                                            <rect key="frame" x="0.0" y="3.5" width="20" height="22.5"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle" translatesAutoresizingMaskIntoConstraints="NO" id="v3x-h8-Muy">
+                                                            <rect key="frame" x="0.0" y="2.5" width="20" height="25"/>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="TLq-rt-mnE"/>
@@ -475,7 +515,7 @@
                                             <state key="normal" title="Search"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.71386259789999995" green="0.54778027529999995" blue="0.26319298149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.8715899587" green="0.66993445159999998" blue="0.32021686430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="QuI-YM-ncj" secondAttribute="trailing" id="KOl-0I-4YN"/>
                                         <constraint firstItem="QuI-YM-ncj" firstAttribute="top" secondItem="QN8-5S-FT0" secondAttribute="top" id="gBS-Eq-J1Q"/>
@@ -538,10 +578,10 @@
         </view>
     </objects>
     <resources>
+        <image name="Circle" width="50" height="50"/>
         <image name="Group 195" width="76" height="76"/>
         <image name="layer1" width="20.812000274658203" height="22.881999969482422"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
-        <image name="square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

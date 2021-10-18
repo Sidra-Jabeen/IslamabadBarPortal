@@ -8,6 +8,9 @@
 import UIKit
 
 class SupremeCourtTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var txtfield: UITextField!
+    @IBOutlet weak var viewFirstName: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +20,8 @@ class SupremeCourtTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+//        self.viewFirstName.setCornerRadiusToView()
+//        self.viewFirstName.setBorderColorToView()
     }
     
 }

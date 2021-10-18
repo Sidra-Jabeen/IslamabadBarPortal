@@ -14,7 +14,9 @@ class PostAQuestionViewController: UIViewController {
     @IBOutlet weak var uploadButnView: UIView!
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var postQuesView: UIView!
-    
+    @IBOutlet weak var btnPostAQuestion: UIButton!
+    @IBOutlet weak var questionTextView: UITextView!
+    @IBOutlet weak var txtwriteSomething: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

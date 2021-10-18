@@ -22,23 +22,26 @@
                         <rect key="frame" x="10" y="10" width="100" height="100"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4VR-fn-9kV" userLabel="Main">
-                                <rect key="frame" x="0.0" y="30" width="100" height="70"/>
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 114" translatesAutoresizingMaskIntoConstraints="NO" id="40J-Kt-z4f">
-                                        <rect key="frame" x="30" y="-20" width="40" height="40"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 114" translatesAutoresizingMaskIntoConstraints="NO" id="40J-Kt-z4f">
+                                        <rect key="frame" x="20" y="10" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="QMC-2J-SVP"/>
-                                            <constraint firstAttribute="height" constant="40" id="h5A-Pm-owc"/>
+                                            <constraint firstAttribute="width" constant="60" id="QMC-2J-SVP"/>
+                                            <constraint firstAttribute="height" constant="60" id="h5A-Pm-owc"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4n-V2-qxN">
-                                        <rect key="frame" x="0.0" y="35" width="100" height="16"/>
+                                        <rect key="frame" x="0.0" y="74" width="100" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="uJl-V0-RiF"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supreme Court" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-Cy-BFR">
-                                        <rect key="frame" x="0.0" y="56" width="100" height="11"/>
+                                        <rect key="frame" x="0.0" y="94" width="100" height="1"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -50,10 +53,11 @@
                                     <constraint firstItem="ZgQ-Cy-BFR" firstAttribute="trailing" secondItem="u4n-V2-qxN" secondAttribute="trailing" id="BJn-Ez-ehE"/>
                                     <constraint firstItem="ZgQ-Cy-BFR" firstAttribute="leading" secondItem="u4n-V2-qxN" secondAttribute="leading" id="FWv-Tn-kTj"/>
                                     <constraint firstItem="u4n-V2-qxN" firstAttribute="leading" secondItem="4VR-fn-9kV" secondAttribute="leading" id="Mj2-8Y-qW0"/>
+                                    <constraint firstItem="u4n-V2-qxN" firstAttribute="top" secondItem="40J-Kt-z4f" secondAttribute="bottom" constant="4" id="N4G-mN-0Q2"/>
                                     <constraint firstAttribute="trailing" secondItem="u4n-V2-qxN" secondAttribute="trailing" id="Obb-PE-NPQ"/>
                                     <constraint firstItem="ZgQ-Cy-BFR" firstAttribute="top" secondItem="u4n-V2-qxN" secondAttribute="bottom" constant="5" id="Vr4-5s-C4Q"/>
-                                    <constraint firstItem="u4n-V2-qxN" firstAttribute="top" secondItem="40J-Kt-z4f" secondAttribute="bottom" constant="15" id="bHs-zH-jVo"/>
-                                    <constraint firstItem="40J-Kt-z4f" firstAttribute="top" secondItem="4VR-fn-9kV" secondAttribute="top" constant="-20" id="sTp-PF-MxT"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZgQ-Cy-BFR" secondAttribute="bottom" constant="5" id="sNZ-RN-Vp1"/>
+                                    <constraint firstItem="40J-Kt-z4f" firstAttribute="top" secondItem="4VR-fn-9kV" secondAttribute="top" constant="10" id="sTp-PF-MxT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -62,7 +66,7 @@
                             <constraint firstAttribute="trailing" secondItem="4VR-fn-9kV" secondAttribute="trailing" id="EWR-ag-Yzj"/>
                             <constraint firstAttribute="bottom" secondItem="4VR-fn-9kV" secondAttribute="bottom" id="SoT-9t-Aa5"/>
                             <constraint firstItem="4VR-fn-9kV" firstAttribute="leading" secondItem="7Zb-6A-dX5" secondAttribute="leading" id="V01-dG-9ti"/>
-                            <constraint firstItem="4VR-fn-9kV" firstAttribute="top" secondItem="7Zb-6A-dX5" secondAttribute="top" constant="30" id="vju-TI-tVL"/>
+                            <constraint firstItem="4VR-fn-9kV" firstAttribute="top" secondItem="7Zb-6A-dX5" secondAttribute="top" id="vju-TI-tVL"/>
                         </constraints>
                     </view>
                 </subviews>

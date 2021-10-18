@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Validate{
+class Validate {
     
     func isValidName(testStr:String) -> Bool {
         

@@ -168,6 +168,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblAnswer" destination="TLP-X4-MGW" id="fyW-hi-jp2"/>
+                <outlet property="lblQuestion" destination="Txx-oG-Zkc" id="Nsw-nd-K8h"/>
+                <outlet property="lblTime" destination="fG6-o0-Hnk" id="Gjg-Cr-0Bl"/>
+                <outlet property="lblTotalComments" destination="LaI-Oy-Tf3" id="b3x-O7-MQb"/>
+                <outlet property="lblUsr" destination="wJC-n5-dFO" id="vE9-wG-suV"/>
+            </connections>
             <point key="canvasLocation" x="385.60000000000002" y="61.169415292353825"/>
         </tableViewCell>
     </objects>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,6 +32,9 @@
                                         <rect key="frame" x="15" y="10" width="270" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="KGk-i7-Jjw" id="iWg-Ds-Enf"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76E-6U-leU">
                                         <rect key="frame" x="285" y="12" width="25" height="26"/>
@@ -57,7 +61,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0u-aO-zID">
-                                <rect key="frame" x="15" y="-10" width="152" height="20"/>
+                                <rect key="frame" x="15" y="-10" width="160" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name On Lisence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOJ-3G-aVI">
                                         <rect key="frame" x="0.0" y="0.0" width="152" height="20"/>
@@ -66,14 +70,24 @@
                                         <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="staroflife.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4Wb-28-ozh">
+                                        <rect key="frame" x="152" y="7" width="8" height="6"/>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0093617555430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="8" id="dI5-2V-xQy"/>
+                                            <constraint firstAttribute="height" constant="8" id="iCS-jY-PqX"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="LOJ-3G-aVI" firstAttribute="top" secondItem="R0u-aO-zID" secondAttribute="top" id="64B-8e-xPI"/>
-                                    <constraint firstAttribute="trailing" secondItem="LOJ-3G-aVI" secondAttribute="trailing" id="9pE-Wa-a0O"/>
+                                    <constraint firstItem="4Wb-28-ozh" firstAttribute="leading" secondItem="LOJ-3G-aVI" secondAttribute="trailing" id="DcH-gv-oYd"/>
                                     <constraint firstItem="LOJ-3G-aVI" firstAttribute="leading" secondItem="R0u-aO-zID" secondAttribute="leading" id="Y7K-pO-5ud"/>
                                     <constraint firstAttribute="bottom" secondItem="LOJ-3G-aVI" secondAttribute="bottom" id="a1W-5i-Kjv"/>
                                     <constraint firstAttribute="height" constant="20" id="cTT-oY-FPj"/>
+                                    <constraint firstItem="4Wb-28-ozh" firstAttribute="centerY" secondItem="R0u-aO-zID" secondAttribute="centerY" id="eHV-UM-xUh"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Wb-28-ozh" secondAttribute="trailing" id="pbo-Cl-VKj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -104,11 +118,12 @@
                 <outlet property="txtInfo" destination="lq9-7D-DeT" id="zIh-Iw-aKS"/>
                 <outlet property="viewFirstName" destination="Iuc-9g-PNx" id="WeC-Y0-g0P"/>
             </connections>
-            <point key="canvasLocation" x="346" y="61"/>
+            <point key="canvasLocation" x="345.60000000000002" y="60.26986506746627"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="layer1" width="20.812000274658203" height="22.881999969482422"/>
+        <image name="staroflife.fill" catalog="system" width="124" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

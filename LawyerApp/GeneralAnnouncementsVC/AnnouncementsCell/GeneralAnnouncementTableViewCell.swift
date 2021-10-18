@@ -10,6 +10,10 @@ import UIKit
 class GeneralAnnouncementTableViewCell: UITableViewCell {
     
     @IBOutlet weak var announcemementView: UIView!
+    @IBOutlet weak var lblAnounceTitle: UILabel!
+    @IBOutlet weak var lblAnounceBy: UILabel!
+    @IBOutlet weak var lblAnounceAt: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

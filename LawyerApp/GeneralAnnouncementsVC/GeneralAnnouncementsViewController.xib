@@ -52,6 +52,9 @@
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="list.bullet" catalog="system"/>
+                                    <connections>
+                                        <action selector="tappedOnSearchAnnouncementWith_sender:" destination="-1" eventType="touchUpInside" id="9m7-Fj-tup"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,10 +69,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMr-8C-6Zq" userLabel="TableView">
-                            <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                            <rect key="frame" x="0.0" y="72" width="375" height="485"/>
                             <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I3f-ap-Nqv">
-                                    <rect key="frame" x="30" y="20" width="315" height="575"/>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I3f-ap-Nqv">
+                                    <rect key="frame" x="15" y="15" width="340" height="470"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="25o-qN-aoC"/>
@@ -79,10 +82,34 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="I3f-ap-Nqv" secondAttribute="trailing" constant="30" id="8fn-Fv-noo"/>
-                                <constraint firstItem="I3f-ap-Nqv" firstAttribute="leading" secondItem="CMr-8C-6Zq" secondAttribute="leading" constant="30" id="Hf5-gK-cOt"/>
-                                <constraint firstItem="I3f-ap-Nqv" firstAttribute="top" secondItem="CMr-8C-6Zq" secondAttribute="top" constant="20" id="Krk-E1-x0J"/>
+                                <constraint firstAttribute="trailing" secondItem="I3f-ap-Nqv" secondAttribute="trailing" constant="20" id="8fn-Fv-noo"/>
+                                <constraint firstItem="I3f-ap-Nqv" firstAttribute="leading" secondItem="CMr-8C-6Zq" secondAttribute="leading" constant="15" id="Hf5-gK-cOt"/>
+                                <constraint firstItem="I3f-ap-Nqv" firstAttribute="top" secondItem="CMr-8C-6Zq" secondAttribute="top" constant="15" id="Krk-E1-x0J"/>
                                 <constraint firstAttribute="bottom" secondItem="I3f-ap-Nqv" secondAttribute="bottom" id="fpD-Nx-liK"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebf-Cw-R0T" userLabel="ButtonView">
+                            <rect key="frame" x="30" y="577" width="315" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-qb-k1o">
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Post Announcement"/>
+                                    <connections>
+                                        <action selector="tappedOnPostAnnouncementWith_sender:" destination="-1" eventType="touchUpInside" id="sDG-eB-qFv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.78084200619999999" green="0.60297757389999995" blue="0.28810125590000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Tk3-qb-k1o" secondAttribute="trailing" id="5c9-Qg-WWL"/>
+                                <constraint firstItem="Tk3-qb-k1o" firstAttribute="leading" secondItem="ebf-Cw-R0T" secondAttribute="leading" id="aIo-Xd-fL7"/>
+                                <constraint firstAttribute="bottom" secondItem="Tk3-qb-k1o" secondAttribute="bottom" id="dYq-ej-rFV"/>
+                                <constraint firstItem="Tk3-qb-k1o" firstAttribute="top" secondItem="ebf-Cw-R0T" secondAttribute="top" id="eJ7-4B-wC0"/>
+                                <constraint firstAttribute="height" constant="50" id="tBW-1b-jII"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -91,10 +118,13 @@
                         <constraint firstItem="CMr-8C-6Zq" firstAttribute="top" secondItem="qFe-tA-jgf" secondAttribute="bottom" id="3kL-aT-pmZ"/>
                         <constraint firstAttribute="trailing" secondItem="qFe-tA-jgf" secondAttribute="trailing" id="4Mx-sh-w2l"/>
                         <constraint firstAttribute="trailing" secondItem="CMr-8C-6Zq" secondAttribute="trailing" id="6T7-CS-aCP"/>
-                        <constraint firstAttribute="bottom" secondItem="CMr-8C-6Zq" secondAttribute="bottom" id="JM5-Bg-uBL"/>
+                        <constraint firstItem="ebf-Cw-R0T" firstAttribute="leading" secondItem="Q4G-My-rBk" secondAttribute="leading" constant="30" id="Eew-ME-M3N"/>
                         <constraint firstItem="CMr-8C-6Zq" firstAttribute="leading" secondItem="Q4G-My-rBk" secondAttribute="leading" id="Msd-cn-zPi"/>
+                        <constraint firstAttribute="trailing" secondItem="ebf-Cw-R0T" secondAttribute="trailing" constant="30" id="Z91-YM-VoW"/>
                         <constraint firstItem="qFe-tA-jgf" firstAttribute="leading" secondItem="Q4G-My-rBk" secondAttribute="leading" id="ekJ-e6-zpR"/>
                         <constraint firstItem="qFe-tA-jgf" firstAttribute="top" secondItem="Q4G-My-rBk" secondAttribute="top" id="gb9-gz-hNS"/>
+                        <constraint firstAttribute="bottom" secondItem="ebf-Cw-R0T" secondAttribute="bottom" constant="40" id="ir1-rq-jcD"/>
+                        <constraint firstItem="ebf-Cw-R0T" firstAttribute="top" secondItem="CMr-8C-6Zq" secondAttribute="bottom" constant="20" id="vM1-ed-bLH"/>
                     </constraints>
                 </view>
             </subviews>
@@ -109,7 +139,7 @@
                 <constraint firstAttribute="trailing" secondItem="Q4G-My-rBk" secondAttribute="trailing" id="wHv-xJ-v9x"/>
                 <constraint firstItem="6Az-lt-nZu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="26.5" id="wTw-uf-Wvb"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="71"/>
+            <point key="canvasLocation" x="138.40000000000001" y="70.614692653673174"/>
         </view>
     </objects>
     <resources>

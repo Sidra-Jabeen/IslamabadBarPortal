@@ -12,7 +12,7 @@ class BaseServices {
 
     func baseServicesPostMethod(urlString: String, dataModel: [String:Any], completion: @escaping (Data) -> Void) {
         
-        let strURL = "http://10.250.10.139/ISBBar.APP/\(urlString)"
+        let strURL = "http://10.250.10.221/IsbBarPortal.Api/\(urlString)"
         guard let url = URL(string: strURL) else {
             print("Error: cannot create URL")
             return

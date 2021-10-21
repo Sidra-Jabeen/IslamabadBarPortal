@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -16,6 +17,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     var arrayOfMembers = [ResponseUsers]()
     var bitValue = 0
     var bitValueForAscDes = 0
+    var strValue = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,8 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         cell.layer.shadowRadius = 4
         cell.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
         cell.lblCourtName.text = arrayOfMembers[indexPath.item].licenseType
+        let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
+        cell.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -54,16 +58,17 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             self.view.addSubview(member.view)
             member.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
             member.lblPhoneNumber.text = arrayOfMembers[indexPath.item].contactNumber
-            member.lblLisenceDateOflower.text = arrayOfMembers[indexPath.item].issuanceDateLowerCourt
-            member.lblLisenceDateOfHigh.text = arrayOfMembers[indexPath.item].issuanceDateHighCourt
-            member.lblLisenceDateOfSupreme.text = arrayOfMembers[indexPath.item].issuanceDateSupremeCourt
+//            member.lblLisenceDateOflower.text = arrayOfMembers[indexPath.item].issuanceDateLowerCourt
+//            member.lblLisenceDateOfHigh.text = arrayOfMembers[indexPath.item].issuanceDateHighCourt
+//            member.lblLisenceDateOfSupreme.text = arrayOfMembers[indexPath.item].issuanceDateSupremeCourt
             member.lblOfcAddress.text = arrayOfMembers[indexPath.item].officeAddress
             member.memberId = arrayOfMembers[indexPath.item].userId
             currentUser = arrayOfMembers[indexPath.item].userId
             adminValue = arrayOfMembers[indexPath.item].isAdmin
-            member.btnRejected.alpha = 0
-            member.btnAccepted.alpha = 0
-            member.btnMakeAAdmin.alpha = 0
+            let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
+            member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+            member.btn1.isHidden = true
+            member.btn2.isHidden = true
         }
     }
     
@@ -98,6 +103,33 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             search.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
             
             search.btnSearch.addTarget(self, action: #selector(clickedOnSearch), for: .touchUpInside)
+            
+            if self.bitValue == 1 {
+                
+                self.setUpButtonsUI(value: self.bitValue)
+                
+            } else if self.bitValue == 2 {
+                
+                self.setUpButtonsUI(value: self.bitValue)
+                
+            } else if self.bitValue == 3 {
+                
+                self.setUpButtonsUI(value: self.bitValue)
+                
+            } else if self.bitValue == 4 {
+                
+                self.setUpButtonsUI(value: self.bitValue)
+                
+            }
+            
+            if self.bitValueForAscDes == 1 {
+                self.searchVC?.imgAsc.image = UIImage(named: "Group 247")
+                self.searchVC?.imgDes.image = UIImage(named: "Circle")
+            } else {
+                
+                self.searchVC?.imgDes.image = UIImage(named: "Group 247")
+                self.searchVC?.imgAsc.image = UIImage(named: "Circle")
+            }
         }
             
     }
@@ -105,95 +137,26 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     @objc func clickedOnAll() {
         
         self.bitValue = 1
-        if self.bitValue == 1 {
-            
-            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.searchVC?.btnAll.setTitleColor( UIColor.white, for: .normal)
-            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnHighCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnAllView.removeBorderColorToView()
-            self.searchVC?.btnLowerView.applyCircledView()
-            self.searchVC?.btnLowerView.setBorderColorToView()
-            self.searchVC?.btnHighView.applyCircledView()
-            self.searchVC?.btnHighView.setBorderColorToView()
-            self.searchVC?.btnSupremeView.applyCircledView()
-            self.searchVC?.btnSupremeView.setBorderColorToView()
-            
-        }
+        self.setUpButtonsUI(value: self.bitValue)
         
     }
     
     @objc func clickedOnLowerCourt() {
         
         self.bitValue = 2
-        if self.bitValue == 2 {
-            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.white, for: .normal)
-            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnHighCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnLowerView.removeBorderColorToView()
-            self.searchVC?.btnAllView.applyCircledView()
-            self.searchVC?.btnAllView.setBorderColorToView()
-            self.searchVC?.btnHighView.applyCircledView()
-            self.searchVC?.btnHighView.setBorderColorToView()
-            self.searchVC?.btnSupremeView.applyCircledView()
-            self.searchVC?.btnSupremeView.setBorderColorToView()
-            
-        }
+        self.setUpButtonsUI(value: self.bitValue)
     }
     
     @objc func clickedOnHighCourt() {
         
         self.bitValue = 3
-        if self.bitValue == 3 {
-            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.searchVC?.btnHighCourt.setTitleColor( UIColor.white, for: .normal)
-            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.lightGray, for: .normal)
-//            self.searchVC?.btnSearchView.setCornerRadiusToView()
-//            self.searchVC?.btnSearchView.setBorderColorToView()
-            self.searchVC?.btnHighView.removeBorderColorToView()
-            self.searchVC?.btnAllView.applyCircledView()
-            self.searchVC?.btnAllView.setBorderColorToView()
-            self.searchVC?.btnLowerView.applyCircledView()
-            self.searchVC?.btnLowerView.setBorderColorToView()
-            self.searchVC?.btnSupremeView.applyCircledView()
-            self.searchVC?.btnSupremeView.setBorderColorToView()
-        }
+        self.setUpButtonsUI(value: self.bitValue)
     }
     
     @objc func clickedOnSupremeCourt() {
         
         self.bitValue = 4
-        if self.bitValue == 4 {
-            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.white, for: .normal)
-            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnHighCourt.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.searchVC?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.searchVC?.btnSupremeView.removeBorderColorToView()
-            self.searchVC?.btnAllView.applyCircledView()
-            self.searchVC?.btnAllView.setBorderColorToView()
-            self.searchVC?.btnHighView.applyCircledView()
-            self.searchVC?.btnHighView.setBorderColorToView()
-            self.searchVC?.btnLowerView.applyCircledView()
-            self.searchVC?.btnLowerView.setBorderColorToView()
-        }
+        self.setUpButtonsUI(value: self.bitValue)
     }
     
     @objc func clickedOnAscending() {
@@ -216,7 +179,23 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     
     @objc func clickedOnSearch() {
         
-        self.searchFilterApi()
+        if self.bitValue == 1 {
+            
+            self.searchFilterApi(lisenseType: "0")
+            
+        } else if self.bitValue == 2 {
+            
+            self.searchFilterApi(lisenseType: "3")
+            
+        } else if self.bitValue == 3 {
+            
+            self.searchFilterApi(lisenseType: "2")
+            
+        } else if self.bitValue == 4 {
+            
+            self.searchFilterApi(lisenseType: "1")
+            
+        }
     }
     
     //MARK: - CallAPisFunction
@@ -225,32 +204,40 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "asc", limit: 10, offset: 0), user: ApprovalUser(fullName: "", status: status))
+            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: "2"))
             let signUpUrl = "api/User/GetUsers"
             let services = ApprovalServices()
             services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
                 self.stopAnimation()
                 let status = responseData.success ?? false
+                
                 if status {
                     
                     self.arrayOfMembers = responseData.users ?? []
                     print(self.arrayOfMembers)
                     self.collectionMembers.reloadData()
+                    
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
-                    self.arrayOfMembers.removeAll()
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    self.arrayOfMembers.removeAll()
                 }
             }
         } else{
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
     }
     
-    func searchFilterApi() {
+    func searchFilterApi(lisenseType: String) {
+        
+        if bitValueForAscDes == 1 {
+            self.strValue = "asc"
+        } else {
+            self.strValue = "des"
+        }
         
         self.startAnimation()
-        let dataModel = MemberRequestModel(Pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), source: "2", user: MemberUser(fullName: "", licenseType: "", status: "2"))
+        let dataModel = MemberRequestModel(Pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), source: "2", user: MemberUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: lisenseType, status: "2"))
         let signUpUrl = "api/User/GetUsers"
         let services = ApprovalServices()
         services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
@@ -259,11 +246,14 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             let status = responseData.success ?? false
             if status {
                 
-//                self.arrayOfMembers = responseData.users ?? []
-//                print(self.arrayOfMembers)
+                self.arrayOfMembers = responseData.users ?? []
+                print(self.arrayOfMembers)
                 self.collectionMembers.reloadData()
+                self.searchVC?.willMove(toParent: nil)
+                self.searchVC?.view.removeFromSuperview()
+                self.searchVC?.removeFromParent()
             } else {
-                self.showAlertForMember(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                self.showAlertForMember(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
             }
         }
     }
@@ -278,6 +268,85 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setUpButtonsUI(value: Int) {
+        
+        if value == 1 {
+            
+            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
+            self.searchVC?.btnAll.setTitleColor( UIColor.white, for: .normal)
+            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnHighCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnAllView.removeBorderColorToView()
+            self.searchVC?.btnLowerView.applyCircledView()
+            self.searchVC?.btnLowerView.setBorderColorToView()
+            self.searchVC?.btnHighView.applyCircledView()
+            self.searchVC?.btnHighView.setBorderColorToView()
+            self.searchVC?.btnSupremeView.applyCircledView()
+            self.searchVC?.btnSupremeView.setBorderColorToView()
+            
+        }
+        else if value == 2 {
+            
+            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
+            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.white, for: .normal)
+            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnHighCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnLowerView.removeBorderColorToView()
+            self.searchVC?.btnAllView.applyCircledView()
+            self.searchVC?.btnAllView.setBorderColorToView()
+            self.searchVC?.btnHighView.applyCircledView()
+            self.searchVC?.btnHighView.setBorderColorToView()
+            self.searchVC?.btnSupremeView.applyCircledView()
+            self.searchVC?.btnSupremeView.setBorderColorToView()
+        }
+        else if value == 3 {
+            
+            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
+            self.searchVC?.btnHighCourt.setTitleColor( UIColor.white, for: .normal)
+            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.lightGray, for: .normal)
+//            self.searchVC?.btnSearchView.setCornerRadiusToView()
+//            self.searchVC?.btnSearchView.setBorderColorToView()
+            self.searchVC?.btnHighView.removeBorderColorToView()
+            self.searchVC?.btnAllView.applyCircledView()
+            self.searchVC?.btnAllView.setBorderColorToView()
+            self.searchVC?.btnLowerView.applyCircledView()
+            self.searchVC?.btnLowerView.setBorderColorToView()
+            self.searchVC?.btnSupremeView.applyCircledView()
+            self.searchVC?.btnSupremeView.setBorderColorToView()
+        }
+        else if value == 4 {
+            
+            self.searchVC?.btnSupremeCourt.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
+            self.searchVC?.btnSupremeCourt.setTitleColor( UIColor.white, for: .normal)
+            self.searchVC?.btnLowerCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnLowerCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnHighCourt.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnHighCourt.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.searchVC?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
+            self.searchVC?.btnSupremeView.removeBorderColorToView()
+            self.searchVC?.btnAllView.applyCircledView()
+            self.searchVC?.btnAllView.setBorderColorToView()
+            self.searchVC?.btnHighView.applyCircledView()
+            self.searchVC?.btnHighView.setBorderColorToView()
+            self.searchVC?.btnLowerView.applyCircledView()
+            self.searchVC?.btnLowerView.setBorderColorToView()
+        }
     }
 
 }

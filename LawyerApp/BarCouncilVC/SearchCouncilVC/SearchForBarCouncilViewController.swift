@@ -9,6 +9,8 @@ import UIKit
 
 class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
+    //MARK: - IBOutlets
+    
     @IBOutlet weak var viewAll: UIView!
     @IBOutlet weak var viewToday: UIView!
     @IBOutlet weak var viewYesterday: UIView!
@@ -16,23 +18,26 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var toAndFromView: UIView!
     @IBOutlet weak var searchByDateView: UIView!
+    @IBOutlet weak var viewToDate: UIView!
+    @IBOutlet weak var viewFromDate: UIView!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var btnSearchView: UIView!
+    @IBOutlet weak var postAnnouncementView:UIView!
+    @IBOutlet weak var btnClearView: UIView!
     
     @IBOutlet weak var btnAll: UIButton!
     @IBOutlet weak var btnToday: UIButton!
     @IBOutlet weak var btnYesterday: UIButton!
     @IBOutlet weak var btnLastweek: UIButton!
     
-    @IBOutlet weak var viewToDate: UIView!
-    @IBOutlet weak var viewFromDate: UIView!
-
-    @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var btnSearchView: UIView!
-    
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnSearch: UIButton!
+    @IBOutlet weak var btnClear: UIButton!
     
     @IBOutlet weak var btnAscending: UIButton!
     @IBOutlet weak var btndescending: UIButton!
+    @IBOutlet weak var btnToDate: UIButton!
+    @IBOutlet weak var btnFromDate: UIButton!
     
     @IBOutlet weak var imgAsc: UIImageView!
     @IBOutlet weak var imgDes: UIImageView!
@@ -40,13 +45,10 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtToDate: UITextField!
     @IBOutlet weak var txtFromDate: UITextField!
     
-    @IBOutlet weak var btnToDate: UIButton!
-    @IBOutlet weak var btnFromDate: UIButton!
-    
-    @IBOutlet weak var postAnnouncementView:UIView!
     @IBOutlet weak var serachByViewHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var calenderViewHeight: NSLayoutConstraint!
+    
+    //MARK: - Propertities
     
     var strDate: String?
     private lazy var datePickerView: DateTimePicker = {
@@ -57,17 +59,20 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
             print(selectedDate)
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
+            formatter.dateFormat = "yyyy-MM-dd"
             self?.strDate = formatter.string(from: selectedDate)
         }
         return picker
     }()
+    
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         self.btnSearchView.setCornerRadiusToView()
+        self.btnClearView.setCornerRadiusToView()
         self.viewToDate.setCornerRadiusToView()
         self.viewFromDate.setCornerRadiusToView()
         self.postAnnouncementView.setCornerRadiusToView()
@@ -81,6 +86,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         
         self.viewAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnAll.setTitleColor( UIColor.white, for: .normal)
+        
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
         self.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -96,6 +102,9 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         self.viewLastweek.applyCircledView()
         self.viewLastweek.setBorderColorToView()
         
+        self.imgDes.image = UIImage(named: "Group 247")
+        self.imgAsc.image = UIImage(named: "Circle")
+        
         
         self.txtToDate.inputView = datePickerView.inputView
         self.txtFromDate.inputView = datePickerView.inputView
@@ -108,12 +117,16 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //MARK: - IBAction
+    
     @IBAction func tappedOnCancel( _sender: UIButton) {
         
         self.willMove(toParent: nil)
         self.view.removeFromSuperview()
         self.removeFromParent()
     }
+    
+    //MARK: - UITextFieldDelegate
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         

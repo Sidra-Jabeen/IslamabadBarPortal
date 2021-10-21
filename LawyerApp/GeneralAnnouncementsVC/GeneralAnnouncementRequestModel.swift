@@ -25,7 +25,7 @@ struct GeneralAnnouncementRequestModel {
 struct GeneralAnnouncement {
     
     let memberAnnouncementId: Int?
-    let startDate: String?
+    let toDate: String?
     let fromDate: String?
     let duration: String?
     
@@ -33,7 +33,7 @@ struct GeneralAnnouncement {
         return [
 
             "memberAnnouncementId" : memberAnnouncementId as Any,
-            "startDate" : startDate as Any,
+            "toDate" : toDate as Any,
             "fromDate" : fromDate as Any,
             "duration" : duration as Any,
         ]
@@ -126,6 +126,35 @@ struct GeneralAnnouncementDetails {
 
 
 struct GeneralAnnouncementResponseModel: Codable {
+    
+    var memberAnnouncementId: Int?
+    var title: String?
+    var description: String?
+    var announcedBy: String?
+    var announcedAt: String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case memberAnnouncementId = "memberAnnouncementId"
+        case title = "title"
+        case description = "description"
+        case announcedBy = "announcedBy"
+        case announcedAt = "announcedAt"
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        memberAnnouncementId = try values.decodeIfPresent(Int.self, forKey: .memberAnnouncementId)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+        description = try values.decodeIfPresent(String.self, forKey: .description)
+        announcedBy = try values.decodeIfPresent(String.self, forKey: .announcedBy)
+        announcedAt = try values.decodeIfPresent(String.self, forKey: .announcedAt)
+
+    }
+}
+
+struct GeneralAnnouncementResponseDetailModel: Codable {
     
     var memberAnnouncementId: Int?
     var title: String?

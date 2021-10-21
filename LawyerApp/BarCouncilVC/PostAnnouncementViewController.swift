@@ -9,6 +9,8 @@ import UIKit
 
 class PostAnnouncementViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate{
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var titleBorderView: UIView!
     @IBOutlet weak var descBorderView: UIView!
@@ -20,6 +22,8 @@ class PostAnnouncementViewController: UIViewController, UITextViewDelegate, UITe
     @IBOutlet weak var lblTitleCount: UILabel!
     @IBOutlet weak var lblDescriptionCount: UILabel!
     @IBOutlet weak var mainPostView: UIView!
+    
+    // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +57,8 @@ class PostAnnouncementViewController: UIViewController, UITextViewDelegate, UITe
         
         self.updateCharacterCount()
     }
-
-    func updateCharacterCount() {
-        
-        let summaryCount = self.descTextView.text.count
-        self.lblDescriptionCount.text = "\((0) + summaryCount)/4000"
-    }
+    
+    // MARK: - IBAction
     
     @IBAction func tappedOnCancel( _sender: UIButton) {
         
@@ -67,6 +67,8 @@ class PostAnnouncementViewController: UIViewController, UITextViewDelegate, UITe
         self.removeFromParent()
        
     }
+    
+    // MARK: - UITextViewDelegate
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -95,18 +97,25 @@ class PostAnnouncementViewController: UIViewController, UITextViewDelegate, UITe
         self.updateCharacterCount()
      }
     
+    // MARK: - UITextViewDelegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let summaryCount = self.txtEnterTitle.text?.count
         self.lblTitleCount.text = "\((0) + (summaryCount ?? 0))"
         if !(textField.text?.isEmpty ?? true){
-                    return textField.text!.count +  (string.count - range.length) <= 400
-                }
-                return true
-//        self.lblTitleCount.text = newString
+            return textField.text!.count +  (string.count - range.length) <= 400
+        }
+        return true
     }
     
+    // MARK: - Others
+
+    func updateCharacterCount() {
+        
+        let summaryCount = self.descTextView.text.count
+        self.lblDescriptionCount.text = "\((0) + summaryCount)/4000"
+    }
     
 //    func textFieldDidChangeSelection(_ textField: UITextField) {
 //        

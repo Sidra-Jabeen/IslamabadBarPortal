@@ -11,6 +11,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="LawyerApp" customModuleProvider="target">
             <connections>
+                <outlet property="lblCnic" destination="cZK-1W-fcZ" id="Fr9-T5-3xL"/>
+                <outlet property="lblContactNo" destination="fZi-uE-sbI" id="7dJ-UY-XwZ"/>
+                <outlet property="lblCourtName" destination="qwv-b8-3Wc" id="bHj-Rg-nqg"/>
+                <outlet property="lblDob" destination="xhV-9A-8re" id="lFz-VG-R72"/>
+                <outlet property="lblEmail" destination="6HA-f8-l9J" id="yHw-HI-Qlp"/>
+                <outlet property="lblFullNameOnLisence" destination="0Al-mx-wHC" id="H1i-oW-4wa"/>
+                <outlet property="lblLisence" destination="mZ8-Ku-Tnu" id="tFe-2q-hCH"/>
+                <outlet property="lblMemberName" destination="Ebd-D4-uii" id="GYI-hD-mjj"/>
+                <outlet property="lblOfficeAddress" destination="SbO-Qh-rMH" id="ZHN-0T-KnE"/>
+                <outlet property="profileImage" destination="sEL-AS-eRj" id="f2h-Yw-p0M"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,6 +39,7 @@
                                     <rect key="frame" x="20" y="25" width="20" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="8zJ-Xf-cmb"/>
+                                        <constraint firstAttribute="height" constant="22" id="91j-rT-7I0"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -59,11 +70,18 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fvg-ds-AMP" userLabel="TopView">
                                     <rect key="frame" x="20" y="20" width="335" height="118"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JL0-dD-GwT">
-                                            <rect key="frame" x="20" y="0.0" width="295" height="68"/>
+                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JL0-dD-GwT">
+                                            <rect key="frame" x="123.5" y="0.0" width="88" height="68"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" image="Group 114"/>
                                         </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 114" translatesAutoresizingMaskIntoConstraints="NO" id="sEL-AS-eRj">
+                                            <rect key="frame" x="137.5" y="8" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="COe-WX-weP"/>
+                                                <constraint firstAttribute="height" constant="60" id="MFp-Pq-sRe"/>
+                                            </constraints>
+                                        </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fBy-LK-irb">
                                             <rect key="frame" x="187.5" y="48" width="20" height="18.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,13 +114,16 @@
                                     <constraints>
                                         <constraint firstItem="qwv-b8-3Wc" firstAttribute="top" secondItem="Ebd-D4-uii" secondAttribute="bottom" id="0Td-iT-ZVQ"/>
                                         <constraint firstItem="fBy-LK-irb" firstAttribute="centerX" secondItem="Fvg-ds-AMP" secondAttribute="centerX" constant="30" id="0k4-we-I8m"/>
-                                        <constraint firstItem="JL0-dD-GwT" firstAttribute="leading" secondItem="Fvg-ds-AMP" secondAttribute="leading" constant="20" id="4Q9-EQ-li5"/>
+                                        <constraint firstItem="JL0-dD-GwT" firstAttribute="centerX" secondItem="Fvg-ds-AMP" secondAttribute="centerX" id="1E4-fk-Iza"/>
                                         <constraint firstAttribute="bottom" secondItem="qwv-b8-3Wc" secondAttribute="bottom" id="7zP-er-Kpo"/>
                                         <constraint firstItem="qwv-b8-3Wc" firstAttribute="trailing" secondItem="Ebd-D4-uii" secondAttribute="trailing" id="94f-zY-kab"/>
                                         <constraint firstAttribute="trailing" secondItem="Ebd-D4-uii" secondAttribute="trailing" constant="20" id="AUo-XP-UVz"/>
                                         <constraint firstItem="Ebd-D4-uii" firstAttribute="leading" secondItem="Fvg-ds-AMP" secondAttribute="leading" constant="20" id="BV2-Vi-ds5"/>
-                                        <constraint firstAttribute="trailing" secondItem="JL0-dD-GwT" secondAttribute="trailing" constant="20" id="Ds5-jp-gCz"/>
+                                        <constraint firstItem="sEL-AS-eRj" firstAttribute="top" secondItem="Fvg-ds-AMP" secondAttribute="top" constant="8" id="BqJ-5M-9dw"/>
+                                        <constraint firstItem="fBy-LK-irb" firstAttribute="top" secondItem="Fvg-ds-AMP" secondAttribute="top" constant="48" id="JeG-Y7-co8"/>
+                                        <constraint firstItem="sEL-AS-eRj" firstAttribute="centerX" secondItem="Fvg-ds-AMP" secondAttribute="centerX" id="aDJ-qH-8Xv"/>
                                         <constraint firstItem="Ebd-D4-uii" firstAttribute="top" secondItem="JL0-dD-GwT" secondAttribute="bottom" constant="10" id="ac8-Yz-5Dg"/>
+                                        <constraint firstItem="Ebd-D4-uii" firstAttribute="top" secondItem="sEL-AS-eRj" secondAttribute="bottom" constant="10" id="j35-Yc-KBn"/>
                                         <constraint firstItem="Ebd-D4-uii" firstAttribute="top" secondItem="fBy-LK-irb" secondAttribute="bottom" constant="10" id="kb7-Ld-W8l"/>
                                         <constraint firstItem="JL0-dD-GwT" firstAttribute="top" secondItem="Fvg-ds-AMP" secondAttribute="top" id="qMh-LZ-7tS"/>
                                         <constraint firstItem="qwv-b8-3Wc" firstAttribute="leading" secondItem="Ebd-D4-uii" secondAttribute="leading" id="sAV-k5-dke"/>

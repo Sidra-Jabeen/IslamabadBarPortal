@@ -144,7 +144,6 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            print("test value calender: \(self.mainArray[indexPath.row].inputText) \(selectedDateIndex) \(strCalenderPickerValueTest)")
             if indexPath.row != 9 {
                 let tmpCell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath) as! UserTableViewCell
                 let cellIndexData = mainArray[indexPath.row]
@@ -407,36 +406,36 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                             self.stopAnimation()
                                             let status = responseData.success ?? false
                                             if status {
-                                                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                                                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                                                 self.mainArray.removeAll()
                                                 self.tblRegistration.reloadData()
                                             } else {
                                                 
-                                                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "Something went wrong!")
+                                                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Something went wrong!")
                                                 
                                                 self.mainArray.removeAll()
                                                 self.tblRegistration.reloadData()
                                             }
                                         }
-                                    } else {self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "InValid Office Address")}
+                                    } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "InValid Office Address")}
                                     
-                                } else{self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "InValid Date")}
+                                } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Date")}
                                 
-                            } else {self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "InValid Email")}
+                            } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "InValid Email")}
                             
-                        } else{self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "InValid Contact Number")}
+                        } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Contact Number")}
                         
-                    } else {self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "Length Should be equal to 13 Numbers")}
+                    } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Length Should be equal to 13 Numbers")}
                     
                     
-                } else { self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "Invalid Name")}
+                } else { self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")}
                 
                 
 //            } else {
 //                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "InValid Information")
 //            }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
         
     }

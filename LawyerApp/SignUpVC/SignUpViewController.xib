@@ -54,17 +54,17 @@
                                     <rect key="frame" x="157.5" y="-30" width="60" height="60"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="7465092_books_reading_school_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7eG-pf-q6h">
-                                            <rect key="frame" x="8" y="8" width="44" height="44"/>
+                                            <rect key="frame" x="10" y="10" width="40" height="40"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.71386259789999995" green="0.54778027529999995" blue="0.26319298149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.8715899587" green="0.66993445159999998" blue="0.32021686430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="7eG-pf-q6h" secondAttribute="bottom" constant="8" id="1cv-3V-wRP"/>
-                                        <constraint firstItem="7eG-pf-q6h" firstAttribute="top" secondItem="z5e-1c-tXh" secondAttribute="top" constant="8" id="9f8-He-Bnv"/>
+                                        <constraint firstAttribute="bottom" secondItem="7eG-pf-q6h" secondAttribute="bottom" constant="10" id="1cv-3V-wRP"/>
+                                        <constraint firstItem="7eG-pf-q6h" firstAttribute="top" secondItem="z5e-1c-tXh" secondAttribute="top" constant="10" id="9f8-He-Bnv"/>
                                         <constraint firstAttribute="width" constant="60" id="HlP-j4-GtA"/>
                                         <constraint firstAttribute="height" constant="60" id="P9B-Bh-WiZ"/>
-                                        <constraint firstItem="7eG-pf-q6h" firstAttribute="leading" secondItem="z5e-1c-tXh" secondAttribute="leading" constant="8" id="RNz-hR-Ut9"/>
-                                        <constraint firstAttribute="trailing" secondItem="7eG-pf-q6h" secondAttribute="trailing" constant="8" id="eiy-Es-25x"/>
+                                        <constraint firstItem="7eG-pf-q6h" firstAttribute="leading" secondItem="z5e-1c-tXh" secondAttribute="leading" constant="10" id="RNz-hR-Ut9"/>
+                                        <constraint firstAttribute="trailing" secondItem="7eG-pf-q6h" secondAttribute="trailing" constant="10" id="eiy-Es-25x"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8JN-Oj-Det" userLabel="LoginInYourAccView">
@@ -146,7 +146,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.71386259789999995" green="0.54778027529999995" blue="0.26319298149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.8715899587" green="0.66993445159999998" blue="0.32021686430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Jdw-KG-fzZ" secondAttribute="trailing" id="EcN-UO-J5M"/>
                                 <constraint firstItem="Jdw-KG-fzZ" firstAttribute="leading" secondItem="k6g-aG-PsW" secondAttribute="leading" id="Fyr-DX-syO"/>

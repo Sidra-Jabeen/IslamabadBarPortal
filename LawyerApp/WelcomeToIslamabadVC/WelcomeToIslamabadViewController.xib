@@ -27,10 +27,10 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="f8G-6T-gUC">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 241" translatesAutoresizingMaskIntoConstraints="NO" id="gFr-BU-bKn">
-                            <rect key="frame" x="20" y="51" width="335" height="128"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 249" translatesAutoresizingMaskIntoConstraints="NO" id="gFr-BU-bKn">
+                            <rect key="frame" x="58" y="51" width="259.5" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="128" id="6M9-0s-VPT"/>
+                                <constraint firstAttribute="height" constant="50" id="6M9-0s-VPT"/>
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAf-b1-WOs" userLabel="WelcomeView">
@@ -54,8 +54,8 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Portal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dh-Zc-g4f">
-                                    <rect key="frame" x="0.0" y="75" width="91" height="34"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dh-Zc-g4f">
+                                    <rect key="frame" x="0.0" y="75" width="131.5" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="bSA-FH-TC7"/>
                                     </constraints>
@@ -100,7 +100,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.71386259789999995" green="0.54778027529999995" blue="0.26319298149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.8715899587" green="0.66993445159999998" blue="0.32021686430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="P15-AI-g3g" firstAttribute="leading" secondItem="WLU-Tc-cVc" secondAttribute="leading" id="BaC-DD-NPi"/>
                                         <constraint firstAttribute="bottom" secondItem="P15-AI-g3g" secondAttribute="bottom" id="Wg7-2l-nIk"/>
@@ -161,12 +161,10 @@
                         <constraint firstItem="igd-Xy-gax" firstAttribute="leading" secondItem="bAf-b1-WOs" secondAttribute="leading" id="9g3-Qa-ewG"/>
                         <constraint firstItem="f8G-6T-gUC" firstAttribute="top" secondItem="3rV-c7-wNu" secondAttribute="top" id="9gy-MJ-nOy"/>
                         <constraint firstAttribute="bottom" secondItem="igd-Xy-gax" secondAttribute="bottom" constant="35" id="FOJ-4M-gNp"/>
-                        <constraint firstAttribute="trailing" secondItem="gFr-BU-bKn" secondAttribute="trailing" constant="20" id="G0l-D9-O9X"/>
                         <constraint firstItem="gFr-BU-bKn" firstAttribute="top" secondItem="3rV-c7-wNu" secondAttribute="top" constant="51" id="P25-BM-O4P"/>
                         <constraint firstAttribute="bottom" secondItem="f8G-6T-gUC" secondAttribute="bottom" id="UAO-QG-ysw"/>
                         <constraint firstAttribute="trailing" secondItem="f8G-6T-gUC" secondAttribute="trailing" id="bhg-kc-GQP"/>
                         <constraint firstItem="igd-Xy-gax" firstAttribute="trailing" secondItem="bAf-b1-WOs" secondAttribute="trailing" id="ibN-kE-atN"/>
-                        <constraint firstItem="gFr-BU-bKn" firstAttribute="leading" secondItem="3rV-c7-wNu" secondAttribute="leading" constant="20" id="jXs-H5-6B0"/>
                         <constraint firstItem="bAf-b1-WOs" firstAttribute="centerY" secondItem="3rV-c7-wNu" secondAttribute="centerY" constant="50" id="rcE-aw-TeR"/>
                         <constraint firstItem="bAf-b1-WOs" firstAttribute="leading" secondItem="3rV-c7-wNu" secondAttribute="leading" constant="40" id="rq5-Px-GtL"/>
                     </constraints>
@@ -185,7 +183,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Group 241" width="800" height="776"/>
+        <image name="Group 249" width="259.5" height="80.5"/>
         <image name="Mask Group 2" width="1656" height="2944"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

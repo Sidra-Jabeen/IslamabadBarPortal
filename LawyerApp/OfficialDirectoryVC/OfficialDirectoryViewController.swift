@@ -11,6 +11,8 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
     
     @IBOutlet weak var tblDirectories: UITableView!
     @IBOutlet weak var btnAddDirectory: UIButton!
+    
+    var officialListArray = [OfficialDirectoryResponseModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +20,32 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
         self.btnAddDirectory.layer.cornerRadius = self.btnAddDirectory.frame.size.height / 2
         self.tblDirectories.register(UINib(nibName: "OfficialDirectoryTableViewCell", bundle: nil), forCellReuseIdentifier: "OfficialDirectoryTableViewCell")
         self.navigationController?.isNavigationBarHidden = true
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeLeft.direction = .right
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    //MARK: - HandGestureFunction
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == .right {
+            print("Swipe Right")
+            self.navigationController?.popViewController(animated: true)
+        }
+        else if gesture.direction == .left {
+            print("Swipe Left")
+        }
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.callGetOfficialDirectoryApi()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return self.officialListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,6 +55,9 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
         tmpCell.layer.shadowColor = UIColor.black.cgColor
         tmpCell.layer.shadowOpacity = 0.25
         tmpCell.layer.shadowRadius = 4
+        tmpCell.lblMemberName.text = officialListArray[indexPath.row].fullName
+        tmpCell.lblCourtName.text = officialListArray[indexPath.row].memberOff
+        tmpCell.lblContactNumber.text = officialListArray[indexPath.row].contactNumber
         return tmpCell
     }
     
@@ -44,5 +70,35 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
     @IBAction func tappedOnBack( _sender: UIButton) {
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func callGetOfficialDirectoryApi() {
+        
+        if  Connectivity.isConnectedToInternet {
+            self.startAnimation()
+            
+            
+            let dataModel = OfficialDirectoryRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), OfficialDirectory: OfficialModel(fullName: nil, memberOff: nil))
+            let url = "api/OfficialDirectory/GetOfficialContacts"
+            let services = OfficialDirectoryServices()
+            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                
+                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    self.officialListArray = responseData.officialDirectoryList ?? []
+                    self.tblDirectories.reloadData()
+
+//                    self.postAnnouncementVC?.willMove(toParent: nil)
+//                    self.postAnnouncementVC?.view.removeFromSuperview()
+//                    self.postAnnouncementVC?.removeFromParent()
+                } else {
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                }
+            }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+
     }
 }

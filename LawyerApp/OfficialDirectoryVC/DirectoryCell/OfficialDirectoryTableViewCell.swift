@@ -10,6 +10,9 @@ import UIKit
 class OfficialDirectoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnphone: UIButton!
+    @IBOutlet weak var lblMemberName: UILabel!
+    @IBOutlet weak var lblCourtName: UILabel!
+    @IBOutlet weak var lblContactNumber: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

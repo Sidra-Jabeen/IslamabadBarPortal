@@ -23,8 +23,8 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="T5X-0J-5G3">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 241" translatesAutoresizingMaskIntoConstraints="NO" id="eZ6-Wb-uV2">
-                                        <rect key="frame" x="67.5" y="347.5" width="279" height="185"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 249" translatesAutoresizingMaskIntoConstraints="NO" id="eZ6-Wb-uV2">
+                                        <rect key="frame" x="67.5" y="307.5" width="279" height="185"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="185" id="aDl-1n-Yor"/>
                                         </constraints>
@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="trailing" secondItem="T5X-0J-5G3" secondAttribute="trailing" id="ELD-Xq-e4l"/>
                                     <constraint firstAttribute="trailing" secondItem="eZ6-Wb-uV2" secondAttribute="trailing" constant="67.5" id="YuE-DK-MHc"/>
                                     <constraint firstItem="T5X-0J-5G3" firstAttribute="leading" secondItem="8yA-46-KOn" secondAttribute="leading" id="f8Z-5L-39Z"/>
-                                    <constraint firstItem="eZ6-Wb-uV2" firstAttribute="centerY" secondItem="8yA-46-KOn" secondAttribute="centerY" constant="40" id="oGB-Qk-U9R"/>
+                                    <constraint firstItem="eZ6-Wb-uV2" firstAttribute="centerY" secondItem="8yA-46-KOn" secondAttribute="centerY" id="oGB-Qk-U9R"/>
                                     <constraint firstItem="eZ6-Wb-uV2" firstAttribute="leading" secondItem="8yA-46-KOn" secondAttribute="leading" constant="67.5" id="p4U-2c-0ur"/>
                                     <constraint firstItem="T5X-0J-5G3" firstAttribute="top" secondItem="8yA-46-KOn" secondAttribute="top" id="s9n-oP-Z6v"/>
                                 </constraints>
@@ -60,7 +60,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Group 241" width="800" height="776"/>
+        <image name="Group 249" width="259.5" height="80.5"/>
         <image name="Mask Group 2" width="1656" height="2944"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

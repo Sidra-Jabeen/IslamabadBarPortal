@@ -14,7 +14,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var approvalView: UIView!
     @IBOutlet weak var helpView: UIView!
-    @IBOutlet weak var mainhelpView:UIView!
+    @IBOutlet weak var helpContentView:UIView!
 
     var sideMenu: SideMenuTableViewController?
     var menu: SideMenuNavigationController?
@@ -38,7 +38,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         
         self.navigationController?.isNavigationBarHidden = true
         self.helpView.applyCircledView()
-        self.helpView.applyCircledView()
+        self.helpContentView.applyCircledView()
         
         self.sideMenu = SideMenuTableViewController()
         if let list = sideMenu {

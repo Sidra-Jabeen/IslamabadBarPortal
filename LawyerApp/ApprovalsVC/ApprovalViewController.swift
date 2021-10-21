@@ -33,6 +33,8 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
     var arrayOfMembers = [ResponseUsers]()
     //    var arrayOfMembers = []()
     //    var arrayOfMembers = [String]()
+    var currentMemberId: Int?
+    var currentAdminStatus: Bool?
     var selectedTab = 0
     
     //MARK: - Lifecycle
@@ -50,14 +52,14 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         self.view.addGestureRecognizer(swipeLeft)
         
         let leftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleContentViewGesture))
-           leftRecognizer.direction = .left
+        leftRecognizer.direction = .left
         let rightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleContentViewGesture))
-           rightRecognizer.direction = .right
-           self.contentView.addGestureRecognizer(leftRecognizer)
-           self.contentView.addGestureRecognizer(rightRecognizer)
+        rightRecognizer.direction = .right
+        self.contentView.addGestureRecognizer(leftRecognizer)
+        self.contentView.addGestureRecognizer(rightRecognizer)
         self.dataNotFoundView.addGestureRecognizer(leftRecognizer)
         self.dataNotFoundView.addGestureRecognizer(rightRecognizer)
-    
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +92,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
             print("Swipe Left")
             self.swappedViewValue += 1
             self.onTapsClicked(value: self.swappedViewValue)
-           
+            
         }
     }
     
@@ -98,23 +100,27 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
     
     @IBAction func tappedAll(_sender: UIButton) {
         
-        self.onTapsClicked(value: 1)
         
+        self.onTapsClicked(value: 1)
+        self.selectedTab = 1
     }
     
     @IBAction func tappedApproved(_sender: UIButton) {
         
         self.onTapsClicked(value: 2)
+        self.selectedTab = 2
     }
     
     @IBAction func tappedRejected(_sender: UIButton) {
         
         self.onTapsClicked(value: 3)
+        self.selectedTab = 3
     }
     
     @IBAction func tappedInvolved(_sender: UIButton) {
         
         self.onTapsClicked(value: 4)
+        self.selectedTab = 4
     }
     
     func onTapsClicked(value: Int) {
@@ -146,67 +152,8 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
         cell.lblCourtName.text = arrayOfMembers[indexPath.item].licenseType
         let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
-        cell.profileImage.kf.setImage(with: url)
+        cell.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        self.memberVC = MemberNameViewController()
-        if let member = memberVC {
-            
-            self.view.addSubview(member.view)
-            member.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
-            member.lblPhoneNumber.text = arrayOfMembers[indexPath.item].contactNumber
-            member.lblLisenceDateOflower.text = arrayOfMembers[indexPath.item].issuanceDateLowerCourt
-            member.lblLisenceDateOfHigh.text = arrayOfMembers[indexPath.item].issuanceDateHighCourt
-            member.lblLisenceDateOfSupreme.text = arrayOfMembers[indexPath.item].issuanceDateSupremeCourt
-            member.lblOfcAddress.text = arrayOfMembers[indexPath.item].officeAddress
-            member.memberId = arrayOfMembers[indexPath.item].userId
-            let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
-            member.profileImage.kf.setImage(with: url)
-            currentUser = arrayOfMembers[indexPath.item].userId
-            adminValue = arrayOfMembers[indexPath.item].isAdmin
-            
-            if self.selectedTab == 1 {
-                member.btnRejected.alpha = 1
-                member.btnAccepted.alpha = 1
-                member.btnMakeAAdmin.alpha = 0
-            }
-            
-            if self.selectedTab == 2 {
-                member.btnRejected.alpha = 0
-                member.btnAccepted.alpha = 0
-                member.btnMakeAAdmin.alpha = 1
-            }
-            
-            if self.selectedTab == 3 {
-                member.btnRejected.alpha = 0
-                member.btnAccepted.alpha = 0
-                member.btnMakeAAdmin.alpha = 0
-            }
-            
-            member.btnAccepted.addTarget(self, action: #selector(clickedOnAccepted), for: .touchUpInside)
-            member.btnRejected.addTarget(self, action: #selector(clickedOndeleted), for: .touchUpInside)
-            member.btnMakeAAdmin.addTarget(self, action: #selector(clickedOnMakeAAdmin), for: .touchUpInside)
-            
-            //            member.approveUsersArray = arrayOfMembers[indexPath.item]
-        }
-    }
-    @objc func clickedOnAccepted() {
-        
-        self.callUpdateUsersApi(status: "2", id: currentUser ?? 0)
-
-    }
-    
-    @objc func clickedOndeleted() {
-        
-        self.callUpdateUsersApi(status: "3", id: currentUser ?? 0)
-    }
-    
-    @objc func clickedOnMakeAAdmin() {
-        
-        self.callMakeRemoveAdmin(id: currentUser ?? 0, admin: adminValue ?? false)
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -220,19 +167,110 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.memberVC = MemberNameViewController()
+        if let member = memberVC {
+            
+            self.view.addSubview(member.view)
+            member.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
+            member.lblPhoneNumber.text = arrayOfMembers[indexPath.item].contactNumber
+            member.lblOfcAddress.text = arrayOfMembers[indexPath.item].officeAddress
+            member.memberId = arrayOfMembers[indexPath.item].userId
+            let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
+            member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+//            currentUser = arrayOfMembers[indexPath.item].userId
+//            adminValue = arrayOfMembers[indexPath.item].isAdmin
+            self.currentMemberId = arrayOfMembers[indexPath.row].userId
+            self.currentAdminStatus = arrayOfMembers[indexPath.row].isAdmin
+            if self.selectedTab == 2 {
+                
+                if arrayOfMembers[indexPath.item].isAdmin ?? false {
+                    
+                    member.btn1.setTitle("Remove As Admin", for: .normal)
+                } else {
+                    
+                    member.btn1.setTitle("Make A Admin", for: .normal)
+                }
+                
+                member.btn2.setTitle("Block", for: .normal)
+            }
+            
+            if self.selectedTab == 3 {
+                
+                member.btn1.setTitle("Approved", for: .normal)
+                member.btn2.isHidden = true
+            }
+            
+            if self.selectedTab == 4 {
+                
+                member.btn1.setTitle("Approved", for: .normal)
+                member.btn2.isHidden = true
+            }
+            
+            member.btn1.addTarget(self, action: #selector(clickedOnAButton1), for: .touchUpInside)
+            member.btn2.addTarget(self, action: #selector(clickedOnAButton2), for: .touchUpInside)
+            //            member.btnMakeAAdmin.addTarget(self, action: #selector(clickedOnMakeAAdmin), for: .touchUpInside)
+            //            member.btnRemoveAdmin.addTarget(self, action: #selector(clickedOnRemoveAAdmin), for: .touchUpInside)
+            //            member.approveUsersArray = arrayOfMembers[indexPath.item]
+        }
+    }
+    @objc func clickedOnAButton1() {
+        
+        if self.selectedTab == 1 {
+            
+            self.callUpdateUsersApi(status: "2", id: self.currentMemberId ?? 0)
+            
+        } else if self.selectedTab == 2 {
+            
+            self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: self.currentAdminStatus ?? false)
+            
+        } else if self.selectedTab == 3 {
+            
+            self.callUpdateUsersApi(status: "2", id: self.currentMemberId ?? 0)
+            
+        } else if self.selectedTab == 4 {
+            
+            self.callUpdateUsersApi(status: "2", id: self.currentMemberId ?? 0)
+            
+        }
+    }
+    
+    @objc func clickedOnAButton2() {
+        
+        if self.selectedTab == 1 {
+            
+            self.callUpdateUsersApi(status: "3", id: self.currentMemberId ?? 0)
+            
+        } else if self.selectedTab == 2 {
+            
+            self.callUpdateUsersApi(status: "4", id: self.currentMemberId ?? 0)
+        }
+        
+        
+    }
+    
+    @objc func clickedOnMakeAAdmin() {
+        
+        self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: self.currentAdminStatus ?? false)
+        
+    }
+    
     //MARK: - CallAPisFunction
     
     func callGetUsersApi(status: String) {
         
+        
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "asc", limit: 10, offset: 0), user: ApprovalUser(fullName: "", status: status))
+            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: status))
             let signUpUrl = "api/User/GetUsers"
             let services = ApprovalServices()
             self.stopAnimation()
             services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
                 self.stopAnimation()
                 let status = responseData.success ?? false
+//                self.arrayOfMembers.removeAll()
                 if status {
                     
                     self.arrayOfMembers = responseData.users ?? []
@@ -241,7 +279,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                     self.approvalsCollection.isHidden = false
                     self.dataNotFoundView.isHidden = true
                 } else {
-    //                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    //                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
                     self.approvalsCollection.isHidden = true
                     self.dataNotFoundView.isHidden = false
                     self.arrayOfMembers.removeAll()
@@ -249,9 +287,9 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                 
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
-
+        
     }
     
     func callUpdateUsersApi(status: String, id: Int) {
@@ -263,22 +301,37 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
             let services = ApprovalServices()
             services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
                 self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
+                let response = responseData.success ?? false
+                if response {
+                    if self.selectedTab == 1 {
+                        
+                        self.callGetUsersApi(status: "1")
+                        
+                    } else if self.selectedTab == 2 {
+                        
+                        self.callGetUsersApi(status: "2")
+                        
+                    } else if self.selectedTab == 3 {
+                        
+                        self.callGetUsersApi(status: "3")
+                        
+                    } else if self.selectedTab == 4 {
+                        
+                        self.callGetUsersApi(status: "4")
+                    }
                     
-                    self.callGetUsersApi(status: "1")
                     self.memberVC?.willMove(toParent: nil)
                     self.memberVC?.view.removeFromSuperview()
                     self.memberVC?.removeFromParent()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
-                    self.arrayOfMembers.removeAll()
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    //                    self.arrayOfMembers.removeAll()
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
-
+        
     }
     
     func callMakeRemoveAdmin(id: Int, admin: Bool) {
@@ -298,14 +351,13 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                     self.memberVC?.view.removeFromSuperview()
                     self.memberVC?.removeFromParent()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
-                    self.arrayOfMembers.removeAll()
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
-
+        
     }
     
     func setViewColorLine() {

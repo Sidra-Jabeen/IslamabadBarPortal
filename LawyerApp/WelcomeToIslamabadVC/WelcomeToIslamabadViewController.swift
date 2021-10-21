@@ -19,7 +19,7 @@ class WelcomeToIslamabadViewController: UIViewController {
         self.viewRegisterButn.setCornerRadiusToView()
         
         self.viewRegisterButn.layer.borderWidth = 1.5
-        self.viewRegisterButn.layer.borderColor = #colorLiteral(red: 0.7138625979, green: 0.5477802753, blue: 0.2631929815, alpha: 1)
+        self.viewRegisterButn.layer.borderColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         
         self.navigationController?.isNavigationBarHidden = true
         

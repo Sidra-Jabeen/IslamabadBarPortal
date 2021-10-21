@@ -107,9 +107,20 @@
 		3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */; };
 		3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */; };
 		3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB627160A5D00C5D0F6 /* Generic.swift */; };
+		3DE5EFE9272134BF00A9512A /* OfficialDirectoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFE8272134BF00A9512A /* OfficialDirectoryModels.swift */; };
+		3DE5EFEB272137C200A9512A /* OfficialDirectoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */; };
+		3DE5EFEE27213CD600A9512A /* AddOfficialDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */; };
+		3DE5EFEF27213CD600A9512A /* AddOfficialDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */; };
 		3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */; };
 		3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */; };
 		3DE93343271726A800B80B7D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE93342271726A800B80B7D /* UIViewController.swift */; };
+		3DEB0BE4271EA8DF00E5DE75 /* BiometricTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BE2271EA8DF00E5DE75 /* BiometricTableViewCell.swift */; };
+		3DEB0BE5271EA8DF00E5DE75 /* BiometricTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DEB0BE3271EA8DF00E5DE75 /* BiometricTableViewCell.xib */; };
+		3DEB0BE7271F47A900E5DE75 /* GetAnnouncementDetailServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BE6271F47A900E5DE75 /* GetAnnouncementDetailServices.swift */; };
+		3DEB0BE92720032800E5DE75 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BE82720032800E5DE75 /* Date.swift */; };
+		3DEB0BEB2720079700E5DE75 /* BarAnnouncementDetailServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BEA2720079700E5DE75 /* BarAnnouncementDetailServices.swift */; };
+		3DEB0BED27200DAE00E5DE75 /* ProfileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BEC27200DAE00E5DE75 /* ProfileModels.swift */; };
+		3DEB0BEF272011BB00E5DE75 /* ProfileServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BEE272011BB00E5DE75 /* ProfileServices.swift */; };
 		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -217,10 +228,21 @@
 		3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalRequestModel.swift; sourceTree = "<group>"; };
 		3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalResponseModel.swift; sourceTree = "<group>"; };
 		3DD92BB627160A5D00C5D0F6 /* Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generic.swift; sourceTree = "<group>"; };
+		3DE5EFE8272134BF00A9512A /* OfficialDirectoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryModels.swift; sourceTree = "<group>"; };
+		3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryServices.swift; sourceTree = "<group>"; };
+		3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfficialDirectoryViewController.swift; sourceTree = "<group>"; };
+		3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOfficialDirectoryViewController.xib; sourceTree = "<group>"; };
 		3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseModel.swift; sourceTree = "<group>"; };
 		3DE9333D2716F57D00B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		3DE93342271726A800B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		3DEB0BE2271EA8DF00E5DE75 /* BiometricTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricTableViewCell.swift; sourceTree = "<group>"; };
+		3DEB0BE3271EA8DF00E5DE75 /* BiometricTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BiometricTableViewCell.xib; sourceTree = "<group>"; };
+		3DEB0BE6271F47A900E5DE75 /* GetAnnouncementDetailServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnnouncementDetailServices.swift; sourceTree = "<group>"; };
+		3DEB0BE82720032800E5DE75 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		3DEB0BEA2720079700E5DE75 /* BarAnnouncementDetailServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarAnnouncementDetailServices.swift; sourceTree = "<group>"; };
+		3DEB0BEC27200DAE00E5DE75 /* ProfileModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModels.swift; sourceTree = "<group>"; };
+		3DEB0BEE272011BB00E5DE75 /* ProfileServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServices.swift; sourceTree = "<group>"; };
 		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
 		956AFA332716C6770005C826 /* Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
@@ -323,6 +345,7 @@
 				3D650A332713252F00786786 /* UIButton.swift */,
 				956AFA332716C6770005C826 /* Validate.swift */,
 				3D66A4E5271C83DF00221832 /* UIString.swift */,
+				3DEB0BE82720032800E5DE75 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -365,6 +388,8 @@
 				3D6509E527120BF800786786 /* UserNameTableViewCell.xib */,
 				3D6509E927120DB400786786 /* MenuListTableViewCell.swift */,
 				3D6509EA27120DB400786786 /* MenuListTableViewCell.xib */,
+				3DEB0BE2271EA8DF00E5DE75 /* BiometricTableViewCell.swift */,
+				3DEB0BE3271EA8DF00E5DE75 /* BiometricTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -422,6 +447,7 @@
 				3D66A4DF271B14ED00221832 /* GeneralAnnouncementServices.swift */,
 				3D650A0A2712E11800786786 /* AnnouncementsCell */,
 				3D650A0F2712E5F300786786 /* AnnouncementVC */,
+				3DEB0BE6271F47A900E5DE75 /* GetAnnouncementDetailServices.swift */,
 			);
 			path = GeneralAnnouncementsVC;
 			sourceTree = "<group>";
@@ -480,6 +506,10 @@
 				3D650A1F2712F6EA00786786 /* OfficialDirectoryViewController.swift */,
 				3D650A202712F6EA00786786 /* OfficialDirectoryViewController.xib */,
 				3D650A282712F84D00786786 /* DirectoryCell */,
+				3DE5EFE8272134BF00A9512A /* OfficialDirectoryModels.swift */,
+				3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */,
+				3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */,
+				3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */,
 			);
 			path = OfficialDirectoryVC;
 			sourceTree = "<group>";
@@ -498,6 +528,8 @@
 			children = (
 				3D650A292713026800786786 /* ProfileViewController.swift */,
 				3D650A2A2713026800786786 /* ProfileViewController.xib */,
+				3DEB0BEC27200DAE00E5DE75 /* ProfileModels.swift */,
+				3DEB0BEE272011BB00E5DE75 /* ProfileServices.swift */,
 			);
 			path = ProfileVC;
 			sourceTree = "<group>";
@@ -553,6 +585,7 @@
 				3D66A4D6271AC9BA00221832 /* PostAnnouncementViewController.xib */,
 				3D66A4D9271AD47600221832 /* AnnouncementModels.swift */,
 				3D66A4DB271AD48D00221832 /* AnnouncementServices.swift */,
+				3DEB0BEA2720079700E5DE75 /* BarAnnouncementDetailServices.swift */,
 			);
 			path = BarCouncilVC;
 			sourceTree = "<group>";
@@ -681,6 +714,7 @@
 				3D66A4B8271758F300221832 /* IssuseDateTableViewCell.xib in Resources */,
 				3D6509C12710A44C00786786 /* Main.storyboard in Resources */,
 				3D650A2C2713026800786786 /* ProfileViewController.xib in Resources */,
+				3DEB0BE5271EA8DF00E5DE75 /* BiometricTableViewCell.xib in Resources */,
 				3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */,
 				3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */,
 				3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */,
@@ -688,6 +722,7 @@
 				3D66A4BC271759FF00221832 /* HighCourtTableViewCell.xib in Resources */,
 				3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */,
 				3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */,
+				3DE5EFEF27213CD600A9512A /* AddOfficialDirectoryViewController.xib in Resources */,
 				3D650A382713455000786786 /* SignUpViewController.xib in Resources */,
 				3D6509E227120B1B00786786 /* SideMenuTableViewController.xib in Resources */,
 			);
@@ -757,6 +792,7 @@
 			files = (
 				3D66A4B32717502200221832 /* MembersOfIslamabadTableViewCell.swift in Sources */,
 				3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */,
+				3DEB0BE7271F47A900E5DE75 /* GetAnnouncementDetailServices.swift in Sources */,
 				3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */,
 				3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */,
 				3D650A122712E7B400786786 /* MemberDirectoryViewController.swift in Sources */,
@@ -776,8 +812,10 @@
 				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
 				3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */,
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
+				3DEB0BEB2720079700E5DE75 /* BarAnnouncementDetailServices.swift in Sources */,
 				3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */,
 				3D66A4E0271B14ED00221832 /* GeneralAnnouncementServices.swift in Sources */,
+				3DE5EFEB272137C200A9512A /* OfficialDirectoryServices.swift in Sources */,
 				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
 				3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */,
 				3D66A4DC271AD48D00221832 /* AnnouncementServices.swift in Sources */,
@@ -787,6 +825,7 @@
 				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
 				3D66A4D42719CBDC00221832 /* PostQuestionsServices.swift in Sources */,
 				3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */,
+				3DE5EFE9272134BF00A9512A /* OfficialDirectoryModels.swift in Sources */,
 				3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */,
 				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
 				3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */,
@@ -803,7 +842,10 @@
 				3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */,
 				3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */,
 				3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */,
+				3DEB0BE4271EA8DF00E5DE75 /* BiometricTableViewCell.swift in Sources */,
+				3DEB0BED27200DAE00E5DE75 /* ProfileModels.swift in Sources */,
 				3D66A4BF27175A8100221832 /* SupremeCourtTableViewCell.swift in Sources */,
+				3DEB0BE92720032800E5DE75 /* Date.swift in Sources */,
 				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,
 				3D66A4B7271758F300221832 /* IssuseDateTableViewCell.swift in Sources */,
 				3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */,
@@ -813,6 +855,7 @@
 				3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */,
 				3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */,
 				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,
+				3DE5EFEE27213CD600A9512A /* AddOfficialDirectoryViewController.swift in Sources */,
 				3D66A4DE271B140600221832 /* GeneralAnnouncementRequestModel.swift in Sources */,
 				3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */,
 				3D1426FD2714907A00DE03BB /* SignInServices.swift in Sources */,
@@ -820,6 +863,7 @@
 				3D66A4D22719B68700221832 /* QuestionServices.swift in Sources */,
 				3D66A4C827197D8700221832 /* LocalAuth.swift in Sources */,
 				3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */,
+				3DEB0BEF272011BB00E5DE75 /* ProfileServices.swift in Sources */,
 				3D66A4E2271C049600221832 /* BiometricsManager.swift in Sources */,
 				3D66A4C6271965C100221832 /* Validate.swift in Sources */,
 			);

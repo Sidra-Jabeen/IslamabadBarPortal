@@ -30,7 +30,7 @@ class DateTimePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
   }
   
   func setup() {
-    dayFormatter.dateFormat = "dd/MM/yyyy"
+    dayFormatter.dateFormat = "yyyy-MM-dd"
     timeFormatter.timeStyle = .short
     days = setDays()
     startTimes = setStartTimes()
@@ -115,7 +115,8 @@ class DateTimePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     var currentDate = date
     
     // adding 30 days to current date
-    let oneMonthFromNow = calendar.date(byAdding: .day, value: 30, to: currentDate)
+//    let oneMonthFromNow = calendar.date(byAdding: .day, value: 30, to: currentDate)
+      let oneMonthFromNow = calendar.date(byAdding: .day, value: 30*12*30, to: currentDate)
     
     // last date
     let endDate = oneMonthFromNow
@@ -159,6 +160,11 @@ class DateTimePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     let today = Date()
     return getDays(of: today)
   }
+    
+//    private func setDays() -> [Date] {
+//        let today = Date(timeIntervalSince1970: 30*60*24*30*12*1)
+//        return getDays(of: today)
+//      }
   
   private func setStartTimes() -> [Date] {
     let today = Date()

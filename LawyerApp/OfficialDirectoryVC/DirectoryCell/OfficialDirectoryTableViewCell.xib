@@ -83,6 +83,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnphone" destination="uxM-W3-TVM" id="15q-ra-woe"/>
+                <outlet property="lblContactNumber" destination="Pm5-b5-Z5t" id="nIA-LB-Xgs"/>
+                <outlet property="lblCourtName" destination="625-dG-AnW" id="VNz-wJ-EKJ"/>
+                <outlet property="lblMemberName" destination="jda-Zd-ohX" id="ERZ-LR-jpM"/>
             </connections>
             <point key="canvasLocation" x="324.80000000000001" y="49.475262368815599"/>
         </tableViewCell>

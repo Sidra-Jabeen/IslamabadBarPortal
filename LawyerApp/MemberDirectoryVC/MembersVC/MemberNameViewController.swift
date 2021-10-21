@@ -20,8 +20,15 @@ class MemberNameViewController: UIViewController {
     @IBOutlet weak var lblOfcAddress: UILabel!
     @IBOutlet weak var btnAccepted: UIButton!
     @IBOutlet weak var btnRejected: UIButton!
+    @IBOutlet weak var btnRemoveAdmin: UIButton!
     @IBOutlet weak var btnMakeAAdmin: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
+    
+    @IBOutlet weak var btn1: UIButton!
+    @IBOutlet weak var btn2: UIButton!
+    
+    @IBOutlet weak var viewApprovalBtn: UIView!
+    @IBOutlet weak var viewRejectedBtn: UIView!
 
     var memberId: Int?
     
@@ -33,10 +40,14 @@ class MemberNameViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.view.frame.size.height = UIScreen.main.bounds.height
         self.view.frame.size.width = UIScreen.main.bounds.width
-        self.btnAccepted.setCornerRadiusToButton()
-        self.btnAccepted.setCornerRadiusToButton()
-        self.btnRejected.setCornerRadiusToButton()
+        self.btn1.setCornerRadiusToButton()
+        self.btn2.setCornerRadiusToButton()
+//        self.btnRejected.setCornerRadiusToButton()
         self.profileImage.applyCircledView()
+        
+//        self.btnMakeAAdmin.setCornerRadiusToButton()
+//        self.viewApprovalBtn.setCornerRadiusToView()
+//        self.viewRejectedBtn.setCornerRadiusToView()
     }
     
     

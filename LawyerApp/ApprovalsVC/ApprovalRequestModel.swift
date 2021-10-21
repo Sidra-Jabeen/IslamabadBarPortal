@@ -25,28 +25,33 @@ struct ApprovalRequestModel {
     
     let source: String
     let Pagination: PaginationModel
-    let user: ApprovalUser
+    let user: ApprovalUser?
 
     var params: [String: Any] {
         return [
             "source": source,
             "Pagination": Pagination.params,
-            "user" : user.params
-        ]
+            "user" : user?.params as Any,        ]
     }
 }
 
 struct ApprovalUser {
     
-    let fullName: String
-//    let licenseType: String
-    let status: String
+    let fullName: String?
+    let cnic: String?
+    let licenseNumber: String?
+    let contactNumber: String?
+    let licenseType: String?
+    let status: String?
     
     var params: [String:Any] {
         return [
-            "fullName": fullName,
-//            "licenseType": licenseType,
-            "status": status
+            "fullName": fullName as Any,
+            "cnic": cnic as Any,
+            "licenseNumber": licenseNumber as Any,
+            "contactNumber": contactNumber as Any,
+            "licenseType": licenseType as Any,
+            "status": status as Any,
         ]
     }
 }

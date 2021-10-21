@@ -63,11 +63,15 @@ class SignInViewController: UIViewController {
             switch response {
             case .failure:
                print("Failed")
+//                UserDefaults.standard.set(nil, forKey: "isBiometricLogin")
+//                UserDefaults.standard.removeObject(forKey: "isBiometricLogin")
+//                UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+
             case .success:
                 print("Success")
                 if let lisenceNo = UserDefaults.standard.string(forKey: "lisenceNumber"), let password = UserDefaults.standard.string(forKey: "password") {
                     self?.callSignInAPI(lisenceNumber: lisenceNo, password: password)
-                    
+
             }
         }
         })
@@ -81,7 +85,7 @@ class SignInViewController: UIViewController {
             
             self.callSignInAPI(lisenceNumber: self.txtEnterFullNameOnLisence.text ?? "", password: self.txtPassword.text ?? "")
         }
-        else { self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "Textfields Should Not Be Empty") }
+        else { self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Textfields Should Not Be Empty") }
         
     }
     
@@ -116,9 +120,10 @@ class SignInViewController: UIViewController {
 //                        dashboardVC.userId = responseData.user?.userId
                         dashboardVC.strLisenceNo = self.txtEnterFullNameOnLisence.text ?? ""
                         dashboardVC.password = self.txtPassword.text ?? ""
+                        loginUserID = user?.userId
                         self.navigationController?.pushViewController(dashboardVC, animated: true)
                     } else {
-                        self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "User Not Found")
+                        self.showAlert(alertTitle: "Islamabad Bar Connectl", alertMessage: responseData.desc ?? "User Not Found")
                         self.txtEnterFullNameOnLisence.text = ""
                         self.txtPassword.text = ""
                     }
@@ -128,7 +133,7 @@ class SignInViewController: UIViewController {
                 }
             } else {
             
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
         
     }

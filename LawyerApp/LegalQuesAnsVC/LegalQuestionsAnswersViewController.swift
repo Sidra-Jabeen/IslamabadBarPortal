@@ -78,10 +78,10 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if indexPath.row+1 == self.arrayOfQueries.count {
-                    print("came to last row")
-            self.callGetQuestionApi()
-        }
+//        if indexPath.row+1 == self.arrayOfQueries.count {
+//                    print("came to last row")
+//            self.callGetQuestionApi()
+//        }
 //        self.callGetQuestionApi()
     }
     
@@ -126,11 +126,11 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
                     print(self.arrayOfQueries)
                     self.tblQuesAnswers.reloadData()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }} else {
                 
-                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
             }
 
     }
@@ -149,11 +149,11 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
                 if status {
                     self.callGetQuestionApi()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
     }

@@ -14,8 +14,8 @@ class SideMenuTableViewController: UITableViewController {
     
     var navigation:SideMenuTableViewController?
     let tableViewColor: UIColor = #colorLiteral(red: 0.130608201, green: 0.3541451395, blue: 0.3179354072, alpha: 1)
-    var arrMenuList = ["Queries","Member Announcememts","Bar Announcements","Members Directory","Help","My Profile","Official Directory", "Request Approval", "Logout"]
-    var listImages: [String] = [ "Layer 25", "Notification", "Notification", "21-List-1","Group 241", "Layer 19", "Path 288","listing_search_magnifier_magnifying_glass_loupe", "logout"]
+    var arrMenuList = ["Queries","Member Announcememts","Bar Announcements","Members Directory","Help","My Profile","Official Directory", "Request Approval","Biometric", "Logout"]
+    var listImages: [String] = [ "Layer 25", "Notification", "Notification", "21-List-1","Group 253", "Layer 19", "Path 288","listing_search_magnifier_magnifying_glass_loupe","2538673_biometric_finger_fingerprint_identity_thumb_icon", "logout"]
     
     public var delegate: MenuControllerDelegate?
     
@@ -26,6 +26,7 @@ class SideMenuTableViewController: UITableViewController {
         self.tblSideMenuList.separatorStyle = .none
         self.tblSideMenuList.register(UINib(nibName: "UserNameTableViewCell", bundle: nil), forCellReuseIdentifier: "UserNameTableViewCell")
         self.tblSideMenuList.register(UINib(nibName: "MenuListTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuListTableViewCell")
+        self.tblSideMenuList.register(UINib(nibName: "BiometricTableViewCell", bundle: nil), forCellReuseIdentifier: "BiometricTableViewCell")
         
         let admin = Generic.getAdminValue()
         if admin == "1" {
@@ -53,16 +54,47 @@ class SideMenuTableViewController: UITableViewController {
             return tmpCell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MenuListTableViewCell", for: indexPath) as! MenuListTableViewCell
-            
-            //        cell.imgMenuItem.image = menuListImages[indexPath.row]
-            
-            cell.lblMenuItem?.text = arrMenuList[indexPath.row]
-            cell.lblMenuItem?.textColor = .white
-            cell.imgMenuItem.image = UIImage(named: listImages[indexPath.row])
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            return cell
+            if indexPath.row < 8 {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "MenuListTableViewCell", for: indexPath) as! MenuListTableViewCell
+                
+                cell.lblMenuItem?.text = arrMenuList[indexPath.row]
+                cell.lblMenuItem?.textColor = .white
+                cell.imgMenuItem.image = UIImage(named: listImages[indexPath.row])
+                cell.backgroundColor = .clear
+                cell.selectionStyle = .none
+                return cell
+            } else if indexPath.row < 9 {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "BiometricTableViewCell", for: indexPath) as! BiometricTableViewCell
+                
+                cell.img.image = UIImage(named: listImages[indexPath.row])
+                cell.lbl.text = arrMenuList[indexPath.row]
+                cell.bioSwitch.addTarget(self, action: #selector(enabledBiometric), for: .touchUpInside)
+                cell.backgroundColor = .clear
+                cell.selectionStyle = .none
+                
+                if UserDefaults.standard.string(forKey: "isBiometricLogin") == "1" {
+                    
+                    cell.bioSwitch.setOn(true, animated: true)
+                } else {
+                    
+                    cell.bioSwitch.setOn(false, animated: true)
+                }
+                
+                return cell
+                
+            } else  {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "MenuListTableViewCell", for: indexPath) as! MenuListTableViewCell
+                
+                cell.lblMenuItem?.text = arrMenuList[indexPath.row]
+                cell.lblMenuItem?.textColor = .white
+                cell.imgMenuItem.image = UIImage(named: listImages[indexPath.row])
+                cell.backgroundColor = .clear
+                cell.selectionStyle = .none
+                return cell
+            }
         }
     }
     
@@ -84,6 +116,45 @@ class SideMenuTableViewController: UITableViewController {
             delegate?.didSelectMenuItem(named: selectedItem)
         }
         
+        
+    }
+    
+    @objc func enabledBiometric(_ sender: UISwitch) {
+        
+        if sender.isOn {
+            print("ON")
+            UserDefaults.standard.set("1", forKey: "isBiometricLogin")
+//            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Fingerprint Login Enabled!")
+//            self.alertForBiometric()
+            let alert = UIAlertController(title: "Islamabad Bar Connect", message: "Fingerprint Login Enabled!", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+            }))
+            self.present(alert, animated: true, completion: nil)
+            self.tblSideMenuList.reloadData()
+
+        }
+        else {
+            print ("OFF")
+            self.alertForBiometricOff()
+
+        }
+        
+    }
+    
+    func alertForBiometricOff() {
+
+        let refreshAlert = UIAlertController(title: "Islamabad Bar Connect", message: "Are You sure you want to disabled Fingerprint Login", preferredStyle: UIAlertController.Style.alert)
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+            self.tblSideMenuList.reloadData()
+          }))
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+            UserDefaults.standard.set("1", forKey: "isBiometricLogin")
+            self.tblSideMenuList.reloadData()
+//            UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+            
+          }))
+        present(refreshAlert, animated: true, completion: nil)
         
     }
 }

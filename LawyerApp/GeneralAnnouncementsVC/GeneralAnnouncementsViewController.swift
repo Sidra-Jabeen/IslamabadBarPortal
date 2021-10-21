@@ -10,7 +10,13 @@ import SwiftUI
 
 class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    //MARK: - IBOutlets
+    
     @IBOutlet weak var tblAnnouncements: UITableView!
+    @IBOutlet weak var viewPostButton: UIView!
+    
+    
+    //MARK: - Propertities
     
     var search: SearchForBarCouncilViewController?
     var postAnnouncementVC: PostAnnouncementViewController?
@@ -19,6 +25,10 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     var intValue = 0
     var bitValueForAscDes = 0
     var strValue = ""
+    let date = Date()
+    let formatter = DateFormatter()
+    
+    //MARK: - LifeCycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +37,16 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
                 swipeLeft.direction = .right
                 self.view.addGestureRecognizer(swipeLeft)
+        self.viewPostButton.setCornerRadiusToView()
         self.navigationController?.isNavigationBarHidden = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.callGetGeneralAnnouncements()
+    }
+    
+    //MARK: - HandGestureFunction
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
@@ -40,10 +58,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        self.callGetGeneralAnnouncements()
-    }
+    //MARK: - UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -71,16 +86,15 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         self.tblAnnouncements.deselectRow(at: indexPath, animated: true)
         self.announcementsVC = AnnouncementViewController()
         if let vc = announcementsVC {
-            
-            vc.strtitle = listArrays[indexPath.row].title
-            vc.strdescription = listArrays[indexPath.row].description
-            vc.anouncedAt = listArrays[indexPath.row].announcedAt
-            vc.anouncedBy = listArrays[indexPath.row].announcedBy
+            vc.userId = listArrays[indexPath.row].memberAnnouncementId
+            vc.bitValue = true
             vc.barTitle = "General Announcements"
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
     }
+    
+    //MARK: - IBActions
     
     @IBAction func tappedOnBack( _sender: UIButton) {
         
@@ -118,17 +132,55 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             
             searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
             searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
-//            searchVC.btnToDate.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
-//            searchVC.btnFromDate.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
+            searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
+            
+            if self.intValue == 0 {
+                
+                self.search?.txtToDate.text = ""
+                self.search?.txtFromDate.text = ""
+                self.setUpButtonsUI(value: self.intValue)
+            }
+            else if self.intValue == 1 {
+                
+                formatter.dateFormat = "yyyy-MM-dd"
+                let result = formatter.string(from: date)
+                self.search?.txtToDate.text = result
+                self.search?.txtFromDate.text = result
+                self.setUpButtonsUI(value: self.intValue)
+            }
+            else if self.intValue == 2 {
+                
+                let dateFormatter = DateFormatter()
+                let previousDay = previousDay()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                self.search?.txtToDate.text = dateFormatter.string(from: previousDay)
+                self.search?.txtFromDate.text = dateFormatter.string(from: previousDay)
+                self.setUpButtonsUI(value: self.intValue)
+            }
+            else if self.intValue == 3 {
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let startDay = getPreviousWeekStartDay()
+                let endDay = getPreviousWeekEndDay()
+                self.search?.txtToDate.text = dateFormatter.string(from: startDay ?? Date())
+                self.search?.txtFromDate.text = dateFormatter.string(from: endDay ?? Date())
+                self.setUpButtonsUI(value: self.intValue)
+            }
+            
+            if self.bitValueForAscDes == 1 {
+                self.search?.imgAsc.image = UIImage(named: "Group 247")
+                self.search?.imgDes.image = UIImage(named: "Circle")
+            } else if self.bitValueForAscDes == 2 {
+                
+                self.search?.imgDes.image = UIImage(named: "Group 247")
+                self.search?.imgAsc.image = UIImage(named: "Circle")
+            }
             
         }
     }
     
-//    @objc func openDatePicker() {
-//
-//        search?.txtToDate.inputView = search?.datePickerView.inputView
-//        search?.txtFromDate.inputView = search?.datePickerView.inputView
-//    }
+    //MARK: - SearchForBarCouncilViewControllerFunctions
     
     @objc func handleDatePicker(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
@@ -150,47 +202,63 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
         else if intValue == 1 {
             
-            self.searchByDates( duration: "1")
+            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "",  duration: "1")
         }
         else if intValue == 2 {
             
-            self.searchByDates(duration: "2")
+            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "2")
         }
         else if intValue == 3 {
             
-            self.searchByDates( duration: "3")
+            self.searchByDates( strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "3")
         }
     }
     
     @objc func clickedOnAll() {
         
         self.intValue = 0
-//        self.search?.txtToDate.isUserInteractionEnabled = false
-//        self.search?.txtFromDate.isUserInteractionEnabled = false
+        self.search?.txtToDate.text = ""
+        self.search?.txtFromDate.text = ""
         self.setUpButtonsUI(value: self.intValue)
+    }
+    
+    @objc func clickedOnClear() {
+        
+        self.search?.txtToDate.text = ""
+        self.search?.txtFromDate.text = ""
     }
     
     @objc func clickedOnToday() {
         
         self.intValue = 1
-//        self.search?.txtToDate.isUserInteractionEnabled = true
-//        self.search?.txtFromDate.isUserInteractionEnabled = true
+        formatter.dateFormat = "yyyy-MM-dd"
+        let result = formatter.string(from: date)
+        self.search?.txtToDate.text = result
+        self.search?.txtFromDate.text = result
         self.setUpButtonsUI(value: self.intValue)
     }
     
     @objc func clickedOnYesterday() {
         
         self.intValue = 2
-//        self.search?.txtToDate.isUserInteractionEnabled = true
-//        self.search?.txtFromDate.isUserInteractionEnabled = true
+        
+        let dateFormatter = DateFormatter()
+        let previousDay = previousDay()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.search?.txtToDate.text = dateFormatter.string(from: previousDay)
+        self.search?.txtFromDate.text = dateFormatter.string(from: previousDay)
         self.setUpButtonsUI(value: self.intValue)
     }
     
     @objc func clickedOnLastweek() {
         
         self.intValue = 3
-//        self.search?.txtToDate.isUserInteractionEnabled = true
-//        self.search?.txtFromDate.isUserInteractionEnabled = true
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDay = getPreviousWeekStartDay()
+        let endDay = getPreviousWeekEndDay()
+        self.search?.txtToDate.text = dateFormatter.string(from: startDay ?? Date())
+        self.search?.txtFromDate.text = dateFormatter.string(from: endDay ?? Date())
         self.setUpButtonsUI(value: self.intValue)
     }
     
@@ -212,6 +280,29 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
     }
     
+    func previousDay()-> Date{
+        var dayComponent    = DateComponents()
+        dayComponent.day    = -1
+        let theCalendar     = Calendar.current
+        let day        = theCalendar.date(byAdding: dayComponent, to: Date())!
+        return day
+    }
+    
+    func getPreviousWeekStartDay() -> Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from:
+        gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        return gregorian.date(byAdding: .day, value: -6, to: sunday!)!
+    }
+
+    // Getting last day of previous week
+    func getPreviousWeekEndDay() -> Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        return gregorian.date(byAdding: .day, value: 0, to: sunday!)!
+    }
+    
+    //MARK: - CallingApisFunctions
     
     func callGetGeneralAnnouncements() {
         
@@ -219,7 +310,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.startAnimation()
             
             
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: listArrays.count), memberAnnouncement: nil)
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "des", limit: 10, offset: listArrays.count), memberAnnouncement: nil)
             let url = "api/MemberAnnouncement/GetAnnouncements"
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -234,11 +325,11 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                     self.postAnnouncementVC?.view.removeFromSuperview()
                     self.postAnnouncementVC?.removeFromParent()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
     }
@@ -253,7 +344,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             } else {
                 self.strValue = "des"
             }
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: listArrays.count), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, startDate: strtDate, fromDate: frmDate, duration: duration))
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration))
             let url = "api/MemberAnnouncement/GetAnnouncements"
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -261,18 +352,18 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
+//                    self.listArrays.removeAll()
                     self.listArrays = responseData.memberAnnouncements ?? []
                     self.tblAnnouncements.reloadData()
-                    
-                    self.postAnnouncementVC?.willMove(toParent: nil)
-                    self.postAnnouncementVC?.view.removeFromSuperview()
-                    self.postAnnouncementVC?.removeFromParent()
+                    self.search?.willMove(toParent: nil)
+                    self.search?.view.removeFromSuperview()
+                    self.search?.removeFromParent()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
     }
@@ -289,13 +380,14 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
+                    self.listArrays.removeAll()
                     self.callGetGeneralAnnouncements()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
     }
@@ -314,14 +406,16 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 if status {
                     self.callGetGeneralAnnouncements()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: responseData.desc ?? "")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
-            self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "No Internet Connection")
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
     }
+    
+    //MARK: - Others
     
     func setUpButtonsUI(value: Int) {
         
@@ -343,9 +437,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.search?.viewYesterday.setBorderColorToView()
             self.search?.viewLastweek.applyCircledView()
             self.search?.viewLastweek.setBorderColorToView()
-            self.search?.toAndFromView.isUserInteractionEnabled = false
-            self.search?.calenderViewHeight.constant = 50
-            self.search?.serachByViewHeight.constant = 20
+            self.search?.toAndFromView.isUserInteractionEnabled = true
+//            self.search?.calenderViewHeight.constant = 50
+//            self.search?.serachByViewHeight.constant = 20
             
         }
         
@@ -367,9 +461,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.search?.viewYesterday.setBorderColorToView()
             self.search?.viewLastweek.applyCircledView()
             self.search?.viewLastweek.setBorderColorToView()
-            self.search?.calenderViewHeight.constant = 0
-            self.search?.serachByViewHeight.constant = 0
-            self.search?.toAndFromView.isUserInteractionEnabled = true
+//            self.search?.calenderViewHeight.constant = 0
+//            self.search?.serachByViewHeight.constant = 0
+//            self.search?.toAndFromView.isUserInteractionEnabled = false
             
         }
         
@@ -391,9 +485,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.search?.viewAll.setBorderColorToView()
             self.search?.viewLastweek.applyCircledView()
             self.search?.viewLastweek.setBorderColorToView()
-            self.search?.calenderViewHeight.constant = 0
-            self.search?.serachByViewHeight.constant = 0
-            self.search?.toAndFromView.isUserInteractionEnabled = true
+//            self.search?.calenderViewHeight.constant = 0
+//            self.search?.serachByViewHeight.constant = 0
+//            self.search?.toAndFromView.isUserInteractionEnabled = false
             
         }
         
@@ -415,9 +509,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.search?.viewYesterday.setBorderColorToView()
             self.search?.viewAll.applyCircledView()
             self.search?.viewAll.setBorderColorToView()
-            self.search?.calenderViewHeight.constant = 0
-            self.search?.serachByViewHeight.constant = 0
-            self.search?.toAndFromView.isUserInteractionEnabled = true
+//            self.search?.calenderViewHeight.constant = 0
+//            self.search?.serachByViewHeight.constant = 0
+//            self.search?.toAndFromView.isUserInteractionEnabled = false
             
         }
         

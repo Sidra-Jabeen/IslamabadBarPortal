@@ -13,7 +13,9 @@
             <connections>
                 <outlet property="btnAdd" destination="JpP-BA-qWK" id="o0x-QC-dvF"/>
                 <outlet property="btnAddView" destination="5KY-Br-ifx" id="TlE-68-vCG"/>
+                <outlet property="btnCancel" destination="fzD-YU-YXC" id="KFY-W4-n1a"/>
                 <outlet property="contactNumberView" destination="XRr-PR-X7b" id="VzA-xb-CmD"/>
+                <outlet property="contentView" destination="DgU-6e-Ow3" id="shH-iW-Zhh"/>
                 <outlet property="designationView" destination="f3z-Wb-r4X" id="11p-7T-OsN"/>
                 <outlet property="fullNameView" destination="jLh-uk-YPa" id="OAE-Ja-Phy"/>
                 <outlet property="officeAddressView" destination="kBW-Cm-vw5" id="c4l-QV-dRQ"/>
@@ -32,8 +34,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocb-9k-6ED">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgU-6e-Ow3" userLabel="PostQuesView">
-                            <rect key="frame" x="31" y="118.5" width="313" height="430"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgU-6e-Ow3" userLabel="AddContactView">
+                            <rect key="frame" x="31" y="108.5" width="313" height="450"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2rZ-7O-xxh" userLabel="TopView">
                                     <rect key="frame" x="40" y="0.0" width="233" height="90"/>
@@ -47,7 +49,7 @@
                                             <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="ctb-pb-E3O">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="ctb-pb-E3O">
                                             <rect key="frame" x="86.5" y="10" width="60" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="VsL-H8-U92"/>
@@ -66,10 +68,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJl-4s-eba" userLabel="QuestionView">
-                                    <rect key="frame" x="10" y="110" width="293" height="240"/>
+                                    <rect key="frame" x="10" y="110" width="293" height="260"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="002-yh-BFP" userLabel="FullNameView">
-                                            <rect key="frame" x="0.0" y="10" width="293" height="50"/>
+                                            <rect key="frame" x="0.0" y="15" width="293" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jLh-uk-YPa" userLabel="TxtfieldView">
                                                     <rect key="frame" x="0.0" y="0.0" width="293" height="50"/>
@@ -141,7 +143,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCR-KI-3Rw" userLabel="DesignationView">
-                                            <rect key="frame" x="0.0" y="70" width="293" height="50"/>
+                                            <rect key="frame" x="0.0" y="80" width="293" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3z-Wb-r4X" userLabel="TxtfieldView">
                                                     <rect key="frame" x="0.0" y="0.0" width="293" height="50"/>
@@ -213,7 +215,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsw-KB-v6i" userLabel="ContactNumberView">
-                                            <rect key="frame" x="0.0" y="130" width="293" height="50"/>
+                                            <rect key="frame" x="0.0" y="145" width="293" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-PR-X7b" userLabel="TxtfieldView">
                                                     <rect key="frame" x="0.0" y="0.0" width="293" height="50"/>
@@ -285,7 +287,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wa-Fu-Q4O" userLabel="OfficeAddressView">
-                                            <rect key="frame" x="0.0" y="190" width="293" height="50"/>
+                                            <rect key="frame" x="0.0" y="210" width="293" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBW-Cm-vw5" userLabel="TxtfieldView">
                                                     <rect key="frame" x="0.0" y="0.0" width="293" height="50"/>
@@ -356,16 +358,16 @@
                                         <constraint firstAttribute="trailing" secondItem="002-yh-BFP" secondAttribute="trailing" id="HVk-Vq-bgD"/>
                                         <constraint firstItem="dsw-KB-v6i" firstAttribute="leading" secondItem="002-yh-BFP" secondAttribute="leading" id="Ozd-8Z-5rG"/>
                                         <constraint firstItem="KCR-KI-3Rw" firstAttribute="leading" secondItem="002-yh-BFP" secondAttribute="leading" id="WZT-UC-rpr"/>
-                                        <constraint firstItem="KCR-KI-3Rw" firstAttribute="top" secondItem="002-yh-BFP" secondAttribute="bottom" constant="10" id="b5O-O5-hxY"/>
-                                        <constraint firstItem="dsw-KB-v6i" firstAttribute="top" secondItem="KCR-KI-3Rw" secondAttribute="bottom" constant="10" id="cFy-Ow-DPQ"/>
-                                        <constraint firstItem="002-yh-BFP" firstAttribute="top" secondItem="SJl-4s-eba" secondAttribute="top" constant="10" id="fLo-sI-24R"/>
+                                        <constraint firstItem="KCR-KI-3Rw" firstAttribute="top" secondItem="002-yh-BFP" secondAttribute="bottom" constant="15" id="b5O-O5-hxY"/>
+                                        <constraint firstItem="dsw-KB-v6i" firstAttribute="top" secondItem="KCR-KI-3Rw" secondAttribute="bottom" constant="15" id="cFy-Ow-DPQ"/>
+                                        <constraint firstItem="002-yh-BFP" firstAttribute="top" secondItem="SJl-4s-eba" secondAttribute="top" constant="15" id="fLo-sI-24R"/>
                                         <constraint firstItem="KCR-KI-3Rw" firstAttribute="trailing" secondItem="002-yh-BFP" secondAttribute="trailing" id="fe7-Gk-iRb"/>
                                         <constraint firstItem="3Wa-Fu-Q4O" firstAttribute="leading" secondItem="002-yh-BFP" secondAttribute="leading" id="nJb-lt-rNr"/>
-                                        <constraint firstItem="3Wa-Fu-Q4O" firstAttribute="top" secondItem="dsw-KB-v6i" secondAttribute="bottom" constant="10" id="tkc-oR-nqS"/>
+                                        <constraint firstItem="3Wa-Fu-Q4O" firstAttribute="top" secondItem="dsw-KB-v6i" secondAttribute="bottom" constant="15" id="tkc-oR-nqS"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KY-Br-ifx" userLabel="ButtonView">
-                                    <rect key="frame" x="10" y="370" width="293" height="40"/>
+                                    <rect key="frame" x="10" y="390" width="293" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpP-BA-qWK">
                                             <rect key="frame" x="0.0" y="0.0" width="293" height="40"/>
@@ -395,6 +397,9 @@
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="multiply" catalog="system"/>
+                                    <connections>
+                                        <action selector="tappedOnCancelWith_sender:" destination="-1" eventType="touchUpInside" id="gTY-hl-ROw"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -425,7 +430,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.30439267040000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Ocb-9k-6ED" secondAttribute="bottom" id="4IO-5r-cdl"/>
                 <constraint firstItem="Ocb-9k-6ED" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6bN-ug-lVa"/>

@@ -10,13 +10,13 @@ import Foundation
 struct OfficialDirectoryRequestModel {
     
     let source: String
-    let pagination: PaginationModel
+    let pagination: PaginationModel?
     let OfficialDirectory: OfficialModel?
     
     var params: [String: Any] {
         return [
             "source": source,
-            "pagination" : pagination.params,
+            "pagination" : pagination?.params as Any,
             "OfficialDirectory" : OfficialDirectory?.params as Any,
         ]
     }
@@ -25,16 +25,37 @@ struct OfficialDirectoryRequestModel {
 struct OfficialModel {
     
     let fullName: String?
+    let designation: String?
+    let officeAddress: String?
+    let contactNumber: String?
     let memberOff: String?
     
     var params: [String: Any] {
         return [
 
             "fullName" : fullName as Any,
+            "designation" : designation as Any,
+            "officeAddress" : officeAddress as Any,
+            "contactNumber" : contactNumber as Any,
             "memberOff" : memberOff as Any,
         ]
     }
 }
+
+struct AddOffcicalDirectory {
+    
+    let source: String
+    let OfficialDirectory: OfficialModel?
+    
+    var params: [String: Any] {
+        return [
+            "source": source,
+            "OfficialDirectory" : OfficialDirectory?.params as Any,
+        ]
+    }
+}
+
+
 
 struct OfficialDirectoryResponseModel: Codable {
     

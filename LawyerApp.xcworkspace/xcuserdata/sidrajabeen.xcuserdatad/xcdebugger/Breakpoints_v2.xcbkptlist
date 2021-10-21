@@ -327,32 +327,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BC759687-F63F-4C34-9B98-DD4A16D11B4F"
+            uuid = "97EE4A80-7426-4232-880A-7DF6A70B61F0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LawyerApp/OfficialDirectoryVC/OfficialDirectoryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "callGetOfficialDirectoryApi()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AA358088-00D4-46E2-9317-3D5AB93B143A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LawyerApp/OfficialDirectoryVC/OfficialDirectoryViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "callGetOfficialDirectoryApi()"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "callAddOfficialDirectoryApi()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

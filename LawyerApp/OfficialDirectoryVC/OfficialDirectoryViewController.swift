@@ -13,6 +13,7 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var btnAddDirectory: UIButton!
     
     var officialListArray = [OfficialDirectoryResponseModel]()
+    var addOfficialDirectory: AddOfficialDirectoryViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,27 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
         
         self.navigationController?.popViewController(animated: true)
     }
+     
+    @IBAction func tappedOnSearchFilter( _sender: UIButton) {
+        
+        
+    }
+    
+    @IBAction func tappedOnAdd( _sender: UIButton) {
+        
+        self.addOfficialDirectory = AddOfficialDirectoryViewController()
+        if let officialDirectory = self.addOfficialDirectory {
+            
+            self.view.addSubview(officialDirectory.view)
+            officialDirectory.btnAdd.addTarget(self, action: #selector(onClickedAdd), for: .touchUpInside)
+            
+        }
+    }
+    
+    @objc func onClickedAdd() {
+        
+        callAddOfficialDirectoryApi()
+    }
     
     func callGetOfficialDirectoryApi() {
         
@@ -78,7 +100,7 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
             self.startAnimation()
             
             
-            let dataModel = OfficialDirectoryRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), OfficialDirectory: OfficialModel(fullName: nil, memberOff: nil))
+            let dataModel = OfficialDirectoryRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), OfficialDirectory: OfficialModel(fullName: nil, designation: nil, officeAddress: nil, contactNumber: nil, memberOff: nil))
             let url = "api/OfficialDirectory/GetOfficialContacts"
             let services = OfficialDirectoryServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -100,5 +122,33 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
 
+    }
+    
+    func callAddOfficialDirectoryApi() {
+        
+        if  Connectivity.isConnectedToInternet {
+            self.startAnimation()
+            let dataModel = OfficialDirectoryRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), OfficialDirectory: OfficialModel(fullName: addOfficialDirectory?.txtFullName.text, designation: addOfficialDirectory?.txtDesignation.text, officeAddress: addOfficialDirectory?.txtOfficeAddress.text, contactNumber: addOfficialDirectory?.txtContactNumber.text, memberOff: "1,2,3"))
+            let url = "api/OfficialDirectory/AddOfficialContact"
+            let services = OfficialDirectoryServices()
+            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                
+                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    self.officialListArray = responseData.officialDirectoryList ?? []
+                    self.tblDirectories.reloadData()
+
+                    self.addOfficialDirectory?.willMove(toParent: nil)
+                    self.addOfficialDirectory?.view.removeFromSuperview()
+                    self.addOfficialDirectory?.removeFromParent()
+                } else {
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                }
+            }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+        
     }
 }

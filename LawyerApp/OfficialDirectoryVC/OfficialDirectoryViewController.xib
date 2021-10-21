@@ -53,6 +53,9 @@
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="list.triangle" catalog="system"/>
+                                    <connections>
+                                        <action selector="tappedOnSearchFilterWith_sender:" destination="-1" eventType="touchUpInside" id="GaL-Yw-D1L"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,10 +70,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpa-4c-cay" userLabel="TableView">
-                            <rect key="frame" x="0.0" y="72" width="375" height="494"/>
+                            <rect key="frame" x="0.0" y="72" width="375" height="575"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r1E-8h-h93">
-                                    <rect key="frame" x="30" y="20" width="315" height="474"/>
+                                    <rect key="frame" x="30" y="20" width="315" height="555"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="gbs-oN-pEy"/>
@@ -88,7 +91,7 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoz-nO-hLW">
                             <rect key="frame" x="295" y="576" width="50" height="50"/>
-                            <color key="backgroundColor" red="0.70124724419999995" green="0.55975486640000005" blue="0.0052432332890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.8715899587" green="0.66993445159999998" blue="0.32021686430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="3cz-hS-oZy"/>
                                 <constraint firstAttribute="height" constant="50" id="gjX-6i-Y3e"/>
@@ -96,6 +99,9 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="plus" catalog="system"/>
+                            <connections>
+                                <action selector="tappedOnAddWith_sender:" destination="-1" eventType="touchUpInside" id="82t-NH-EGo"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -103,10 +109,10 @@
                         <constraint firstItem="zpa-4c-cay" firstAttribute="top" secondItem="PNh-WI-dTJ" secondAttribute="bottom" id="5ng-YE-Ala"/>
                         <constraint firstItem="zpa-4c-cay" firstAttribute="leading" secondItem="fvu-Xs-rXK" secondAttribute="leading" id="7gf-QQ-Hmf"/>
                         <constraint firstItem="PNh-WI-dTJ" firstAttribute="leading" secondItem="fvu-Xs-rXK" secondAttribute="leading" id="7iG-Dh-zVN"/>
-                        <constraint firstItem="xoz-nO-hLW" firstAttribute="top" secondItem="zpa-4c-cay" secondAttribute="bottom" constant="10" id="BA9-xb-WKS"/>
                         <constraint firstAttribute="trailing" secondItem="xoz-nO-hLW" secondAttribute="trailing" constant="30" id="aaV-NO-Y0J"/>
                         <constraint firstItem="PNh-WI-dTJ" firstAttribute="top" secondItem="fvu-Xs-rXK" secondAttribute="top" id="frz-75-kM1"/>
                         <constraint firstAttribute="trailing" secondItem="zpa-4c-cay" secondAttribute="trailing" id="qBk-1q-dtu"/>
+                        <constraint firstAttribute="bottom" secondItem="zpa-4c-cay" secondAttribute="bottom" constant="20" id="t4T-2V-Ddc"/>
                         <constraint firstAttribute="trailing" secondItem="PNh-WI-dTJ" secondAttribute="trailing" id="x62-b8-yt7"/>
                         <constraint firstAttribute="bottom" secondItem="xoz-nO-hLW" secondAttribute="bottom" constant="41" id="y7O-wR-3dQ"/>
                     </constraints>

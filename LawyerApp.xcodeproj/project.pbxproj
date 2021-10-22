@@ -111,6 +111,8 @@
 		3DE5EFEB272137C200A9512A /* OfficialDirectoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */; };
 		3DE5EFEE27213CD600A9512A /* AddOfficialDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */; };
 		3DE5EFEF27213CD600A9512A /* AddOfficialDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */; };
+		3DE5EFF227216B5300A9512A /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF027216B5300A9512A /* EmptyTableViewCell.swift */; };
+		3DE5EFF327216B5300A9512A /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF127216B5300A9512A /* EmptyTableViewCell.xib */; };
 		3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */; };
 		3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */; };
 		3DE93343271726A800B80B7D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE93342271726A800B80B7D /* UIViewController.swift */; };
@@ -232,6 +234,8 @@
 		3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryServices.swift; sourceTree = "<group>"; };
 		3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfficialDirectoryViewController.swift; sourceTree = "<group>"; };
 		3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOfficialDirectoryViewController.xib; sourceTree = "<group>"; };
+		3DE5EFF027216B5300A9512A /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		3DE5EFF127216B5300A9512A /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseModel.swift; sourceTree = "<group>"; };
 		3DE9333D2716F57D00B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
@@ -519,6 +523,8 @@
 			children = (
 				3D650A242712F84900786786 /* OfficialDirectoryTableViewCell.swift */,
 				3D650A252712F84900786786 /* OfficialDirectoryTableViewCell.xib */,
+				3DE5EFF027216B5300A9512A /* EmptyTableViewCell.swift */,
+				3DE5EFF127216B5300A9512A /* EmptyTableViewCell.xib */,
 			);
 			path = DirectoryCell;
 			sourceTree = "<group>";
@@ -696,6 +702,7 @@
 				3D6509C62710A44D00786786 /* LaunchScreen.storyboard in Resources */,
 				3D66A4D8271AC9BA00221832 /* PostAnnouncementViewController.xib in Resources */,
 				3D6509F02712B51000786786 /* LegalQuestionsAnswersViewController.xib in Resources */,
+				3DE5EFF327216B5300A9512A /* EmptyTableViewCell.xib in Resources */,
 				3D650A042712DF9500786786 /* GeneralAnnouncementsViewController.xib in Resources */,
 				3D66A4C027175A8100221832 /* SupremeCourtTableViewCell.xib in Resources */,
 				3D650A3127131B9A00786786 /* SearchFilterViewController.xib in Resources */,
@@ -844,6 +851,7 @@
 				3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */,
 				3DEB0BE4271EA8DF00E5DE75 /* BiometricTableViewCell.swift in Sources */,
 				3DEB0BED27200DAE00E5DE75 /* ProfileModels.swift in Sources */,
+				3DE5EFF227216B5300A9512A /* EmptyTableViewCell.swift in Sources */,
 				3D66A4BF27175A8100221832 /* SupremeCourtTableViewCell.swift in Sources */,
 				3DEB0BE92720032800E5DE75 /* Date.swift in Sources */,
 				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,

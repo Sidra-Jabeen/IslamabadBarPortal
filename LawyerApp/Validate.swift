@@ -94,8 +94,9 @@ class Validate {
     
     func isValidPhone(testStr:String) -> Bool{
         
-        let regexExp = "^[+]{1}[0-9]{13}$"
+//        let regexExp = "^[+]{1}[0-9]{13}$"
         
+        let regexExp = "^[0-9+]{0,1}+[0-9]{5,16}$"
         let predicateTest = NSPredicate(format:  "SELF MATCHES %@ ", regexExp)
         
         let result = predicateTest.evaluate(with: testStr)
@@ -111,7 +112,9 @@ class Validate {
     }
     func isValidAddress(testStr:String) -> Bool {
         
-        let regexExp =  "^[0-9a-zA-Z#.,/ -]{1,}$"
+//        let regexExp =  "^[0-9a-zA-Z#.,/ -]{1,}$"
+//        let regexExp =  "^([a-zA-z0-9/\\''(),-/.]{2,255})$"
+        let regexExp =  "^[0-9a-zA-Z]{1,}$"
         
         let predicateTest = NSPredicate(format: "SELF MATCHES %@", regexExp)
         

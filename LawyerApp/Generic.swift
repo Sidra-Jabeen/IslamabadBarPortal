@@ -40,3 +40,5 @@ let spinnerView = SpinnerViewController()
 var currentUser: Int?
 var adminValue: Bool?
 var loginUserID: Int?
+var strLisenceNo = ""
+var strPassword = ""

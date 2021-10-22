@@ -34,6 +34,7 @@ open class LocalAuth: NSObject {
         return false
     }
     
+    
     func setupKeychainSecurity(name: String, passward: String) {
         
         var error: Unmanaged<CFError>?

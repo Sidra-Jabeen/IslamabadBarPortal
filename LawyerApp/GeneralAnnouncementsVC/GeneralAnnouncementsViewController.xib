@@ -70,10 +70,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMr-8C-6Zq" userLabel="TableView">
-                            <rect key="frame" x="0.0" y="72" width="375" height="485"/>
+                            <rect key="frame" x="0.0" y="72" width="375" height="505"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I3f-ap-Nqv">
-                                    <rect key="frame" x="15" y="15" width="340" height="470"/>
+                                    <rect key="frame" x="15" y="15" width="340" height="490"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="25o-qN-aoC"/>
@@ -90,7 +90,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebf-Cw-R0T" userLabel="ButtonView">
-                            <rect key="frame" x="30" y="577" width="315" height="50"/>
+                            <rect key="frame" x="30" y="597" width="315" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-qb-k1o">
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
@@ -124,7 +124,7 @@
                         <constraint firstAttribute="trailing" secondItem="ebf-Cw-R0T" secondAttribute="trailing" constant="30" id="Z91-YM-VoW"/>
                         <constraint firstItem="qFe-tA-jgf" firstAttribute="leading" secondItem="Q4G-My-rBk" secondAttribute="leading" id="ekJ-e6-zpR"/>
                         <constraint firstItem="qFe-tA-jgf" firstAttribute="top" secondItem="Q4G-My-rBk" secondAttribute="top" id="gb9-gz-hNS"/>
-                        <constraint firstAttribute="bottom" secondItem="ebf-Cw-R0T" secondAttribute="bottom" constant="40" id="ir1-rq-jcD"/>
+                        <constraint firstAttribute="bottom" secondItem="ebf-Cw-R0T" secondAttribute="bottom" constant="20" id="ir1-rq-jcD"/>
                         <constraint firstItem="ebf-Cw-R0T" firstAttribute="top" secondItem="CMr-8C-6Zq" secondAttribute="bottom" constant="20" id="vM1-ed-bLH"/>
                     </constraints>
                 </view>

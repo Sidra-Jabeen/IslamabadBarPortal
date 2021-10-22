@@ -23,11 +23,14 @@ class SearchFilterViewController: UIViewController {
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var imgAsc: UIImageView!
     @IBOutlet weak var imgDes: UIImageView!
+    @IBOutlet weak var allButtonsView: UIView!
     
+    @IBOutlet weak var allButtonsViewHeight: NSLayoutConstraint!
     @IBOutlet weak var btnAllView: UIView!
     @IBOutlet weak var btnSupremeView: UIView!
     @IBOutlet weak var btnHighView: UIView!
     @IBOutlet weak var btnLowerView: UIView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

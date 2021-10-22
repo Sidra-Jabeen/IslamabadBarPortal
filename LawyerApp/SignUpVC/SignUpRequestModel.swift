@@ -43,6 +43,7 @@ struct Request {
     let issuanceDateHighCourt: String
     let issuanceDateSupremeCourt: String
     let dob: String
+    let secondaryContactNumber: String
     
     
     var params: [String: Any] {
@@ -61,7 +62,8 @@ struct Request {
             "issuanceDateLowerCourt" : issuanceDateLowerCourt,
             "issuanceDateHighCourt": issuanceDateHighCourt,
             "issuanceDateSupremeCourt" : issuanceDateSupremeCourt,
-            "dob" : dob
+            "dob" : dob,
+            "secondaryContactNumber" : secondaryContactNumber
         ]
     }
 }

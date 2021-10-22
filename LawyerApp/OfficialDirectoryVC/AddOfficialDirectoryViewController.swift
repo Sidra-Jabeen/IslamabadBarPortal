@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddOfficialDirectoryViewController: UIViewController {
+class AddOfficialDirectoryViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var fullNameView: UIView!
     @IBOutlet weak var designationView: UIView!
@@ -43,6 +43,9 @@ class AddOfficialDirectoryViewController: UIViewController {
         
         self.officeAddressView.setCornerRadiusToView()
         self.officeAddressView.setBorderColorToView()
+        
+        self.txtContactNumber.keyboardType = .numberPad
+        self.txtContactNumber.delegate = self
     }
     
     @IBAction func tappedOnCancel( _sender: UIButton) {
@@ -50,6 +53,20 @@ class AddOfficialDirectoryViewController: UIViewController {
         self.willMove(toParent: nil)
         self.view.removeFromSuperview()
         self.removeFromParent()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == self.txtContactNumber  {
+            
+            let maxLength = 11
+            let currentString: NSString = (textField.text ?? "") as NSString
+            let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+            return newString.length <= maxLength
+        }
+        
+        return true
     }
 
 }

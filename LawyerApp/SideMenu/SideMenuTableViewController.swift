@@ -124,38 +124,69 @@ class SideMenuTableViewController: UITableViewController {
         if sender.isOn {
             print("ON")
             UserDefaults.standard.set("1", forKey: "isBiometricLogin")
-//            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Fingerprint Login Enabled!")
-//            self.alertForBiometric()
-            let alert = UIAlertController(title: "Islamabad Bar Connect", message: "Fingerprint Login Enabled!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
-            }))
-            self.present(alert, animated: true, completion: nil)
-            self.tblSideMenuList.reloadData()
+            self.alertForBiometricOff(alertTitle: "Islamabad Bar Connect", alertMessage: "Are You sure you want to enabled Fingerprint Login")
 
         }
         else {
             print ("OFF")
-            self.alertForBiometricOff()
+            UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+            self.alertForBiometricOff(alertTitle: "Islamabad Bar Connect", alertMessage: "Are You sure you want to disabled Fingerprint Login")
 
         }
         
     }
     
-    func alertForBiometricOff() {
+    func alertForBiometricOff(alertTitle: String, alertMessage: String) {
 
-        let refreshAlert = UIAlertController(title: "Islamabad Bar Connect", message: "Are You sure you want to disabled Fingerprint Login", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            UserDefaults.standard.set("0", forKey: "isBiometricLogin")
-            self.tblSideMenuList.reloadData()
+            if UserDefaults.standard.string(forKey: "isBiometricLogin") == "0"{
+                
+                self.authenticateUserTouchID()
+            } else {
+                
+                self.authenticateUserTouchID()
+            }
+            
+//            UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+//            self.tblSideMenuList.reloadData()
           }))
         refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
             UserDefaults.standard.set("1", forKey: "isBiometricLogin")
+           
             self.tblSideMenuList.reloadData()
 //            UserDefaults.standard.set("0", forKey: "isBiometricLogin")
             
           }))
         present(refreshAlert, animated: true, completion: nil)
         
+    }
+    
+    func authenticateUserTouchID() {
+        
+        BiometricsManager().authenticateUser(completion: { [weak self] (response) in
+            switch response {
+            case .failure:
+               print("Failed")
+//                UserDefaults.standard.set("0", forKey: "isBiometricLogin")
+                DispatchQueue.main.async {
+                    
+                    self?.tblSideMenuList.reloadData()
+                    self?.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Authentication Failed")
+                }
+                
+            case .success:
+                print("Success")
+//                UserDefaults.standard.set("1", forKey: "isBiometricLogin")
+                UserDefaults.standard.set(strLisenceNo, forKey: "lisenceNumber")
+                UserDefaults.standard.set(strPassword, forKey: "password")
+                DispatchQueue.main.async {
+                    
+                    self?.tblSideMenuList.reloadData()
+//                    self?.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Authentication Failed")
+                }
+            }
+        })
     }
 }
 

@@ -57,8 +57,8 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.txtEnterFullNameOnLisence.text = ""
-        self.txtPassword.text = ""
+        self.txtEnterFullNameOnLisence.text = "0011"
+        self.txtPassword.text = "123"
         if UserDefaults.standard.string(forKey: "isBiometricLogin") == "1" {
             
             self.widthBiometric.constant = 60

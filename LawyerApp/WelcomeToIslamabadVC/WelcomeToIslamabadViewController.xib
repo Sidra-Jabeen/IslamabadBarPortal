@@ -24,11 +24,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rV-c7-wNu" userLabel="MainView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="f8G-6T-gUC">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="f8G-6T-gUC">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 249" translatesAutoresizingMaskIntoConstraints="NO" id="gFr-BU-bKn">
-                            <rect key="frame" x="58" y="51" width="259.5" height="50"/>
+                            <rect key="frame" x="58" y="50" width="259.5" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="6M9-0s-VPT"/>
                             </constraints>
@@ -161,7 +161,6 @@
                         <constraint firstItem="igd-Xy-gax" firstAttribute="leading" secondItem="bAf-b1-WOs" secondAttribute="leading" id="9g3-Qa-ewG"/>
                         <constraint firstItem="f8G-6T-gUC" firstAttribute="top" secondItem="3rV-c7-wNu" secondAttribute="top" id="9gy-MJ-nOy"/>
                         <constraint firstAttribute="bottom" secondItem="igd-Xy-gax" secondAttribute="bottom" constant="35" id="FOJ-4M-gNp"/>
-                        <constraint firstItem="gFr-BU-bKn" firstAttribute="top" secondItem="3rV-c7-wNu" secondAttribute="top" constant="51" id="P25-BM-O4P"/>
                         <constraint firstAttribute="bottom" secondItem="f8G-6T-gUC" secondAttribute="bottom" id="UAO-QG-ysw"/>
                         <constraint firstAttribute="trailing" secondItem="f8G-6T-gUC" secondAttribute="trailing" id="bhg-kc-GQP"/>
                         <constraint firstItem="igd-Xy-gax" firstAttribute="trailing" secondItem="bAf-b1-WOs" secondAttribute="trailing" id="ibN-kE-atN"/>
@@ -177,6 +176,7 @@
                 <constraint firstItem="3rV-c7-wNu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BQa-zT-gcS"/>
                 <constraint firstAttribute="trailing" secondItem="3rV-c7-wNu" secondAttribute="trailing" id="Kkd-Cl-v5Q"/>
                 <constraint firstItem="3rV-c7-wNu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="T3i-Se-URn"/>
+                <constraint firstItem="gFr-BU-bKn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="qv0-jT-ibQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="138.40000000000001" y="95.802098950524751"/>

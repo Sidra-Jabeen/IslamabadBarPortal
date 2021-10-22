@@ -20,7 +20,6 @@
 		3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1427002715523400DE03BB /* CalenderViewController.swift */; };
 		3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1427012715523400DE03BB /* CalenderViewController.xib */; };
 		3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509B92710A44C00786786 /* AppDelegate.swift */; };
-		3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BB2710A44C00786786 /* SceneDelegate.swift */; };
 		3D6509BE2710A44C00786786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BD2710A44C00786786 /* ViewController.swift */; };
 		3D6509C12710A44C00786786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509BF2710A44C00786786 /* Main.storyboard */; };
 		3D6509C32710A44D00786786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509C22710A44D00786786 /* Assets.xcassets */; };
@@ -123,6 +122,9 @@
 		3DEB0BEB2720079700E5DE75 /* BarAnnouncementDetailServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BEA2720079700E5DE75 /* BarAnnouncementDetailServices.swift */; };
 		3DEB0BED27200DAE00E5DE75 /* ProfileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BEC27200DAE00E5DE75 /* ProfileModels.swift */; };
 		3DEB0BEF272011BB00E5DE75 /* ProfileServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEB0BEE272011BB00E5DE75 /* ProfileServices.swift */; };
+		C8D4A73F2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D4A73D2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift */; };
+		C8D4A7402722F10C007404E2 /* UIAttachmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D4A73E2722F10C007404E2 /* UIAttachmentCollectionViewCell.xib */; };
+		C8D4A7432722F505007404E2 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D4A7422722F505007404E2 /* ExtensionUIView.swift */; };
 		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,7 +144,6 @@
 		3D1427012715523400DE03BB /* CalenderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderViewController.xib; sourceTree = "<group>"; };
 		3D6509B62710A44C00786786 /* LawyerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LawyerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6509B92710A44C00786786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3D6509BB2710A44C00786786 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3D6509BD2710A44C00786786 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3D6509C02710A44C00786786 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D6509C22710A44D00786786 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,6 +251,9 @@
 		459F46BAF1A03A8A80FA536C /* Pods-LawyerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.debug.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		66376A16225B5409B63D5283 /* Pods-LawyerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LawyerApp.release.xcconfig"; path = "Target Support Files/Pods-LawyerApp/Pods-LawyerApp.release.xcconfig"; sourceTree = "<group>"; };
 		956AFA332716C6770005C826 /* Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
+		C8D4A73D2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		C8D4A73E2722F10C007404E2 /* UIAttachmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIAttachmentCollectionViewCell.xib; sourceTree = "<group>"; };
+		C8D4A7422722F505007404E2 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,8 +302,8 @@
 				3D6509D227118F9B00786786 /* Extensions */,
 				3D66A4C5271965C100221832 /* Validate.swift */,
 				3D6509B92710A44C00786786 /* AppDelegate.swift */,
-				3D6509BB2710A44C00786786 /* SceneDelegate.swift */,
 				3D6509BD2710A44C00786786 /* ViewController.swift */,
+				C8D4A7422722F505007404E2 /* ExtensionUIView.swift */,
 				3D6509BF2710A44C00786786 /* Main.storyboard */,
 				3D6509C22710A44D00786786 /* Assets.xcassets */,
 				3D6509C42710A44D00786786 /* LaunchScreen.storyboard */,
@@ -435,6 +439,7 @@
 		3D650A002712D30700786786 /* PostAQuesVC */ = {
 			isa = PBXGroup;
 			children = (
+				C8D4A73C2722F0EC007404E2 /* Cell */,
 				3D6509FC2712D30100786786 /* PostAQuestionViewController.swift */,
 				3D6509FD2712D30100786786 /* PostAQuestionViewController.xib */,
 				3D66A4D32719CBDC00221832 /* PostQuestionsServices.swift */,
@@ -624,6 +629,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C8D4A73C2722F0EC007404E2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C8D4A73D2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift */,
+				C8D4A73E2722F10C007404E2 /* UIAttachmentCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		ECFC89F527E7106A3B7C0D08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +744,7 @@
 				3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */,
 				3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */,
 				3DE5EFEF27213CD600A9512A /* AddOfficialDirectoryViewController.xib in Resources */,
+				C8D4A7402722F10C007404E2 /* UIAttachmentCollectionViewCell.xib in Resources */,
 				3D650A382713455000786786 /* SignUpViewController.xib in Resources */,
 				3D6509E227120B1B00786786 /* SideMenuTableViewController.xib in Resources */,
 			);
@@ -844,6 +859,7 @@
 				3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */,
 				3DE93343271726A800B80B7D /* UIViewController.swift in Sources */,
 				3D66A4BB271759FF00221832 /* HighCourtTableViewCell.swift in Sources */,
+				C8D4A73F2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift in Sources */,
 				3D66A4E8271D5CF300221832 /* DateTimePicker.swift in Sources */,
 				3D650A172712E89200786786 /* MemberCollectionViewCell.swift in Sources */,
 				3D6509CF271186BA00786786 /* WelcomeToIslamabadViewController.swift in Sources */,
@@ -854,7 +870,6 @@
 				3DE5EFF227216B5300A9512A /* EmptyTableViewCell.swift in Sources */,
 				3D66A4BF27175A8100221832 /* SupremeCourtTableViewCell.swift in Sources */,
 				3DEB0BE92720032800E5DE75 /* Date.swift in Sources */,
-				3D6509BC2710A44C00786786 /* SceneDelegate.swift in Sources */,
 				3D66A4B7271758F300221832 /* IssuseDateTableViewCell.swift in Sources */,
 				3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */,
 				3D650A082712E11200786786 /* GeneralAnnouncementTableViewCell.swift in Sources */,
@@ -863,6 +878,7 @@
 				3D1426F92714903E00DE03BB /* SignInRequestModel.swift in Sources */,
 				3D1426F72714902200DE03BB /* SignUpResponseModel.swift in Sources */,
 				3D650A372713455000786786 /* SignUpViewController.swift in Sources */,
+				C8D4A7432722F505007404E2 /* ExtensionUIView.swift in Sources */,
 				3DE5EFEE27213CD600A9512A /* AddOfficialDirectoryViewController.swift in Sources */,
 				3D66A4DE271B140600221832 /* GeneralAnnouncementRequestModel.swift in Sources */,
 				3D6509EF2712B51000786786 /* LegalQuestionsAnswersViewController.swift in Sources */,
@@ -1032,7 +1048,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1063,7 +1079,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

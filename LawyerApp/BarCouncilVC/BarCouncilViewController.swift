@@ -39,6 +39,10 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
         
+        if roleId == 3 {
+            
+            self.viewPostButton.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,11 +67,6 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func tappedOnBack( _sender: UIButton) {
         
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return barListArrays.count
     }
     
     @IBAction func tappedOnSearch( _sender: UIButton) {
@@ -134,16 +133,24 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBAction func tappedOnPostAnnouncement( _sender: UIButton) {
         
-        self.postAnnouncementVC = PostAnnouncementViewController()
-        if let postAnnounc = postAnnouncementVC {
-            
-            self.view.addSubview(postAnnounc.view)
-            postAnnounc.btnUpload.addTarget(self, action: #selector(onClickedUpload), for: .touchUpInside)
-            
-        }
+        let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
+        self.navigationController?.pushViewController(postVC, animated: true)
+        
+//        self.postAnnouncementVC = PostAnnouncementViewController()
+//        if let postAnnounc = postAnnouncementVC {
+//
+//            self.view.addSubview(postAnnounc.view)
+//            postAnnounc.btnUpload.addTarget(self, action: #selector(onClickedUpload), for: .touchUpInside)
+//
+//        }
     }
     
     //MARK: - UITableViewDelegate, UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return barListArrays.count
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -335,7 +342,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = PostAnnouncementRequestModel(source: "2", barAnnouncement: Announcement(title: self.postAnnouncementVC?.txtEnterTitle.text ?? "", description: self.postAnnouncementVC?.descTextView.text ?? ""))
+            let dataModel = PostAnnouncementRequestModel(source: "2", barAnnouncement: Announcement(title: self.postAnnouncementVC?.txtEnterTitle.text ?? "", description: self.postAnnouncementVC?.descTextView.text ?? "", type: ""))
 //            let dataModel = PostAnnouncementRequestModel(source: "2", barAnnouncement: Announcement(title: "bar Announcement title", description: "desc"))
             let url = "api/BarAnnouncement/PostAnnouncement"
             let services = AnnouncementServices()

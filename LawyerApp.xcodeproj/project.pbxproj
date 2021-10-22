@@ -112,6 +112,10 @@
 		3DE5EFEF27213CD600A9512A /* AddOfficialDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */; };
 		3DE5EFF227216B5300A9512A /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF027216B5300A9512A /* EmptyTableViewCell.swift */; };
 		3DE5EFF327216B5300A9512A /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF127216B5300A9512A /* EmptyTableViewCell.xib */; };
+		3DE5EFF62722CE6C00A9512A /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF42722CE6C00A9512A /* ProfileTableViewCell.swift */; };
+		3DE5EFF72722CE6C00A9512A /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF52722CE6C00A9512A /* ProfileTableViewCell.xib */; };
+		3DE5EFFA27232A8900A9512A /* PostAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF827232A8900A9512A /* PostAttachmentViewController.swift */; };
+		3DE5EFFB27232A8900A9512A /* PostAttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5EFF927232A8900A9512A /* PostAttachmentViewController.xib */; };
 		3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */; };
 		3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */; };
 		3DE93343271726A800B80B7D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE93342271726A800B80B7D /* UIViewController.swift */; };
@@ -237,6 +241,10 @@
 		3DE5EFED27213CD600A9512A /* AddOfficialDirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOfficialDirectoryViewController.xib; sourceTree = "<group>"; };
 		3DE5EFF027216B5300A9512A /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		3DE5EFF127216B5300A9512A /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
+		3DE5EFF42722CE6C00A9512A /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		3DE5EFF52722CE6C00A9512A /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
+		3DE5EFF827232A8900A9512A /* PostAttachmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAttachmentViewController.swift; sourceTree = "<group>"; };
+		3DE5EFF927232A8900A9512A /* PostAttachmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostAttachmentViewController.xib; sourceTree = "<group>"; };
 		3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseModel.swift; sourceTree = "<group>"; };
 		3DE9333D2716F57D00B80B7D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
@@ -454,9 +462,11 @@
 				3D650A022712DF9500786786 /* GeneralAnnouncementsViewController.xib */,
 				3D66A4DD271B140600221832 /* GeneralAnnouncementRequestModel.swift */,
 				3D66A4DF271B14ED00221832 /* GeneralAnnouncementServices.swift */,
+				3DEB0BE6271F47A900E5DE75 /* GetAnnouncementDetailServices.swift */,
 				3D650A0A2712E11800786786 /* AnnouncementsCell */,
 				3D650A0F2712E5F300786786 /* AnnouncementVC */,
-				3DEB0BE6271F47A900E5DE75 /* GetAnnouncementDetailServices.swift */,
+				3DE5EFF827232A8900A9512A /* PostAttachmentViewController.swift */,
+				3DE5EFF927232A8900A9512A /* PostAttachmentViewController.xib */,
 			);
 			path = GeneralAnnouncementsVC;
 			sourceTree = "<group>";
@@ -541,6 +551,8 @@
 				3D650A2A2713026800786786 /* ProfileViewController.xib */,
 				3DEB0BEC27200DAE00E5DE75 /* ProfileModels.swift */,
 				3DEB0BEE272011BB00E5DE75 /* ProfileServices.swift */,
+				3DE5EFF42722CE6C00A9512A /* ProfileTableViewCell.swift */,
+				3DE5EFF52722CE6C00A9512A /* ProfileTableViewCell.xib */,
 			);
 			path = ProfileVC;
 			sourceTree = "<group>";
@@ -728,6 +740,7 @@
 				3D6509EC27120DB400786786 /* MenuListTableViewCell.xib in Resources */,
 				3D6509C32710A44D00786786 /* Assets.xcassets in Resources */,
 				3D650A272712F84900786786 /* OfficialDirectoryTableViewCell.xib in Resources */,
+				3DE5EFFB27232A8900A9512A /* PostAttachmentViewController.xib in Resources */,
 				3D66A4C427175B0000221832 /* OfficeAddressTableViewCell.xib in Resources */,
 				3D650A182712E89200786786 /* MemberCollectionViewCell.xib in Resources */,
 				3D650A0E2712E5EE00786786 /* AnnouncementViewController.xib in Resources */,
@@ -736,6 +749,7 @@
 				3D6509C12710A44C00786786 /* Main.storyboard in Resources */,
 				3D650A2C2713026800786786 /* ProfileViewController.xib in Resources */,
 				3DEB0BE5271EA8DF00E5DE75 /* BiometricTableViewCell.xib in Resources */,
+				3DE5EFF72722CE6C00A9512A /* ProfileTableViewCell.xib in Resources */,
 				3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */,
 				3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */,
 				3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */,
@@ -821,6 +835,7 @@
 				3D650A1C2712EDE100786786 /* MemberNameViewController.swift in Sources */,
 				3D66A4D7271AC9BA00221832 /* PostAnnouncementViewController.swift in Sources */,
 				3D6509FE2712D30100786786 /* PostAQuestionViewController.swift in Sources */,
+				3DE5EFF62722CE6C00A9512A /* ProfileTableViewCell.swift in Sources */,
 				3D66A4D02719B0DA00221832 /* QuestionRequestModel.swift in Sources */,
 				3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */,
 				3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */,
@@ -855,6 +870,7 @@
 				3D6509BE2710A44C00786786 /* ViewController.swift in Sources */,
 				3D6509D7271196BC00786786 /* SignInViewController.swift in Sources */,
 				3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */,
+				3DE5EFFA27232A8900A9512A /* PostAttachmentViewController.swift in Sources */,
 				3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */,
 				3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */,
 				3DE93343271726A800B80B7D /* UIViewController.swift in Sources */,

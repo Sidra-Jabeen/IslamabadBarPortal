@@ -56,11 +56,13 @@ struct Announcement {
     
     let title: String
     let description: String
+    let type: String
     
     var params: [String: Any] {
         return [
             "title": title,
-            "description" : description
+            "description" : description,
+            "type" : type
         ]
     }
 }

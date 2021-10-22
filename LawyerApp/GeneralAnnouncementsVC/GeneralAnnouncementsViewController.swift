@@ -20,6 +20,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     var search: SearchForBarCouncilViewController?
     var postAnnouncementVC: PostAnnouncementViewController?
+    var postAttachmentVC: PostAttachmentViewController?
     var announcementsVC:AnnouncementViewController?
     var listArrays = [GeneralAnnouncementResponseModel]()
     var intValue = 0
@@ -39,6 +40,11 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.view.addGestureRecognizer(swipeLeft)
         self.viewPostButton.setCornerRadiusToView()
         self.navigationController?.isNavigationBarHidden = true
+        
+        if roleId == 3 {
+            
+            self.viewPostButton.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,13 +114,16 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     @IBAction func tappedOnPostAnnouncement( _sender: UIButton) {
         
-        self.postAnnouncementVC = PostAnnouncementViewController()
-        if let postAnnounc = postAnnouncementVC {
-            
-            self.view.addSubview(postAnnounc.view)
-            postAnnounc.btnUpload.addTarget(self, action: #selector(onClickedUpload), for: .touchUpInside)
-            
-        }
+        
+        let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
+        self.navigationController?.pushViewController(postVC, animated: true)
+//        self.postAnnouncementVC = PostAnnouncementViewController()
+//        if let postAnnounc = postAnnouncementVC {
+//
+//            self.view.addSubview(postAnnounc.view)
+//            postAnnounc.btnUpload.addTarget(self, action: #selector(onClickedUpload), for: .touchUpInside)
+//
+//        }
 
     }
     

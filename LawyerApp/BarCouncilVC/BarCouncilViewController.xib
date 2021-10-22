@@ -89,7 +89,7 @@
                                 <constraint firstAttribute="bottom" secondItem="yab-FO-IdR" secondAttribute="bottom" id="big-uK-9L5"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLg-yi-inO" userLabel="ButtonView">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLg-yi-inO" userLabel="ButtonView">
                             <rect key="frame" x="30" y="597" width="315" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4g-cu-N0S">

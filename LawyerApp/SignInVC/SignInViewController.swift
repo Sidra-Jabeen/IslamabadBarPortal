@@ -132,29 +132,7 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.navigationController?.popViewController(animated: true)
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//
-////        if textField == self.txtEnterFullNameOnLisence {
-////
-////            self.txtPassword.resignFirstResponder()
-////        }
-//        
-//        switch textField {
-//            // move to the next text field
-//        case self.txtEnterFullNameOnLisence:
-//            self.txtPassword.becomeFirstResponder()
-//            // press the final button
-//        case self.txtPassword:
-//            if (self.txtEnterFullNameOnLisence.text != "") && (self.txtPassword.text != "") {
-//                
-//                self.callSignInAPI(lisenceNumber: self.txtEnterFullNameOnLisence.text ?? "", password: self.txtPassword.text ?? "")
-//            }
-//            else { self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Textfields Should Not Be Empty") }
-//        default: break
-//        }
-////        return true
-//    }
+ 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -193,6 +171,7 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         strLisenceNo = self.txtEnterFullNameOnLisence.text ?? ""
                         strPassword = self.txtPassword.text ?? ""
                         loginUserID = user?.userId
+                        roleId = user?.roleId
                         self.navigationController?.pushViewController(dashboardVC, animated: true)
                     } else {
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "User Not Found")

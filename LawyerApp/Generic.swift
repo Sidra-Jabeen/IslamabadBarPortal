@@ -42,3 +42,4 @@ var adminValue: Bool?
 var loginUserID: Int?
 var strLisenceNo = ""
 var strPassword = ""
+var roleId: Int?

@@ -291,8 +291,8 @@
 		3D6509B82710A44C00786786 /* LawyerApp */ = {
 			isa = PBXGroup;
 			children = (
-				3D66A4C5271965C100221832 /* Validate.swift */,
 				3D6509D227118F9B00786786 /* Extensions */,
+				3D66A4C5271965C100221832 /* Validate.swift */,
 				3D6509B92710A44C00786786 /* AppDelegate.swift */,
 				3D6509BB2710A44C00786786 /* SceneDelegate.swift */,
 				3D6509BD2710A44C00786786 /* ViewController.swift */,
@@ -312,11 +312,11 @@
 				3D650A232712F6F000786786 /* OfficialDirectoryVC */,
 				3D650A2D2713026D00786786 /* ProfileVC */,
 				3D650A3227131BA200786786 /* SearchVC */,
+				3DD92BAF2715E03900C5D0F6 /* ApprovalsVC */,
 				3D1426F02714783D00DE03BB /* BaseService.swift */,
 				3D1426FE2715520700DE03BB /* CalenderView.swift */,
 				3D1427002715523400DE03BB /* CalenderViewController.swift */,
 				3D1427012715523400DE03BB /* CalenderViewController.xib */,
-				3DD92BAF2715E03900C5D0F6 /* ApprovalsVC */,
 				3DD92BB627160A5D00C5D0F6 /* Generic.swift */,
 				3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */,
 				3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */,

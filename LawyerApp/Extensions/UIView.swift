@@ -31,4 +31,8 @@ extension UIView {
         
         self.layer.borderWidth = 0
     }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }

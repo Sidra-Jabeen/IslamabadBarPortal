@@ -30,6 +30,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var courtCell: IssuseDateTableViewCell?
     var date: Date?
     var selectedDateIndex = 0
+    var intForTextfields = -1
     var btnSelectionArray = [false, false, false]
     var cellArray : [(arrSignUpList: String ,arrPlaceHolderList: String, imagesBtns: String, arrOfTypes: String ,rowSelectedValue: Bool, inputText: String)] = [
         ("Issue Date of Lower Court","dd/mm/yyyy","layer1","calender",true, ""),
@@ -51,6 +52,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
         ("Member Of","","","checkboxes",true, "")
     ]
+    
+    //MARK: - DatePickerView
     
     private lazy var datePickerView: DateTimePicker = {
         
@@ -103,6 +106,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    //MARK: - HandGestures Method
+    
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
             print("Swipe Right")
@@ -137,6 +142,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return 0
         }
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -179,6 +185,11 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     tmpCell.btnTextFiled.isUserInteractionEnabled = true
                     tmpCell.btnTextFiled.addTarget(self, action: #selector(didTap(sender:)), for: .touchUpInside)
                 }
+                
+                //                if tmpCell.txtInfo.tag == self.intForTextfields {
+                //
+                //                    tmpCell.txtInfo.becomeFirstResponder()
+                //                }
                 return tmpCell
             } else {
                 
@@ -211,6 +222,17 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
+        if indexPath.section == 0 {
+            if indexPath.row != 9 { return 70 } else { return 120 }
+        }
+        else if indexPath.section == 1 { return 80 }
+        else { return 80 }
+        
+    }
+    
     @objc func tappedOnChkBox(sender: UIButton) {
         
         self.btnSelectionArray[sender.tag] = !self.btnSelectionArray[sender.tag]
@@ -228,9 +250,32 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tblRegistration.reloadData()
     }
     
+    @objc func didTap(sender: UIButton) {
+        
+        if self.mainArray[sender.tag].arrOfTypes == "calender" {
+//            self.showDatePicker(index: sender.tag)
+            
+        } else if self.mainArray[sender.tag].arrOfTypes == "photo library" {
+            pickerTextIndex = sender.tag
+//            showAlert()
+            self.selectPhoto()
+            
+        }
+    }
+    
+    //MARK: - UITextfieldDelegatesMethod
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         self.selectedDateIndex = textField.tag
+//        if self.intForTextfields == -1 {
+//        self.intForTextfields = textField.tag
+//        } else {
+//            if textField.tag == 0 {
+//                self.intForTextfields = 1
+//            }
+//        }
+//        self.tblRegistration.reloadData()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -277,35 +322,18 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
+    //MARK: - UITextViewDelegatesMethod
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         
         self.objOfficeAddress.inputText = textView.text
         self.tblRegistration.reloadData()
     }
     
-    @objc func didTap(sender: UIButton) {
-        
-        if self.mainArray[sender.tag].arrOfTypes == "calender" {
-//            self.showDatePicker(index: sender.tag)
-            
-        } else if self.mainArray[sender.tag].arrOfTypes == "photo library" {
-            pickerTextIndex = sender.tag
-//            showAlert()
-            self.selectPhoto()
-            
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
-        if indexPath.section == 0 {
-            if indexPath.row != 9 { return 70 } else { return 120 }
-        }
-        else if indexPath.section == 1 { return 80 }
-        else { return 80 }
-        
-    }
+//        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//            textField.becomeFirstResponder()
+//            return true
+//        }
     
     //MARK: - SignUpControllerDelegate
     
@@ -387,53 +415,46 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if  Connectivity.isConnectedToInternet {
             
-            let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[3].inputText, contactNumber: self.mainArray[4].inputText, email: self.mainArray[6].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[7].inputText, licenseType: self.mainArray[8].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText)
-            
-//            if (dataModel.fullName != "") && (dataModel.cnic != "") && (dataModel.dob != "") && (dataModel.licenseNumber != "") && (dataModel.contactNumber != "")  && (dataModel.email != "") && (dataModel.password != "") && (dataModel.cnic != "") {
-                
-                let validation = Validate()
-                if validation.isValidName(testStr: dataModel.fullName) {
-                    if validation.IsValidCNIC(cnicStr: dataModel.cnic) {
-                        if validation.isValidDate(dateString: dataModel.dob) {
-                            if validation.isValidPhone(testStr: dataModel.contactNumber) {
-                                if validation.isEmailValid(emailStr: dataModel.email) {
-                                    if validation.isValidAddress(testStr: dataModel.officeAddress) {
-                                        self.startAnimation()
-                                        let signUpUrl = "api/Account/Registration"
-                                        let services = SignUpServices()
-                                        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
-                                            print(responseData)
-                                            self.stopAnimation()
-                                            let status = responseData.success ?? false
-                                            if status {
-                                                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                                                self.mainArray.removeAll()
-                                                self.tblRegistration.reloadData()
-                                            } else {
-                                                
-                                                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Something went wrong!")
-                                                
-                                                self.mainArray.removeAll()
-                                                self.tblRegistration.reloadData()
-                                            }
+            let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[3].inputText, contactNumber: self.mainArray[4].inputText, email: self.mainArray[6].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[7].inputText, licenseType: self.mainArray[8].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[5].inputText)
+            let validation = Validate()
+            if validation.isValidName(testStr: dataModel.fullName) {
+                if validation.IsValidCNIC(cnicStr: dataModel.cnic) {
+                    if validation.isValidDate(dateString: dataModel.dob) {
+                        if validation.isValidPhone(testStr: dataModel.contactNumber) {
+                            if validation.isEmailValid(emailStr: dataModel.email) {
+                                if validation.isValidAddress(testStr: dataModel.officeAddress) {
+                                    self.startAnimation()
+                                    let signUpUrl = "api/Account/Registration"
+                                    let services = SignUpServices()
+                                    services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                                        print(responseData)
+                                        self.stopAnimation()
+                                        let status = responseData.success ?? false
+                                        if status {
+                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                                            self.mainArray.removeAll()
+                                            self.tblRegistration.reloadData()
+                                        } else {
+                                            
+                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Something went wrong!")
+                                            
+//                                            self.mainArray.removeAll()
+                                            self.tblRegistration.reloadData()
                                         }
-                                    } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "InValid Office Address")}
-                                    
-                                } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Date")}
+                                    }
+                                } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Office Address")}
                                 
-                            } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "InValid Email")}
+                            } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Email Address")}
                             
-                        } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Contact Number")}
+                        } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Phone Number")}
                         
-                    } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Length Should be equal to 13 Numbers")}
+                    } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Date should be in dd/MM/yyyy format")}
                     
-                    
-                } else { self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")}
+                } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Length Should be equal to 13 Numbers")}
                 
                 
-//            } else {
-//                self.showAlert(alertTitle: "Islamabad Bar Council", alertMessage: "InValid Information")
-//            }
+            } else { self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")}
+            
         } else {
             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
@@ -544,12 +565,6 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.present(imagePicker, animated: true, completion: nil)
         }
 
-    }
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     

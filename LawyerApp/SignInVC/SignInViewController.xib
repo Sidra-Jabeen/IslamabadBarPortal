@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="LawyerApp" customModuleProvider="target">
             <connections>
                 <outlet property="btnSignIn" destination="brV-00-5UF" id="MCj-3P-9hP"/>
+                <outlet property="tblSignIn" destination="res-y4-sv8" id="txa-Hw-ODR"/>
                 <outlet property="txtEnterFullNameOnLisence" destination="11x-A4-K1F" id="dGU-0i-1WC"/>
                 <outlet property="txtPassword" destination="RT4-9A-ODY" id="Mss-ba-Nyr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -123,6 +124,9 @@
                                                     <rect key="frame" x="15" y="10" width="240" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="-1" id="pK2-n4-Lgi"/>
+                                                    </connections>
                                                 </textField>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="f99-uN-XYR">
                                                     <rect key="frame" x="255" y="10" width="30" height="30"/>
@@ -185,6 +189,14 @@
                                         <constraint firstAttribute="height" constant="50" id="wfR-xC-VTt"/>
                                     </constraints>
                                 </view>
+                                <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="res-y4-sv8">
+                                    <rect key="frame" x="20" y="130" width="335" height="145"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="jwO-bb-U2k"/>
+                                        <outlet property="delegate" destination="-1" id="RBC-xu-qXw"/>
+                                    </connections>
+                                </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pq5-jl-l8f" userLabel="PasswordView">
                                     <rect key="frame" x="40" y="220" width="295" height="50"/>
                                     <subviews>
@@ -195,6 +207,9 @@
                                                     <rect key="frame" x="15" y="10" width="240" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="-1" id="Ohc-em-jxX"/>
+                                                    </connections>
                                                 </textField>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-hM-oWl">
                                                     <rect key="frame" x="255" y="10" width="30" height="30"/>
@@ -350,6 +365,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="xdg-xx-ovK" firstAttribute="leading" secondItem="zJ6-Kj-TJZ" secondAttribute="leading" id="2I8-fO-fBf"/>
+                                <constraint firstAttribute="trailing" secondItem="res-y4-sv8" secondAttribute="trailing" constant="20" id="4af-RQ-kPG"/>
                                 <constraint firstItem="Pq5-jl-l8f" firstAttribute="top" secondItem="zJ6-Kj-TJZ" secondAttribute="bottom" constant="20" id="C1x-dy-OE4"/>
                                 <constraint firstItem="zJ6-Kj-TJZ" firstAttribute="leading" secondItem="OeR-M9-ENM" secondAttribute="leading" id="CF5-HJ-OiY"/>
                                 <constraint firstItem="xdg-xx-ovK" firstAttribute="top" secondItem="Pq5-jl-l8f" secondAttribute="bottom" constant="15" id="CH3-2F-cA8"/>
@@ -361,9 +377,12 @@
                                 <constraint firstItem="zJ6-Kj-TJZ" firstAttribute="top" secondItem="OeR-M9-ENM" secondAttribute="bottom" constant="30" id="StY-th-3Cb"/>
                                 <constraint firstItem="7ip-TP-z64" firstAttribute="top" secondItem="xdg-xx-ovK" secondAttribute="bottom" constant="10" id="SwV-JG-W2m"/>
                                 <constraint firstItem="OeR-M9-ENM" firstAttribute="top" secondItem="Zhx-g4-tiq" secondAttribute="bottom" constant="12" id="TLT-Y3-8Ef"/>
+                                <constraint firstItem="res-y4-sv8" firstAttribute="leading" secondItem="vZu-jd-PYD" secondAttribute="leading" constant="20" id="Tog-3F-nFW"/>
+                                <constraint firstItem="res-y4-sv8" firstAttribute="top" secondItem="OeR-M9-ENM" secondAttribute="bottom" constant="10" id="Uy1-EC-ySV"/>
                                 <constraint firstItem="OeR-M9-ENM" firstAttribute="leading" secondItem="vZu-jd-PYD" secondAttribute="leading" constant="40" id="eU9-qZ-e3l"/>
                                 <constraint firstItem="7ip-TP-z64" firstAttribute="trailing" secondItem="OeR-M9-ENM" secondAttribute="trailing" id="m3g-JK-62M"/>
                                 <constraint firstItem="Zhx-g4-tiq" firstAttribute="top" secondItem="vZu-jd-PYD" secondAttribute="top" constant="-30" id="nBM-Iv-xa4"/>
+                                <constraint firstItem="xdg-xx-ovK" firstAttribute="top" secondItem="res-y4-sv8" secondAttribute="bottom" constant="10" id="ooC-w4-k05"/>
                                 <constraint firstItem="7ip-TP-z64" firstAttribute="leading" secondItem="OeR-M9-ENM" secondAttribute="leading" id="tqR-nX-Uzt"/>
                                 <constraint firstItem="Pq5-jl-l8f" firstAttribute="leading" secondItem="zJ6-Kj-TJZ" secondAttribute="leading" id="xhh-gh-gEx"/>
                             </constraints>

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var viewCircleImage: UIView!
     @IBOutlet weak var viewFirstName: UIView!
@@ -16,10 +17,18 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnBiometric: UIButton!
     @IBOutlet weak var widthBiometric: NSLayoutConstraint!
+    @IBOutlet weak var tblSignIn: UITableView!
     
     
     @IBOutlet weak var txtEnterFullNameOnLisence: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    
+    var cellArray : [(arrSignUpList: String ,arrPlaceHolderList: String, imagesBtns: String, arrOfTypes: String ,rowSelectedValue: Bool, inputText: String)] = [
+        ("Full Name On Lisence","Enter Full Name","layer1","calender",true, ""),
+        ("Password","Enter Password","layer1","calender",true, ""),
+        ("Issue Date of Supreme Court","dd/mm/yyyy","layer1","calender",true, "")
+    ]
+    var returnKeyHandler: IQKeyboardReturnKeyHandler!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +40,17 @@ class SignInViewController: UIViewController {
         self.viewFirstName.setBorderColorToView()
         self.viewPassword.setBorderColorToView()
         
+        self.txtPassword.delegate = self
+        self.txtEnterFullNameOnLisence.delegate = self
+        
         self.btnSignIn.layer.cornerRadius = 5
         
         self.viewCircleImage.applyCircledView()
 
+        self.tblSignIn.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserTableViewCell")
+        self.tblSignIn.separatorStyle = .none
+        self.txtEnterFullNameOnLisence.returnKeyType = UIReturnKeyType.next
+        self.txtPassword.returnKeyType = UIReturnKeyType.done
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -57,6 +73,23 @@ class SignInViewController: UIViewController {
         self.authenticateUserTouchID()
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let tmpCell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath) as! UserTableViewCell
+        tmpCell.selectionStyle = .none
+        tmpCell.txtInfo.placeholder = cellArray[indexPath.row].arrPlaceHolderList
+        tmpCell.lblInfo.text = cellArray[indexPath.row].arrSignUpList
+        return tmpCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
     func authenticateUserTouchID() {
         
         BiometricsManager().authenticateUser(completion: { [weak self] (response) in
@@ -100,6 +133,43 @@ class SignInViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//
+////        if textField == self.txtEnterFullNameOnLisence {
+////
+////            self.txtPassword.resignFirstResponder()
+////        }
+//        
+//        switch textField {
+//            // move to the next text field
+//        case self.txtEnterFullNameOnLisence:
+//            self.txtPassword.becomeFirstResponder()
+//            // press the final button
+//        case self.txtPassword:
+//            if (self.txtEnterFullNameOnLisence.text != "") && (self.txtPassword.text != "") {
+//                
+//                self.callSignInAPI(lisenceNumber: self.txtEnterFullNameOnLisence.text ?? "", password: self.txtPassword.text ?? "")
+//            }
+//            else { self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Textfields Should Not Be Empty") }
+//        default: break
+//        }
+////        return true
+//    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+            // move to the next text field
+        case self.txtEnterFullNameOnLisence:
+            self.txtPassword.becomeFirstResponder()
+            // press the final button
+        case self.txtPassword:
+            self.view.hideKeyboard()
+        default: break
+        }
+        return true
+    }
+    
     func callSignInAPI(lisenceNumber: String, password: String) {
         
         if  Connectivity.isConnectedToInternet {
@@ -120,10 +190,12 @@ class SignInViewController: UIViewController {
 //                        dashboardVC.userId = responseData.user?.userId
                         dashboardVC.strLisenceNo = self.txtEnterFullNameOnLisence.text ?? ""
                         dashboardVC.password = self.txtPassword.text ?? ""
+                        strLisenceNo = self.txtEnterFullNameOnLisence.text ?? ""
+                        strPassword = self.txtPassword.text ?? ""
                         loginUserID = user?.userId
                         self.navigationController?.pushViewController(dashboardVC, animated: true)
                     } else {
-                        self.showAlert(alertTitle: "Islamabad Bar Connectl", alertMessage: responseData.desc ?? "User Not Found")
+                        self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "User Not Found")
                         self.txtEnterFullNameOnLisence.text = ""
                         self.txtPassword.text = ""
                     }

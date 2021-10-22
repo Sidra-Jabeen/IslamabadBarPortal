@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supreme Court" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="625-dG-AnW">
-                                <rect key="frame" x="8" y="26" width="187" height="11"/>
+                                <rect key="frame" x="8" y="26" width="187" height="9"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -70,6 +70,7 @@
                             <constraint firstItem="625-dG-AnW" firstAttribute="leading" secondItem="jda-Zd-ohX" secondAttribute="leading" id="kfs-9o-3rf"/>
                             <constraint firstAttribute="trailing" secondItem="uxM-W3-TVM" secondAttribute="trailing" constant="10" id="lDO-ym-bw7"/>
                             <constraint firstItem="uxM-W3-TVM" firstAttribute="leading" secondItem="Pm5-b5-Z5t" secondAttribute="trailing" constant="5" id="u5B-SG-xqo"/>
+                            <constraint firstAttribute="bottom" secondItem="625-dG-AnW" secondAttribute="bottom" id="vj3-ZH-81c"/>
                         </constraints>
                     </view>
                 </subviews>

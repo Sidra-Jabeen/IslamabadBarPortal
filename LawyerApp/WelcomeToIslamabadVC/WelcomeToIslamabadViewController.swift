@@ -23,6 +23,8 @@ class WelcomeToIslamabadViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         
+        let postAQuesVC = PostAQuestionViewController()
+        self.navigationController?.pushViewController(postAQuesVC, animated: true)
     }
     
     @IBAction func tappedOnSignIn( _sender: UIButton) {

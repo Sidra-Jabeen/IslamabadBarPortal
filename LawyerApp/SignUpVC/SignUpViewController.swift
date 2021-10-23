@@ -44,11 +44,12 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ("Full Name On Lisence","Enter Full Name On Lisence","profile","text",true, ""),
         ("CNIC","Enter CNIC Number","id card","number",true, ""),
         ("Date of Birth","dd/mm/yyyy","layer1","calender",true, ""),
+        ("Profile Picture","Upload Profile Picture","Group 98","photo library",false, ""),
         ("Lisence/HCR No.","Enter Lisence/HCR No","id card","text",true, ""),
         ("Contact Number 1","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
         ("Contact Number 2","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
         ("Email","Enter Email","3586360_email_envelope_mail_send_icon","text",true, ""),
-        ("Password","Enter Password","Layer 19","text",true, ""),
+        ("Password","Enter Password","lock","text",true, ""),
         ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
         ("Member Of","","","checkboxes",true, "")
     ]
@@ -150,7 +151,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            if indexPath.row != 9 {
+            if indexPath.row != 10 {
                 let tmpCell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath) as! UserTableViewCell
                 let cellIndexData = mainArray[indexPath.row]
                 
@@ -226,7 +227,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         if indexPath.section == 0 {
-            if indexPath.row != 9 { return 70 } else { return 120 }
+            if indexPath.row != 10 { return 70 } else { return 120 }
         }
         else if indexPath.section == 1 { return 80 }
         else { return 80 }
@@ -301,7 +302,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
-        if textField.tag == 4  {
+        if textField.tag == 5  {
             
             let maxLength = 11
             let currentString: NSString = (textField.text ?? "") as NSString
@@ -310,7 +311,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return newString.length <= maxLength
         }
         
-        if textField.tag == 5 {
+        if textField.tag == 6 {
             
             let maxLength = 11
             let currentString: NSString = (textField.text ?? "") as NSString
@@ -415,7 +416,19 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if  Connectivity.isConnectedToInternet {
             
-            let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[3].inputText, contactNumber: self.mainArray[4].inputText, email: self.mainArray[6].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[7].inputText, licenseType: self.mainArray[8].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[5].inputText)
+//            ("Full Name On Lisence","Enter Full Name On Lisence","profile","text",true, ""),
+//            ("CNIC","Enter CNIC Number","id card","number",true, ""),
+//            ("Date of Birth","dd/mm/yyyy","layer1","calender",true, ""),
+//            ("Profile Picture","Upload Profile Picture","Group 98","photo library",false, ""),
+//            ("Lisence/HCR No.","Enter Lisence/HCR No","id card","text",true, ""),
+//            ("Contact Number 1","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
+//            ("Contact Number 2","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
+//            ("Email","Enter Email","3586360_email_envelope_mail_send_icon","text",true, ""),
+//            ("Password","Enter Password","Layer 19","text",true, ""),
+//            ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
+//            ("Member Of","","","checkboxes",true, "")
+            
+            let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "3", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[4].inputText, contactNumber: self.mainArray[5].inputText, email: self.mainArray[7].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[8].inputText, licenseType: self.mainArray[9].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[6].inputText)
             let validation = Validate()
             if validation.isValidName(testStr: dataModel.fullName) {
                 if validation.IsValidCNIC(cnicStr: dataModel.cnic) {

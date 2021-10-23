@@ -438,7 +438,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="CpO-DV-dWb" firstAttribute="leading" secondItem="7jf-d3-Gjo" secondAttribute="leading" constant="5" id="3iw-Sy-vRk"/>
                                         <constraint firstAttribute="trailing" secondItem="CpO-DV-dWb" secondAttribute="trailing" constant="5" id="G7g-3K-dL8"/>
@@ -559,7 +559,7 @@
                 <constraint firstItem="XpV-pT-LeC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="27.5" id="lvi-rj-1vS"/>
                 <constraint firstItem="Ws6-1x-NDT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="v2B-xQ-nFV"/>
             </constraints>
-            <point key="canvasLocation" x="138.40000000000001" y="68.815592203898049"/>
+            <point key="canvasLocation" x="318" y="44"/>
         </view>
     </objects>
     <resources>

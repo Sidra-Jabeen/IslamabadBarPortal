@@ -9,6 +9,8 @@ import UIKit
 
 class PostAttachmentViewController: UIViewController {
     
+    //MARK: - IBOutltes
+    
     @IBOutlet weak var viewTitle: UIView!
     @IBOutlet weak var viewDescription: UIView!
     @IBOutlet weak var viewAttachment: UIView!
@@ -21,8 +23,12 @@ class PostAttachmentViewController: UIViewController {
     @IBOutlet weak var img2: UIImageView!
     @IBOutlet weak var img3: UIImageView!
     
+    //MARK: - Propertities
+    
     var bitForLisenceType = 0
 
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +43,8 @@ class PostAttachmentViewController: UIViewController {
         
         self.viewPostButton.setCornerRadiusToView()
     }
+    
+    //MARK: - IBActions
     
     @IBAction func tappedOnDistrictLower( _sender: UIButton) {
         
@@ -80,6 +88,7 @@ class PostAttachmentViewController: UIViewController {
         }
     }
     
+    //MARK: - CallingApiFunctions
     
     func callGetPostAnnouncementApi(type: Int) {
         

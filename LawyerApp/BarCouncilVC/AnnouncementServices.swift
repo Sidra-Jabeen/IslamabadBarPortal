@@ -23,4 +23,18 @@ class AnnouncementServices: BaseServices {
         })
         
     }
+    
+    func postUploadMethod(files: [String: String] ,urlString: String, dataModel: [String: String], completion: @escaping (GenericResponseModel<AnnouncementResponseModel>) -> Void) {
+        
+        uploadMultipart(filesWithKeysToUpload: files, textdataTobeSentWithKeys: dataModel, strUrl: urlString, completion: {(responseData) in
+//            completion(responseData)
+            do {
+                let responseModel = try JSONDecoder().decode(GenericResponseModel<AnnouncementResponseModel>.self, from: responseData)
+                completion(responseModel)
+            } catch let err {
+                print("class BarAnnouncementVC -> Error \(err)")
+            }
+        })
+        
+    }
 }

@@ -415,20 +415,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func callSignUpAPI() {
         
         if  Connectivity.isConnectedToInternet {
-            
-//            ("Full Name On Lisence","Enter Full Name On Lisence","profile","text",true, ""),
-//            ("CNIC","Enter CNIC Number","id card","number",true, ""),
-//            ("Date of Birth","dd/mm/yyyy","layer1","calender",true, ""),
-//            ("Profile Picture","Upload Profile Picture","Group 98","photo library",false, ""),
-//            ("Lisence/HCR No.","Enter Lisence/HCR No","id card","text",true, ""),
-//            ("Contact Number 1","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
-//            ("Contact Number 2","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
-//            ("Email","Enter Email","3586360_email_envelope_mail_send_icon","text",true, ""),
-//            ("Password","Enter Password","Layer 19","text",true, ""),
-//            ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
-//            ("Member Of","","","checkboxes",true, "")
-            
-            let dataModel = Request(Source: "2", licenseFile: "", profilePicture: "3", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[4].inputText, contactNumber: self.mainArray[5].inputText, email: self.mainArray[7].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[8].inputText, licenseType: self.mainArray[9].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[6].inputText)
+            let file = SignUpAttachmentFileRequestModel(licenseFile: self.mainArray[9].inputText, profilePicture: self.mainArray[3].inputText)
+            let dataModel = Request(Source: "2", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[4].inputText, contactNumber: self.mainArray[5].inputText, email: self.mainArray[7].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[8].inputText, licenseType: self.mainArray[10].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[6].inputText)
             let validation = Validate()
             if validation.isValidName(testStr: dataModel.fullName) {
                 if validation.IsValidCNIC(cnicStr: dataModel.cnic) {
@@ -439,7 +427,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                     self.startAnimation()
                                     let signUpUrl = "api/Account/Registration"
                                     let services = SignUpServices()
-                                    services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                                    services.postUploadMethod(files: file.params, urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
                                         print(responseData)
                                         self.stopAnimation()
                                         let status = responseData.success ?? false
@@ -486,15 +474,20 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            self.mainArray[self.pickerTextIndex].inputText = filename ?? ""
 //            self.tblRegistration.reloadData()
 //        }
+        let url = info[.imageURL] as? NSURL
+//        let filename = url?.lastPathComponent
+        guard let strUrl = url?.absoluteString else { return }
+//        self.mainArray[self.pickerTextIndex].inputText = strUrl
         
-        if let originalImage = info[.originalImage] as? UIImage {
+//        if let originalImage = info[.originalImage] as? UIImage {
 
 //            self.ProfileImageView.contentMode = .scaleAspectFill
 //            let newImage = self.ResizeImage(image: originalImage, targetSize: CGSize(width: 300 , height: 300))
 //            self.ProfileImageView.image = newImage//originalImage
-        }
+//        }
         dismiss(animated: true, completion: {
-            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
+//            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
+            self.mainArray[self.pickerTextIndex].inputText = strUrl
             self.tblRegistration.reloadData()
         })
     }

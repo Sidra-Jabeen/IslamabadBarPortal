@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProfileViewController: UIViewController, UITextFieldDelegate {
+class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     //MARK: - IBOutlets
     
@@ -24,11 +24,14 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnProfile: UIButton!
     
     //MARK: - Propertities
     
     var userID: SignInResponseModel?
     var intForUpdateUser = 0
+    let photoPicker = UIImagePickerController()
+    var strProfileImage = ""
     
     //MARK: - Lifecycle
 
@@ -47,6 +50,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         self.txtLisence.delegate = self
         self.txtContactNo.delegate = self
         self.txtOfficeAddress.delegate = self
+        self.photoPicker.delegate = self
         self.scrollView.contentSize = (CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 100))
     }
     
@@ -77,16 +81,74 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBAction func tappedOnEdit( _sender: UIButton) {
         
         self.txtFullNameOnLisence.isUserInteractionEnabled = true
+        self.txtFullNameOnLisence.textColor = UIColor.black
         self.txtCnic.isUserInteractionEnabled = true
+        self.txtCnic.textColor = UIColor.black
         self.txtDob.isUserInteractionEnabled = true
+        self.txtDob.textColor = UIColor.black
         self.txtEmail.isUserInteractionEnabled = true
+        self.txtEmail.textColor = UIColor.black
         self.txtLisence.isUserInteractionEnabled = true
+        self.txtLisence.textColor = UIColor.black
         self.txtContactNo.isUserInteractionEnabled = true
+        self.txtContactNo.textColor = UIColor.black
         self.txtOfficeAddress.isUserInteractionEnabled = true
+        self.txtOfficeAddress.textColor = UIColor.black
+        self.btnProfile.isUserInteractionEnabled = true
+        
         if self.intForUpdateUser == 1 {
+//            self.callUpdateUserApi()
             self.callUpdateUserApi()
         }
         
+    }
+    
+    @IBAction func tappedOnEditProfile( _sender: UIButton) {
+        
+        self.selectPhoto()
+    }
+    
+    //MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let url = info[.imageURL] as? NSURL
+//        let filename = url?.lastPathComponent
+        guard let strUrl = url?.absoluteString else { return }
+        self.strProfileImage = strUrl
+        if let originalImage = info[.originalImage] as? UIImage {
+            self.profileImage.image = originalImage//originalImage
+        }
+        dismiss(animated: true, completion: {
+//            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
+        })
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func selectPhoto() {
+        
+        photoPicker.allowsEditing = true
+        let alertcontroller: UIAlertController = UIAlertController(title: "Upload Picture", message: "", preferredStyle: .alert)
+        let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture From Gallery", style: .default) { action -> Void in
+            self.photoPicker.sourceType = .photoLibrary
+            self.present(self.photoPicker, animated: true, completion: nil)
+        }
+        alertcontroller.addAction(takePictureAction)
+        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture From Camera", style: .default) { action -> Void in
+            self.photoPicker.sourceType = .camera
+            self.present(self.photoPicker, animated: true, completion: nil)
+        }
+        alertcontroller.addAction(choosePictureAction)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            // self.userprofileimage.image = UIImage(named: "Group-29 ")!;
+            //ProfileViewController.Userprofileimage =  UIImage(named: "Group-29")!;
+            alertcontroller.dismiss(animated: false, completion: nil)
+        }
+        alertcontroller.addAction(cancelAction)
+        self.present(alertcontroller, animated: true, completion: nil)
     }
     
     //MARK: - UITextFieldDelegateFunction
@@ -139,19 +201,34 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = UpdateUser(Source: "2", userId: loginUserID, fullName: self.txtFullNameOnLisence.text, dob: self.txtDob.text, contactNumber: self.txtContactNo.text, email: self.txtEmail.text, profilePicture: nil, officeAddress: self.txtOfficeAddress.text)
+            let file = ProfileAttachmentFileRequestModel(profilePicture: self.strProfileImage)
+            let dataModel = UpdateUser(Source: "2", userId: "\(loginUserID ?? 0)", fullName: self.txtFullNameOnLisence.text ?? "", dob: self.txtDob.text ?? "", contactNumber: self.txtContactNo.text ?? "", email: self.txtEmail.text ?? "", officeAddress: self.txtOfficeAddress.text ?? "")
             let updateProfileUrl = "api/User/UpdateUser"
             let services = ProfileServices()
-            services.postMethod(urlString: updateProfileUrl, dataModel: dataModel.params) { (responseData) in
+            services.postUploadMethod(files: file.params, urlString: updateProfileUrl, dataModel: dataModel.params, completion: { (responseData) in
                 self.stopAnimation()
-                let response = responseData.success ?? false
-                if response {
-                    print("Success")
-                } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    //                    self.arrayOfMembers.removeAll()
+                let status = responseData.success
+                if status ?? false {
+                    print("success")
+                    self.txtFullNameOnLisence.isUserInteractionEnabled = false
+                    self.txtFullNameOnLisence.textColor = UIColor.placeholderText
+                    self.txtCnic.isUserInteractionEnabled = false
+                    self.txtCnic.textColor = UIColor.placeholderText
+                    self.txtDob.isUserInteractionEnabled = false
+                    self.txtDob.textColor = UIColor.placeholderText
+                    self.txtEmail.isUserInteractionEnabled = false
+                    self.txtEmail.textColor = UIColor.placeholderText
+                    self.txtLisence.isUserInteractionEnabled = false
+                    self.txtLisence.textColor = UIColor.placeholderText
+                    self.txtContactNo.isUserInteractionEnabled = false
+                    self.txtContactNo.textColor = UIColor.placeholderText
+                    self.txtOfficeAddress.isUserInteractionEnabled = false
+                    self.txtOfficeAddress.textColor = UIColor.placeholderText
+                    self.btnEdit.setTitle("Edit", for: .normal)
+                } else{
+                    print("failed")
                 }
-            }
+            })
         } else {
             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }

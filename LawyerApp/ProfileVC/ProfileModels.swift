@@ -33,26 +33,35 @@ struct ProfileUser {
 
 struct UpdateUser {
     
-    let Source: String?
-    let userId: Int?
-    let fullName: String?
-    let dob: String?
-    let contactNumber: String?
-    let email: String?
-    let profilePicture: String?
-    let officeAddress: String?
+    let Source: String
+    let userId: String
+    let fullName: String
+    let dob: String
+    let contactNumber: String
+    let email: String
+    let officeAddress: String
     
     
-    var params: [String: Any] {
+    var params: [String: String] {
         return [
-            "Source": Source as Any,
-            "userId": userId as Any,
-            "fullName": fullName as Any,
-            "dob": dob as Any,
-            "contactNumber": contactNumber as Any,
-            "email": email as Any,
-            "profilePicture": profilePicture as Any,
-            "officeAddress": officeAddress as Any,
+            "Source": Source,
+            "userId": userId,
+            "fullName": fullName,
+            "dob": dob,
+            "contactNumber": contactNumber,
+            "email": email,
+            "officeAddress": officeAddress,
+        ]
+    }
+}
+
+struct ProfileAttachmentFileRequestModel {
+    
+    let profilePicture: String
+    
+    var params: [String: String] {
+        return [
+            "profilePicture" : profilePicture
         ]
     }
 }

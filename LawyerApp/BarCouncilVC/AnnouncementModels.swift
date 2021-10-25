@@ -67,6 +67,30 @@ struct Announcement {
     }
 }
 
+struct PostAttachmentFileRequestModel {
+    
+    let attachmentFile: String
+    
+    var params: [String: String] {
+        return [
+            "attachmentFile" : attachmentFile
+        ]
+    }
+}
+
+struct PostDataRequestModel {
+    
+    let announcementId: String
+    let type: String
+    
+    var params: [String: String] {
+        return [
+            "announcementId": announcementId,
+            "type" : type
+        ]
+    }
+}
+
 struct AnnouncementDetailsRequestModel {
     
     let source: String
@@ -121,7 +145,6 @@ struct BarAnnouncementResponseDetailModel: Codable {
     }
 }
 
-
 struct AnnouncementResponseModel: Codable {
     
     var barAnnouncementId: Int?
@@ -129,6 +152,9 @@ struct AnnouncementResponseModel: Codable {
     var description: String?
     var announcedBy: String?
     var announcedAt: String?
+    var announcedByProfile: String?
+    var type: String?
+    var typeNames: String?
     
     enum CodingKeys: String, CodingKey {
         
@@ -137,6 +163,10 @@ struct AnnouncementResponseModel: Codable {
         case description = "description"
         case announcedBy = "announcedBy"
         case announcedAt = "announcedAt"
+        case announcedByProfile = "announcedByProfile"
+        case type = "type"
+        case typeNames = "typeNames"
+        
     }
     
     init(from decoder: Decoder) throws {
@@ -147,6 +177,9 @@ struct AnnouncementResponseModel: Codable {
         description = try values.decodeIfPresent(String.self, forKey: .description)
         announcedBy = try values.decodeIfPresent(String.self, forKey: .announcedBy)
         announcedAt = try values.decodeIfPresent(String.self, forKey: .announcedAt)
+        announcedByProfile = try values.decodeIfPresent(String.self, forKey: .announcedByProfile)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        typeNames = try values.decodeIfPresent(String.self, forKey: .typeNames)
 
     }
 }

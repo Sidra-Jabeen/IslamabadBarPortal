@@ -29,8 +29,6 @@ import Foundation
 struct Request {
     
     let Source: String
-    let licenseFile: String
-    let profilePicture: String
     let fullName: String
     let cnic: String
     let licenseNumber: String
@@ -46,11 +44,9 @@ struct Request {
     let secondaryContactNumber: String
     
     
-    var params: [String: Any] {
+    var params: [String: String] {
         return [
             "Source": Source,
-            "licenseFile": licenseFile,
-            "profilePicture" : profilePicture,
             "fullName" : fullName,
             "cnic": cnic,
             "licenseNumber": licenseNumber,
@@ -64,6 +60,19 @@ struct Request {
             "issuanceDateSupremeCourt" : issuanceDateSupremeCourt,
             "dob" : dob,
             "secondaryContactNumber" : secondaryContactNumber
+        ]
+    }
+}
+
+struct SignUpAttachmentFileRequestModel {
+    
+    let licenseFile: String
+    let profilePicture: String
+    
+    var params: [String: String] {
+        return [
+            "licenseFile": licenseFile,
+            "profilePicture" : profilePicture
         ]
     }
 }

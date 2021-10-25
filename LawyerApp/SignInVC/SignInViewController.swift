@@ -53,6 +53,8 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.txtPassword.returnKeyType = UIReturnKeyType.done
         
         self.navigationController?.isNavigationBarHidden = true
+        
+        IQKeyboardManager.shared.enableAutoToolbar = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

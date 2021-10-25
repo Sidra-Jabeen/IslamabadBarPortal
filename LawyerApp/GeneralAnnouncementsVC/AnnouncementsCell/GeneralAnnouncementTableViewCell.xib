@@ -25,16 +25,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mq7-lS-wEV" userLabel="AnnounView">
-                                <rect key="frame" x="20" y="35" width="280" height="72"/>
+                                <rect key="frame" x="20" y="30" width="280" height="77"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment of judges as judge, special court (central), lahore, rawalpindi and gujrawala" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFK-GY-JbD">
-                                        <rect key="frame" x="5" y="5" width="270" height="37"/>
+                                        <rect key="frame" x="5" y="5" width="270" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="0Yi-q4-bFz"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Law legal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vs-D4-XgL">
+                                        <rect key="frame" x="5" y="30" width="49" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ZZi-WE-FlZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6S-Jm-6tz" userLabel="LawLegalView">
-                                        <rect key="frame" x="5" y="47" width="270" height="20"/>
+                                        <rect key="frame" x="5" y="52" width="270" height="20"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eT4-vI-b1T" userLabel="View1">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="20"/>
@@ -117,13 +129,15 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="2vs-D4-XgL" firstAttribute="top" secondItem="KFK-GY-JbD" secondAttribute="bottom" id="7jM-N5-Oxw"/>
                                     <constraint firstAttribute="bottom" secondItem="j6S-Jm-6tz" secondAttribute="bottom" constant="5" id="Kgo-1b-TJ8"/>
-                                    <constraint firstItem="j6S-Jm-6tz" firstAttribute="top" secondItem="KFK-GY-JbD" secondAttribute="bottom" constant="5" id="Lir-ds-fQh"/>
                                     <constraint firstItem="j6S-Jm-6tz" firstAttribute="leading" secondItem="KFK-GY-JbD" secondAttribute="leading" id="Vmd-sC-Q3H"/>
                                     <constraint firstItem="KFK-GY-JbD" firstAttribute="top" secondItem="mq7-lS-wEV" secondAttribute="top" constant="5" id="X5r-YL-auh"/>
                                     <constraint firstItem="KFK-GY-JbD" firstAttribute="leading" secondItem="mq7-lS-wEV" secondAttribute="leading" constant="5" id="bAk-O5-BvP"/>
                                     <constraint firstAttribute="trailing" secondItem="KFK-GY-JbD" secondAttribute="trailing" constant="5" id="cje-6W-BaE"/>
+                                    <constraint firstItem="j6S-Jm-6tz" firstAttribute="top" secondItem="2vs-D4-XgL" secondAttribute="bottom" constant="2" id="hB8-UO-3Os"/>
                                     <constraint firstItem="j6S-Jm-6tz" firstAttribute="trailing" secondItem="KFK-GY-JbD" secondAttribute="trailing" id="kkC-U1-I7e"/>
+                                    <constraint firstItem="2vs-D4-XgL" firstAttribute="leading" secondItem="KFK-GY-JbD" secondAttribute="leading" id="wjs-8s-upk"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -135,7 +149,7 @@
                             <constraint firstItem="W9K-9U-5D2" firstAttribute="leading" secondItem="LMg-qW-b3u" secondAttribute="leading" id="UOg-tq-mda"/>
                             <constraint firstItem="mq7-lS-wEV" firstAttribute="leading" secondItem="LMg-qW-b3u" secondAttribute="leading" constant="20" id="d4P-w1-f0D"/>
                             <constraint firstItem="W9K-9U-5D2" firstAttribute="top" secondItem="LMg-qW-b3u" secondAttribute="top" id="lkQ-w2-Xdr"/>
-                            <constraint firstItem="mq7-lS-wEV" firstAttribute="top" secondItem="LMg-qW-b3u" secondAttribute="top" constant="35" id="rm5-by-l05"/>
+                            <constraint firstItem="mq7-lS-wEV" firstAttribute="top" secondItem="LMg-qW-b3u" secondAttribute="top" constant="30" id="rm5-by-l05"/>
                             <constraint firstAttribute="bottom" secondItem="mq7-lS-wEV" secondAttribute="bottom" id="srr-Bu-1yY"/>
                         </constraints>
                     </view>
@@ -153,6 +167,8 @@
                 <outlet property="lblAnounceAt" destination="Kdj-CA-mQl" id="806-Wd-syC"/>
                 <outlet property="lblAnounceBy" destination="M3x-81-ZTu" id="oBi-Dd-MD7"/>
                 <outlet property="lblAnounceTitle" destination="KFK-GY-JbD" id="1YU-HW-Api"/>
+                <outlet property="lblType" destination="2vs-D4-XgL" id="wfs-hD-Sbq"/>
+                <outlet property="userImage" destination="07m-TR-q2s" id="UH3-yM-3xT"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="70.164917541229386"/>
         </tableViewCell>

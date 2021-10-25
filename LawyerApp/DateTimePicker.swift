@@ -36,6 +36,13 @@ class DateTimePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     startTimes = setStartTimes()
     endTimes = setEndTimes()
   }
+    
+    func setupFrom(toDate : Date) {
+      dayFormatter.dateFormat = "yyyy-MM-dd"
+      timeFormatter.timeStyle = .short
+        days = getDay(toDate: toDate)
+      
+    }
   
   // MARK: - UIPickerViewDelegate & DateSource
   
@@ -107,27 +114,55 @@ class DateTimePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
   // MARK: - Private helpers
   
   private func getDays(of date: Date) -> [Date] {
-    var dates = [Date]()
-    
-    let calendar = Calendar.current
-    
-    // first date
-    var currentDate = date
-    
-    // adding 30 days to current date
-//    let oneMonthFromNow = calendar.date(byAdding: .day, value: 30, to: currentDate)
-      let oneMonthFromNow = calendar.date(byAdding: .day, value: 30*12*30, to: currentDate)
-    
-    // last date
-    let endDate = oneMonthFromNow
-    
-    while currentDate <= endDate! {
-      dates.append(currentDate)
-      currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
-    }
-    
-    return dates
+//    var dates = [Date]()
+//    let calendar = Calendar.current
+//
+//    // first date
+//    var currentDate = date
+//
+//    // adding 30 days to current date
+////    let oneMonthFromNow = calendar.date(byAdding: .day, value: 30, to: currentDate)
+//      let oneMonthFromNow = calendar.date(byAdding: .day, value: 30*12*30, to: currentDate)
+//
+//    // last date
+//    let endDate = oneMonthFromNow
+//
+//    while currentDate <= endDate! {
+//      dates.append(currentDate)
+//      currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+      
+      var dates = [Date]()
+      var dayComponent    = DateComponents()
+      dayComponent.year    = -1
+      let theCalendar     = Calendar.current
+      var startDate        = theCalendar.date(byAdding: dayComponent, to: Date())!
+      let calendar = Calendar.current
+
+      while  startDate <= Date() {
+        dates.append(startDate)
+          startDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+      }
+
+      return dates.reversed()
+//    }
+//    
+//    return dates
   }
+    
+    private func getDay(toDate: Date) -> [Date] {
+        
+        var dates = [Date]()
+        dates.removeAll()
+        var startDate = toDate
+        let calendar = Calendar.current
+
+        while  startDate <= Date() {
+            dates.append(startDate)
+            startDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+
+        }
+        return dates.reversed()
+    }
   
   private func getTimes(of date: Date) -> [Date] {
     var times = [Date]()

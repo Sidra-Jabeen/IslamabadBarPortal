@@ -78,6 +78,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         tmpCell.lblAnounceTitle.text = listArrays[indexPath.row].title
         tmpCell.lblAnounceAt.text = listArrays[indexPath.row].announcedAt
         tmpCell.lblAnounceBy.text = listArrays[indexPath.row].announcedBy
+        tmpCell.lblType.text = listArrays[indexPath.row].typeNames
+        let url = URL(string: listArrays[indexPath.item].announcedByProfile ?? "")
+        tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         tmpCell.selectionStyle = .none
         return tmpCell
     }
@@ -116,6 +119,8 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         
         
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
+//        postVC.strTitle = "General Announcement"
+        postVC.height = 0
         self.navigationController?.pushViewController(postVC, animated: true)
 //        self.postAnnouncementVC = PostAnnouncementViewController()
 //        if let postAnnounc = postAnnouncementVC {

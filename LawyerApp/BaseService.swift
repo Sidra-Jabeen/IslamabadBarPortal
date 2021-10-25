@@ -18,7 +18,7 @@ class BaseServices {
         //http://172.16.1.228/IsbBarPortal/
         //http://10.250.10.139/ISBBar.APP/
         
-        let strURL = "http://10.250.10.221/IsbBarPortal.Api/\(urlString)"
+        let strURL = "http://10.250.10.221:8083/IsbBarPortal.Api/\(urlString)"
         guard let url = URL(string: strURL) else {
             print("Error: cannot create URL")
             return
@@ -44,7 +44,18 @@ class BaseServices {
         }
     }
     
-    func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], url: Alamofire.URLRequestConvertible, completion: @escaping (Data) -> Void) {
+    func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
+        
+        let urlString = "http://10.250.10.221:8083/IsbBarPortal.Api/\(strUrl)"
+        let token = Generic.getToken()
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: token)
+        ]
+        let url = try! URLRequest(url: urlString, method: .post, headers: headers)
+//        guard let url = URL(string: urlString) else {
+//            print("Error: cannot create URL")
+//            return
+//        }
         
         AF.upload(multipartFormData: { multiPart in
             

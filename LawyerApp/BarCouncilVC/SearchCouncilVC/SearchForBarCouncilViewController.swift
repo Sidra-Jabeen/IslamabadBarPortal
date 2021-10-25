@@ -50,20 +50,40 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Propertities
     
-    var strDate: String?
-    private lazy var datePickerView: DateTimePicker = {
-        
-        let picker = DateTimePicker()
-        picker.setup()
-        picker.didSelectDates = { [weak self] (selectedDate) in
-            print(selectedDate)
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            self?.strDate = formatter.string(from: selectedDate)
-        }
-        return picker
-    }()
+//    var strDate: String?
+//    private lazy var datePickerView: DateTimePicker = {
+//        
+////        let picker = DateTimePicker()
+////        picker.setup()
+////        picker.didSelectDates = { [weak self] (selectedDate) in
+////            print(selectedDate)
+////
+////            let formatter = DateFormatter()
+////            formatter.dateFormat = "yyyy-MM-dd"
+////            self?.strDate = formatter.string(from: selectedDate)
+////        }
+////        fromDatePickerView = DateTimePicker()
+////        return picker
+//        
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        let picker = DateTimePicker()
+////        picker.setup()
+//        
+//        print(picker.setup())
+//        picker.didSelectDates = { [weak self] (selectedDate) in
+//             self!.toDate = selectedDate
+//            //print(selectedDate)
+//            self?.strDate = formatter.string(from: selectedDate)
+//        }
+//        fromDatePickerView = DateTimePicker()
+//        return picker
+//    }()
+//    
+//    lazy var fromDatePickerView: DateTimePicker = {
+//        let picker = DateTimePicker()
+//        return picker
+//    }()
     
     //MARK: - LifeCycle
     
@@ -106,11 +126,11 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         self.imgAsc.image = UIImage(named: "Circle")
         
         
-        self.txtToDate.inputView = datePickerView.inputView
-        self.txtFromDate.inputView = datePickerView.inputView
+//        self.txtToDate.inputView = datePickerView.inputView
+//        self.txtFromDate.inputView = datePickerView.inputView
         
-        self.txtFromDate.delegate = self
-        self.txtToDate.delegate = self
+//        self.txtFromDate.delegate = self
+//        self.txtToDate.delegate = self
 //        
         self.view.frame.size.height = UIScreen.main.bounds.height
         self.view.frame.size.width = UIScreen.main.bounds.width
@@ -128,14 +148,14 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - UITextFieldDelegate
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if textField == self.txtToDate {
-            
-            self.txtToDate.text = self.strDate
-        } else {
-            
-            self.txtFromDate.text = self.strDate
-        }
-    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        
+//        if textField == self.txtToDate {
+//            
+//            self.txtToDate.text = self.strDate
+//        } else {
+//            
+//            self.txtFromDate.text = self.strDate
+//        }
+//    }
 }

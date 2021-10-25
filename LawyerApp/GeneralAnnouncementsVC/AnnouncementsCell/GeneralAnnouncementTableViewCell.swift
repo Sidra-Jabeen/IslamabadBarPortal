@@ -15,6 +15,8 @@ class GeneralAnnouncementTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAnounceTitle: UILabel!
     @IBOutlet weak var lblAnounceBy: UILabel!
     @IBOutlet weak var lblAnounceAt: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var lblType: UILabel!
     
     
     override func awakeFromNib() {

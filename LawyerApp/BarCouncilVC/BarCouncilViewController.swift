@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
     
     //MARK: - IBOutlets
     
@@ -27,6 +27,43 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     var strValue = ""
     let date = Date()
     let formatter = DateFormatter()
+    var strDate: String?
+    var endDate: String?
+    var toDate = Date()
+//    var strDate: String?
+    private lazy var datePickerView: DateTimePicker = {
+        
+//        let picker = DateTimePicker()
+//        picker.setup()
+//        picker.didSelectDates = { [weak self] (selectedDate) in
+//            print(selectedDate)
+//
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyy-MM-dd"
+//            self?.strDate = formatter.string(from: selectedDate)
+//        }
+//        fromDatePickerView = DateTimePicker()
+//        return picker
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let picker = DateTimePicker()
+//        picker.setup()
+        
+        print(picker.setup())
+        picker.didSelectDates = { [weak self] (selectedDate) in
+             self!.toDate = selectedDate
+            //print(selectedDate)
+            self?.strDate = formatter.string(from: selectedDate)
+        }
+        fromDatePickerView = DateTimePicker()
+        return picker
+    }()
+    
+    lazy var fromDatePickerView: DateTimePicker = {
+        let picker = DateTimePicker()
+        return picker
+    }()
     
     //MARK: - LifeCycle
     
@@ -41,7 +78,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if roleId == 3 {
             
-            self.viewPostButton.isHidden = true
+            self.viewPostButton.isHidden = false
         }
     }
     
@@ -84,6 +121,10 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
             searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
             searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
             searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
+            searchVC.txtFromDate.delegate = self
+            searchVC.txtToDate.delegate = self
+            searchVC.txtToDate.inputView = datePickerView.inputView
+            searchVC.txtFromDate.inputView = datePickerView.inputView
             
             if self.intValue == 0 {
                 
@@ -134,6 +175,8 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func tappedOnPostAnnouncement( _sender: UIButton) {
         
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
+//        postVC.strTitle = "Bar Announcement"
+        postVC.height = 125
         self.navigationController?.pushViewController(postVC, animated: true)
         
 //        self.postAnnouncementVC = PostAnnouncementViewController()
@@ -159,6 +202,9 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         tmpCell.lblAnounceTitle.text = barListArrays[indexPath.row].title
         tmpCell.lblAnounceAt.text = barListArrays[indexPath.row].announcedAt
         tmpCell.lblAnounceBy.text = barListArrays[indexPath.row].announcedBy
+        tmpCell.lblType.text = barListArrays[indexPath.row].typeNames
+        let url = URL(string: barListArrays[indexPath.item].announcedByProfile ?? "")
+        tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         return tmpCell
     }
     
@@ -183,14 +229,14 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
 
     }
     
-    @objc func onClickedUpload() {
+    @objc func onClickedUpload( _sender: UIButton) {
         
         self.callGetPostAnnouncementApi()
     }
     
     //MARK: - SearchForBarCouncilViewControllerFunctions
     
-    @objc func onClickedSearch() {
+    @objc func onClickedSearch( _sender: UIButton) {
         
         if intValue == 0 {
         
@@ -211,7 +257,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    @objc func clickedOnAll() {
+    @objc func clickedOnAll( _sender: UIButton) {
         
         self.intValue = 0
         self.search?.txtToDate.text = ""
@@ -219,7 +265,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setUpButtonsUI(value: self.intValue)
     }
     
-    @objc func clickedOnToday() {
+    @objc func clickedOnToday( _sender: UIButton) {
         
         self.intValue = 1
         formatter.dateFormat = "yyyy-MM-dd"
@@ -229,7 +275,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setUpButtonsUI(value: self.intValue)
     }
     
-    @objc func clickedOnYesterday() {
+    @objc func clickedOnYesterday( _sender: UIButton) {
         
         self.intValue = 2
         let dateFormatter = DateFormatter()
@@ -240,7 +286,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setUpButtonsUI(value: self.intValue)
     }
     
-    @objc func clickedOnLastweek() {
+    @objc func clickedOnLastweek( _sender: UIButton) {
         
         self.intValue = 3
         let dateFormatter = DateFormatter()
@@ -252,7 +298,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setUpButtonsUI(value: self.intValue)
     }
     
-    @objc func clickedOnAscending() {
+    @objc func clickedOnAscending( _sender: UIButton) {
         
         self.bitValueForAscDes = 1
         if self.bitValueForAscDes == 1 {
@@ -261,7 +307,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    @objc func clickedOndescending() {
+    @objc func clickedOndescending( _sender: UIButton) {
         
         self.bitValueForAscDes = 2
         if self.bitValueForAscDes == 2 {
@@ -296,6 +342,63 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         let gregorian = Calendar(identifier: .gregorian)
         let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
         return gregorian.date(byAdding: .day, value: 0, to: sunday!)!
+    }
+    
+    //MARK: - UITextFieldDelegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if textField == self.search?.txtToDate {
+            
+            self.search?.txtToDate.text = self.strDate
+            self.checkDays()
+        } else {
+            
+            self.search?.txtFromDate.text = self.endDate
+            self.checkDays()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField == self.search?.txtFromDate {
+            self.fromDatePickerView.setupFrom(toDate: toDate)
+            self.fromDatePickerView.didSelectDates = { [weak self] (selectedDate) in
+                
+                print(selectedDate)
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                self?.endDate = formatter.string(from: selectedDate)
+            }
+  
+        }
+    }
+    
+    func checkDays(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let yesterday = previousDay()
+        let weekFirstDay = getPreviousWeekStartDay()
+        let weekLastDay = getPreviousWeekEndDay()
+        
+        if self.search?.txtToDate.text == dateFormatter.string(from: Date()) && self.search?.txtFromDate.text == dateFormatter.string(from: Date()){
+            self.clickedOnToday(_sender: UIButton())
+            
+        }else if self.search?.txtToDate.text == dateFormatter.string(from: yesterday) && self.search?.txtFromDate.text == dateFormatter.string(from: yesterday){
+            
+//            self.yesterdayTapped(UIButton())
+            self.clickedOnYesterday(_sender: UIButton())
+            
+        }else if self.search?.txtToDate.text == dateFormatter.string(from: weekFirstDay!) && self.search?.txtFromDate.text == dateFormatter.string(from: weekLastDay!){
+            
+//            self.lastWeekTapped(UIButton())
+            self.clickedOnLastweek(_sender: UIButton())
+        }else{
+//            self.allTapped(UIButton())
+            self.clickedOnAll(_sender: UIButton())
+        }
+        
     }
     
     //MARK: - CallingAPiFunctions
@@ -375,7 +478,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.strValue = "des"
             }
             let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), barAnnouncement: BarAnnouncement(barAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration))
-            let url = "api/MemberAnnouncement/GetAnnouncements"
+            let url = "api/BarAnnouncement/GetAnnouncements"
             let services = AnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 
@@ -445,6 +548,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
             self.search?.viewLastweek.applyCircledView()
             self.search?.viewLastweek.setBorderColorToView()
             self.search?.toAndFromView.isUserInteractionEnabled = true
+            
 //            self.search?.calenderViewHeight.constant = 50
 //            self.search?.serachByViewHeight.constant = 20
             
@@ -470,7 +574,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
             self.search?.viewLastweek.setBorderColorToView()
 //            self.search?.calenderViewHeight.constant = 0
 //            self.search?.serachByViewHeight.constant = 0
-            self.search?.toAndFromView.isUserInteractionEnabled = false
+            self.search?.toAndFromView.isUserInteractionEnabled = true
             
         }
         
@@ -494,7 +598,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
             self.search?.viewLastweek.setBorderColorToView()
 //            self.search?.calenderViewHeight.constant = 0
 //            self.search?.serachByViewHeight.constant = 0
-            self.search?.toAndFromView.isUserInteractionEnabled = false
+            self.search?.toAndFromView.isUserInteractionEnabled = true
             
         }
         
@@ -518,7 +622,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
             self.search?.viewAll.setBorderColorToView()
 //            self.search?.calenderViewHeight.constant = 0
 //            self.search?.serachByViewHeight.constant = 0
-            self.search?.toAndFromView.isUserInteractionEnabled = false
+            self.search?.toAndFromView.isUserInteractionEnabled = true
             
         }
         

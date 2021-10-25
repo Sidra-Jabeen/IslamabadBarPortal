@@ -114,14 +114,12 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         
         let url = info[.imageURL] as? NSURL
 //        let filename = url?.lastPathComponent
-        guard let strUrl = url?.absoluteString else { return }
-        self.strProfileImage = strUrl
+        let strUrl = url?.absoluteString
+        self.strProfileImage = strUrl ?? ""
         if let originalImage = info[.originalImage] as? UIImage {
             self.profileImage.image = originalImage//originalImage
         }
-        dismiss(animated: true, completion: {
-//            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
-        })
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -185,7 +183,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                         self.lblCourtName.text = user?.licenseType
                         self.txtLisence.text = user?.licenseNumber
                         self.txtOfficeAddress.text = user?.officeAddress
-                        
+                        self.txtEmail.text = user?.email
                         print("success")
                     } else {
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "User Not Found")
@@ -208,6 +206,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             services.postUploadMethod(files: file.params, urlString: updateProfileUrl, dataModel: dataModel.params, completion: { (responseData) in
                 self.stopAnimation()
                 let status = responseData.success
+                
                 if status ?? false {
                     print("success")
                     self.txtFullNameOnLisence.isUserInteractionEnabled = false

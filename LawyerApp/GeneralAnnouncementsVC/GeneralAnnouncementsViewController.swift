@@ -97,7 +97,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if let vc = announcementsVC {
             vc.userId = listArrays[indexPath.row].memberAnnouncementId
             vc.bitValue = true
-            vc.barTitle = "General Announcements"
+            vc.strtitle = "General Announcements"
             self.navigationController?.pushViewController(vc, animated: true)
         }
 

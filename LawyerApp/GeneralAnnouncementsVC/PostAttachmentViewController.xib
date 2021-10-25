@@ -124,7 +124,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etf-vG-VuH">
-                                            <rect key="frame" x="5" y="-15" width="31" height="30"/>
+                                            <rect key="frame" x="5" y="-15" width="39" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-GV-NIz">
                                                     <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
@@ -133,12 +133,22 @@
                                                     <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="staroflife.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mhN-t5-VHz">
+                                                    <rect key="frame" x="31" y="12" width="8" height="6"/>
+                                                    <color key="tintColor" red="1" green="0.0" blue="0.0093617555430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="8" id="dOJ-bw-o2E"/>
+                                                        <constraint firstAttribute="height" constant="8" id="rwu-xO-cPl"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="8c2-GV-NIz" secondAttribute="trailing" id="MBA-8h-jgV"/>
+                                                <constraint firstItem="mhN-t5-VHz" firstAttribute="leading" secondItem="8c2-GV-NIz" secondAttribute="trailing" id="BS0-Br-B2k"/>
+                                                <constraint firstAttribute="trailing" secondItem="mhN-t5-VHz" secondAttribute="trailing" id="TYd-cC-2QU"/>
                                                 <constraint firstItem="8c2-GV-NIz" firstAttribute="top" secondItem="etf-vG-VuH" secondAttribute="top" id="Tg2-tm-dpL"/>
                                                 <constraint firstAttribute="height" constant="30" id="byi-1P-lHf"/>
+                                                <constraint firstItem="mhN-t5-VHz" firstAttribute="centerY" secondItem="etf-vG-VuH" secondAttribute="centerY" id="mCh-aY-j51"/>
                                                 <constraint firstItem="8c2-GV-NIz" firstAttribute="leading" secondItem="etf-vG-VuH" secondAttribute="leading" id="sy3-tF-tjL"/>
                                                 <constraint firstAttribute="bottom" secondItem="8c2-GV-NIz" secondAttribute="bottom" id="wEq-jH-dkO"/>
                                             </constraints>
@@ -189,7 +199,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qo0-xv-VG5">
-                                            <rect key="frame" x="5" y="-15" width="81" height="30"/>
+                                            <rect key="frame" x="5" y="-15" width="89" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPu-0g-Dmx">
                                                     <rect key="frame" x="0.0" y="0.0" width="81" height="30"/>
@@ -198,14 +208,24 @@
                                                     <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="staroflife.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-W9-DcK">
+                                                    <rect key="frame" x="81" y="12" width="8" height="6"/>
+                                                    <color key="tintColor" red="1" green="0.0" blue="0.0093617555430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="8" id="JDm-TG-Vmk"/>
+                                                        <constraint firstAttribute="height" constant="8" id="ZQf-2l-XHg"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="gPu-0g-Dmx" secondAttribute="bottom" id="1l2-Ch-gHx"/>
+                                                <constraint firstItem="Rl7-W9-DcK" firstAttribute="leading" secondItem="gPu-0g-Dmx" secondAttribute="trailing" id="3w4-Al-G9f"/>
                                                 <constraint firstAttribute="height" constant="30" id="6wJ-jI-KmF"/>
-                                                <constraint firstAttribute="trailing" secondItem="gPu-0g-Dmx" secondAttribute="trailing" id="Ez4-IL-Nu3"/>
+                                                <constraint firstItem="Rl7-W9-DcK" firstAttribute="centerY" secondItem="Qo0-xv-VG5" secondAttribute="centerY" id="Mvc-Pp-ztU"/>
                                                 <constraint firstItem="gPu-0g-Dmx" firstAttribute="leading" secondItem="Qo0-xv-VG5" secondAttribute="leading" id="QXB-zS-p3q"/>
                                                 <constraint firstItem="gPu-0g-Dmx" firstAttribute="top" secondItem="Qo0-xv-VG5" secondAttribute="top" id="iVl-xb-dzo"/>
+                                                <constraint firstAttribute="trailing" secondItem="Rl7-W9-DcK" secondAttribute="trailing" id="q2Y-qY-21J"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -465,7 +485,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attachments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odN-FB-ayH">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -566,6 +586,7 @@
         <image name="Circle" width="50" height="50"/>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="staroflife.fill" catalog="system" width="124" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -71,6 +71,11 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
+        
+        self.bitForLisenceType = 3
+        self.img1.image = UIImage(named: "Group 247")
+        self.img2.image = UIImage(named: "Circle")
+        self.img3.image = UIImage(named: "Circle")
     }
     
     //MARK: - HandGesturesFunction
@@ -130,7 +135,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
             
             self.callGetPostAnnouncementApi(type: 3)
             
-        } else {
+        } else if self.strTitle == "General Announcements" {
             
             self.callGeneralPostAnnouncementApi()
         }
@@ -465,7 +470,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                     if status ?? false {
                         let index = index+1
                         if index < self.arrayForMedia.count {
-                            self.uploadFiles(barId: barId, type: type, index: index)
+                            self.uploadGeneralFiles(barId: barId, type: type, index: index)
                         }
                     } else{
                         print("failed")

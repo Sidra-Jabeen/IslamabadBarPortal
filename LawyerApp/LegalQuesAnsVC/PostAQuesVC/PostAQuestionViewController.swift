@@ -122,46 +122,64 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let videoURL = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerReferenceURL") ] as? URL
+        let videoURL = info[.imageURL] as? URL
         print(videoURL?.pathExtension ?? "Error in url")
         
-        if videoURL != nil {
-            if videoURL?.pathExtension == "MOV" {
+        
+//        let videoURL = info[.imageURL] as? NSURL
+//        let filename = videoURL?.lastPathComponent
+//
+//        if videoURL != nil {
+//            if videoURL?.pathExtension == "MOV" {
+//                //                self.getThumbnailFromUrl(videoURL! as URL, { image in
+//                //                    guard let url = videoURL?.absoluteString else { return }
+//                //                    self.arrayForMedia.append((image!, url))
+//                //                })
+//                let thumbnailImage = self.generateThumbnail(videoUrl: videoURL!.absoluteString ?? "")
+//                guard let url = videoURL?.absoluteString else { return }
+//                self.arrayForMedia.append((thumbnailImage!, url))
+//                //                self.generateThumbnail(for: <#T##AVAsset#>)
+//            } else {
+//                let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//                guard let url = videoURL?.absoluteString else { return }
+//                self.arrayForMedia.append((image, url))
+//            }
+//        } else {
+//            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//            let data = image.pngData()! as NSData
+//
+//            let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+//            let localPath = documentDirectory?.appending("\(Date())")
+//            data.write(toFile: localPath!, atomically: true)
+//
+//            let photoURL = URL.init(fileURLWithPath: localPath!)
+//            print(photoURL)
+//            //                self.arrayForMedia.append((image, videoURL?.absoluteString))
+//        }
+//
+//        self.imagePicker.dismiss(animated: true)
+//        self.attachmentsCollection.reloadData()
+        
+        
+        if let videoURL = info[.mediaURL] as? URL {
 
-                let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL
-                let thumbnailImage = self.generateThumbnail(videoUrl: url?.absoluteString ?? "")
-                guard let url = videoURL?.absoluteString else { return }
-                self.arrayForMedia.append((thumbnailImage!, url))
-            } else {
-                let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                
-                let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-                let localPath = documentDirectory?.appending("\(Date())")
-
-                let photoURL = URL.init(fileURLWithPath: localPath!)
-                print(photoURL)
-                
-                self.arrayForMedia.append((image, photoURL.absoluteString))
-            }
+            let thumbnailImage = self.generateThumbnail(videoUrl: videoURL.absoluteString)
+            self.arrayForMedia.append((thumbnailImage!, videoURL.absoluteString))
+        } else if let imageUrl = info[.imageURL] as? URL {
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            self.arrayForMedia.append((image,  imageUrl.absoluteString))
         } else {
             
             if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String, mediaType == (kUTTypeMovie as String), let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL, UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path) {
 
-                if mediaType == "public.movie" {
-                    
-                    let photoURL = URL.init(fileURLWithPath: url.path)
-                    let thumbnailImage = self.generateThumbnail(videoUrl: photoURL.absoluteString)
-                    self.arrayForMedia.append((thumbnailImage!, url.path))
-                    self.customCollection.reloadData()
-//                    UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(video(_:didFinishSavingWithError:contextInfo:)), nil)
-                }
+                UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(video(_:didFinishSavingWithError:contextInfo:)), nil)
             } else {
                 let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//                let data = image.pngData()! as NSData
+                let data = image.pngData()! as NSData
                 
                 let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-                let localPath = documentDirectory?.appending("\(Date())")
-//                data.write(toFile: localPath!, atomically: true)
+                let localPath = documentDirectory?.appending("/\(Date()).png")
+                data.write(toFile: localPath!, atomically: true)
 
                 let photoURL = URL.init(fileURLWithPath: localPath!)
                 print(photoURL)

@@ -43,11 +43,11 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var mainArray: [(arrSignUpList: String ,arrPlaceHolderList: String, imagesBtns: String, arrOfTypes: String ,rowSelectedValue: Bool, inputText: String)] = [
         ("Full Name On Lisence","Enter Full Name On Lisence","profile","text",true, ""),
         ("CNIC","Enter CNIC Number","id card","number",true, ""),
-        ("Date of Birth","dd/mm/yyyy","layer1","calender",true, ""),
+        ("Date of Birth","dd-mm-yyyy","layer1","calender",true, ""),
         ("Profile Picture","Upload Profile Picture","Group 98","photo library",false, ""),
         ("Lisence/HCR No.","Enter Lisence/HCR No","id card","text",true, ""),
-        ("Contact Number 1","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
-        ("Contact Number 2","+92 xxx xxxxxxx","172517_phone_icon","number",true, ""),
+        ("Contact Number 1","xxxxxxxxxxx","172517_phone_icon","number",true, ""),
+        ("Contact Number 2","xxxxxxxxxxx","172517_phone_icon","number",true, ""),
         ("Email","Enter Email","3586360_email_envelope_mail_send_icon","text",true, ""),
         ("Password","Enter Password","lock","text",true, ""),
         ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
@@ -294,8 +294,50 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+//        ("Full Name On Lisence","Enter Full Name On Lisence","profile","text",true, ""),
+//        ("CNIC","Enter CNIC Number","id card","number",true, ""),
+//        ("Date of Birth","dd-mm-yyyy","layer1","calender",true, ""),
+//        ("Profile Picture","Upload Profile Picture","Group 98","photo library",false, ""),
+//        ("Lisence/HCR No.","Enter Lisence/HCR No","id card","text",true, ""),
+//        ("Contact Number 1","xxxxxxxxxxx","172517_phone_icon","number",true, ""),
+//        ("Contact Number 2","xxxxxxxxxxx","172517_phone_icon","number",true, ""),
+//        ("Email","Enter Email","3586360_email_envelope_mail_send_icon","text",true, ""),
+//        ("Password","Enter Password","lock","text",true, ""),
+//        ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
+//        ("Member Of","","","checkboxes",true, "")
+        
+//        let validation = Validate()
+//        if textField.tag == 0 {
+//            if validation.isValidName(testStr: textField.text ?? "") {
+//                return true
+//            } else {
+//                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")
+//            }
+//        }
+//
+//        if textField.tag == 1 {
+//            return validation.IsValidCNIC(cnicStr: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 2 {
+//            return validation.isValidDate(dateString: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 5 {
+//            return validation.isValidPhone(testStr: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 6 {
+//            return validation.isValidPhone(testStr: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 7 {
+//            return validation.isEmailValid(emailStr: textField.text ?? "")
+//        }
+        
         if textField.tag == 1 {
-            
+
             let maxLength = 13
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
@@ -303,16 +345,16 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return newString.length <= maxLength
         }
         if textField.tag == 5  {
-            
+
             let maxLength = 11
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
-        
+
         if textField.tag == 6 {
-            
+
             let maxLength = 11
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
@@ -320,6 +362,14 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return newString.length <= maxLength
         }
         
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let validation = Validate()
+        if textView.tag == 1 {
+            return validation.isValidAddress(testStr: textView.text)
+        }
         return true
     }
     
@@ -379,6 +429,19 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print(value)
     }
     
+    func findOut(arrSignUpList: String) -> String? {
+        
+//        let value = self.mainArray.filter{$0.arrSignUpList == arrSignUpList}
+//        let value = self.mainArray.filter({ $0.arrSignUpList == arrSignUpList}).map({ $0.arrSignUpList })
+//        let input = self.mainArray[value].inputText
+        
+        if let idx = self.mainArray.firstIndex(where: { $0.arrSignUpList == arrSignUpList }) {
+            let input = self.mainArray[idx].inputText
+            return input
+        }
+        return ""
+    }
+    
     func showDatePicker(index: Int) {
         
         self.view.addSubview(datePicker)
@@ -413,17 +476,17 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - Calling API
     
     func callSignUpAPI() {
-        
         if  Connectivity.isConnectedToInternet {
             let file = SignUpAttachmentFileRequestModel(licenseFile: self.mainArray[9].inputText, profilePicture: self.mainArray[3].inputText)
-            let dataModel = Request(Source: "2", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[4].inputText, contactNumber: self.mainArray[5].inputText, email: self.mainArray[7].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[8].inputText, licenseType: self.mainArray[10].inputText, issuanceDateLowerCourt: "", issuanceDateHighCourt: "", issuanceDateSupremeCourt: "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[6].inputText)
+            let dataModel = Request(Source: "2", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[4].inputText, contactNumber: self.mainArray[5].inputText, email: self.mainArray[7].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[8].inputText, licenseType: self.mainArray[10].inputText, issuanceDateLowerCourt: self.findOut(arrSignUpList: "Issue Date of Lower Court") ?? "", issuanceDateHighCourt: self.findOut(arrSignUpList: "Issue Date of High Court") ?? "", issuanceDateSupremeCourt: self.findOut(arrSignUpList: "Issue Date of Supreme Court") ?? "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[6].inputText)
             let validation = Validate()
             if validation.isValidName(testStr: dataModel.fullName) {
                 if validation.IsValidCNIC(cnicStr: dataModel.cnic) {
                     if validation.isValidDate(dateString: dataModel.dob) {
                         if validation.isValidPhone(testStr: dataModel.contactNumber) {
                             if validation.isEmailValid(emailStr: dataModel.email) {
-                                if validation.isValidAddress(testStr: dataModel.officeAddress) {
+//                                if validation.isValidAddress(testStr: dataModel.officeAddress) {
+                                    
                                     self.startAnimation()
                                     let signUpUrl = "api/Account/Registration"
                                     let services = SignUpServices()
@@ -443,7 +506,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                             self.tblRegistration.reloadData()
                                         }
                                     }
-                                } else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Office Address")}
+//                                }
+//                                else {self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Office Address")}
                                 
                             } else{self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Email Address")}
                             
@@ -476,18 +540,10 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        }
         let url = info[.imageURL] as? NSURL
 //        let filename = url?.lastPathComponent
-        guard let strUrl = url?.absoluteString else { return }
-//        self.mainArray[self.pickerTextIndex].inputText = strUrl
-        
-//        if let originalImage = info[.originalImage] as? UIImage {
-
-//            self.ProfileImageView.contentMode = .scaleAspectFill
-//            let newImage = self.ResizeImage(image: originalImage, targetSize: CGSize(width: 300 , height: 300))
-//            self.ProfileImageView.image = newImage//originalImage
-//        }
-        dismiss(animated: true, completion: {
+        let strUrl = url?.absoluteString
+        picker.dismiss(animated: true, completion: {
 //            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
-            self.mainArray[self.pickerTextIndex].inputText = strUrl
+            self.mainArray[self.pickerTextIndex].inputText = strUrl ?? ""
             self.tblRegistration.reloadData()
         })
     }

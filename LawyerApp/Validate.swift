@@ -11,7 +11,7 @@ class Validate {
     
     func isValidName(testStr:String) -> Bool {
         
-       let regexExp =  "^[0-9a-zA-Z ]{1,}$"
+       let regexExp =  "^[0-9a-zA-Z ]{1,1000}$"
         
         let predicateTest = NSPredicate(format: "SELF MATCHES %@", regexExp)
         
@@ -25,6 +25,11 @@ class Validate {
             
             return false
         }
+    }
+    
+    func isValidPassword(passStr: String) -> Bool {
+        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,50}$"
+        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: passStr)
     }
     
     func isValidPassword(testStr:String) -> Bool {
@@ -94,9 +99,9 @@ class Validate {
     
     func isValidPhone(testStr:String) -> Bool{
         
-//        let regexExp = "^[+]{1}[0-9]{13}$"
+        let regexExp = "^[[0-9]{11}$"
         
-        let regexExp = "^[0-9+]{0,1}+[0-9]{5,16}$"
+//        let regexExp = "^[0-9+]{0,1}+[0-9]{5,16}$"
         let predicateTest = NSPredicate(format:  "SELF MATCHES %@ ", regexExp)
         
         let result = predicateTest.evaluate(with: testStr)

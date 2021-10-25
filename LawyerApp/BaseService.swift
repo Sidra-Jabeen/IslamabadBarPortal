@@ -46,7 +46,7 @@ class BaseServices {
     
     func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
         
-        let urlString = "http://10.250.10.221:8083/IsbBarPortal.Api/\(strUrl)"
+        let urlString = "http://203.215.160.148:9545/\(strUrl)"
         let token = Generic.getToken()
         let headers: HTTPHeaders = [
             .authorization(bearerToken: token)

@@ -46,7 +46,8 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         cell.layer.shadowRadius = 4
         cell.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
         cell.lblCourtName.text = arrayOfMembers[indexPath.item].licenseType
-        let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
+        let url = URL(string: "http://203.215.160.148:9545/documents/\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
+        
         cell.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         return cell
     }

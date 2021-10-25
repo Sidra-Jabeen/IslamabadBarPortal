@@ -71,7 +71,6 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
-        
         self.bitForLisenceType = 3
         self.img1.image = UIImage(named: "Group 247")
         self.img2.image = UIImage(named: "Circle")
@@ -405,6 +404,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func uploadFiles(barId: String, type: String, index: Int) {
+        
             if  Connectivity.isConnectedToInternet {
                 self.startAnimation()
                 let attachmentModel = PostAttachmentFileRequestModel(attachmentFile: arrayForMedia[index].1)
@@ -413,14 +413,21 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                 let services = AnnouncementServices()
                 services.postUploadMethod(files: attachmentModel.params, urlString: url, dataModel: dataModel.params, completion: { (responseData) in
                     
+                    self.stopAnimation()
                     let status = responseData.success
                     if status ?? false {
                         let index = index+1
                         if index < self.arrayForMedia.count {
                             self.uploadFiles(barId: barId, type: type, index: index)
+                        } else {
+                            let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
                         }
                     } else{
-                        print("failed")
+                        self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                     
                 })
@@ -471,9 +478,15 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                         let index = index+1
                         if index < self.arrayForMedia.count {
                             self.uploadGeneralFiles(barId: barId, type: type, index: index)
+                        } else {
+                            let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
                         }
                     } else{
-                        print("failed")
+                        self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                     
                 })

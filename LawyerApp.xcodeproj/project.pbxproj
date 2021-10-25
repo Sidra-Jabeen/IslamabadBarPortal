@@ -19,6 +19,7 @@
 		3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1426FE2715520700DE03BB /* CalenderView.swift */; };
 		3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1427002715523400DE03BB /* CalenderViewController.swift */; };
 		3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1427012715523400DE03BB /* CalenderViewController.xib */; };
+		3D36AD142726D73E00DFD509 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36AD132726D73E00DFD509 /* Constant.swift */; };
 		3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509B92710A44C00786786 /* AppDelegate.swift */; };
 		3D6509BE2710A44C00786786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BD2710A44C00786786 /* ViewController.swift */; };
 		3D6509C12710A44C00786786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509BF2710A44C00786786 /* Main.storyboard */; };
@@ -146,6 +147,7 @@
 		3D1426FE2715520700DE03BB /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		3D1427002715523400DE03BB /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		3D1427012715523400DE03BB /* CalenderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderViewController.xib; sourceTree = "<group>"; };
+		3D36AD132726D73E00DFD509 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3D6509B62710A44C00786786 /* LawyerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LawyerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6509B92710A44C00786786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D6509BD2710A44C00786786 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				3D66A4E1271C049600221832 /* BiometricsManager.swift */,
 				3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */,
 				3D66A4E7271D5CF300221832 /* DateTimePicker.swift */,
+				3D36AD132726D73E00DFD509 /* Constant.swift */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				3D66A4DA271AD47600221832 /* AnnouncementModels.swift in Sources */,
 				3D1426F5271483B400DE03BB /* SignUpServices.swift in Sources */,
 				3D66A4CD2719AB0600221832 /* CommentsViewController.swift in Sources */,
+				3D36AD142726D73E00DFD509 /* Constant.swift in Sources */,
 				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
 				3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */,
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,

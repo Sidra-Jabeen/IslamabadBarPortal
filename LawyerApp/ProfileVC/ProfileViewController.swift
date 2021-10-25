@@ -173,7 +173,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     let user = responseData.user
                     let status = responseData.success ?? false
                     if status {
-                        let url = URL(string: user?.profileUrl ?? "")
+                        let url = URL(string: "http://203.215.160.148:9545/documents/\(user?.profileUrl ?? "")")
                         self.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
                         self.lblMemberName.text = user?.fullName
                         self.txtFullNameOnLisence.text = user?.fullName

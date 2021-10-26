@@ -99,9 +99,9 @@ class Validate {
     
     func isValidPhone(testStr:String) -> Bool{
         
-        let regexExp = "^[[0-9]{11}$"
+//        let regexExp = "^[[0-9]{11}$"
         
-//        let regexExp = "^[0-9+]{0,1}+[0-9]{5,16}$"
+        let regexExp = "^[0-9+]{0,1}+[0-9]{5,16}$"
         let predicateTest = NSPredicate(format:  "SELF MATCHES %@ ", regexExp)
         
         let result = predicateTest.evaluate(with: testStr)

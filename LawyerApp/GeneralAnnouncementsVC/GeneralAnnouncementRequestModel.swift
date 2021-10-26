@@ -196,6 +196,8 @@ struct GeneralAnnouncementResponseDetailModel: Codable {
     var description: String?
     var announcedBy: String?
     var announcedAt: String?
+    var announcedByProfile: String?
+    var attachments: [AttachmentResponse]?
     
     enum CodingKeys: String, CodingKey {
         
@@ -204,6 +206,8 @@ struct GeneralAnnouncementResponseDetailModel: Codable {
         case description = "description"
         case announcedBy = "announcedBy"
         case announcedAt = "announcedAt"
+        case announcedByProfile = "announcedByProfile"
+        case attachments = "attachments"
     }
     
     init(from decoder: Decoder) throws {
@@ -214,7 +218,33 @@ struct GeneralAnnouncementResponseDetailModel: Codable {
         description = try values.decodeIfPresent(String.self, forKey: .description)
         announcedBy = try values.decodeIfPresent(String.self, forKey: .announcedBy)
         announcedAt = try values.decodeIfPresent(String.self, forKey: .announcedAt)
+        announcedByProfile = try values.decodeIfPresent(String.self, forKey: .announcedByProfile)
+        attachments = try values.decodeIfPresent([AttachmentResponse].self, forKey: .attachments)
 
     }
 }
 
+struct AttachmentResponse: Codable {
+    
+    var id: Int?
+    var announcementId: Int?
+    var type: Int?
+    var attachmentUrl: String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case id = "id"
+        case announcementId = "announcementId"
+        case type = "type"
+        case attachmentUrl = "announcedBy"
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        announcementId = try values.decodeIfPresent(Int.self, forKey: .announcementId)
+        type = try values.decodeIfPresent(Int.self, forKey: .type)
+        attachmentUrl = try values.decodeIfPresent(String.self, forKey: .attachmentUrl)
+    }
+}

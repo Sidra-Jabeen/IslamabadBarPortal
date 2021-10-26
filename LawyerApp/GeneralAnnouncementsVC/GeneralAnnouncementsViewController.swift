@@ -87,7 +87,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 130
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -97,7 +97,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if let vc = announcementsVC {
             vc.userId = listArrays[indexPath.row].memberAnnouncementId
             vc.bitValue = true
-            vc.strtitle = "General Announcements"
+            vc.barTitle = "General Announcements"
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
@@ -121,6 +121,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
 //        postVC.strTitle = "General Announcement"
         postVC.height = 0
+        postVC.strTitle = "General Announcements"
         self.navigationController?.pushViewController(postVC, animated: true)
 //        self.postAnnouncementVC = PostAnnouncementViewController()
 //        if let postAnnounc = postAnnouncementVC {

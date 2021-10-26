@@ -307,34 +307,34 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
 //        ("Member Of","","","checkboxes",true, "")
         
-        let validation = Validate()
-        if textField.tag == 0 {
-            if validation.isValidName(testStr: textField.text ?? "") {
-                return true
-            } else {
-                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")
-            }
-        }
-
-        if textField.tag == 1 {
-            return validation.IsValidCNIC(cnicStr: textField.text ?? "")
-        }
-
-        if textField.tag == 2 {
-            return validation.isValidDate(dateString: textField.text ?? "")
-        }
-
-        if textField.tag == 5 {
-            return validation.isValidPhone(testStr: textField.text ?? "")
-        }
-
-        if textField.tag == 6 {
-            return validation.isValidPhone(testStr: textField.text ?? "")
-        }
-
-        if textField.tag == 7 {
-            return validation.isEmailValid(emailStr: textField.text ?? "")
-        }
+//        let validation = Validate()
+//        if textField.tag == 0 {
+//            if validation.isValidName(testStr: textField.text ?? "") {
+//                return true
+//            } else {
+//                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")
+//            }
+//        }
+//
+//        if textField.tag == 1 {
+//            return validation.IsValidCNIC(cnicStr: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 2 {
+//            return validation.isValidDate(dateString: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 5 {
+//            return validation.isValidPhone(testStr: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 6 {
+//            return validation.isValidPhone(testStr: textField.text ?? "")
+//        }
+//
+//        if textField.tag == 7 {
+//            return validation.isEmailValid(emailStr: textField.text ?? "")
+//        }
         
         if textField.tag == 1 {
 
@@ -495,12 +495,14 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                         self.stopAnimation()
                                         let status = responseData.success ?? false
                                         if status {
-                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                                            self.showAlertForSignup(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
 //                                            self.mainArray.removeAll()
                                             self.tblRegistration.reloadData()
                                         } else {
                                             
-                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Something went wrong!")
+                                            self.showAlertForSignup(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                                            
+//                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Something went wrong!")
                                             
 //                                            self.mainArray.removeAll()
                                             self.tblRegistration.reloadData()
@@ -526,9 +528,36 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func showAlertForSignup(alertTitle : String, alertMessage : String) {
+    let alert = UIAlertController(title: "Islmabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+        self.navigationController?.popViewController(animated: true)
+    }))
+    self.present(alert, animated: true, completion: nil)
+    }
+    
     //MARK: - UIImagePickerControllerDelegate
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let imageUrl = info[.imageURL] as? URL {
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//            self.arrayForMedia.append((image,  imageUrl.absoluteString))
+            self.mainArray[self.pickerTextIndex].inputText = imageUrl.absoluteString
+        } else {
+            
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            let data = image.pngData()! as NSData
+            
+            let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+            let localPath = documentDirectory?.appending("/\(self.getRandomNumber()).png")
+            data.write(toFile: localPath!, atomically: true)
+
+            let photoURL = URL.init(fileURLWithPath: localPath!)
+            print(photoURL)
+            self.mainArray[self.pickerTextIndex].inputText = photoURL.absoluteString
+//            self.arrayForMedia.append((image, photoURL.absoluteString))
+        }
         
 //        if let url = info[.imageURL] as? NSURL else { return }
 //        let filename = url.lastPathComponent
@@ -538,14 +567,22 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            self.mainArray[self.pickerTextIndex].inputText = filename ?? ""
 //            self.tblRegistration.reloadData()
 //        }
-        let url = info[.imageURL] as? NSURL
-//        let filename = url?.lastPathComponent
-        let strUrl = url?.absoluteString
-        picker.dismiss(animated: true, completion: {
-//            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
-            self.mainArray[self.pickerTextIndex].inputText = strUrl ?? ""
-            self.tblRegistration.reloadData()
-        })
+//        let url = info[.imageURL] as? NSURL
+////        let filename = url?.lastPathComponent
+//        let strUrl = url?.absoluteString
+//        picker.dismiss(animated: true, completion: {
+////            self.mainArray[self.pickerTextIndex].inputText = "image.jpg"
+//            self.mainArray[self.pickerTextIndex].inputText = strUrl ?? ""
+//            self.tblRegistration.reloadData()
+//        })
+        self.photoPicker.dismiss(animated: true)
+        self.tblRegistration.reloadData()
+    }
+    
+    func getRandomNumber() -> String{
+        
+        let timeStamp: NSNumber = NSNumber(value: Int(NSDate().timeIntervalSince1970))
+        return "\(timeStamp)"
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

@@ -451,7 +451,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kv-Cf-Cmn" userLabel="AttachmentView">
-                                    <rect key="frame" x="30" y="305" width="315" height="200"/>
+                                    <rect key="frame" x="30" y="315" width="315" height="190"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBX-HL-hKJ" userLabel="BorderView">
                                             <rect key="frame" x="0.0" y="0.0" width="315" height="150"/>
@@ -491,7 +491,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="odN-FB-ayH" secondAttribute="bottom" id="Aoj-s2-3vY"/>
                                                 <constraint firstItem="odN-FB-ayH" firstAttribute="top" secondItem="uzQ-Es-VIp" secondAttribute="top" id="hFQ-Jo-0px"/>
@@ -516,7 +516,7 @@
                                 <constraint firstItem="uTL-ao-fCY" firstAttribute="trailing" secondItem="J9W-2L-Gxn" secondAttribute="trailing" id="0BR-Lq-XJd"/>
                                 <constraint firstItem="7jf-d3-Gjo" firstAttribute="top" secondItem="uTL-ao-fCY" secondAttribute="bottom" constant="10" id="6nP-dX-FrT"/>
                                 <constraint firstAttribute="bottom" secondItem="6Kv-Cf-Cmn" secondAttribute="bottom" id="Abq-mv-dYd"/>
-                                <constraint firstItem="6Kv-Cf-Cmn" firstAttribute="top" secondItem="7jf-d3-Gjo" secondAttribute="bottom" id="GaD-fL-SD3"/>
+                                <constraint firstItem="6Kv-Cf-Cmn" firstAttribute="top" secondItem="7jf-d3-Gjo" secondAttribute="bottom" constant="10" id="GaD-fL-SD3"/>
                                 <constraint firstItem="7jf-d3-Gjo" firstAttribute="leading" secondItem="J9W-2L-Gxn" secondAttribute="leading" id="OSm-h3-kUX"/>
                                 <constraint firstItem="7jf-d3-Gjo" firstAttribute="trailing" secondItem="J9W-2L-Gxn" secondAttribute="trailing" id="QsE-3C-xeL"/>
                                 <constraint firstAttribute="trailing" secondItem="J9W-2L-Gxn" secondAttribute="trailing" constant="30" id="RL8-qc-KEe"/>

@@ -37,7 +37,7 @@ class BaseServices {
                 completion(data)
             case .failure:
                 
-                let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Your session has been expired\",\"data\":null}"
+                let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Alamofire Request Failed\"}"
                 completion(Data(jsonSting.utf8))
                 break
             }
@@ -45,8 +45,9 @@ class BaseServices {
     }
     
     func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
-        
-        let urlString = "http://203.215.160.148:9545/\(strUrl)"
+        //Live http://203.215.160.148:9545/
+        let urlString = "http://10.250.10.221:8083/IsbBarPortal.Api/\(strUrl)"
+//        let requestBinUrl = "https://enkxdj9i9oy5f.x.pipedream.net/"
         let token = Generic.getToken()
         let headers: HTTPHeaders = [
             .authorization(bearerToken: token)
@@ -94,7 +95,7 @@ class BaseServices {
                     }
                 case .failure:
                     
-                    let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Your session has been expired\",\"data\":null}"
+                    let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\" Alamofire Request Failed\"}"
                     completion(Data(jsonSting.utf8))
                     break
                 }

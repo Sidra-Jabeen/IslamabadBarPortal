@@ -20,6 +20,7 @@ class UIAttachmentCollectionViewCell: UICollectionViewCell {
         
         self.btnAdd.setTitle("", for: .normal)
         self.btnRemove.setTitle("", for: .normal)
+        self.btnRemove.setImage(UIImage(named: "Cancel"), for: .normal)
     }
 
 }

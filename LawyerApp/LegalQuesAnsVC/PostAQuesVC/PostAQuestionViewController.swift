@@ -100,7 +100,7 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
             tmpCell.btnAdd.isHidden = true
             tmpCell.btnRemove.isHidden = false
             tmpCell.btnRemove.tag = indexPath.row
-            tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0 //self.arrayForImages[indexPath.row - 1]
+            tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0
             tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
         }
         return tmpCell
@@ -124,42 +124,6 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         
         let videoURL = info[.imageURL] as? URL
         print(videoURL?.pathExtension ?? "Error in url")
-        
-        
-//        let videoURL = info[.imageURL] as? NSURL
-//        let filename = videoURL?.lastPathComponent
-//
-//        if videoURL != nil {
-//            if videoURL?.pathExtension == "MOV" {
-//                //                self.getThumbnailFromUrl(videoURL! as URL, { image in
-//                //                    guard let url = videoURL?.absoluteString else { return }
-//                //                    self.arrayForMedia.append((image!, url))
-//                //                })
-//                let thumbnailImage = self.generateThumbnail(videoUrl: videoURL!.absoluteString ?? "")
-//                guard let url = videoURL?.absoluteString else { return }
-//                self.arrayForMedia.append((thumbnailImage!, url))
-//                //                self.generateThumbnail(for: <#T##AVAsset#>)
-//            } else {
-//                let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//                guard let url = videoURL?.absoluteString else { return }
-//                self.arrayForMedia.append((image, url))
-//            }
-//        } else {
-//            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//            let data = image.pngData()! as NSData
-//
-//            let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-//            let localPath = documentDirectory?.appending("\(Date())")
-//            data.write(toFile: localPath!, atomically: true)
-//
-//            let photoURL = URL.init(fileURLWithPath: localPath!)
-//            print(photoURL)
-//            //                self.arrayForMedia.append((image, videoURL?.absoluteString))
-//        }
-//
-//        self.imagePicker.dismiss(animated: true)
-//        self.attachmentsCollection.reloadData()
-        
         
         if let videoURL = info[.mediaURL] as? URL {
 
@@ -193,10 +157,6 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         imagePicker.dismiss(animated: true)
-    }
-    
-    @objc private func didSaveVideo(videoPath: String, error: NSError, contextInfo: Any) {
-        
     }
     
     //MARK: - Others
@@ -259,25 +219,6 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
 
             print(error.localizedDescription)
             return nil
-        }
-    }
-    
-    fileprivate func getThumbnailFromUrl(_ url: URL, _ completion: @escaping ((_ image: UIImage?)->Void)) {
-
-        DispatchQueue.main.async {
-            let asset = AVAsset(url: url)
-            let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-            assetImgGenerate.appliesPreferredTrackTransform = true
-
-            let time = CMTimeMake(value: 2, timescale: 1)
-            do {
-                let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-                let thumbnail = UIImage(cgImage: img)
-                completion(thumbnail)
-            } catch {
-                print("Error :: ", error.localizedDescription)
-                completion(nil)
-            }
         }
     }
 }

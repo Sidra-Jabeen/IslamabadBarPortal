@@ -90,8 +90,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
     var duration: TimeInterval { return base.duration }
     var size: CGSize { return base.size }
     
-    /// The image source reference of current image.
-    public private(set) var imageSource: CGImageSource? {
+    private(set) var imageSource: CGImageSource? {
         get { return getAssociatedObject(base, &imageSourceKey) }
         set { setRetainedAssociatedObject(base, &imageSourceKey, newValue) }
     }
@@ -202,7 +201,11 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
             let rep = NSBitmapImageRep(cgImage: cgImage)
             return rep.representation(using: .png, properties: [:])
         #else
+            #if swift(>=4.2)
             return base.pngData()
+            #else
+            return UIImagePNGRepresentation(base)
+            #endif
         #endif
     }
 
@@ -218,7 +221,11 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
             let rep = NSBitmapImageRep(cgImage: cgImage)
             return rep.representation(using:.jpeg, properties: [.compressionFactor: compressionQuality])
         #else
+            #if swift(>=4.2)
             return base.jpegData(compressionQuality: compressionQuality)
+            #else
+            return UIImageJPEGRepresentation(base, compressionQuality)
+            #endif
         #endif
     }
 
@@ -230,12 +237,17 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
     }
 
     /// Returns a data representation for `base` image, with the `format` as the format indicator.
-    /// - Parameters:
-    ///   - format: The format in which the output data should be. If `unknown`, the `base` image will be
-    ///             converted in the PNG representation.
-    ///   - compressionQuality: The compression quality when converting image to a lossy format data.
+    ///
+    /// - Parameter format: The format in which the output data should be. If `unknown`, the `base` image will be
+    ///                     converted in the PNG representation.
     ///
     /// - Returns: The output data representing.
+
+    /// Returns a data representation for `base` image, with the `format` as the format indicator.
+    /// - Parameters:
+    ///   - format: The format in which the output data should be. If `unknown`, the `base` image will be
+    ///   converted in the PNG representation.
+    ///   - compressionQuality: The compression quality when converting image to a lossy format data.
     public func data(format: ImageFormat, compressionQuality: CGFloat = 1.0) -> Data? {
         return autoreleasepool { () -> Data? in
             let data: Data?

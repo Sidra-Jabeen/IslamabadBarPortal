@@ -94,7 +94,7 @@ class BaseServices {
                     }
                 case .failure:
                     
-                    let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Your session has been expired\",\"data\":null}"
+                    let jsonSting = "{\"success\":false,\"code\":\"9809\",\"desc\":\"Alamofire Request Error\"}"
                     completion(Data(jsonSting.utf8))
                     break
                 }

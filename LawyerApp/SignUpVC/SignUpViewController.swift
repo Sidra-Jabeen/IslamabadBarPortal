@@ -307,34 +307,34 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
 //        ("Member Of","","","checkboxes",true, "")
         
-//        let validation = Validate()
-//        if textField.tag == 0 {
-//            if validation.isValidName(testStr: textField.text ?? "") {
-//                return true
-//            } else {
-//                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")
-//            }
-//        }
-//
-//        if textField.tag == 1 {
-//            return validation.IsValidCNIC(cnicStr: textField.text ?? "")
-//        }
-//
-//        if textField.tag == 2 {
-//            return validation.isValidDate(dateString: textField.text ?? "")
-//        }
-//
-//        if textField.tag == 5 {
-//            return validation.isValidPhone(testStr: textField.text ?? "")
-//        }
-//
-//        if textField.tag == 6 {
-//            return validation.isValidPhone(testStr: textField.text ?? "")
-//        }
-//
-//        if textField.tag == 7 {
-//            return validation.isEmailValid(emailStr: textField.text ?? "")
-//        }
+        let validation = Validate()
+        if textField.tag == 0 {
+            if validation.isValidName(testStr: textField.text ?? "") {
+                return true
+            } else {
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Invalid Name")
+            }
+        }
+
+        if textField.tag == 1 {
+            return validation.IsValidCNIC(cnicStr: textField.text ?? "")
+        }
+
+        if textField.tag == 2 {
+            return validation.isValidDate(dateString: textField.text ?? "")
+        }
+
+        if textField.tag == 5 {
+            return validation.isValidPhone(testStr: textField.text ?? "")
+        }
+
+        if textField.tag == 6 {
+            return validation.isValidPhone(testStr: textField.text ?? "")
+        }
+
+        if textField.tag == 7 {
+            return validation.isEmailValid(emailStr: textField.text ?? "")
+        }
         
         if textField.tag == 1 {
 

@@ -19,16 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMg-qW-b3u" userLabel="MainView">
-                        <rect key="frame" x="0.0" y="15" width="320" height="107"/>
+                        <rect key="frame" x="0.0" y="16.5" width="320" height="97"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group 3" translatesAutoresizingMaskIntoConstraints="NO" id="W9K-9U-5D2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mq7-lS-wEV" userLabel="AnnounView">
-                                <rect key="frame" x="20" y="30" width="280" height="77"/>
+                                <rect key="frame" x="0.0" y="10" width="320" height="77"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment of judges as judge, special court (central), lahore, rawalpindi and gujrawala" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFK-GY-JbD">
-                                        <rect key="frame" x="5" y="5" width="270" height="25"/>
+                                        <rect key="frame" x="5" y="5" width="310" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="0Yi-q4-bFz"/>
                                         </constraints>
@@ -46,10 +43,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6S-Jm-6tz" userLabel="LawLegalView">
-                                        <rect key="frame" x="5" y="52" width="270" height="20"/>
+                                        <rect key="frame" x="5" y="52" width="310" height="20"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eT4-vI-b1T" userLabel="View1">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 114" translatesAutoresizingMaskIntoConstraints="NO" id="07m-TR-q2s">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -59,7 +56,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Law legal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3x-81-ZTu">
-                                                        <rect key="frame" x="25" y="0.0" width="65" height="20"/>
+                                                        <rect key="frame" x="25" y="0.0" width="78.5" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="TeC-5v-d56"/>
                                                         </constraints>
@@ -81,7 +78,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KO-9w-kwh" userLabel="View2">
-                                                <rect key="frame" x="100" y="0.0" width="85.5" height="20"/>
+                                                <rect key="frame" x="113.5" y="0.0" width="85.5" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ph9-WJ-pdx">
                                                         <rect key="frame" x="0.0" y="3" width="20" height="14"/>
@@ -143,22 +140,17 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="W9K-9U-5D2" secondAttribute="trailing" id="0C6-9S-Mcb"/>
-                            <constraint firstAttribute="trailing" secondItem="mq7-lS-wEV" secondAttribute="trailing" constant="20" id="JKA-B5-SVJ"/>
-                            <constraint firstAttribute="bottom" secondItem="W9K-9U-5D2" secondAttribute="bottom" constant="30" id="UOM-hA-DkA"/>
-                            <constraint firstItem="W9K-9U-5D2" firstAttribute="leading" secondItem="LMg-qW-b3u" secondAttribute="leading" id="UOg-tq-mda"/>
-                            <constraint firstItem="mq7-lS-wEV" firstAttribute="leading" secondItem="LMg-qW-b3u" secondAttribute="leading" constant="20" id="d4P-w1-f0D"/>
-                            <constraint firstItem="W9K-9U-5D2" firstAttribute="top" secondItem="LMg-qW-b3u" secondAttribute="top" id="lkQ-w2-Xdr"/>
-                            <constraint firstItem="mq7-lS-wEV" firstAttribute="top" secondItem="LMg-qW-b3u" secondAttribute="top" constant="30" id="rm5-by-l05"/>
-                            <constraint firstAttribute="bottom" secondItem="mq7-lS-wEV" secondAttribute="bottom" id="srr-Bu-1yY"/>
+                            <constraint firstAttribute="trailing" secondItem="mq7-lS-wEV" secondAttribute="trailing" id="JKA-B5-SVJ"/>
+                            <constraint firstItem="mq7-lS-wEV" firstAttribute="leading" secondItem="LMg-qW-b3u" secondAttribute="leading" id="d4P-w1-f0D"/>
+                            <constraint firstItem="mq7-lS-wEV" firstAttribute="top" secondItem="LMg-qW-b3u" secondAttribute="top" constant="10" id="rm5-by-l05"/>
+                            <constraint firstAttribute="bottom" secondItem="mq7-lS-wEV" secondAttribute="bottom" constant="10" id="srr-Bu-1yY"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="LMg-qW-b3u" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EXA-kp-6Qf"/>
                     <constraint firstItem="LMg-qW-b3u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ke8-5x-tf2"/>
-                    <constraint firstItem="LMg-qW-b3u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="YY5-4v-XYm"/>
                     <constraint firstAttribute="trailing" secondItem="LMg-qW-b3u" secondAttribute="trailing" id="eQN-kj-8ou"/>
-                    <constraint firstAttribute="bottom" secondItem="LMg-qW-b3u" secondAttribute="bottom" constant="8" id="fKg-qm-tMZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -175,7 +167,6 @@
     </objects>
     <resources>
         <image name="Group 114" width="88" height="94"/>
-        <image name="Mask Group 3" width="1656" height="452"/>
         <image name="timer" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

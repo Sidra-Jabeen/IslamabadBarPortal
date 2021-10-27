@@ -8,7 +8,8 @@
 import UIKit
 import SwiftUI
 
-class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController {
+    
     
     //MARK: - IBOutlets
     
@@ -28,6 +29,8 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     var strValue = ""
     let date = Date()
     let formatter = DateFormatter()
+    var toDateText = ""
+    var fromDateText = ""
     
     //MARK: - LifeCycles
 
@@ -87,7 +90,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 130
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -97,7 +100,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if let vc = announcementsVC {
             vc.userId = listArrays[indexPath.row].memberAnnouncementId
             vc.bitValue = true
-            vc.strtitle = "General Announcements"
+            vc.barTitle = "General Announcements"
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
@@ -121,6 +124,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
 //        postVC.strTitle = "General Announcement"
         postVC.height = 0
+        postVC.strTitle = "General Announcements"
         self.navigationController?.pushViewController(postVC, animated: true)
 //        self.postAnnouncementVC = PostAnnouncementViewController()
 //        if let postAnnounc = postAnnouncementVC {
@@ -138,60 +142,67 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if let searchVC = search {
 
             self.view.addSubview(searchVC.view)
-            searchVC.btnSearch.addTarget(self, action: #selector(onClickedSearch), for: .touchUpInside)
-            searchVC.btnAll.addTarget(self, action: #selector(clickedOnAll), for: .touchUpInside)
-            searchVC.btnToday.addTarget(self, action: #selector(clickedOnToday), for: .touchUpInside)
-            searchVC.btnYesterday.addTarget(self, action: #selector(clickedOnYesterday), for: .touchUpInside)
-            searchVC.btnLastweek.addTarget(self, action: #selector(clickedOnLastweek), for: .touchUpInside)
-            
-            searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
-            searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
-            searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
-            
-            if self.intValue == 0 {
-                
-                self.search?.txtToDate.text = ""
-                self.search?.txtFromDate.text = ""
-                self.setUpButtonsUI(value: self.intValue)
-            }
-            else if self.intValue == 1 {
-                
-                formatter.dateFormat = "yyyy-MM-dd"
-                let result = formatter.string(from: date)
-                self.search?.txtToDate.text = result
-                self.search?.txtFromDate.text = result
-                self.setUpButtonsUI(value: self.intValue)
-            }
-            else if self.intValue == 2 {
-                
-                let dateFormatter = DateFormatter()
-                let previousDay = previousDay()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                self.search?.txtToDate.text = dateFormatter.string(from: previousDay)
-                self.search?.txtFromDate.text = dateFormatter.string(from: previousDay)
-                self.setUpButtonsUI(value: self.intValue)
-            }
-            else if self.intValue == 3 {
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                let startDay = getPreviousWeekStartDay()
-                let endDay = getPreviousWeekEndDay()
-                self.search?.txtToDate.text = dateFormatter.string(from: startDay ?? Date())
-                self.search?.txtFromDate.text = dateFormatter.string(from: endDay ?? Date())
-                self.setUpButtonsUI(value: self.intValue)
-            }
-            
-            if self.bitValueForAscDes == 1 {
-                self.search?.imgAsc.image = UIImage(named: "Group 247")
-                self.search?.imgDes.image = UIImage(named: "Circle")
-            } else if self.bitValueForAscDes == 2 {
-                
-                self.search?.imgDes.image = UIImage(named: "Group 247")
-                self.search?.imgAsc.image = UIImage(named: "Circle")
-            }
+            searchVC.delegate = self
+//            searchVC.btnSearch.addTarget(self, action: #selector(onClickedSearch), for: .touchUpInside)
+//            searchVC.btnAll.addTarget(self, action: #selector(clickedOnAll), for: .touchUpInside)
+//            searchVC.btnToday.addTarget(self, action: #selector(clickedOnToday), for: .touchUpInside)
+//            searchVC.btnYesterday.addTarget(self, action: #selector(clickedOnYesterday), for: .touchUpInside)
+//            searchVC.btnLastweek.addTarget(self, action: #selector(clickedOnLastweek), for: .touchUpInside)
+//
+//            searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
+//            searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
+//            searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
+//
+//            if self.intValue == 0 {
+//
+//                self.search?.txtToDate.text = ""
+//                self.search?.txtFromDate.text = ""
+//                self.setUpButtonsUI(value: self.intValue)
+//            }
+//            else if self.intValue == 1 {
+//
+//                formatter.dateFormat = "yyyy-MM-dd"
+//                let result = formatter.string(from: date)
+//                self.search?.txtToDate.text = result
+//                self.search?.txtFromDate.text = result
+//                self.setUpButtonsUI(value: self.intValue)
+//            }
+//            else if self.intValue == 2 {
+//
+//                let dateFormatter = DateFormatter()
+//                let previousDay = previousDay()
+//                dateFormatter.dateFormat = "yyyy-MM-dd"
+//                self.search?.txtToDate.text = dateFormatter.string(from: previousDay)
+//                self.search?.txtFromDate.text = dateFormatter.string(from: previousDay)
+//                self.setUpButtonsUI(value: self.intValue)
+//            }
+//            else if self.intValue == 3 {
+//
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "yyyy-MM-dd"
+//                let startDay = getPreviousWeekStartDay()
+//                let endDay = getPreviousWeekEndDay()
+//                self.search?.txtToDate.text = dateFormatter.string(from: startDay ?? Date())
+//                self.search?.txtFromDate.text = dateFormatter.string(from: endDay ?? Date())
+//                self.setUpButtonsUI(value: self.intValue)
+//            }
+//
+//            if self.bitValueForAscDes == 1 {
+//                self.search?.imgAsc.image = UIImage(named: "Group 247")
+//                self.search?.imgDes.image = UIImage(named: "Circle")
+//            } else if self.bitValueForAscDes == 2 {
+//
+//                self.search?.imgDes.image = UIImage(named: "Group 247")
+//                self.search?.imgAsc.image = UIImage(named: "Circle")
+//            }
             
         }
+    }
+    
+    func selectedDateTextfield(startDate: String, endDate: String) {
+         
+        self.toDateText = startDate
+        self.fromDateText = endDate
     }
     
     //MARK: - SearchForBarCouncilViewControllerFunctions
@@ -325,7 +336,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             
             
             let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "des", limit: 10, offset: listArrays.count), memberAnnouncement: nil)
-            let url = "api/MemberAnnouncement/GetAnnouncements"
+            let url = Constant.memGetAnnounceEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 
@@ -359,7 +370,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.strValue = "des"
             }
             let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration))
-            let url = "api/MemberAnnouncement/GetAnnouncements"
+            let url = Constant.memGetAnnounceEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 
@@ -387,7 +398,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
             let dataModel = GeneralPostAnnouncementRequestModel(source: "2", memberAnnouncement: MemberAnnouncements(title:  self.postAnnouncementVC?.txtEnterTitle.text ?? "", description: self.postAnnouncementVC?.descTextView.text ?? ""))
-            let url = "api/MemberAnnouncement/PostAnnouncement"
+            let url = Constant.memPostAnnouncementEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 
@@ -411,7 +422,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
             let dataModel = GeneralAnnouncementDetailsRequestModel(source: "2", memberAnnouncement: GeneralAnnouncementDetails(memberAnnouncementId: 0))
-            let url = "api/MemberAnnouncement/GetAnnouncementDetail"
+            let url = Constant.memGetAnnounceDetailsEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 

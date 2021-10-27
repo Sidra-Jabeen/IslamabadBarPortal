@@ -1,12 +1,12 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-
 target 'LawyerApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
   # Pods for LawyerApp
+
   pod 'SideMenu'
   pod 'IQKeyboardManagerSwift'
   pod 'DropDown'
@@ -15,5 +15,5 @@ target 'LawyerApp' do
   pod 'FSCalendar'
   pod 'Kingfisher'
   pod 'SteviaLayout'
-  
+
 end

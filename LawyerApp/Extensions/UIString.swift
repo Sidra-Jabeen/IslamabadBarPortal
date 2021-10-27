@@ -126,4 +126,10 @@ extension String {
             return false
         }
     }
+    
+    func getRandomNumber() -> String{
+        
+        let timeStamp: NSNumber = NSNumber(value: Int(NSDate().timeIntervalSince1970))
+        return "\(timeStamp)"
+    }
 }

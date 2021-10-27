@@ -18,7 +18,7 @@ class BaseServices {
         //http://172.16.1.228/IsbBarPortal/
         //http://10.250.10.139/ISBBar.APP/
         
-        let strURL = "http://10.250.10.221:8083/IsbBarPortal.Api/\(urlString)"
+        let strURL = "\(Constant.baseURL)\(urlString)"
         guard let url = URL(string: strURL) else {
             print("Error: cannot create URL")
             return
@@ -37,7 +37,7 @@ class BaseServices {
                 completion(data)
             case .failure:
                 
-                let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Your session has been expired\",\"data\":null}"
+                let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Alamofire Request Failed\"}"
                 completion(Data(jsonSting.utf8))
                 break
             }
@@ -45,8 +45,9 @@ class BaseServices {
     }
     
     func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
-        
-        let urlString = "http://203.215.160.148:9545/\(strUrl)"
+        //Live http://203.215.160.148:9545/
+        let urlString = "\(Constant.baseURL)\(strUrl)"
+//        let requestBinUrl = "https://enkxdj9i9oy5f.x.pipedream.net/"
         let token = Generic.getToken()
         let headers: HTTPHeaders = [
             .authorization(bearerToken: token)
@@ -94,7 +95,11 @@ class BaseServices {
                     }
                 case .failure:
                     
+<<<<<<< HEAD
                     let jsonSting = "{\"success\":false,\"code\":\"9809\",\"desc\":\"Alamofire Request Error\"}"
+=======
+                    let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\" Alamofire Request Failed\"}"
+>>>>>>> 3ab54253e45696a2ed6d05855ad98589136f4d57
                     completion(Data(jsonSting.utf8))
                     break
                 }

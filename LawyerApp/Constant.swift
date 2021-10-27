@@ -9,7 +9,50 @@ import Foundation
 
 class Constant {
     
-    static var baseURL = "http://10.250.10.221:8083/IsbBarPortal.Api/"
-    static var uploadAttachmentURL = "http://203.215.160.148:9545/"
+    static var baseURLWithDebugging = "http://10.250.10.221:8083/IsbBarPortal.Api/"
+    static var baseURL = "http://203.215.160.148:9545/"
     static var imageDownloadURL = "http://203.215.160.148:9545/documents/"
+    
+    //MARK: - AccountModule
+    
+    static var registrationEP = "api/Account/Registration"
+    static var loginEP = "api/Account/Login"
+    
+    //MARK: - UserModule
+    
+    static var getUsersEP = "api/User/GetUsers"
+    static var getUserDetailByIdEP = "api/User/GetUserDetail"
+    static var updateUserStatusEP = "api/User/UpdateUserStatus"
+    static var updateUserEP = "api/User/UpdateUser"
+    static var makeRemoveAdminEP = "api/User/MakeRemoveAdmin"
+    
+    //MARK: - MemberAnnouncementModule
+    
+    static var memPostAnnouncementEP = "api/MemberAnnouncement/PostAnnouncement"
+    static var memPostAttachmentEP = "api/MemberAnnouncement/PostAttachement"
+    static var memGetAnnounceEP = "api/MemberAnnouncement/GetAnnouncements"
+    static var memGetAnnounceDetailsEP = "api/MemberAnnouncement/GetAnnouncementDetail"
+    
+    //MARK: - BarAnnouncementModule
+    
+    static var barPostAnnouncementEP = "api/BarAnnouncement/PostAnnouncement"
+    static var barPostAttachmentEP = "api/BarAnnouncement/PostAttachement"
+    static var barGetAnnounceEP = "api/BarAnnouncement/GetAnnouncements"
+    static var barGetAnnounceDetailsEP = "api/BarAnnouncement/GetAnnouncementDetail"
+    
+    //MARK: - QuestionModule
+    
+    static var postQuestionEP = "api/Question/PostQuestion"
+    static var quesPostAttachmentEP = "api/Question/PostAttachement"
+    static var quesPostCommentEP = "api/Question/PostComment"
+    static var getQuestionsEP = "api/Question/GetQuestions"
+    static var getQuestionDetailsEP = "api/Question/GetQuestionDetail"
+    static var delCommentsEP = "api/Question/DeleteComment"
+    static var getCommentsEP = "api/Question/GetComments"
+    static var searchCommentsEP = "api/Question/SearchQuestion"
+    
+    //MARK: - OfficialDirectoryModule
+    
+    static var getOfficialContactsEP = "api/OfficialDirectory/GetOfficialContacts"
+    static var addOfficialContactsEp = "api/OfficialDirectory/AddOfficialContact"
 }

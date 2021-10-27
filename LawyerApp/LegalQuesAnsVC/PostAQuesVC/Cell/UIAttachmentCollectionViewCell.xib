@@ -35,9 +35,9 @@
                                     <constraint firstAttribute="width" constant="35" id="ZqO-oK-rob"/>
                                     <constraint firstAttribute="height" constant="35" id="cwk-yR-FBt"/>
                                 </constraints>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="remove"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Cancel"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="17.5"/>
@@ -93,7 +93,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Cancel" width="22" height="23"/>
         <image name="add-image" width="512" height="512"/>
-        <image name="remove" width="32" height="32"/>
     </resources>
 </document>

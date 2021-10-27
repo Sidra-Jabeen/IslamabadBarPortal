@@ -20,22 +20,6 @@
 		3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1427002715523400DE03BB /* CalenderViewController.swift */; };
 		3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1427012715523400DE03BB /* CalenderViewController.xib */; };
 		3D36AD142726D73E00DFD509 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36AD132726D73E00DFD509 /* Constant.swift */; };
-		3D3CB5182728547C00BBABAD /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB5162728547C00BBABAD /* CommentsViewController.swift */; };
-		3D3CB5192728547C00BBABAD /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB5172728547C00BBABAD /* CommentsViewController.xib */; };
-		3D3CB52A272867FF00BBABAD /* QuestionareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB51B272867FF00BBABAD /* QuestionareModels.swift */; };
-		3D3CB52B272867FF00BBABAD /* QuestionareServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB51C272867FF00BBABAD /* QuestionareServices.swift */; };
-		3D3CB52C272867FF00BBABAD /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB51D272867FF00BBABAD /* CommentsViewController.swift */; };
-		3D3CB52D272867FF00BBABAD /* UICommentSelectorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB51F272867FF00BBABAD /* UICommentSelectorTableViewCell.xib */; };
-		3D3CB52E272867FF00BBABAD /* UIAttachmentSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB520272867FF00BBABAD /* UIAttachmentSubViewController.swift */; };
-		3D3CB52F272867FF00BBABAD /* QueriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB521272867FF00BBABAD /* QueriesTableViewCell.swift */; };
-		3D3CB530272867FF00BBABAD /* QueriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB522272867FF00BBABAD /* QueriesTableViewCell.xib */; };
-		3D3CB531272867FF00BBABAD /* UIQuestionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB523272867FF00BBABAD /* UIQuestionDetailTableViewCell.swift */; };
-		3D3CB532272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB524272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.xib */; };
-		3D3CB533272867FF00BBABAD /* UICommentSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB525272867FF00BBABAD /* UICommentSelectorTableViewCell.swift */; };
-		3D3CB534272867FF00BBABAD /* UIAttachmentSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB526272867FF00BBABAD /* UIAttachmentSubViewController.xib */; };
-		3D3CB535272867FF00BBABAD /* UIQuestionDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB527272867FF00BBABAD /* UIQuestionDetailTableViewCell.xib */; };
-		3D3CB536272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CB528272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.swift */; };
-		3D3CB537272867FF00BBABAD /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3CB529272867FF00BBABAD /* CommentsViewController.xib */; };
 		3D6509BA2710A44C00786786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509B92710A44C00786786 /* AppDelegate.swift */; };
 		3D6509BE2710A44C00786786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6509BD2710A44C00786786 /* ViewController.swift */; };
 		3D6509C12710A44C00786786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6509BF2710A44C00786786 /* Main.storyboard */; };
@@ -102,6 +86,8 @@
 		3D66A4C6271965C100221832 /* Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C5271965C100221832 /* Validate.swift */; };
 		3D66A4C827197D8700221832 /* LocalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C727197D8700221832 /* LocalAuth.swift */; };
 		3D66A4CA2719951C00221832 /* MemberDirectoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4C92719951C00221832 /* MemberDirectoryModels.swift */; };
+		3D66A4CD2719AB0600221832 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4CB2719AB0600221832 /* CommentsViewController.swift */; };
+		3D66A4CE2719AB0600221832 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D66A4CC2719AB0600221832 /* CommentsViewController.xib */; };
 		3D66A4D02719B0DA00221832 /* QuestionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4CF2719B0DA00221832 /* QuestionRequestModel.swift */; };
 		3D66A4D22719B68700221832 /* QuestionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4D12719B68700221832 /* QuestionServices.swift */; };
 		3D66A4D42719CBDC00221832 /* PostQuestionsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4D32719CBDC00221832 /* PostQuestionsServices.swift */; };
@@ -144,18 +130,6 @@
 		C8D4A73F2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D4A73D2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift */; };
 		C8D4A7402722F10C007404E2 /* UIAttachmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D4A73E2722F10C007404E2 /* UIAttachmentCollectionViewCell.xib */; };
 		C8D4A7432722F505007404E2 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D4A7422722F505007404E2 /* ExtensionUIView.swift */; };
-		C8EFF1B82726FEAF008CDE3C /* UIQuestionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1B62726FEAF008CDE3C /* UIQuestionDetailTableViewCell.swift */; };
-		C8EFF1B92726FEAF008CDE3C /* UIQuestionDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EFF1B72726FEAF008CDE3C /* UIQuestionDetailTableViewCell.xib */; };
-		C8EFF1BC27270467008CDE3C /* UIQuestionAttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1BA27270467008CDE3C /* UIQuestionAttachmentTableViewCell.swift */; };
-		C8EFF1BD27270467008CDE3C /* UIQuestionAttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EFF1BB27270467008CDE3C /* UIQuestionAttachmentTableViewCell.xib */; };
-		C8EFF1C027270557008CDE3C /* UICommentSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1BE27270557008CDE3C /* UICommentSelectorTableViewCell.swift */; };
-		C8EFF1C127270557008CDE3C /* UICommentSelectorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EFF1BF27270557008CDE3C /* UICommentSelectorTableViewCell.xib */; };
-		C8EFF1C42727094B008CDE3C /* QueriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EFF1C22727094B008CDE3C /* QueriesTableViewCell.xib */; };
-		C8EFF1C52727094B008CDE3C /* QueriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1C32727094B008CDE3C /* QueriesTableViewCell.swift */; };
-		C8EFF1D427271571008CDE3C /* UIAttachmentSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1D227271571008CDE3C /* UIAttachmentSubViewController.swift */; };
-		C8EFF1D527271571008CDE3C /* UIAttachmentSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EFF1D327271571008CDE3C /* UIAttachmentSubViewController.xib */; };
-		C8EFF1D82727D37D008CDE3C /* QuestionareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1D72727D37D008CDE3C /* QuestionareModels.swift */; };
-		C8EFF1DA2727D3A2008CDE3C /* QuestionareServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFF1D92727D3A2008CDE3C /* QuestionareServices.swift */; };
 		F511EE9F5B16B4C463DEF7D2 /* Pods_LawyerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F926E26E8FBA5C427FDA5E /* Pods_LawyerApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -174,22 +148,6 @@
 		3D1427002715523400DE03BB /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		3D1427012715523400DE03BB /* CalenderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderViewController.xib; sourceTree = "<group>"; };
 		3D36AD132726D73E00DFD509 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		3D3CB5162728547C00BBABAD /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = QuestionareDetails/CommentsViewController.swift; sourceTree = "<group>"; };
-		3D3CB5172728547C00BBABAD /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentsViewController.xib; path = QuestionareDetails/CommentsViewController.xib; sourceTree = "<group>"; };
-		3D3CB51B272867FF00BBABAD /* QuestionareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionareModels.swift; sourceTree = "<group>"; };
-		3D3CB51C272867FF00BBABAD /* QuestionareServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionareServices.swift; sourceTree = "<group>"; };
-		3D3CB51D272867FF00BBABAD /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
-		3D3CB51F272867FF00BBABAD /* UICommentSelectorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UICommentSelectorTableViewCell.xib; sourceTree = "<group>"; };
-		3D3CB520272867FF00BBABAD /* UIAttachmentSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAttachmentSubViewController.swift; sourceTree = "<group>"; };
-		3D3CB521272867FF00BBABAD /* QueriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueriesTableViewCell.swift; sourceTree = "<group>"; };
-		3D3CB522272867FF00BBABAD /* QueriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueriesTableViewCell.xib; sourceTree = "<group>"; };
-		3D3CB523272867FF00BBABAD /* UIQuestionDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionDetailTableViewCell.swift; sourceTree = "<group>"; };
-		3D3CB524272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIQuestionAttachmentTableViewCell.xib; sourceTree = "<group>"; };
-		3D3CB525272867FF00BBABAD /* UICommentSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICommentSelectorTableViewCell.swift; sourceTree = "<group>"; };
-		3D3CB526272867FF00BBABAD /* UIAttachmentSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIAttachmentSubViewController.xib; sourceTree = "<group>"; };
-		3D3CB527272867FF00BBABAD /* UIQuestionDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIQuestionDetailTableViewCell.xib; sourceTree = "<group>"; };
-		3D3CB528272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionAttachmentTableViewCell.swift; sourceTree = "<group>"; };
-		3D3CB529272867FF00BBABAD /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		3D6509B62710A44C00786786 /* LawyerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LawyerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6509B92710A44C00786786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D6509BD2710A44C00786786 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +216,8 @@
 		3D66A4C5271965C100221832 /* Validate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
 		3D66A4C727197D8700221832 /* LocalAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuth.swift; sourceTree = "<group>"; };
 		3D66A4C92719951C00221832 /* MemberDirectoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDirectoryModels.swift; sourceTree = "<group>"; };
+		3D66A4CB2719AB0600221832 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		3D66A4CC2719AB0600221832 /* CommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		3D66A4CF2719B0DA00221832 /* QuestionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRequestModel.swift; sourceTree = "<group>"; };
 		3D66A4D12719B68700221832 /* QuestionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionServices.swift; sourceTree = "<group>"; };
 		3D66A4D32719CBDC00221832 /* PostQuestionsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuestionsServices.swift; sourceTree = "<group>"; };
@@ -304,18 +264,6 @@
 		C8D4A73D2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C8D4A73E2722F10C007404E2 /* UIAttachmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIAttachmentCollectionViewCell.xib; sourceTree = "<group>"; };
 		C8D4A7422722F505007404E2 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
-		C8EFF1B62726FEAF008CDE3C /* UIQuestionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIQuestionDetailTableViewCell.swift; sourceTree = "<group>"; };
-		C8EFF1B72726FEAF008CDE3C /* UIQuestionDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIQuestionDetailTableViewCell.xib; sourceTree = "<group>"; };
-		C8EFF1BA27270467008CDE3C /* UIQuestionAttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIQuestionAttachmentTableViewCell.swift; sourceTree = "<group>"; };
-		C8EFF1BB27270467008CDE3C /* UIQuestionAttachmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIQuestionAttachmentTableViewCell.xib; sourceTree = "<group>"; };
-		C8EFF1BE27270557008CDE3C /* UICommentSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICommentSelectorTableViewCell.swift; sourceTree = "<group>"; };
-		C8EFF1BF27270557008CDE3C /* UICommentSelectorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UICommentSelectorTableViewCell.xib; sourceTree = "<group>"; };
-		C8EFF1C22727094B008CDE3C /* QueriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueriesTableViewCell.xib; sourceTree = "<group>"; };
-		C8EFF1C32727094B008CDE3C /* QueriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueriesTableViewCell.swift; sourceTree = "<group>"; };
-		C8EFF1D227271571008CDE3C /* UIAttachmentSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAttachmentSubViewController.swift; sourceTree = "<group>"; };
-		C8EFF1D327271571008CDE3C /* UIAttachmentSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIAttachmentSubViewController.xib; sourceTree = "<group>"; };
-		C8EFF1D72727D37D008CDE3C /* QuestionareModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionareModels.swift; sourceTree = "<group>"; };
-		C8EFF1D92727D3A2008CDE3C /* QuestionareServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionareServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,35 +285,6 @@
 				3D061BA92714296B00DFCCF8 /* SearchForBarCouncilViewController.xib */,
 			);
 			path = SearchCouncilVC;
-			sourceTree = "<group>";
-		};
-		3D3CB51A272867FF00BBABAD /* QuestionareDetails */ = {
-			isa = PBXGroup;
-			children = (
-				3D3CB51B272867FF00BBABAD /* QuestionareModels.swift */,
-				3D3CB51C272867FF00BBABAD /* QuestionareServices.swift */,
-				3D3CB51D272867FF00BBABAD /* CommentsViewController.swift */,
-				3D3CB51E272867FF00BBABAD /* Cell */,
-				3D3CB529272867FF00BBABAD /* CommentsViewController.xib */,
-			);
-			path = QuestionareDetails;
-			sourceTree = "<group>";
-		};
-		3D3CB51E272867FF00BBABAD /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				3D3CB51F272867FF00BBABAD /* UICommentSelectorTableViewCell.xib */,
-				3D3CB520272867FF00BBABAD /* UIAttachmentSubViewController.swift */,
-				3D3CB521272867FF00BBABAD /* QueriesTableViewCell.swift */,
-				3D3CB522272867FF00BBABAD /* QueriesTableViewCell.xib */,
-				3D3CB523272867FF00BBABAD /* UIQuestionDetailTableViewCell.swift */,
-				3D3CB524272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.xib */,
-				3D3CB525272867FF00BBABAD /* UICommentSelectorTableViewCell.swift */,
-				3D3CB526272867FF00BBABAD /* UIAttachmentSubViewController.xib */,
-				3D3CB527272867FF00BBABAD /* UIQuestionDetailTableViewCell.xib */,
-				3D3CB528272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		3D6509AD2710A44B00786786 = {
@@ -497,14 +416,13 @@
 		3D6509F12712B51500786786 /* LegalQuesAnsVC */ = {
 			isa = PBXGroup;
 			children = (
-				3D3CB51A272867FF00BBABAD /* QuestionareDetails */,
-				3D3CB5162728547C00BBABAD /* CommentsViewController.swift */,
-				3D3CB5172728547C00BBABAD /* CommentsViewController.xib */,
 				3D6509ED2712B51000786786 /* LegalQuestionsAnswersViewController.swift */,
 				3D6509EE2712B51000786786 /* LegalQuestionsAnswersViewController.xib */,
 				3D6509F62712BC2200786786 /* QuesAnsCell */,
 				3D6509FB2712CC4400786786 /* QuestionAnswerVC */,
 				3D650A002712D30700786786 /* PostAQuesVC */,
+				3D66A4CB2719AB0600221832 /* CommentsViewController.swift */,
+				3D66A4CC2719AB0600221832 /* CommentsViewController.xib */,
 				3D66A4CF2719B0DA00221832 /* QuestionRequestModel.swift */,
 				3D66A4D12719B68700221832 /* QuestionServices.swift */,
 			);
@@ -735,35 +653,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		C8EFF1B52726FE7E008CDE3C /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				C8EFF1B62726FEAF008CDE3C /* UIQuestionDetailTableViewCell.swift */,
-				C8EFF1B72726FEAF008CDE3C /* UIQuestionDetailTableViewCell.xib */,
-				C8EFF1BA27270467008CDE3C /* UIQuestionAttachmentTableViewCell.swift */,
-				C8EFF1BB27270467008CDE3C /* UIQuestionAttachmentTableViewCell.xib */,
-				C8EFF1BE27270557008CDE3C /* UICommentSelectorTableViewCell.swift */,
-				C8EFF1BF27270557008CDE3C /* UICommentSelectorTableViewCell.xib */,
-				C8EFF1C32727094B008CDE3C /* QueriesTableViewCell.swift */,
-				C8EFF1C22727094B008CDE3C /* QueriesTableViewCell.xib */,
-				C8EFF1D227271571008CDE3C /* UIAttachmentSubViewController.swift */,
-				C8EFF1D327271571008CDE3C /* UIAttachmentSubViewController.xib */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		C8EFF1D62727D27E008CDE3C /* QuestionareDetails */ = {
-			isa = PBXGroup;
-			children = (
-				C8EFF1B52726FE7E008CDE3C /* Cell */,
-				C8EFF1D72727D37D008CDE3C /* QuestionareModels.swift */,
-				C8EFF1D92727D3A2008CDE3C /* QuestionareServices.swift */,
-				3D66A4CB2719AB0600221832 /* CommentsViewController.swift */,
-				3D66A4CC2719AB0600221832 /* CommentsViewController.xib */,
-			);
-			path = QuestionareDetails;
-			sourceTree = "<group>";
-		};
 		ECFC89F527E7106A3B7C0D08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,28 +722,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3CB532272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.xib in Resources */,
+				3D66A4CE2719AB0600221832 /* CommentsViewController.xib in Resources */,
 				3D650A132712E7B400786786 /* MemberDirectoryViewController.xib in Resources */,
 				3D6509D8271196BC00786786 /* SignInViewController.xib in Resources */,
 				3D6509FF2712D30100786786 /* PostAQuestionViewController.xib in Resources */,
 				3D650A092712E11200786786 /* GeneralAnnouncementTableViewCell.xib in Resources */,
 				3D1427032715523400DE03BB /* CalenderViewController.xib in Resources */,
-				C8EFF1B92726FEAF008CDE3C /* UIQuestionDetailTableViewCell.xib in Resources */,
 				3D6509C62710A44D00786786 /* LaunchScreen.storyboard in Resources */,
 				3D66A4D8271AC9BA00221832 /* PostAnnouncementViewController.xib in Resources */,
 				3D6509F02712B51000786786 /* LegalQuestionsAnswersViewController.xib in Resources */,
 				3DE5EFF327216B5300A9512A /* EmptyTableViewCell.xib in Resources */,
-				C8EFF1C127270557008CDE3C /* UICommentSelectorTableViewCell.xib in Resources */,
 				3D650A042712DF9500786786 /* GeneralAnnouncementsViewController.xib in Resources */,
-				C8EFF1BD27270467008CDE3C /* UIQuestionAttachmentTableViewCell.xib in Resources */,
 				3D66A4C027175A8100221832 /* SupremeCourtTableViewCell.xib in Resources */,
 				3D650A3127131B9A00786786 /* SearchFilterViewController.xib in Resources */,
-				3D3CB52D272867FF00BBABAD /* UICommentSelectorTableViewCell.xib in Resources */,
 				3D650A1D2712EDE100786786 /* MemberNameViewController.xib in Resources */,
 				3D650A3D2713479B00786786 /* UserTableViewCell.xib in Resources */,
 				3D66A4B42717502200221832 /* MembersOfIslamabadTableViewCell.xib in Resources */,
 				3D6509D0271186BA00786786 /* WelcomeToIslamabadViewController.xib in Resources */,
-				C8EFF1C42727094B008CDE3C /* QueriesTableViewCell.xib in Resources */,
 				3D061BAB2714296B00DFCCF8 /* SearchForBarCouncilViewController.xib in Resources */,
 				3D6509EC27120DB400786786 /* MenuListTableViewCell.xib in Resources */,
 				3D6509C32710A44D00786786 /* Assets.xcassets in Resources */,
@@ -863,25 +747,20 @@
 				3D66A4C427175B0000221832 /* OfficeAddressTableViewCell.xib in Resources */,
 				3D650A182712E89200786786 /* MemberCollectionViewCell.xib in Resources */,
 				3D650A0E2712E5EE00786786 /* AnnouncementViewController.xib in Resources */,
-				3D3CB5192728547C00BBABAD /* CommentsViewController.xib in Resources */,
 				3D650A222712F6EA00786786 /* OfficialDirectoryViewController.xib in Resources */,
 				3D66A4B8271758F300221832 /* IssuseDateTableViewCell.xib in Resources */,
 				3D6509C12710A44C00786786 /* Main.storyboard in Resources */,
 				3D650A2C2713026800786786 /* ProfileViewController.xib in Resources */,
 				3DEB0BE5271EA8DF00E5DE75 /* BiometricTableViewCell.xib in Resources */,
-				3D3CB537272867FF00BBABAD /* CommentsViewController.xib in Resources */,
 				3DE5EFF72722CE6C00A9512A /* ProfileTableViewCell.xib in Resources */,
-				3D3CB535272867FF00BBABAD /* UIQuestionDetailTableViewCell.xib in Resources */,
 				3D6509E727120BF800786786 /* UserNameTableViewCell.xib in Resources */,
 				3D650A422714082B00786786 /* BarCouncilViewController.xib in Resources */,
-				3D3CB530272867FF00BBABAD /* QueriesTableViewCell.xib in Resources */,
 				3D6509FA2712CC3E00786786 /* QuestionAnswerViewController.xib in Resources */,
 				3DD92BAE2715E03200C5D0F6 /* ApprovalViewController.xib in Resources */,
 				3D66A4BC271759FF00221832 /* HighCourtTableViewCell.xib in Resources */,
 				3D6509F52712BC1C00786786 /* QuestionAnswerTableViewCell.xib in Resources */,
 				3D6509DD2711F2AF00786786 /* DashboardViewController.xib in Resources */,
 				3DE5EFEF27213CD600A9512A /* AddOfficialDirectoryViewController.xib in Resources */,
-				3D3CB534272867FF00BBABAD /* UIAttachmentSubViewController.xib in Resources */,
 				C8D4A7402722F10C007404E2 /* UIAttachmentCollectionViewCell.xib in Resources */,
 				3D650A382713455000786786 /* SignUpViewController.xib in Resources */,
 				3D6509E227120B1B00786786 /* SideMenuTableViewController.xib in Resources */,
@@ -904,7 +783,6 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -915,7 +793,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -956,55 +833,44 @@
 				3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */,
 				3DEB0BE7271F47A900E5DE75 /* GetAnnouncementDetailServices.swift in Sources */,
 				3D650A212712F6EA00786786 /* OfficialDirectoryViewController.swift in Sources */,
-				C8EFF1DA2727D3A2008CDE3C /* QuestionareServices.swift in Sources */,
 				3D650A3C2713479B00786786 /* UserTableViewCell.swift in Sources */,
 				3D650A122712E7B400786786 /* MemberDirectoryViewController.swift in Sources */,
 				3D650A1C2712EDE100786786 /* MemberNameViewController.swift in Sources */,
 				3D66A4D7271AC9BA00221832 /* PostAnnouncementViewController.swift in Sources */,
-				C8EFF1D427271571008CDE3C /* UIAttachmentSubViewController.swift in Sources */,
 				3D6509FE2712D30100786786 /* PostAQuestionViewController.swift in Sources */,
 				3DE5EFF62722CE6C00A9512A /* ProfileTableViewCell.swift in Sources */,
 				3D66A4D02719B0DA00221832 /* QuestionRequestModel.swift in Sources */,
 				3D650A3027131B9A00786786 /* SearchFilterViewController.swift in Sources */,
 				3D061BAA2714296B00DFCCF8 /* SearchForBarCouncilViewController.swift in Sources */,
 				3D650A342713252F00786786 /* UIButton.swift in Sources */,
-				3D3CB52F272867FF00BBABAD /* QueriesTableViewCell.swift in Sources */,
 				3D1426F12714783D00DE03BB /* BaseService.swift in Sources */,
 				3D66A4E4271C0C2800221832 /* NetworkConectionModel.swift in Sources */,
 				3D66A4C327175B0000221832 /* OfficeAddressTableViewCell.swift in Sources */,
 				3D66A4DA271AD47600221832 /* AnnouncementModels.swift in Sources */,
 				3D1426F5271483B400DE03BB /* SignUpServices.swift in Sources */,
+				3D66A4CD2719AB0600221832 /* CommentsViewController.swift in Sources */,
 				3D36AD142726D73E00DFD509 /* Constant.swift in Sources */,
 				3D6509D427118FAF00786786 /* UIView.swift in Sources */,
 				3D6509F92712CC3E00786786 /* QuestionAnswerViewController.swift in Sources */,
 				3D650A262712F84900786786 /* OfficialDirectoryTableViewCell.swift in Sources */,
-				3D3CB5182728547C00BBABAD /* CommentsViewController.swift in Sources */,
-				3D3CB52E272867FF00BBABAD /* UIAttachmentSubViewController.swift in Sources */,
 				3DEB0BEB2720079700E5DE75 /* BarAnnouncementDetailServices.swift in Sources */,
 				3D1426FB2714905D00DE03BB /* SignInResponseModel.swift in Sources */,
 				3D66A4E0271B14ED00221832 /* GeneralAnnouncementServices.swift in Sources */,
 				3DE5EFEB272137C200A9512A /* OfficialDirectoryServices.swift in Sources */,
-				C8EFF1C027270557008CDE3C /* UICommentSelectorTableViewCell.swift in Sources */,
 				3D6509F42712BC1C00786786 /* QuestionAnswerTableViewCell.swift in Sources */,
 				3DE933402716F5D300B80B7D /* SpinnerViewController.swift in Sources */,
-				3D3CB52B272867FF00BBABAD /* QuestionareServices.swift in Sources */,
 				3D66A4DC271AD48D00221832 /* AnnouncementServices.swift in Sources */,
 				3D66A4CA2719951C00221832 /* MemberDirectoryModels.swift in Sources */,
 				3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */,
-				C8EFF1C52727094B008CDE3C /* QueriesTableViewCell.swift in Sources */,
 				3D650A032712DF9500786786 /* GeneralAnnouncementsViewController.swift in Sources */,
 				3D650A0D2712E5EE00786786 /* AnnouncementViewController.swift in Sources */,
 				3D66A4D42719CBDC00221832 /* PostQuestionsServices.swift in Sources */,
 				3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */,
 				3DE5EFE9272134BF00A9512A /* OfficialDirectoryModels.swift in Sources */,
-				3D3CB52A272867FF00BBABAD /* QuestionareModels.swift in Sources */,
 				3D6509E627120BF800786786 /* UserNameTableViewCell.swift in Sources */,
 				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
-				3D3CB533272867FF00BBABAD /* UICommentSelectorTableViewCell.swift in Sources */,
-				3D3CB531272867FF00BBABAD /* UIQuestionDetailTableViewCell.swift in Sources */,
 				3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */,
 				3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */,
-				3D3CB52C272867FF00BBABAD /* CommentsViewController.swift in Sources */,
 				3D6509BE2710A44C00786786 /* ViewController.swift in Sources */,
 				3D6509D7271196BC00786786 /* SignInViewController.swift in Sources */,
 				3D650A2B2713026800786786 /* ProfileViewController.swift in Sources */,
@@ -1041,11 +907,9 @@
 				3D66A4D22719B68700221832 /* QuestionServices.swift in Sources */,
 				3D66A4C827197D8700221832 /* LocalAuth.swift in Sources */,
 				3D1426FF2715520700DE03BB /* CalenderView.swift in Sources */,
-				3D3CB536272867FF00BBABAD /* UIQuestionAttachmentTableViewCell.swift in Sources */,
 				3DEB0BEF272011BB00E5DE75 /* ProfileServices.swift in Sources */,
 				3D66A4E2271C049600221832 /* BiometricsManager.swift in Sources */,
 				3D66A4C6271965C100221832 /* Validate.swift in Sources */,
-				C8EFF1BC27270467008CDE3C /* UIQuestionAttachmentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

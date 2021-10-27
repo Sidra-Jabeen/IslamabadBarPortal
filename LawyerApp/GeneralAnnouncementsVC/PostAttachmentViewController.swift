@@ -71,7 +71,6 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
-        self.bitForLisenceType = 3
         self.img1.image = UIImage(named: "Group 247")
         self.img2.image = UIImage(named: "Circle")
         self.img3.image = UIImage(named: "Circle")
@@ -192,40 +191,49 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-//        let videoURL = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerReferenceURL") ] as? URL
-//        print(videoURL?.pathExtension ?? "Error in url")
-        let videoURL = info[.imageURL] as? NSURL
-        let filename = videoURL?.lastPathComponent
-        
-        if videoURL != nil {
-            if videoURL?.pathExtension == "MOV" {
-//                self.getThumbnailFromUrl(videoURL! as URL, { image in
-//                    guard let url = videoURL?.absoluteString else { return }
-//                    self.arrayForMedia.append((image!, url))
-//                })
-                let thumbnailImage = self.generateThumbnail(videoUrl: videoURL!.absoluteString ?? "")
-                guard let url = videoURL?.absoluteString else { return }
-                self.arrayForMedia.append((thumbnailImage!, url))
-//                self.generateThumbnail(for: <#T##AVAsset#>)
+        let videoURL = info[.imageURL] as? URL
+        print(videoURL?.pathExtension ?? "Error in url")
+        if let videoURL = info[.mediaURL] as? URL {
+
+            let thumbnailImage = self.generateThumbnail(videoUrl: videoURL.absoluteString)
+            self.arrayForMedia.append((thumbnailImage!, videoURL.absoluteString))
+        } else if let imageUrl = info[.imageURL] as? URL {
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            self.arrayForMedia.append((image,  imageUrl.absoluteString))
+        } else {
+            
+            if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String, mediaType == (kUTTypeMovie as String), let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL, UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path) {
+
+                UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(video(_:didFinishSavingWithError:contextInfo:)), nil)
             } else {
                 let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                guard let url = videoURL?.absoluteString else { return }
-                self.arrayForMedia.append((image, url))
-            }
-        } else {
-            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            let data = image.pngData()! as NSData
-            
-            let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-            let localPath = documentDirectory?.appending("\(Date())")
-            data.write(toFile: localPath!, atomically: true)
+                let data = image.pngData()! as NSData
+                
+                let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+                let localPath = documentDirectory?.appending("/\(self.getRandomNumber()).png")
+                data.write(toFile: localPath!, atomically: true)
 
-            let photoURL = URL.init(fileURLWithPath: localPath!)
-            print(photoURL)
-//                self.arrayForMedia.append((image, videoURL?.absoluteString))
+                let photoURL = URL.init(fileURLWithPath: localPath!)
+                print(photoURL)
+                self.arrayForMedia.append((image, photoURL.absoluteString))
+            }
         }
         
         self.imagePicker.dismiss(animated: true)
+        self.attachmentsCollection.reloadData()
+    }
+    
+    func getRandomNumber() -> String{
+        
+        let timeStamp: NSNumber = NSNumber(value: Int(NSDate().timeIntervalSince1970))
+        return "\(timeStamp)"
+    }
+    
+    @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {
+        
+        let photoURL = URL.init(fileURLWithPath: videoPath)
+        let thumbnailImage = self.generateThumbnail(videoUrl: photoURL.absoluteString)
+        self.arrayForMedia.append((thumbnailImage!, videoPath))
         self.attachmentsCollection.reloadData()
     }
     
@@ -375,28 +383,36 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     
     //MARK: - CallingApiFunctions
     
+    //MARK: - BarPostAttachment
     func callGetPostAnnouncementApi(type: Int) {
         
+        
         if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = PostAnnouncementRequestModel(source: "2", barAnnouncement: Announcement(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? "", type: "\(type)"))
-            let url = "api/BarAnnouncement/PostAnnouncement"
-            let services = AnnouncementServices()
-            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-                    print("successssss")
-                    let announceID = responseData.barAnnouncement?.barAnnouncementId
-                    print(announceID ?? 0)
-                    if self.arrayForMedia.count > 0 {
-                        
-                        self.uploadFiles(barId: "\(announceID ?? 0)", type: "1", index: 0)
+            if self.txtTitle.text != "" {
+                if self.txtDescription.text != "" {
+                    self.startAnimation()
+                    let dataModel = PostAnnouncementRequestModel(source: "2", barAnnouncement: Announcement(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? "", type: "\(type)"))
+                    let url = Constant.barPostAnnouncementEP
+                    let services = AnnouncementServices()
+                    services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                        let status = responseData.success ?? false
+                        if status {
+                            print("successssss")
+                            let announceID = responseData.barAnnouncement?.barAnnouncementId
+                            print(announceID ?? 0)
+                            if self.arrayForMedia.count > 0 {
+                                
+                                self.uploadFiles(barId: "\(announceID ?? 0)", type: "1", index: 0)
+                            }
+                        } else {
+                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        }
                     }
-                } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                } else{
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Description should not be Empty!")
                 }
+            } else{
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Title should not be Empty!")
             }
         } else {
             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
@@ -406,20 +422,20 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     func uploadFiles(barId: String, type: String, index: Int) {
         
             if  Connectivity.isConnectedToInternet {
-                self.startAnimation()
+//                self.startAnimation()
                 let attachmentModel = PostAttachmentFileRequestModel(attachmentFile: arrayForMedia[index].1)
                 let dataModel = PostDataRequestModel(announcementId: barId, type: type)
-                let url = "api/BarAnnouncement/PostAttachement"
+                let url = Constant.barPostAttachmentEP
                 let services = AnnouncementServices()
                 services.postUploadMethod(files: attachmentModel.params, urlString: url, dataModel: dataModel.params, completion: { (responseData) in
                     
-                    self.stopAnimation()
                     let status = responseData.success
                     if status ?? false {
                         let index = index+1
                         if index < self.arrayForMedia.count {
                             self.uploadFiles(barId: barId, type: type, index: index)
                         } else {
+                            self.stopAnimation()
                             let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
                                 self.navigationController?.popViewController(animated: true)
@@ -427,6 +443,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.present(alert, animated: true, completion: nil)
                         }
                     } else{
+                        self.stopAnimation()
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                     
@@ -436,28 +453,39 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
             }
     }
     
+    
+    //MARK: - MemberPostAttachment
+    
     func callGeneralPostAnnouncementApi() {
         
         if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = GeneralPostAnnouncementRequestModel(source: "2", memberAnnouncement: MemberAnnouncements(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? ""))
-            let url = "api/MemberAnnouncement/PostAnnouncement"
-            let services = GeneralAnnouncementServices()
-            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-                    print("successssss")
-                    let memberID = responseData.memberAnnouncement?.memberAnnouncementId
-                    print(memberID ?? 0)
-                    if self.arrayForMedia.count > 0 {
+            if self.txtTitle.text != "" {
+                if self.txtDescription.text != "" {
+                    self.startAnimation()
+                    let dataModel = GeneralPostAnnouncementRequestModel(source: "2", memberAnnouncement: MemberAnnouncements(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? ""))
+                    let url = Constant.memPostAnnouncementEP
+                    let services = GeneralAnnouncementServices()
+                    services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                         
-                        self.uploadGeneralFiles(barId: "\(memberID ?? 0)", type: "2", index: 0)
+//                        self.stopAnimation()
+                        let status = responseData.success ?? false
+                        if status {
+                            print("successssss")
+                            let memberID = responseData.memberAnnouncement?.memberAnnouncementId
+                            print(memberID ?? 0)
+                            if self.arrayForMedia.count > 0 {
+                                
+                                self.uploadGeneralFiles(barId: "\(memberID ?? 0)", type: "2", index: 0)
+                            }
+                        } else {
+                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        }
                     }
-                } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                } else{
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Description should not be Empty!")
                 }
+            } else{
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Title should not be Empty!")
             }
         } else {
             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
@@ -466,19 +494,20 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     
     func uploadGeneralFiles(barId: String, type: String, index: Int) {
             if  Connectivity.isConnectedToInternet {
-                self.startAnimation()
+//                self.startAnimation()
                 let attachmentModel = PostAttachmentFileRequestModel(attachmentFile: arrayForMedia[index].1)
                 let dataModel = PostDataRequestModel(announcementId: barId, type: type)
-                let url = "api/MemberAnnouncement/PostAttachement"
+                let url = Constant.memPostAttachmentEP
                 let services = GeneralAnnouncementServices()
                 services.postUploadMethod(files: attachmentModel.params, urlString: url, dataModel: dataModel.params, completion: { (responseData) in
-                    self.stopAnimation()
+                    
                     let status = responseData.success
                     if status ?? false {
                         let index = index+1
                         if index < self.arrayForMedia.count {
                             self.uploadGeneralFiles(barId: barId, type: type, index: index)
                         } else {
+                            self.stopAnimation()
                             let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
                                 self.navigationController?.popViewController(animated: true)
@@ -486,9 +515,9 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.present(alert, animated: true, completion: nil)
                         }
                     } else{
+                        self.stopAnimation()
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
-                    
                 })
             } else {
                 self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")

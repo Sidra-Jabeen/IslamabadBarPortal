@@ -19,7 +19,7 @@ extension UIViewController {
     }
 
     func stopAnimation() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             spinnerView.willMove(toParent: nil)
             spinnerView.view.removeFromSuperview()
             spinnerView.removeFromParent()
@@ -35,5 +35,11 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func alertView(alertMessage : String, action: UIAlertAction) {
+        
+        let alert = UIAlertController(title: "Islamabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

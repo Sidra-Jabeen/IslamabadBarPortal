@@ -82,7 +82,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         tmpCell.lblAnounceAt.text = listArrays[indexPath.row].announcedAt
         tmpCell.lblAnounceBy.text = listArrays[indexPath.row].announcedBy
         tmpCell.lblType.text = listArrays[indexPath.row].typeNames
-        let url = URL(string: listArrays[indexPath.item].announcedByProfile ?? "")
+        let url = URL(string: "\(Constant.imageDownloadURL)\(listArrays[indexPath.item].announcedByProfile ?? "")")
         tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         tmpCell.selectionStyle = .none
         return tmpCell

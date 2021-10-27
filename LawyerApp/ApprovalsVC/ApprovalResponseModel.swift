@@ -91,6 +91,7 @@ struct ResponseUsers: Codable {
     
     var cnic: String?
     var contactNumber: String?
+    var secondaryContactNumber: String?
     var dob: String?
     var fullName: String?
     var isAdmin: Bool?
@@ -98,16 +99,20 @@ struct ResponseUsers: Codable {
     var issuanceDateLowerCourt: String?
     var issuanceDateSupremeCourt: String?
     var licenseNumber: String?
+    var licenseUrl: String?
     var licenseType: String?
     var officeAddress: String?
     var profileUrl: String?
     var userId: Int?
     var status: String?
+    var email: String?
+    var roleId: Int?
     
     enum CodingKeys: String, CodingKey {
         
         case cnic = "cnic"
         case contactNumber = "contactNumber"
+        case secondaryContactNumber = "secondaryContactNumber"
         case dob = "dob"
         case fullName = "fullName"
         case isAdmin = "isAdmin"
@@ -115,11 +120,14 @@ struct ResponseUsers: Codable {
         case issuanceDateLowerCourt = "issuanceDateLowerCourt"
         case issuanceDateSupremeCourt = "issuanceDateSupremeCourt"
         case licenseNumber = "licenseNumber"
+        case licenseUrl = "licenseUrl"
         case licenseType = "licenseType"
         case officeAddress = "officeAddress"
         case profileUrl = "profileUrl"
         case userId = "userId"
         case status = "status"
+        case email = "email"
+        case roleId = "roleId"
     }
     
     init(from decoder: Decoder) throws {
@@ -127,6 +135,7 @@ struct ResponseUsers: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         cnic = try values.decodeIfPresent(String.self, forKey: .cnic)
         contactNumber = try values.decodeIfPresent(String.self, forKey: .contactNumber)
+        secondaryContactNumber = try values.decodeIfPresent(String.self, forKey: .secondaryContactNumber)
         dob = try values.decodeIfPresent(String.self, forKey: .dob)
         fullName = try values.decodeIfPresent(String.self, forKey: .fullName)
         isAdmin = try values.decodeIfPresent(Bool.self, forKey: .isAdmin)
@@ -134,10 +143,13 @@ struct ResponseUsers: Codable {
         issuanceDateLowerCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateLowerCourt)
         issuanceDateSupremeCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateSupremeCourt)
         licenseNumber = try values.decodeIfPresent(String.self, forKey: .licenseNumber)
+        licenseUrl = try values.decodeIfPresent(String.self, forKey: .licenseUrl)
         licenseType = try values.decodeIfPresent(String.self, forKey: .licenseType)
         officeAddress = try values.decodeIfPresent(String.self, forKey: .officeAddress)
         profileUrl = try values.decodeIfPresent(String.self, forKey: .profileUrl)
         userId = try values.decodeIfPresent(Int.self, forKey: .userId)
         status = try values.decodeIfPresent(String.self, forKey: .status)
+        email = try values.decodeIfPresent(String.self, forKey: .email)
+        roleId = try values.decodeIfPresent(Int.self, forKey: .roleId)
     }
 }

@@ -33,9 +33,9 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var intForTextfields = -1
     var btnSelectionArray = [false, false, false]
     var cellArray : [(arrSignUpList: String ,arrPlaceHolderList: String, imagesBtns: String, arrOfTypes: String ,rowSelectedValue: Bool, inputText: String)] = [
-        ("Issue Date of Lower Court","dd/mm/yyyy","layer1","calender",true, ""),
-        ("Issue Date of High Court","dd/mm/yyyy","layer1","calender",true, ""),
-        ("Issue Date of Supreme Court","dd/mm/yyyy","layer1","calender",true, "")
+        ("Issue Date of Lower Court","dd-mm-yyyy","layer1","calender",true, ""),
+        ("Issue Date of High Court","dd-mm-yyyy","layer1","calender",true, ""),
+        ("Issue Date of Supreme Court","dd-mm-yyyy","layer1","calender",true, "")
     ]
     let photoPicker = UIImagePickerController()
     let datePicker = UIDatePicker()
@@ -64,7 +64,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print(selectedDate)
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
+            formatter.dateFormat = "dd-MM-yyyy"
             let strDate = formatter.string(from: selectedDate)
             self?.mainArray[self?.selectedDateIndex ?? 0].inputText = strDate
             self?.strCalenderPickerValueTest = strDate

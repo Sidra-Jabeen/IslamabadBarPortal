@@ -230,13 +230,15 @@ struct AttachmentResponse: Codable {
     var announcementId: Int?
     var type: Int?
     var attachmentUrl: String?
+    var isDocType: String?
     
     enum CodingKeys: String, CodingKey {
         
         case id = "id"
         case announcementId = "announcementId"
         case type = "type"
-        case attachmentUrl = "announcedBy"
+        case attachmentUrl = "attachmentUrl"
+        case isDocType = "isDocType"
     }
     
     init(from decoder: Decoder) throws {
@@ -246,5 +248,6 @@ struct AttachmentResponse: Codable {
         announcementId = try values.decodeIfPresent(Int.self, forKey: .announcementId)
         type = try values.decodeIfPresent(Int.self, forKey: .type)
         attachmentUrl = try values.decodeIfPresent(String.self, forKey: .attachmentUrl)
+        isDocType = try values.decodeIfPresent(String.self, forKey: .isDocType)
     }
 }

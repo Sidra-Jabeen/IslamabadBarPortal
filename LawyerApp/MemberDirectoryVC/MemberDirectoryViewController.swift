@@ -12,12 +12,16 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     
     @IBOutlet weak var collectionMembers: UICollectionView!
     
+    @IBOutlet weak var noDataFoundView: UIView!
+    @IBOutlet weak var collectionView: UIView!
+    
     var memberVC: MemberNameViewController?
     var searchVC: SearchFilterViewController?
     var arrayOfMembers = [ResponseUsers]()
-    var bitValue = 0
+    var bitValue = 1
     var bitValueForAscDes = 0
     var strValue = ""
+    var fullName = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +63,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         cell.layer.shadowRadius = 4
         cell.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
         cell.lblCourtName.text = arrayOfMembers[indexPath.item].licenseType
-        let url = URL(string: "http://203.215.160.148:9545/documents/\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
+        let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
         
         cell.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         return cell
@@ -79,10 +83,11 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             member.memberId = arrayOfMembers[indexPath.item].userId
             currentUser = arrayOfMembers[indexPath.item].userId
             adminValue = arrayOfMembers[indexPath.item].isAdmin
-            let url = URL(string: arrayOfMembers[indexPath.item].profileUrl ?? "")
+            let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
             member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
-            member.btn1.isHidden = true
-            member.btn2.isHidden = true
+            member.btnRejectedHeight.constant = 0
+            member.btnApprovedHeight.constant = 0
+            member.btnGiveApprovementHeight.constant = 0
         }
     }
     
@@ -117,7 +122,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             search.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
             
             search.btnSearch.addTarget(self, action: #selector(clickedOnSearch), for: .touchUpInside)
-            
+            search.txtName.text = self.fullName
             if self.bitValue == 1 {
                 
                 self.setUpButtonsUI(value: self.bitValue)
@@ -193,21 +198,22 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     
     @objc func clickedOnSearch() {
         
+        self.fullName = self.searchVC?.txtName.text ?? ""
         if self.bitValue == 1 {
             
-            self.searchFilterApi(lisenseType: "0")
+            self.searchFilterApi(fullName: self.fullName)
             
         } else if self.bitValue == 2 {
             
-            self.searchFilterApi(lisenseType: "3")
+            self.searchFilterApi(fullName: self.fullName, lisenseType: "3")
             
         } else if self.bitValue == 3 {
             
-            self.searchFilterApi(lisenseType: "2")
+            self.searchFilterApi(fullName: self.fullName, lisenseType: "2")
             
         } else if self.bitValue == 4 {
             
-            self.searchFilterApi(lisenseType: "1")
+            self.searchFilterApi(fullName: self.fullName, lisenseType: "1")
             
         }
     }
@@ -229,10 +235,13 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
                     
                     self.arrayOfMembers = responseData.users ?? []
                     print(self.arrayOfMembers)
+                    self.noDataFoundView.isHidden = true
+                    self.collectionView.isHidden = false
                     self.collectionMembers.reloadData()
-                    
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    self.noDataFoundView.isHidden = false
+                    self.collectionView.isHidden = true
 //                    self.arrayOfMembers.removeAll()
                 }
             }
@@ -242,7 +251,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
 
     }
     
-    func searchFilterApi(lisenseType: String) {
+    func searchFilterApi(fullName: String, lisenseType: String? = nil) {
         
         if bitValueForAscDes == 1 {
             self.strValue = "asc"
@@ -251,7 +260,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         }
         
         self.startAnimation()
-        let dataModel = MemberRequestModel(Pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), source: "2", user: MemberUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: lisenseType, status: "2"))
+        let dataModel = MemberRequestModel(Pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), source: "2", user: MemberUser(fullName: fullName ,cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: lisenseType, status: "2"))
         let signUpUrl = "api/User/GetUsers"
         let services = ApprovalServices()
         services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
@@ -262,12 +271,19 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
                 
                 self.arrayOfMembers = responseData.users ?? []
                 print(self.arrayOfMembers)
-                self.collectionMembers.reloadData()
                 self.searchVC?.willMove(toParent: nil)
                 self.searchVC?.view.removeFromSuperview()
                 self.searchVC?.removeFromParent()
+                self.noDataFoundView.isHidden = true
+                self.collectionView.isHidden = false
+                self.collectionMembers.reloadData()
             } else {
-                self.showAlertForMember(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                self.showAlertForMember(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                self.searchVC?.willMove(toParent: nil)
+                self.searchVC?.view.removeFromSuperview()
+                self.searchVC?.removeFromParent()
+                self.noDataFoundView.isHidden = false
+                self.collectionView.isHidden = true
             }
         }
     }

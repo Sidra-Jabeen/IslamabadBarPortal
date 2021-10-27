@@ -37,7 +37,7 @@ class BaseServices {
                 completion(data)
             case .failure:
                 
-                let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\"Alamofire Request Failed\"}"
+                let jsonSting = "{\"success\":false,\"code\":\"9877\",\"desc\":\"Alamofire Request Failed\"}"
                 completion(Data(jsonSting.utf8))
                 break
             }
@@ -95,7 +95,7 @@ class BaseServices {
                     }
                 case .failure:
                     
-                    let jsonSting = "{\"success\":false,\"code\":\"401\",\"desc\":\" Alamofire Request Failed\"}"
+                    let jsonSting = "{\"success\":false,\"code\":\"9877\",\"desc\":\" Alamofire Request Failed\"}"
                     completion(Data(jsonSting.utf8))
                     break
                 }

@@ -60,8 +60,6 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         else if gesture.direction == .left {
             print("Swipe Left")
         }
-        
-        
     }
     
     //MARK: - IBAction
@@ -92,7 +90,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         let tmpCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UIAttachmentCollectionViewCell", for: indexPath) as! UIAttachmentCollectionViewCell
         
         let strURL = self.arrAttachmentResponse[indexPath.row].attachmentUrl
-        let url = URL(string: "http://203.215.160.148:9545/documents/\(strURL ?? "")")
+        let url = URL(string: "\(Constant.imageDownloadURL)\(strURL ?? "")")
         tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: ""))
         tmpCell.btnAdd.isHidden = true
         tmpCell.btnRemove.isHidden = true
@@ -128,7 +126,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                         self.lbAnnounceAt.text = responseData.memberAnnouncement?.announcedAt
                         self.lblAnnounceBy.text = responseData.memberAnnouncement?.announcedBy
                         let strURL = responseData.memberAnnouncement?.announcedByProfile
-                        let url = URL(string: "http://203.215.160.148:9545/documents/\(strURL ?? "")")
+                        let url = URL(string: "\(Constant.imageDownloadURL)\(strURL ?? "")")
                         self.imgProfile.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
                         self.arrAttachmentResponse = responseData.memberAnnouncement?.attachments ?? []
                         self.attachmentsCollection.reloadData()
@@ -146,7 +144,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
             if  Connectivity.isConnectedToInternet {
                 self.startAnimation()
                 let dataModel = AnnouncementDetailsRequestModel(source: "2", barAnnouncement: Details(barAnnouncementId: self.userId ?? 0))
-                let url = Constant.memGetAnnounceDetailsEP
+                let url = Constant.barGetAnnounceDetailsEP
                 let services = BarAnnouncementDetailServices()
                 services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                     
@@ -157,6 +155,11 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                         self.txtDesc.text = responseData.barAnnouncement?.description
                         self.lbAnnounceAt.text = responseData.barAnnouncement?.announcedAt
                         self.lblAnnounceBy.text = responseData.barAnnouncement?.announcedBy
+                        let strURL = responseData.barAnnouncement?.announcedByProfile
+                        let url = URL(string: "\(Constant.imageDownloadURL)\(strURL ?? "")")
+                        self.imgProfile.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+                        self.arrAttachmentResponse = responseData.barAnnouncement?.attachments ?? []
+                        self.attachmentsCollection.reloadData()
                     } else {
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     }

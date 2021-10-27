@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnProfile: UIButton!
+    @IBOutlet weak var btnEditProfileImage: UIImageView!
     
     //MARK: - Propertities
     
@@ -50,6 +51,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         self.txtLisence.delegate = self
         self.txtContactNo.delegate = self
         self.txtOfficeAddress.delegate = self
+        self.btnEditProfileImage.isHidden = true
         self.photoPicker.delegate = self
         self.scrollView.contentSize = (CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 100))
     }
@@ -95,11 +97,14 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         self.txtOfficeAddress.isUserInteractionEnabled = true
         self.txtOfficeAddress.textColor = UIColor.black
         self.btnProfile.isUserInteractionEnabled = true
+        self.btnEditProfileImage.isHidden = false
         
         if self.intForUpdateUser == 1 {
 //            self.callUpdateUserApi()
             self.callUpdateUserApi()
         }
+        
+//        self.alertView(alertMessage: "Save Changes", action: <#T##UIAlertAction#>)
         
     }
     
@@ -173,7 +178,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     let user = responseData.user
                     let status = responseData.success ?? false
                     if status {
-                        let url = URL(string: "http://203.215.160.148:9545/documents/\(user?.profileUrl ?? "")")
+                        let url = URL(string: "\(Constant.imageDownloadURL)\(user?.profileUrl ?? "")")
                         self.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
                         self.lblMemberName.text = user?.fullName
                         self.txtFullNameOnLisence.text = user?.fullName
@@ -224,8 +229,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     self.txtOfficeAddress.isUserInteractionEnabled = false
                     self.txtOfficeAddress.textColor = UIColor.placeholderText
                     self.btnEdit.setTitle("Edit", for: .normal)
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 } else{
                     print("failed")
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             })
         } else {

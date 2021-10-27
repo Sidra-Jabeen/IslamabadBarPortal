@@ -392,7 +392,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                 if self.txtDescription.text != "" {
                     self.startAnimation()
                     let dataModel = PostAnnouncementRequestModel(source: "2", barAnnouncement: Announcement(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? "", type: "\(type)"))
-                    let url = "api/BarAnnouncement/PostAnnouncement"
+                    let url = Constant.barPostAnnouncementEP
                     let services = AnnouncementServices()
                     services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                         let status = responseData.success ?? false
@@ -425,7 +425,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
 //                self.startAnimation()
                 let attachmentModel = PostAttachmentFileRequestModel(attachmentFile: arrayForMedia[index].1)
                 let dataModel = PostDataRequestModel(announcementId: barId, type: type)
-                let url = "api/BarAnnouncement/PostAttachement"
+                let url = Constant.barPostAttachmentEP
                 let services = AnnouncementServices()
                 services.postUploadMethod(files: attachmentModel.params, urlString: url, dataModel: dataModel.params, completion: { (responseData) in
                     
@@ -463,7 +463,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                 if self.txtDescription.text != "" {
                     self.startAnimation()
                     let dataModel = GeneralPostAnnouncementRequestModel(source: "2", memberAnnouncement: MemberAnnouncements(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? ""))
-                    let url = "api/MemberAnnouncement/PostAnnouncement"
+                    let url = Constant.memPostAnnouncementEP
                     let services = GeneralAnnouncementServices()
                     services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                         
@@ -497,7 +497,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
 //                self.startAnimation()
                 let attachmentModel = PostAttachmentFileRequestModel(attachmentFile: arrayForMedia[index].1)
                 let dataModel = PostDataRequestModel(announcementId: barId, type: type)
-                let url = "api/MemberAnnouncement/PostAttachement"
+                let url = Constant.memPostAttachmentEP
                 let services = GeneralAnnouncementServices()
                 services.postUploadMethod(files: attachmentModel.params, urlString: url, dataModel: dataModel.params, completion: { (responseData) in
                     

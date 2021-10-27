@@ -488,7 +488,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                                if validation.isValidAddress(testStr: dataModel.officeAddress) {
                                     
                                     self.startAnimation()
-                                    let signUpUrl = "api/Account/Registration"
+                                let signUpUrl = Constant.registrationEP
                                     let services = SignUpServices()
                                     services.postUploadMethod(files: file.params, urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
                                         print(responseData)

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SearchFilterController {
+    func selectedDateTextfield(startDate: String, endDate: String)
+}
+
 class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - IBOutlets
@@ -55,6 +59,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     var toDate = Date()
     let todayDate = Date()
     let dateFormatter = DateFormatter()
+    public var delegate: SearchFilterController?
     
     
     private lazy var datePickerView: DateTimePicker = {
@@ -270,8 +275,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
 
         }
         
-        
-        
+        delegate?.selectedDateTextfield(startDate: self.strDate ?? "", endDate: self.endDate ?? "")
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

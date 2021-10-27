@@ -408,7 +408,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
             let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "des", limit: 10, offset: self.barListArrays.count), barAnnouncement: nil)
-            let url = "api/BarAnnouncement/GetAnnouncements"
+            let url = Constant.barGetAnnounceEP
             let services = AnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 
@@ -478,7 +478,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.strValue = "des"
             }
             let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), barAnnouncement: BarAnnouncement(barAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration))
-            let url = "api/BarAnnouncement/GetAnnouncements"
+            let url = Constant.barGetAnnounceEP
             let services = AnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 

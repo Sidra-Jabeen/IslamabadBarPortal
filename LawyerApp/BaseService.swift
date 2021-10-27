@@ -18,7 +18,7 @@ class BaseServices {
         //http://172.16.1.228/IsbBarPortal/
         //http://10.250.10.139/ISBBar.APP/
         
-        let strURL = "http://10.250.10.221:8083/IsbBarPortal.Api/\(urlString)"
+        let strURL = "\(Constant.baseURL)\(urlString)"
         guard let url = URL(string: strURL) else {
             print("Error: cannot create URL")
             return
@@ -46,7 +46,7 @@ class BaseServices {
     
     func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
         //Live http://203.215.160.148:9545/
-        let urlString = "http://10.250.10.221:8083/IsbBarPortal.Api/\(strUrl)"
+        let urlString = "\(Constant.baseURL)\(strUrl)"
 //        let requestBinUrl = "https://enkxdj9i9oy5f.x.pipedream.net/"
         let token = Generic.getToken()
         let headers: HTTPHeaders = [

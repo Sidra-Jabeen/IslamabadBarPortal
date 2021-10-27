@@ -5,6 +5,7 @@ PODS:
   - IQKeyboardManagerSwift (6.5.6)
   - Kingfisher (7.0.0)
   - SideMenu (6.5.0)
+  - SteviaLayout (4.7.3)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Kingfisher (~> 7.0)
   - SideMenu
+  - SteviaLayout
   - SwiftyJSON
 
 SPEC REPOS:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Kingfisher
     - SideMenu
+    - SteviaLayout
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -33,8 +36,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 362c0f4a358c4c74fadc3a1ca8b539585f376909
+PODFILE CHECKSUM: 75f625dc1aae1c73d846c2cb08dc16af32b67f90
 
 COCOAPODS: 1.11.2

@@ -35,8 +35,8 @@ class QueriesTableViewCell: UITableViewCell {
     var valid : Bool = false
     var delegate:CustomCellUpdater?
     weak var cellDelegate: GrowingCellProtocol?
-    var attachments : [CommentAttachment]?
-    var commentss : CommentElement?
+//    var attachments : [CommentAttachment]?
+//    var commentss : CommentElement?
     var arrayForAddContactController: [UIAttachmentSubViewController] = []
     var arrayForGroup: [String] = []
     
@@ -56,12 +56,12 @@ class QueriesTableViewCell: UITableViewCell {
         delegate?.updateTableView(comment: viewReplyBtn.tag)
     }
     
-    func configure(commentData:CommentElement){
-        labelUserName.text = commentData.commentBy
-        commentTextView.text = commentData.comment
-        labelTime.text = commentData.commentAt
-        
-    }
+//    func configure(commentData:CommentElement){
+//        labelUserName.text = commentData.commentBy
+//        commentTextView.text = commentData.comment
+//        labelTime.text = commentData.commentAt
+//        
+//    }
     
     func config() {
         

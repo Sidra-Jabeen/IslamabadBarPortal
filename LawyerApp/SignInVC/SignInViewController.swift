@@ -156,9 +156,9 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 startAnimation()
                 let dataModel = SignInRequestModel(source: "2", user: SignInUser(licenseNumber: lisenceNumber, password: password))
-                let signUpUrl = "api/Account/Login"
+            let loginUrl = Constant.loginEP
                 let services = SignInServices()
-                services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                services.postMethod(urlString: loginUrl, dataModel: dataModel.params) { (responseData) in
                     print(responseData)
                     self.stopAnimation()
                     let user = responseData.user

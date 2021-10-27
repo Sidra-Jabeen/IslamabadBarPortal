@@ -116,7 +116,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
             if  Connectivity.isConnectedToInternet {
                 self.startAnimation()
                 let dataModel = GeneralAnnouncementDetailsRequestModel(source: "2", memberAnnouncement: GeneralAnnouncementDetails(memberAnnouncementId: self.userId ?? 0))
-                let url = "api/MemberAnnouncement/GetAnnouncementDetail"
+                let url = Constant.memGetAnnounceDetailsEP
                 let services = GeneralAnnouncementDetailServices()
                 services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                     
@@ -146,7 +146,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
             if  Connectivity.isConnectedToInternet {
                 self.startAnimation()
                 let dataModel = AnnouncementDetailsRequestModel(source: "2", barAnnouncement: Details(barAnnouncementId: self.userId ?? 0))
-                let url = "api/BarAnnouncement/GetAnnouncementDetail"
+                let url = Constant.memGetAnnounceDetailsEP
                 let services = BarAnnouncementDetailServices()
                 services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                     

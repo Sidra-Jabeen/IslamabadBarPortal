@@ -197,6 +197,8 @@ struct GeneralAnnouncementResponseDetailModel: Codable {
     var announcedBy: String?
     var announcedAt: String?
     var announcedByProfile: String?
+    var censorTitle: String?
+    var censorDescription: String?
     var attachments: [AttachmentResponse]?
     
     enum CodingKeys: String, CodingKey {
@@ -207,6 +209,8 @@ struct GeneralAnnouncementResponseDetailModel: Codable {
         case announcedBy = "announcedBy"
         case announcedAt = "announcedAt"
         case announcedByProfile = "announcedByProfile"
+        case censorTitle = "censorTitle"
+        case censorDescription = "censorDescription"
         case attachments = "attachments"
     }
     
@@ -219,6 +223,8 @@ struct GeneralAnnouncementResponseDetailModel: Codable {
         announcedBy = try values.decodeIfPresent(String.self, forKey: .announcedBy)
         announcedAt = try values.decodeIfPresent(String.self, forKey: .announcedAt)
         announcedByProfile = try values.decodeIfPresent(String.self, forKey: .announcedByProfile)
+        censorTitle = try values.decodeIfPresent(String.self, forKey: .censorTitle)
+        censorDescription = try values.decodeIfPresent(String.self, forKey: .censorDescription)
         attachments = try values.decodeIfPresent([AttachmentResponse].self, forKey: .attachments)
 
     }
@@ -230,7 +236,7 @@ struct AttachmentResponse: Codable {
     var announcementId: Int?
     var type: Int?
     var attachmentUrl: String?
-    var isDocType: String?
+    var isDocType: Int?
     
     enum CodingKeys: String, CodingKey {
         
@@ -248,6 +254,6 @@ struct AttachmentResponse: Codable {
         announcementId = try values.decodeIfPresent(Int.self, forKey: .announcementId)
         type = try values.decodeIfPresent(Int.self, forKey: .type)
         attachmentUrl = try values.decodeIfPresent(String.self, forKey: .attachmentUrl)
-        isDocType = try values.decodeIfPresent(String.self, forKey: .isDocType)
+        isDocType = try values.decodeIfPresent(Int.self, forKey: .isDocType)
     }
 }

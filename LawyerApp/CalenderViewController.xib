@@ -37,7 +37,7 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
                             <real key="value" value="-1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="dd/mm/yyyy"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="dd-mm-yyyy"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>

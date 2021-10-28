@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var viewCircledImage: UIView!
     @IBOutlet weak var signUpBtnView: UIView!
     @IBOutlet weak var tblRegistration: UITableView!
+    @IBOutlet weak var dateBarView: UIView!
     
     //MARK: - Propertities
     
@@ -58,11 +59,13 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private lazy var datePickerView: DateTimePicker = {
         
+        
+//        self.showDatePicker(index: self.selectedDateIndex ?? 0)
         let picker = DateTimePicker()
         picker.setup()
         picker.didSelectDates = { [weak self] (selectedDate) in
             print(selectedDate)
-            
+
             let formatter = DateFormatter()
             formatter.dateFormat = "dd-MM-yyyy"
             let strDate = formatter.string(from: selectedDate)
@@ -130,6 +133,11 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.callSignUpAPI()
     }
     
+    @IBAction func tappedOnDone( _sender: UIButton) {
+        
+        
+    }
+    
     //MARK: - UITableViewDelegate&UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -179,6 +187,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         tmpCell.txtInfo.keyboardType = .numberPad
                     } else if self.mainArray[indexPath.row].arrOfTypes == "calender" {
                         tmpCell.txtInfo.inputView = datePickerView.inputView
+//                        tmpCell.txtInfo.addInputViewDatePicker(target: self, selector: #selector(doneButtonPressed))
+//                        self.showDatePicker(index: self.selectedDateIndex )
                     }
                 } else {
                     
@@ -223,6 +233,17 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    @objc func doneButtonPressed(_ sender: UITextField) {
+//        if let  datePicker = sender.inputView as? UIDatePicker {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateStyle = .medium
+//            sender.text = dateFormatter.string(from: datePicker.date)
+//        }
+//        sender.resignFirstResponder()
+        
+        self.view.endEditing(true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
@@ -247,6 +268,9 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if sender.tag == 2 { self.mainArray.removeAll(where: ({$0.arrSignUpList == "Issue Date of Supreme Court"})) }
         }
         
+        if sender.tag == 0 { self.mainArray[10].inputText = "Lower Court"}
+        if sender.tag == 1 { self.mainArray[10].inputText = "High Court"}
+        if sender.tag == 2 { self.mainArray[10].inputText = "Supreme Court"}
         
         self.tblRegistration.reloadData()
     }
@@ -442,13 +466,19 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return ""
     }
     
+    func getLisenceType() {
+        
+        
+    }
+    
     func showDatePicker(index: Int) {
         
-        self.view.addSubview(datePicker)
+        self.dateBarView.addSubview(datePicker)
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        datePicker.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        datePicker.centerXAnchor.constraint(equalTo: self.dateBarView.centerXAnchor).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: self.dateBarView.bottomAnchor).isActive = true
         datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
         
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
@@ -692,4 +722,36 @@ extension UIImage {
         let data = self.jpegData(compressionQuality: cq)
         return data?.base64EncodedString(options: .endLineWithLineFeed)
     }
+}
+
+
+extension UITextField {
+
+   func addInputViewDatePicker(target: Any, selector: Selector) {
+
+    let screenWidth = UIScreen.main.bounds.width
+
+    //Add DatePicker as inputView
+    let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))
+    datePicker.datePickerMode = .date
+    self.inputView = datePicker
+
+    //Add Tool Bar as input AccessoryView
+    let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 44))
+    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
+    let doneBarButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: selector)
+    toolBar.setItems([cancelBarButton, flexibleSpace, doneBarButton], animated: false)
+
+    self.inputAccessoryView = toolBar
+ }
+
+   @objc func cancelPressed() {
+     self.resignFirstResponder()
+   }
+    
+//    @objc func donedatePicker(){
+//
+//        self.view.endEditing(true)
+//    }
 }

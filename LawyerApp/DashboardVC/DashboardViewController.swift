@@ -37,8 +37,8 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
-        self.helpView.applyCircledView()
-        self.helpContentView.applyCircledView()
+//        self.helpView.applyCircledView()
+        
         
         self.sideMenu = SideMenuTableViewController()
         if let list = sideMenu {
@@ -76,6 +76,11 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         }
 //        self.authenticateUserTouchID()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.helpContentView.applyCircledView()
     }
     
     func authenticateUserTouchID() {

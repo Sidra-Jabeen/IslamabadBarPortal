@@ -126,6 +126,8 @@ struct BarAnnouncementResponseDetailModel: Codable {
     var type: String?
     var announcedByProfile: String?
     var typeNames: String?
+    var censorTitle: String?
+    var censorDescription: String?
     var attachments: [AttachmentResponse]?
     
     enum CodingKeys: String, CodingKey {
@@ -138,6 +140,8 @@ struct BarAnnouncementResponseDetailModel: Codable {
         case type = "type"
         case announcedByProfile = "announcedByProfile"
         case typeNames = "typeNames"
+        case censorTitle = "censorTitle"
+        case censorDescription = "censorDescription"
         case attachments = "attachments"
     }
     
@@ -152,6 +156,8 @@ struct BarAnnouncementResponseDetailModel: Codable {
         type = try values.decodeIfPresent(String.self, forKey: .type)
         announcedByProfile = try values.decodeIfPresent(String.self, forKey: .announcedByProfile)
         typeNames = try values.decodeIfPresent(String.self, forKey: .typeNames)
+        censorTitle = try values.decodeIfPresent(String.self, forKey: .censorTitle)
+        censorDescription = try values.decodeIfPresent(String.self, forKey: .censorDescription)
         attachments = try values.decodeIfPresent([AttachmentResponse].self, forKey: .attachments)
 
     }

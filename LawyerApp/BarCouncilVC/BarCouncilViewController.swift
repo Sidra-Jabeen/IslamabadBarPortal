@@ -16,6 +16,9 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var HStack: UIStackView!
     @IBOutlet weak var viewPostButton: UIView!
     
+    @IBOutlet weak var dataNotFoundView: UIView!
+    @IBOutlet weak var tableView: UIView!
+    
     //MARK: - Propertities
     
     var search: SearchForBarCouncilViewController?
@@ -415,24 +418,39 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
-                    if self.barListArrays.count > 0 {
-                        if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
-                            
-                            for item in arrayData {
-                                self.barListArrays.append(item)
-                            }
-                        }
-                    } else {
-                        self.barListArrays = responseData.barAnnouncements ?? []
-                        self.tblBarCouncilList.reloadData()
-                        
-                        self.postAnnouncementVC?.willMove(toParent: nil)
-                        self.postAnnouncementVC?.view.removeFromSuperview()
-                        self.postAnnouncementVC?.removeFromParent()
-                    }
+                    
+                    self.barListArrays = responseData.barAnnouncements ?? []
+                    self.tblBarCouncilList.reloadData()
+//                    self.postAnnouncementVC?.willMove(toParent: nil)
+//                    self.postAnnouncementVC?.view.removeFromSuperview()
+//                    self.postAnnouncementVC?.removeFromParent()
+                    self.dataNotFoundView.isHidden = true
+                    self.tableView.isHidden = false
+//                    
+//                    if self.barListArrays.count > 0 {
+//                        if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
+//                            
+//                            for item in arrayData {
+//                                self.barListArrays.append(item)
+//                            }
+//                        }
+//                    } else {
+//                        self.barListArrays = responseData.barAnnouncements ?? []
+//                        self.tblBarCouncilList.reloadData()
+//                        
+//                        self.postAnnouncementVC?.willMove(toParent: nil)
+//                        self.postAnnouncementVC?.view.removeFromSuperview()
+//                        self.postAnnouncementVC?.removeFromParent()
+//                        
+//                        self.dataNotFoundView.isHidden = true
+//                        self.tableView.isHidden = false
+//                    }
                     
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    
+                    self.dataNotFoundView.isHidden = false
+                    self.tableView.isHidden = true
                 }
             }
         } else {

@@ -665,6 +665,11 @@
                                 <constraint firstAttribute="bottom" secondItem="QN8-5S-FT0" secondAttribute="bottom" constant="20" id="trQ-GS-cn2"/>
                                 <constraint firstItem="GTW-iG-3eM" firstAttribute="top" secondItem="NT7-QV-A6V" secondAttribute="bottom" constant="20" id="xif-Hy-sfL"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

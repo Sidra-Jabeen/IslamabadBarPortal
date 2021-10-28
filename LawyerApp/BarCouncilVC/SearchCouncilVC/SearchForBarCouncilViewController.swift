@@ -60,6 +60,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     let todayDate = Date()
     let dateFormatter = DateFormatter()
     public var delegate: SearchFilterController?
+    var intValue = 0
+    var bitValueForAscDes = 0
     
     
     private lazy var datePickerView: DateTimePicker = {
@@ -166,6 +168,22 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         self.txtToDate.delegate = self
         self.dateFormatter.dateFormat = "yyyy-MM-dd"
         
+        if self.intValue == 0 {
+            
+            self.allTapped(UIButton())
+        }
+        else if self.intValue == 1 {
+            
+            self.todayBtnTapped(UIButton())
+        }
+        else if self.intValue == 2 {
+            
+            self.yesterdayTapped(UIButton())
+        }
+        else if self.intValue == 3 {
+            
+            self.lastWeekTapped(UIButton())
+        }
         
 //        self.txtToDate.inputView = datePickerView.inputView
 //        self.txtFromDate.inputView = datePickerView.inputView
@@ -189,6 +207,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func allTapped(_ sender: Any) {
         //checkDays()
+        self.intValue = 0
         self.viewAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnAll.setTitleColor( UIColor.white, for: .normal)
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -204,6 +223,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func todayBtnTapped(_ sender: Any) {
+        
+        self.intValue = 1
         self.viewToday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnToday.setTitleColor( UIColor.white, for: .normal)
         self.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -223,6 +244,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func yesterdayTapped(_ sender: Any) {
         
+        self.intValue = 2
         self.viewYesterday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnYesterday.setTitleColor( UIColor.white, for: .normal)
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -242,6 +264,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func lastWeekTapped(_ sender: Any) {
+        
+        self.intValue = 3
         self.viewLastweek.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnLastweek.setTitleColor( UIColor.white, for: .normal)
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -255,6 +279,23 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         txtToDate.text = self.dateFormatter.string(from: startDay ?? Date())
         txtFromDate.text = self.dateFormatter.string(from: endDay ?? Date())
     }
+    
+//    @IBAction func tappedOnAscOrder(_ sender: Any){
+//
+//        self.bitValueForAscDes = 1
+//        if self.bitValueForAscDes == 1 {
+//            self.imgAsc.image = UIImage(named: "Group 247")
+//            self.imgDes.image = UIImage(named: "Circle")
+//        }
+//    }
+//
+//    @IBAction func tappedOndecOrder(_ sender: Any){
+//
+//        self.bitValueForAscDes = 2
+//        if self.bitValueForAscDes == 2 {
+//            self.imgDes.image = UIImage(named: "Group 247")
+//            self.imgAsc.image = UIImage(named: "Circle")
+//    }
     
     //MARK: - UITextFieldDelegate
     

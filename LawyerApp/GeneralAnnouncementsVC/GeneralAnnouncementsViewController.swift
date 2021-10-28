@@ -16,6 +16,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     @IBOutlet weak var tblAnnouncements: UITableView!
     @IBOutlet weak var viewPostButton: UIView!
     
+    @IBOutlet weak var dataNotFoundView: UIView!
+    @IBOutlet weak var tableView: UIView!
+    
     
     //MARK: - Propertities
     
@@ -143,15 +146,15 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
 
             self.view.addSubview(searchVC.view)
             searchVC.delegate = self
-//            searchVC.btnSearch.addTarget(self, action: #selector(onClickedSearch), for: .touchUpInside)
+            searchVC.btnSearch.addTarget(self, action: #selector(onClickedSearch), for: .touchUpInside)
 //            searchVC.btnAll.addTarget(self, action: #selector(clickedOnAll), for: .touchUpInside)
 //            searchVC.btnToday.addTarget(self, action: #selector(clickedOnToday), for: .touchUpInside)
 //            searchVC.btnYesterday.addTarget(self, action: #selector(clickedOnYesterday), for: .touchUpInside)
 //            searchVC.btnLastweek.addTarget(self, action: #selector(clickedOnLastweek), for: .touchUpInside)
 //
-//            searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
-//            searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
-//            searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
+            searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
+            searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
+            searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
 //
 //            if self.intValue == 0 {
 //
@@ -187,14 +190,14 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
 //                self.setUpButtonsUI(value: self.intValue)
 //            }
 //
-//            if self.bitValueForAscDes == 1 {
-//                self.search?.imgAsc.image = UIImage(named: "Group 247")
-//                self.search?.imgDes.image = UIImage(named: "Circle")
-//            } else if self.bitValueForAscDes == 2 {
-//
-//                self.search?.imgDes.image = UIImage(named: "Group 247")
-//                self.search?.imgAsc.image = UIImage(named: "Circle")
-//            }
+            if self.bitValueForAscDes == 1 {
+                self.search?.imgAsc.image = UIImage(named: "Group 247")
+                self.search?.imgDes.image = UIImage(named: "Circle")
+            } else if self.bitValueForAscDes == 2 {
+
+                self.search?.imgDes.image = UIImage(named: "Group 247")
+                self.search?.imgAsc.image = UIImage(named: "Circle")
+            }
             
         }
     }
@@ -223,7 +226,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if intValue == 0 {
         
             
-            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: nil)
+//            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: nil)
+            self.searchByDates(strtDate: self.toDateText, frmDate: self.fromDateText, duration: nil)
+
         }
         else if intValue == 1 {
             
@@ -345,12 +350,17 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 if status {
                     self.listArrays = responseData.memberAnnouncements ?? []
                     self.tblAnnouncements.reloadData()
+//                    self.postAnnouncementVC?.willMove(toParent: nil)
+//                    self.postAnnouncementVC?.view.removeFromSuperview()
+//                    self.postAnnouncementVC?.removeFromParent()
                     
-                    self.postAnnouncementVC?.willMove(toParent: nil)
-                    self.postAnnouncementVC?.view.removeFromSuperview()
-                    self.postAnnouncementVC?.removeFromParent()
+                    self.dataNotFoundView.isHidden = true
+                    self.tableView.isHidden = false
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    
+                    self.dataNotFoundView.isHidden = false
+                    self.tableView.isHidden = true
                 }
             }
         } else {

@@ -26,4 +26,13 @@ class QuestionAnswerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configCell(data: QuesResponseModel) {
+        
+        self.lblUsr.text = data.postedBy
+        self.lblTime.text = data.postedAt
+        self.lblAnswer.text = data.description
+        self.lblQuestion.text = data.title
+        self.lblTotalComments.text = data.totalComments
+    }
+    
 }

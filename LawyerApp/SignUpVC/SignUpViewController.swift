@@ -541,7 +541,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let imageUrl = info[.imageURL] as? URL {
-            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            _ = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
 //            self.arrayForMedia.append((image,  imageUrl.absoluteString))
             self.mainArray[self.pickerTextIndex].inputText = imageUrl.absoluteString
         } else {

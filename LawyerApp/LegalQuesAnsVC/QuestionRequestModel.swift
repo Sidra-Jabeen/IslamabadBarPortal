@@ -33,7 +33,7 @@ struct QuesResponseModel: Codable {
     
     enum CodingKeys: String, CodingKey {
         
-        case qId = "qId"
+        case qId = "id"
         case title = "title"
         case description = "description"
         case postedAt = "postedAt"

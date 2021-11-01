@@ -21,6 +21,7 @@ struct GenericResponseModel <T : Codable> : Codable {
     var memberAnnouncement: T?
     var barAnnouncement: T?
     var officialDirectoryList: [T]?
+    var questionDetail: T?
     
     enum CodingKeys: String, CodingKey {
         
@@ -36,6 +37,7 @@ struct GenericResponseModel <T : Codable> : Codable {
         case memberAnnouncement = "memberAnnouncement"
         case barAnnouncement = "barAnnouncement"
         case officialDirectoryList = "officialDirectoryList"
+        case questionDetail = "questionDetail"
     }
     
     init(from decoder: Decoder) throws {
@@ -52,13 +54,8 @@ struct GenericResponseModel <T : Codable> : Codable {
         memberAnnouncement = try values.decodeIfPresent(T.self, forKey: .memberAnnouncement)
         barAnnouncement = try values.decodeIfPresent(T.self, forKey: .barAnnouncement)
         officialDirectoryList = try values.decodeIfPresent([T].self, forKey: .officialDirectoryList)
+        questionDetail = try values.decodeIfPresent(T.self, forKey: .questionDetail)
         
-        if values.contains(.user) {
-            user = try values.decodeIfPresent(T.self, forKey: .user)
-        } else {
-            user = nil
-        }
+        user = values.contains(.user) ? try values.decodeIfPresent(T.self, forKey: .user) : nil
     }
-
-        
-    }
+}

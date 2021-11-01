@@ -24,11 +24,17 @@ class MemberNameViewController: UIViewController {
     @IBOutlet weak var btnMakeAAdmin: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     
+    @IBOutlet weak var btnApprovedHeight: NSLayoutConstraint!
+    @IBOutlet weak var btnRejectedHeight: NSLayoutConstraint!
+    @IBOutlet weak var btnGiveApprovementHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var btn1: UIButton!
     @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var btn3: UIButton!
     
     @IBOutlet weak var viewApprovalBtn: UIView!
     @IBOutlet weak var viewRejectedBtn: UIView!
+    @IBOutlet weak var viewGiveApprovementBtn: UIView!
 
     var memberId: Int?
     

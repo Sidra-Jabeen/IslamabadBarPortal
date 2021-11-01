@@ -8,10 +8,13 @@
 import UIKit
 
 protocol SearchFilterController {
-    func selectedDateTextfield(startDate: String, endDate: String)
+    
+    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String)
 }
 
-class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
+class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, CalenderControllerDetegate {
+
+    
     
     //MARK: - IBOutlets
     
@@ -19,15 +22,6 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var viewToday: UIView!
     @IBOutlet weak var viewYesterday: UIView!
     @IBOutlet weak var viewLastweek: UIView!
-    
-    @IBOutlet weak var toAndFromView: UIView!
-    @IBOutlet weak var searchByDateView: UIView!
-    @IBOutlet weak var viewToDate: UIView!
-    @IBOutlet weak var viewFromDate: UIView!
-    @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var btnSearchView: UIView!
-    @IBOutlet weak var postAnnouncementView:UIView!
-    @IBOutlet weak var btnClearView: UIView!
     
     @IBOutlet weak var btnAll: UIButton!
     @IBOutlet weak var btnToday: UIButton!
@@ -49,9 +43,6 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtToDate: UITextField!
     @IBOutlet weak var txtFromDate: UITextField!
     
-    @IBOutlet weak var serachByViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var calenderViewHeight: NSLayoutConstraint!
-    
     //MARK: - Propertities
     
     var strDate: String?
@@ -60,121 +51,56 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     let todayDate = Date()
     let dateFormatter = DateFormatter()
     public var delegate: SearchFilterController?
-    
-    
-    private lazy var datePickerView: DateTimePicker = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let picker = DateTimePicker()
-//        picker.setup()
-        
-        print(picker.setup())
-        picker.didSelectDates = { [weak self] (selectedDate) in
-             self!.toDate = selectedDate
-            //print(selectedDate)
-            self?.strDate = formatter.string(from: selectedDate)
-        }
-        fromDatePickerView = DateTimePicker()
-        return picker
-    }()
-    
-    private lazy var fromDatePickerView: DateTimePicker = {
-        let picker = DateTimePicker()
-        return picker
-    }()
-    
-    deinit {
-        fromDatePickerView = DateTimePicker()
-    }
-//    private lazy var datePickerView: DateTimePicker = {
-//        
-////        let picker = DateTimePicker()
-////        picker.setup()
-////        picker.didSelectDates = { [weak self] (selectedDate) in
-////            print(selectedDate)
-////
-////            let formatter = DateFormatter()
-////            formatter.dateFormat = "yyyy-MM-dd"
-////            self?.strDate = formatter.string(from: selectedDate)
-////        }
-////        fromDatePickerView = DateTimePicker()
-////        return picker
-//        
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        let picker = DateTimePicker()
-////        picker.setup()
-//        
-//        print(picker.setup())
-//        picker.didSelectDates = { [weak self] (selectedDate) in
-//             self!.toDate = selectedDate
-//            //print(selectedDate)
-//            self?.strDate = formatter.string(from: selectedDate)
-//        }
-//        fromDatePickerView = DateTimePicker()
-//        return picker
-//    }()
-//    
-//    lazy var fromDatePickerView: DateTimePicker = {
-//        let picker = DateTimePicker()
-//        return picker
-//    }()
+    var intValue = 0
+    var bitValueForAscDes = 0
+    var calenderView: CalenderViewController?
+    var tempTextField = UITextField()
+    var intForDuration: String?
+    var strValue = ""
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        self.btnSearchView.setCornerRadiusToView()
-//        self.btnClearView.setCornerRadiusToView()
-//        self.viewToDate.setCornerRadiusToView()
-//        self.viewFromDate.setCornerRadiusToView()
-//        self.postAnnouncementView.setCornerRadiusToView()
-//        self.btnCancel.applyCircledViewToButttons()
-//
-//        self.viewToDate.setCornerRadiusToView()
-//        self.viewToDate.setBorderColorToView()
-//
-//        self.viewFromDate.setCornerRadiusToView()
-//        self.viewFromDate.setBorderColorToView()
-//
-//        self.viewAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-//        self.btnAll.setTitleColor( UIColor.white, for: .normal)
-//
-//        self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//        self.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-//        self.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//        self.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-//        self.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//        self.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-//        self.viewAll.removeBorderColorToView()
-//        self.viewAll.applyCircledView()
-//        self.viewToday.applyCircledView()
-//        self.viewToday.setBorderColorToView()
-//        self.viewYesterday.applyCircledView()
-//        self.viewYesterday.setBorderColorToView()
-//        self.viewLastweek.applyCircledView()
-//        self.viewLastweek.setBorderColorToView()
-        
         self.imgDes.image = UIImage(named: "Group 247")
         self.imgAsc.image = UIImage(named: "Circle")
-        self.txtToDate.inputView = datePickerView.inputView
-        self.txtFromDate.inputView = fromDatePickerView.inputView
         
         self.txtFromDate.delegate = self
         self.txtToDate.delegate = self
-        self.dateFormatter.dateFormat = "yyyy-MM-dd"
         
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         
-//        self.txtToDate.inputView = datePickerView.inputView
-//        self.txtFromDate.inputView = datePickerView.inputView
+        if intForSearchFilter == 0 {
+            
+            self.allTapped(UIButton())
+        }
+        else if intForSearchFilter == 1 {
+            
+            self.todayBtnTapped(UIButton())
+        }
+        else if intForSearchFilter == 2 {
+            
+            self.yesterdayTapped(UIButton())
+        }
+        else if intForSearchFilter == 3 {
+            
+            self.lastWeekTapped(UIButton())
+        }
         
-//        self.txtFromDate.delegate = self
-//        self.txtToDate.delegate = self
-//        
-        self.view.frame.size.height = UIScreen.main.bounds.height
-        self.view.frame.size.width = UIScreen.main.bounds.width
+        if intForSetAscDes == 1 {
+            
+            self.imgAsc.image = UIImage(named: "Group 247")
+            self.imgDes.image = UIImage(named: "Circle")
+            
+        } else if intForSetAscDes == 2 {
+            
+            self.imgDes.image = UIImage(named: "Group 247")
+            self.imgAsc.image = UIImage(named: "Circle")
+        }
+        
+//        self.view.frame.size.height = UIScreen.main.bounds.height
+//        self.view.frame.size.width = UIScreen.main.bounds.width
         
     }
     
@@ -182,13 +108,16 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func tappedOnCancel( _sender: UIButton) {
         
-        self.willMove(toParent: nil)
-        self.view.removeFromSuperview()
-        self.removeFromParent()
+//        self.willMove(toParent: nil)
+//        self.view.removeFromSuperview()
+//        self.removeFromParent()
+        
+        self.dismiss(animated: true)
     }
     
     @IBAction func allTapped(_ sender: Any) {
         //checkDays()
+        self.intValue = 0
         self.viewAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnAll.setTitleColor( UIColor.white, for: .normal)
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -197,13 +126,15 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         self.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
         self.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-//        txtToDate.text = ""
-//        txtFromDate.text = ""
+        txtToDate.text = ""
+        txtFromDate.text = ""
         
     }
     
     
     @IBAction func todayBtnTapped(_ sender: Any) {
+        
+        self.intValue = 1
         self.viewToday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnToday.setTitleColor( UIColor.white, for: .normal)
         self.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -223,6 +154,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func yesterdayTapped(_ sender: Any) {
         
+        self.intValue = 2
         self.viewYesterday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnYesterday.setTitleColor( UIColor.white, for: .normal)
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -237,11 +169,11 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         txtToDate.text = self.dateFormatter.string(from: previousDay)
         txtFromDate.text = self.dateFormatter.string(from: previousDay)
         
-//        datePickerView.Value = previousDay
-        
     }
     
     @IBAction func lastWeekTapped(_ sender: Any) {
+        
+        self.intValue = 3
         self.viewLastweek.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
         self.btnLastweek.setTitleColor( UIColor.white, for: .normal)
         self.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -252,48 +184,96 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         self.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
         let startDay = getPreviousWeekStartDay()
         let endDay = getPreviousWeekEndDay()
-        txtToDate.text = self.dateFormatter.string(from: startDay ?? Date())
-        txtFromDate.text = self.dateFormatter.string(from: endDay ?? Date())
+        txtToDate.text = self.dateFormatter.string(from: endDay ?? Date())
+        txtFromDate.text = self.dateFormatter.string(from: startDay ?? Date())
+    }
+    
+    @IBAction func tappedOnAscOrder(_ sender: Any){
+
+        self.bitValueForAscDes = 1
+        if self.bitValueForAscDes == 1 {
+            self.imgAsc.image = UIImage(named: "Group 247")
+            self.imgDes.image = UIImage(named: "Circle")
+        }
+    }
+
+    @IBAction func tappedOndecOrder(_ sender: Any){
+        
+        self.bitValueForAscDes = 2
+        if self.bitValueForAscDes == 2 {
+            self.imgDes.image = UIImage(named: "Group 247")
+            self.imgAsc.image = UIImage(named: "Circle")
+        }
+    }
+    
+    @IBAction func tappedOnSearch(_ sender: Any) {
+        
+        if self.intValue == 0 {
+            
+            intForSearchFilter = 0
+            self.intForDuration = nil
+            
+        } else if self.intValue == 1 {
+            
+            intForSearchFilter = 1
+            self.intForDuration = "1"
+            
+        } else if self.intValue == 2 {
+            
+            intForSearchFilter = 2
+            self.intForDuration = "2"
+            
+        } else if self.intValue == 3 {
+            
+            intForSearchFilter = 4
+            self.intForDuration = "3"
+        }
+        
+        if bitValueForAscDes == 1 {
+             intForSetAscDes = 1
+            self.strValue = "asc"
+        } else {
+            intForSetAscDes = 2
+            self.strValue = "des"
+        }
+        
+        delegate?.selectedDateTextfield(fromDate: self.txtFromDate.text ?? "", toDate: self.txtToDate.text ?? "", duration: self.intForDuration, order: self.strValue)
+    }
+    
+    @IBAction func tappedOnClear(_ sender: Any) {
+        
+        self.txtToDate.text = ""
+        self.txtFromDate.text = ""
     }
     
     //MARK: - UITextFieldDelegate
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if textField == self.txtToDate {
-            
-            self.txtToDate.text = self.strDate
-            checkDays()
-    
-//            self.txtFromDate.inputView = self.fromDatePickerView.inputView
-            
-        } else if textField == self.txtFromDate {
-            
-            self.txtFromDate.text = self.endDate
-            
-            checkDays()
-
-        }
-        
-        delegate?.selectedDateTextfield(startDate: self.strDate ?? "", endDate: self.endDate ?? "")
-    }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        if textField == self.txtFromDate {
-            fromDatePickerView.setupFrom(toDate: toDate)
-            fromDatePickerView.didSelectDates = { [weak self] (selectedDate) in
-                
-                print(selectedDate)
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
-                self?.endDate = formatter.string(from: selectedDate)
-            }
-  
+        textField.endEditing(true)
+        self.tempTextField = textField
+        self.calenderView = CalenderViewController()
+        if let calender = self.calenderView {
+            
+            calender.modalPresentationStyle = .overCurrentContext
+            calender.modalTransitionStyle = .crossDissolve
+            calender.delegate = self
+            calender.maxDate = txtToDate.text ?? ""
+            calender.minDate = txtFromDate.text ?? ""
+            self.present(calender, animated: true, completion: nil)
+            
         }
     }
     
+     //MARK: - CalenderViewDelegateMethod
+    
+    func didSelectDate(date: String, isClear: Bool) {
+        
+        self.tempTextField.text = date
+        self.checkDays(allClear: isClear)
+    }
+    
+    //MARK: - Others
     
     func previousDay()-> Date{
         let theCalendar     = Calendar.current
@@ -314,12 +294,14 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
         return gregorian.date(byAdding: .day, value: -1, to: sunday!)!
     }
     
-    func checkDays(){
+    func checkDays(allClear: Bool){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         let yesterday = previousDay()
-        let weekFirstDay = getPreviousWeekStartDay()
-        let weekLastDay = getPreviousWeekEndDay()
+//        let weekFirstDay = getPreviousWeekStartDay()
+//        let weekLastDay = getPreviousWeekEndDay()
+        let weekFirstDay = getPreviousWeekEndDay()
+        let weekLastDay = getPreviousWeekStartDay()
         
         if self.txtToDate.text == dateFormatter.string(from: Date()) && self.txtFromDate.text == dateFormatter.string(from: Date()){
             self.todayBtnTapped(UIButton())
@@ -328,27 +310,12 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate {
             
             self.yesterdayTapped(UIButton())
             
-        }else if self.txtToDate.text == dateFormatter.string(from: weekFirstDay!) && self.txtFromDate.text == dateFormatter.string(from: weekLastDay!){
+        }else if self.txtToDate.text == dateFormatter.string(from: weekLastDay!) && self.txtFromDate.text == dateFormatter.string(from: weekFirstDay!){
             
             self.lastWeekTapped(UIButton())
-        }else{
+        }else if allClear == false {
             self.allTapped(UIButton())
         }
         
     }
-    
-
-    
-    //MARK: - UITextFieldDelegate
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        
-//        if textField == self.txtToDate {
-//            
-//            self.txtToDate.text = self.strDate
-//        } else {
-//            
-//            self.txtFromDate.text = self.strDate
-//        }
-//    }
 }

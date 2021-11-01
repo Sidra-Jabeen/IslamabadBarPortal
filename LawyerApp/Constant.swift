@@ -9,9 +9,11 @@ import Foundation
 
 class Constant {
     
-    static var baseURLWithDebugging = "http://10.250.10.221:8083/IsbBarPortal.Api/"
-    static var baseURL = "http://203.215.160.148:9545/"
-    static var imageDownloadURL = "http://203.215.160.148:9545/documents/"
+    static var baseURLWithDebugging = "http://10.250.10.221:8083/IsbBarPortal.Api/" // Local Machine IP
+   // static var baseURL = "http://203.215.160.148:9545/" // live IP
+    
+    static var baseURL = "http://172.16.1.234:9444/" // local IP
+    static var imageDownloadURL = "\(baseURL)documents/"
     
     //MARK: - AccountModule
     

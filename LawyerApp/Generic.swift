@@ -40,6 +40,10 @@ let spinnerView = SpinnerViewController()
 var currentUser: Int?
 var adminValue: Bool?
 var loginUserID: Int?
+var urlProfile: URL?
+var strUserName = ""
 var strLisenceNo = ""
 var strPassword = ""
 var roleId: Int?
+var intForSearchFilter: Int?
+var intForSetAscDes: Int?

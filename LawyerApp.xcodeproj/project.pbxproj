@@ -111,6 +111,8 @@
 		3D66A4E4271C0C2800221832 /* NetworkConectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */; };
 		3D66A4E6271C83E000221832 /* UIString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E5271C83DF00221832 /* UIString.swift */; };
 		3D66A4E8271D5CF300221832 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66A4E7271D5CF300221832 /* DateTimePicker.swift */; };
+		3DA403D4272F020A00E88E3B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA403D3272F020A00E88E3B /* URL.swift */; };
+		3DA403D6272F024100E88E3B /* PreviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA403D5272F024100E88E3B /* PreviewItem.swift */; };
 		3DD92BAD2715E03200C5D0F6 /* ApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */; };
 		3DD92BAE2715E03200C5D0F6 /* ApprovalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */; };
 		3DD92BB12715EE4A00C5D0F6 /* ApprovalServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */; };
@@ -253,6 +255,8 @@
 		3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConectionModel.swift; sourceTree = "<group>"; };
 		3D66A4E5271C83DF00221832 /* UIString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIString.swift; sourceTree = "<group>"; };
 		3D66A4E7271D5CF300221832 /* DateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
+		3DA403D3272F020A00E88E3B /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		3DA403D5272F024100E88E3B /* PreviewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewItem.swift; sourceTree = "<group>"; };
 		3DD92BAB2715E03200C5D0F6 /* ApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalViewController.swift; sourceTree = "<group>"; };
 		3DD92BAC2715E03200C5D0F6 /* ApprovalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalViewController.xib; sourceTree = "<group>"; };
 		3DD92BB02715EE4A00C5D0F6 /* ApprovalServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalServices.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 				3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */,
 				3D66A4E7271D5CF300221832 /* DateTimePicker.swift */,
 				3D36AD132726D73E00DFD509 /* Constant.swift */,
+				3DA403D5272F024100E88E3B /* PreviewItem.swift */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				956AFA332716C6770005C826 /* Validate.swift */,
 				3D66A4E5271C83DF00221832 /* UIString.swift */,
 				3DEB0BE82720032800E5DE75 /* Date.swift */,
+				3DA403D3272F020A00E88E3B /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -923,6 +929,7 @@
 				3D6509EB27120DB400786786 /* MenuListTableViewCell.swift in Sources */,
 				3D3CB533272867FF00BBABAD /* UICommentSelectorTableViewCell.swift in Sources */,
 				3D3CB531272867FF00BBABAD /* UIQuestionDetailTableViewCell.swift in Sources */,
+				3DA403D6272F024100E88E3B /* PreviewItem.swift in Sources */,
 				3D6509DC2711F2AF00786786 /* DashboardViewController.swift in Sources */,
 				3D1427022715523400DE03BB /* CalenderViewController.swift in Sources */,
 				3D6509BE2710A44C00786786 /* ViewController.swift in Sources */,
@@ -941,6 +948,7 @@
 				3D650A412714082B00786786 /* BarCouncilViewController.swift in Sources */,
 				3DEB0BE4271EA8DF00E5DE75 /* BiometricTableViewCell.swift in Sources */,
 				3DEB0BED27200DAE00E5DE75 /* ProfileModels.swift in Sources */,
+				3DA403D4272F020A00E88E3B /* URL.swift in Sources */,
 				3DE5EFF227216B5300A9512A /* EmptyTableViewCell.swift in Sources */,
 				3D66A4BF27175A8100221832 /* SupremeCourtTableViewCell.swift in Sources */,
 				3DEB0BE92720032800E5DE75 /* Date.swift in Sources */,
@@ -1124,7 +1132,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1155,7 +1163,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

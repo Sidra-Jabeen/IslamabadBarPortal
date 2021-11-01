@@ -118,30 +118,76 @@ struct Details {
 
 struct BarAnnouncementResponseDetailModel: Codable {
     
-    var memberAnnouncementId: Int?
+    var barAnnouncementId: Int?
     var title: String?
     var description: String?
     var announcedBy: String?
     var announcedAt: String?
+    var type: String?
+    var announcedByProfile: String?
+    var typeNames: String?
+    var censorTitle: String?
+    var censorDescription: String?
+    var attachments: [AttachmentResponse]?
     
     enum CodingKeys: String, CodingKey {
         
-        case memberAnnouncementId = "memberAnnouncementId"
+        case barAnnouncementId = "barAnnouncementId"
         case title = "title"
         case description = "description"
         case announcedBy = "announcedBy"
         case announcedAt = "announcedAt"
+        case type = "type"
+        case announcedByProfile = "announcedByProfile"
+        case typeNames = "typeNames"
+        case censorTitle = "censorTitle"
+        case censorDescription = "censorDescription"
+        case attachments = "attachments"
     }
     
     init(from decoder: Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        memberAnnouncementId = try values.decodeIfPresent(Int.self, forKey: .memberAnnouncementId)
+        barAnnouncementId = try values.decodeIfPresent(Int.self, forKey: .barAnnouncementId)
         title = try values.decodeIfPresent(String.self, forKey: .title)
         description = try values.decodeIfPresent(String.self, forKey: .description)
         announcedBy = try values.decodeIfPresent(String.self, forKey: .announcedBy)
         announcedAt = try values.decodeIfPresent(String.self, forKey: .announcedAt)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        announcedByProfile = try values.decodeIfPresent(String.self, forKey: .announcedByProfile)
+        typeNames = try values.decodeIfPresent(String.self, forKey: .typeNames)
+        censorTitle = try values.decodeIfPresent(String.self, forKey: .censorTitle)
+        censorDescription = try values.decodeIfPresent(String.self, forKey: .censorDescription)
+        attachments = try values.decodeIfPresent([AttachmentResponse].self, forKey: .attachments)
 
+    }
+}
+                
+struct BarAttachmentResponse: Codable {
+    
+    var id: Int?
+    var announcementId: Int?
+    var type: Int?
+    var attachmentUrl: String?
+    var isDocType: String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case id = "id"
+        case announcementId = "announcementId"
+        case type = "type"
+        case attachmentUrl = "attachmentUrl"
+        case isDocType = "isDocType"
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        announcementId = try values.decodeIfPresent(Int.self, forKey: .announcementId)
+        type = try values.decodeIfPresent(Int.self, forKey: .type)
+        attachmentUrl = try values.decodeIfPresent(String.self, forKey: .attachmentUrl)
+        isDocType = try values.decodeIfPresent(String.self, forKey: .isDocType)
     }
 }
 

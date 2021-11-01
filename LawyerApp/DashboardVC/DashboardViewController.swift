@@ -8,6 +8,7 @@
 import UIKit
 import SideMenu
 import LocalAuthentication
+import Kingfisher
 
 class DashboardViewController: UIViewController, MenuControllerDelegate {
     
@@ -15,6 +16,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
     @IBOutlet weak var approvalView: UIView!
     @IBOutlet weak var helpView: UIView!
     @IBOutlet weak var helpContentView:UIView!
+    @IBOutlet weak var imgProfile: UIImageView!
 
     var sideMenu: SideMenuTableViewController?
     var menu: SideMenuNavigationController?
@@ -37,9 +39,9 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
-        self.helpView.applyCircledView()
-        self.helpContentView.applyCircledView()
+//        self.helpView.applyCircledView()
         
+        self.imgProfile.kf.setImage(with: urlProfile, placeholder: UIImage(named: "Group 242"))
         self.sideMenu = SideMenuTableViewController()
         if let list = sideMenu {
             
@@ -69,13 +71,19 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
 
         }
         
-        
         let admin = Generic.getAdminValue()
         if admin == "0" {
 //            self.approvalView.isHidden = true
         }
 //        self.authenticateUserTouchID()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.helpContentView.applyCircledView()
+        intForSearchFilter = nil
+        intForSetAscDes = nil
     }
     
     func authenticateUserTouchID() {
@@ -109,6 +117,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
     @IBAction func tappedOnProfile( _sender: UIButton) {
         
         let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.intUserValue = loginUserID ?? 0
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

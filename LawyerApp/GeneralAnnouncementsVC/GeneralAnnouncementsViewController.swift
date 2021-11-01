@@ -10,11 +10,13 @@ import SwiftUI
 
 class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController {
     
-    
     //MARK: - IBOutlets
     
     @IBOutlet weak var tblAnnouncements: UITableView!
     @IBOutlet weak var viewPostButton: UIView!
+    
+    @IBOutlet weak var dataNotFoundView: UIView!
+    @IBOutlet weak var tableView: UIView!
     
     
     //MARK: - Propertities
@@ -44,6 +46,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         self.viewPostButton.setCornerRadiusToView()
         self.navigationController?.isNavigationBarHidden = true
         
+        self.callGetGeneralAnnouncements()
         if roleId == 3 {
             
             self.viewPostButton.isHidden = false
@@ -52,7 +55,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.callGetGeneralAnnouncements()
+//        self.callGetGeneralAnnouncements()
     }
     
     //MARK: - HandGestureFunction
@@ -82,7 +85,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         tmpCell.lblAnounceAt.text = listArrays[indexPath.row].announcedAt
         tmpCell.lblAnounceBy.text = listArrays[indexPath.row].announcedBy
         tmpCell.lblType.text = listArrays[indexPath.row].typeNames
-        let url = URL(string: listArrays[indexPath.item].announcedByProfile ?? "")
+        let url = URL(string: "\(Constant.imageDownloadURL)\(listArrays[indexPath.item].announcedByProfile ?? "")")
         tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         tmpCell.selectionStyle = .none
         return tmpCell
@@ -141,8 +144,13 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         self.search = SearchForBarCouncilViewController()
         if let searchVC = search {
 
-            self.view.addSubview(searchVC.view)
+            
+            searchVC.modalPresentationStyle = .overCurrentContext
+            searchVC.modalTransitionStyle = .crossDissolve
             searchVC.delegate = self
+            self.present(searchVC, animated: true, completion: nil)
+//            self.view.addSubview(searchVC.view)
+//            searchVC.delegate = self
 //            searchVC.btnSearch.addTarget(self, action: #selector(onClickedSearch), for: .touchUpInside)
 //            searchVC.btnAll.addTarget(self, action: #selector(clickedOnAll), for: .touchUpInside)
 //            searchVC.btnToday.addTarget(self, action: #selector(clickedOnToday), for: .touchUpInside)
@@ -220,23 +228,29 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     @objc func onClickedSearch() {
         
-        if intValue == 0 {
         
-            
-            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: nil)
-        }
-        else if intValue == 1 {
-            
-            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "",  duration: "1")
-        }
-        else if intValue == 2 {
-            
-            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "2")
-        }
-        else if intValue == 3 {
-            
-            self.searchByDates( strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "3")
-        }
+        
+        
+        
+//        if intValue == 0 {
+//
+//
+////            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: nil)
+//            self.searchByDates(strtDate: self.toDateText, frmDate: self.fromDateText, duration: nil)
+//
+//        }
+//        else if intValue == 1 {
+//
+//            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "",  duration: "1")
+//        }
+//        else if intValue == 2 {
+//
+//            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "2")
+//        }
+//        else if intValue == 3 {
+//
+//            self.searchByDates( strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "3")
+//        }
     }
     
     @objc func clickedOnAll() {
@@ -345,12 +359,49 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 if status {
                     self.listArrays = responseData.memberAnnouncements ?? []
                     self.tblAnnouncements.reloadData()
+//                    self.postAnnouncementVC?.willMove(toParent: nil)
+//                    self.postAnnouncementVC?.view.removeFromSuperview()
+//                    self.postAnnouncementVC?.removeFromParent()
                     
-                    self.postAnnouncementVC?.willMove(toParent: nil)
-                    self.postAnnouncementVC?.view.removeFromSuperview()
-                    self.postAnnouncementVC?.removeFromParent()
+                    self.dataNotFoundView.isHidden = true
+                    self.tableView.isHidden = false
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    
+                    self.dataNotFoundView.isHidden = false
+                    self.tableView.isHidden = true
+                }
+            }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+
+    }
+    
+    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String) {
+        
+        if  Connectivity.isConnectedToInternet {
+            self.startAnimation()
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration))
+            let url = Constant.memGetAnnounceEP
+            let services = GeneralAnnouncementServices()
+            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                
+                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+//                    self.listArrays.removeAll()
+                    self.listArrays = responseData.memberAnnouncements ?? []
+                    self.tblAnnouncements.reloadData()
+                    self.search?.dismiss(animated: true)
+                    self.dataNotFoundView.isHidden = true
+                    self.tableView.isHidden = false
+                    
+                } else {
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    self.search?.dismiss(animated: true)
+                    self.dataNotFoundView.isHidden = false
+                    self.tableView.isHidden = true
                 }
             }
         } else {
@@ -380,11 +431,16 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
 //                    self.listArrays.removeAll()
                     self.listArrays = responseData.memberAnnouncements ?? []
                     self.tblAnnouncements.reloadData()
-                    self.search?.willMove(toParent: nil)
-                    self.search?.view.removeFromSuperview()
-                    self.search?.removeFromParent()
+                    self.search?.dismiss(animated: true)
+                    self.dataNotFoundView.isHidden = true
+                    self.tableView.isHidden = false
+//                    self.search?.willMove(toParent: nil)
+//                    self.search?.view.removeFromSuperview()
+//                    self.search?.removeFromParent()
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    self.dataNotFoundView.isHidden = false
+                    self.tableView.isHidden = true
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {
@@ -462,7 +518,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.search?.viewYesterday.setBorderColorToView()
             self.search?.viewLastweek.applyCircledView()
             self.search?.viewLastweek.setBorderColorToView()
-            self.search?.toAndFromView.isUserInteractionEnabled = true
+//            self.search?.toAndFromView.isUserInteractionEnabled = true
 //            self.search?.calenderViewHeight.constant = 50
 //            self.search?.serachByViewHeight.constant = 20
             

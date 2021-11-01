@@ -7,6 +7,7 @@
 
 import UIKit
 import SideMenu
+import Kingfisher
 
 class SideMenuTableViewController: UITableViewController {
     
@@ -49,6 +50,8 @@ class SideMenuTableViewController: UITableViewController {
         if indexPath.section == 0 {
             
             let tmpCell = tableView.dequeueReusableCell(withIdentifier: "UserNameTableViewCell", for: indexPath) as! UserNameTableViewCell
+            tmpCell.imgProfile.kf.setImage(with: urlProfile, placeholder: UIImage(named: "Group 242"))
+            tmpCell.lblUserName.text = strUserName
             tmpCell.backgroundColor = .clear
             tmpCell.selectionStyle = .none
             return tmpCell
@@ -107,6 +110,7 @@ class SideMenuTableViewController: UITableViewController {
         if indexPath.section == 0 {
             
             let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            profileVC.intUserValue = loginUserID ?? 0
             self.navigationController?.pushViewController(profileVC, animated: true)
         } else {
             

@@ -59,8 +59,8 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.txtEnterFullNameOnLisence.text = "0011"
-        self.txtPassword.text = "123"
+        self.txtEnterFullNameOnLisence.text = ""
+        self.txtPassword.text = ""
         if UserDefaults.standard.string(forKey: "isBiometricLogin") == "1" {
             
             self.widthBiometric.constant = 60
@@ -174,6 +174,18 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         strPassword = self.txtPassword.text ?? ""
                         loginUserID = user?.userId
                         roleId = user?.roleId
+                        strUserName = user?.fullName ?? ""
+                        urlProfile = URL(string: "\(Constant.imageDownloadURL)\(responseData.user?.profileUrl ?? "")")
+                        UserDefaults.standard.set(responseData.user?.licenseNumber, forKey: "lisenceNumber")
+                        
+                        if (UserDefaults.standard.string(forKey: "password") == nil) {
+                            
+                            UserDefaults.standard.set(self.txtPassword.text, forKey: "password")
+                        } else if (UserDefaults.standard.string(forKey: "password") != nil) && self.txtPassword.text != "" {
+                            
+                            UserDefaults.standard.set(self.txtPassword.text, forKey: "password")
+                        }
+                       
                         self.navigationController?.pushViewController(dashboardVC, animated: true)
                     } else {
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "User Not Found")

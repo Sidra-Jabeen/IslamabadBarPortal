@@ -76,6 +76,12 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         self.img3.image = UIImage(named: "Circle")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        intForSearchFilter = nil
+        intForSetAscDes = nil
+    }
+    
     //MARK: - HandGesturesFunction
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -176,6 +182,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         
     }
     

@@ -44,6 +44,7 @@ struct SignInResponseModel: Codable {
     var contactNumber: String?
     var secondaryContactNumber: String?
     var email: String?
+    var licenseUrl: String?
     var licenseType: String?
     var issuanceDateLowerCourt: String?
     var issuanceDateHighCourt: String?
@@ -51,6 +52,7 @@ struct SignInResponseModel: Codable {
     var officeAddress: String?
     var loginToken: String?
     var status: String?
+    var profileUrl: String?
     var roleId: Int?
     var isAdmin: Bool?
     
@@ -65,12 +67,14 @@ struct SignInResponseModel: Codable {
         case contactNumber = "contactNumber"
         case secondaryContactNumber = "secondaryContactNumber"
         case email = "email"
+        case licenseUrl = "licenseUrl"
         case licenseType = "licenseType"
         case issuanceDateLowerCourt = "issuanceDateLowerCourt"
         case issuanceDateHighCourt = "issuanceDateHighCourt"
         case issuanceDateSupremeCourt = "issuanceDateSupremeCourt"
         case officeAddress = "officeAddress"
         case status = "status"
+        case profileUrl = "profileUrl"
         case roleId = "roleId"
         case isAdmin = "isAdmin"
     }
@@ -87,12 +91,14 @@ struct SignInResponseModel: Codable {
         contactNumber = try values.decodeIfPresent(String.self, forKey: .contactNumber)
         secondaryContactNumber = try values.decodeIfPresent(String.self, forKey: .secondaryContactNumber)
         email = try values.decodeIfPresent(String.self, forKey: .email)
+        licenseUrl = try values.decodeIfPresent(String.self, forKey: .licenseUrl)
         licenseType = try values.decodeIfPresent(String.self, forKey: .licenseType)
         issuanceDateLowerCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateLowerCourt)
         issuanceDateHighCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateHighCourt)
         issuanceDateSupremeCourt = try values.decodeIfPresent(String.self, forKey: .issuanceDateSupremeCourt)
         officeAddress = try values.decodeIfPresent(String.self, forKey: .officeAddress)
         status = try values.decodeIfPresent(String.self, forKey: .status)
+        profileUrl = try values.decodeIfPresent(String.self, forKey: .profileUrl)
         roleId = try values.decodeIfPresent(Int.self, forKey: .roleId)
         isAdmin = try values.decodeIfPresent(Bool.self, forKey: .isAdmin)
     }

@@ -23,7 +23,7 @@ class WelcomeToIslamabadViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         
-//        let postAQuesVC = PostAQuestionViewController()
+//        let postAQuesVC = SearchForBarCouncilViewController()
 //        self.navigationController?.pushViewController(postAQuesVC, animated: true)
     }
     

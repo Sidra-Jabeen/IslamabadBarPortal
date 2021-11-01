@@ -19,7 +19,7 @@ extension UIViewController {
     }
 
     func stopAnimation() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             spinnerView.willMove(toParent: nil)
             spinnerView.view.removeFromSuperview()
             spinnerView.removeFromParent()

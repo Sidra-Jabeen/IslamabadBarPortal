@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     var intForUpdateUser = 0
     let photoPicker = UIImagePickerController()
     var strProfileImage = ""
+    var intUserValue = 0
     
     //MARK: - Lifecycle
 
@@ -54,6 +55,9 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         self.btnEditProfileImage.isHidden = true
         self.photoPicker.delegate = self
         self.scrollView.contentSize = (CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 100))
+        if self.intUserValue != loginUserID {
+            self.btnEdit.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -169,7 +173,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         if  Connectivity.isConnectedToInternet {
                 
                 startAnimation()
-            let dataModel = ProfileRequestModel(source: "2", user: ProfileUser(userId: loginUserID ?? 0))
+            let dataModel = ProfileRequestModel(source: "2", user: ProfileUser(userId: self.intUserValue))
                 let signUpUrl = "api/User/GetUserDetail"
                 let services = ProfileServices()
                 services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in

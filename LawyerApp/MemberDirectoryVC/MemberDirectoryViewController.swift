@@ -34,7 +34,10 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
+        self.callGetUsersApi(status: "2")
     }
+    
+    
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
@@ -48,7 +51,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.callGetUsersApi(status: "2")
+//        self.callGetUsersApi(status: "2")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,6 +88,9 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             adminValue = arrayOfMembers[indexPath.item].isAdmin
             let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
             member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+            member.btn1.isHidden = true
+            member.btn2.isHidden = true
+            member.btn3.isHidden = true
             member.btnRejectedHeight.constant = 0
             member.btnApprovedHeight.constant = 0
             member.btnGiveApprovementHeight.constant = 0

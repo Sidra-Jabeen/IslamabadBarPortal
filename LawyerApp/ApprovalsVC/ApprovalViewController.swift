@@ -30,6 +30,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
     //MARK: - Propertities
     
     var memberVC: MemberNameViewController?
+    var profileController: ProfileViewController?
     var arrayOfMembers = [ResponseUsers]()
     //    var arrayOfMembers = []()
     //    var arrayOfMembers = [String]()
@@ -59,15 +60,19 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         rightRecognizer.direction = .right
         self.contentView.addGestureRecognizer(leftRecognizer)
         self.contentView.addGestureRecognizer(rightRecognizer)
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
         self.callGetUsersApi(status: "1")
         self.selectedTab = 1
         self.setLabelColor()
         self.setViewColorLine()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//        self.callGetUsersApi(status: "1")
+//        self.selectedTab = 1
+//        self.setLabelColor()
+//        self.setViewColorLine()
     }
     
 //    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -180,66 +185,74 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         self.memberVC = MemberNameViewController()
         if let member = memberVC {
             
-            self.view.addSubview(member.view)
-            member.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
-            member.lblPhoneNumber.text = arrayOfMembers[indexPath.item].contactNumber
-            member.lblOfcAddress.text = arrayOfMembers[indexPath.item].officeAddress
-            member.memberId = arrayOfMembers[indexPath.item].userId
-            let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
-            member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
-//            currentUser = arrayOfMembers[indexPath.item].userId
-//            adminValue = arrayOfMembers[indexPath.item].isAdmin
-            self.currentMemberId = arrayOfMembers[indexPath.row].userId
-            self.currentAdminStatus = arrayOfMembers[indexPath.row].isAdmin
-            self.currentStatus = arrayOfMembers[indexPath.row].roleId
-            
             if self.selectedTab == 1 {
                 
-                member.btnGiveApprovementHeight.constant = 0
-            }
-            
-            if self.selectedTab == 2 {
+//                member.btnGiveApprovementHeight.constant = 0
                 
-                if arrayOfMembers[indexPath.item].isAdmin ?? false {
+                let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+                profileVC.intUserValue = arrayOfMembers[indexPath.item].userId ?? 0
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                
+                self.view.addSubview(member.view)
+                member.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
+                member.lblPhoneNumber.text = arrayOfMembers[indexPath.item].contactNumber
+                member.lblOfcAddress.text = arrayOfMembers[indexPath.item].officeAddress
+                member.memberId = arrayOfMembers[indexPath.item].userId
+                let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
+                member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+    //            currentUser = arrayOfMembers[indexPath.item].userId
+    //            adminValue = arrayOfMembers[indexPath.item].isAdmin
+                self.currentMemberId = arrayOfMembers[indexPath.row].userId
+                self.currentAdminStatus = arrayOfMembers[indexPath.row].isAdmin
+                self.currentStatus = arrayOfMembers[indexPath.row].roleId
+                
+                
+                
+                if self.selectedTab == 2 {
                     
-                    member.btn1.setTitle("Remove As Admin", for: .normal)
-                } else {
+                    if arrayOfMembers[indexPath.item].isAdmin ?? false {
+                        
+                        member.btn1.setTitle("Remove As Admin", for: .normal)
+                    } else {
+                        
+                        member.btn1.setTitle("Make A Admin", for: .normal)
+                    }
                     
-                    member.btn1.setTitle("Make A Admin", for: .normal)
+                    if arrayOfMembers[indexPath.row].roleId == self.roleIDValue {
+                        member.btn3.setTitle("Remove Rights", for: .normal)
+                        
+                    } else {
+                        member.btn3.setTitle("Give Approval Rights", for: .normal)
+                    }
+                    
+                    member.btn2.setTitle("Block", for: .normal)
                 }
                 
-                if arrayOfMembers[indexPath.row].roleId == self.roleIDValue {
-                    member.btn3.setTitle("Remove Rights", for: .normal)
+                if self.selectedTab == 3 {
                     
-                } else {
-                    member.btn3.setTitle("Give Approval Rights", for: .normal)
+                    member.btn1.setTitle("Approved", for: .normal)
+                    member.btn2.isHidden = true
+                    member.btnRejectedHeight.constant = 0
+                    member.btnGiveApprovementHeight.constant = 0
                 }
                 
-                member.btn2.setTitle("Block", for: .normal)
-            }
-            
-            if self.selectedTab == 3 {
+                if self.selectedTab == 4 {
+                    
+                    member.btn1.setTitle("Approved", for: .normal)
+                    member.btn2.isHidden = true
+                    member.btnRejectedHeight.constant = 0
+                    member.btnGiveApprovementHeight.constant = 0
+                }
                 
-                member.btn1.setTitle("Approved", for: .normal)
-//                member.btn2.isHidden = true
-                member.btnRejectedHeight.constant = 0
-                member.btnGiveApprovementHeight.constant = 0
+                member.btn1.addTarget(self, action: #selector(clickedOnAButton1), for: .touchUpInside)
+                member.btn2.addTarget(self, action: #selector(clickedOnAButton2), for: .touchUpInside)
+                member.btn3.addTarget(self, action: #selector(clickedOnAButton3), for: .touchUpInside)
+                //            member.btnMakeAAdmin.addTarget(self, action: #selector(clickedOnMakeAAdmin), for: .touchUpInside)
+                //            member.btnRemoveAdmin.addTarget(self, action: #selector(clickedOnRemoveAAdmin), for: .touchUpInside)
+                //            member.approveUsersArray = arrayOfMembers[indexPath.item]
             }
             
-            if self.selectedTab == 4 {
-                
-                member.btn1.setTitle("Approved", for: .normal)
-//                member.btn2.isHidden = true
-                member.btnRejectedHeight.constant = 0
-                member.btnGiveApprovementHeight.constant = 0
-            }
-            
-            member.btn1.addTarget(self, action: #selector(clickedOnAButton1), for: .touchUpInside)
-            member.btn2.addTarget(self, action: #selector(clickedOnAButton2), for: .touchUpInside)
-            member.btn3.addTarget(self, action: #selector(clickedOnAButton3), for: .touchUpInside)
-            //            member.btnMakeAAdmin.addTarget(self, action: #selector(clickedOnMakeAAdmin), for: .touchUpInside)
-            //            member.btnRemoveAdmin.addTarget(self, action: #selector(clickedOnRemoveAAdmin), for: .touchUpInside)
-            //            member.approveUsersArray = arrayOfMembers[indexPath.item]
         }
     }
     @objc func clickedOnAButton1() {
@@ -302,7 +315,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: status))
+            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: self.arrayOfMembers.count), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: status))
             let signUpUrl = "api/User/GetUsers"
             let services = ApprovalServices()
             self.stopAnimation()

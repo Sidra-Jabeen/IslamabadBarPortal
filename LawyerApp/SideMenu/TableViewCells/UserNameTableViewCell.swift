@@ -9,6 +9,9 @@ import UIKit
 
 class UserNameTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var lblUserName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()    }
 

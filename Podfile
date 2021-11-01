@@ -13,7 +13,7 @@ target 'LawyerApp' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'FSCalendar'
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 7.0'
   pod 'SteviaLayout'
 
 end

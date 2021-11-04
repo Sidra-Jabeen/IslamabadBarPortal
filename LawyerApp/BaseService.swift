@@ -18,7 +18,7 @@ class BaseServices {
         //http://172.16.1.228/IsbBarPortal/
         //http://10.250.10.139/ISBBar.APP/
         
-        let strURL = "\(Constant.baseURL)\(urlString)"
+        let strURL = "\(Constant.baseURLWithDebugging)\(urlString)"
         guard let url = URL(string: strURL) else {
             print("Error: cannot create URL")
             return
@@ -46,7 +46,7 @@ class BaseServices {
     
     func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
         //Live http://203.215.160.148:9545/
-        let urlString = "\(Constant.baseURL)\(strUrl)"
+        let urlString = "\(Constant.baseURLWithDebugging)\(strUrl)"
 //        let requestBinUrl = "https://enkxdj9i9oy5f.x.pipedream.net/"
         let token = Generic.getToken()
         let headers: HTTPHeaders = [
@@ -62,13 +62,18 @@ class BaseServices {
             
             for (key, value) in filesWithKeysToUpload {
                 
-                guard let url = URL(string: value) else {
+                if let url = URL(string: value) {
                     
-                    let jsonSting = "{\"success\":false,\"code\":\"567\",\"desc\":\"String failed to convert into url\"}"
-                    completion(Data(jsonSting.utf8))
-                    return
+                    multiPart.append(url, withName: key)
+                    
                 }
-                multiPart.append(url, withName: key)
+//                else {
+//                    
+//                    let jsonSting = "{\"success\":false,\"code\":\"567\",\"desc\":\"String failed to convert into url\"}"
+//                    completion(Data(jsonSting.utf8))
+//                    return
+//                }
+//                multiPart.append(url, withName: key)
             }
             
             for (key, value) in textdataTobeSentWithKeys {

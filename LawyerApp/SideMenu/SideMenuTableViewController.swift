@@ -32,6 +32,7 @@ class SideMenuTableViewController: UITableViewController {
         let admin = Generic.getAdminValue()
         if admin == "1" {
             self.arrMenuList.remove(at: 7)
+            self.listImages.remove(at: 7)
         }
     }
     
@@ -57,7 +58,7 @@ class SideMenuTableViewController: UITableViewController {
             return tmpCell
             
         } else {
-            if indexPath.row < 8 {
+            if indexPath.row == self.arrMenuList.count {
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MenuListTableViewCell", for: indexPath) as! MenuListTableViewCell
                 
@@ -67,7 +68,7 @@ class SideMenuTableViewController: UITableViewController {
                 cell.backgroundColor = .clear
                 cell.selectionStyle = .none
                 return cell
-            } else if indexPath.row < 9 {
+            } else if indexPath.row == self.arrMenuList.count - 2 {
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "BiometricTableViewCell", for: indexPath) as! BiometricTableViewCell
                 

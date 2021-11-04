@@ -9,6 +9,39 @@ import Foundation
 
 extension String {
     
+    
+    var isValidEmail: Bool {
+           NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: self)
+       }
+    var isValidEmailInput: Bool {
+//        let emailRegEx = "[[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]]"
+        let emailRegEx = "[[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]\\s\\b{2,64}]"
+//        let emailRegEx = #"^\S+@\S+\.\S+$"#
+//        let emailRegEx = "^[A-Z0-9a-z._-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,}$"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    var isValidNameInput: Bool {
+        let emailRegEx = "[A-Za-z\\s\\b]"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    var isValidAddressInput: Bool {
+        let emailRegEx = "[A-Za-z0-9/_\\s\\b]"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    var isValidNumberInput: Bool {
+        let emailRegEx = "[0-9]{0,11}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    var isValidCNICInput: Bool {
+        let emailRegEx = "[0-9]{0,13}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    
     func isValidName(testStr:String) -> Bool {
         
        let regexExp =  "^[0-9a-zA-Z ]{1,}$"

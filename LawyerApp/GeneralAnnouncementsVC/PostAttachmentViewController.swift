@@ -175,6 +175,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
             tmpCell.btnAdd.isHidden = true
             tmpCell.btnRemove.isHidden = false
             tmpCell.btnRemove.tag = indexPath.row
+//            tmpCell.btnRemove.setImage(UIImage(named: "Cancel"), for: .normal)
             tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0 //self.arrayForImages[indexPath.row - 1]
             tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
         }
@@ -300,8 +301,6 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         let summaryCount = self.txtDescription.text.count
         self.lblDescriptionCount.text = "\((0) + summaryCount)/4000"
     }
-    
-    //MARK: - Others
     
     @objc func onClickGetImage(_ sender: UIButton) {
         

@@ -13,7 +13,9 @@ extension UIViewController {
     func startAnimation() {
         
         addChild(spinnerView)
-        spinnerView.view.frame = view.frame
+//        spinnerView.view.frame = view.frame
+        spinnerView.view.frame.size.height = UIScreen.main.bounds.height
+        spinnerView.view.frame.size.width = UIScreen.main.bounds.width
         view.addSubview(spinnerView.view)
         spinnerView.didMove(toParent: self)
     }
@@ -40,6 +42,18 @@ extension UIViewController {
         let alert = UIAlertController(title: "Islamabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func addAnimations(view: UIView, options : UIView.AnimationOptions, duration: TimeInterval = 0.5, delay: TimeInterval = 1) {
+        
+        view.alpha = 0.0
+        view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        UIView.animate(withDuration: duration, delay: delay, options: options, animations: {
+            
+            view.isHidden = false
+            view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            view.alpha = 1.0
+        })
     }
     
 }

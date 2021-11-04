@@ -43,6 +43,12 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
     @IBOutlet weak var txtToDate: UITextField!
     @IBOutlet weak var txtFromDate: UITextField!
     
+    @IBOutlet weak var centerView: UIView!
+    @IBOutlet weak var outerView: UIView!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var btnView: UIView!
+    @IBOutlet weak var questionView: UIView!
+    
     //MARK: - Propertities
     
     var strDate: String?
@@ -234,7 +240,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
             self.strValue = "asc"
         } else {
             intForSetAscDes = 2
-            self.strValue = "des"
+            self.strValue = "desc"
         }
         
         delegate?.selectedDateTextfield(fromDate: self.txtFromDate.text ?? "", toDate: self.txtToDate.text ?? "", duration: self.intForDuration, order: self.strValue)
@@ -245,6 +251,21 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         self.txtToDate.text = ""
         self.txtFromDate.text = ""
     }
+    
+    //MARK: - TouchScreenFunction
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+//       {
+//           let touch = touches.first
+//           if touch?.view != self.centerView
+//           { self.dismiss(animated: true, completion: nil) }
+//           if touch?.view != self.topView
+//           { self.dismiss(animated: true, completion: nil) }
+//           if touch?.view != self.questionView
+//           { self.dismiss(animated: true, completion: nil) }
+//           if touch?.view != self.btnView
+//           { self.dismiss(animated: true, completion: nil) }
+//       }
     
     //MARK: - UITextFieldDelegate
     

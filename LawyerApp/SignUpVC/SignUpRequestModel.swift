@@ -26,6 +26,30 @@ import Foundation
 //    }
 //}
 
+struct VerifyRequest {
+    
+        let source: String
+        let user: LisenceNumber
+    
+        var params: [String: Any] {
+            return [
+                "source": source,
+                "user" : user.params
+            ]
+        }
+}
+
+struct LisenceNumber {
+    
+        let licenseNumber: String
+    
+        var params: [String: Any] {
+            return [
+                "licenseNumber": licenseNumber
+            ]
+        }
+}
+
 struct Request {
     
     let Source: String

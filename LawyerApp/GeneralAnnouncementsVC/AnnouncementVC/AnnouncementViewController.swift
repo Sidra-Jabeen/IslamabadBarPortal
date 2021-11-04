@@ -7,16 +7,13 @@
 
 import UIKit
 import QuickLook
-
-class PreviewItem: NSObject, QLPreviewItem {
-    var previewItemURL: URL?
-}
+import AVKit
 
 class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, QLPreviewControllerDelegate {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTitle: SelectableLabel!
     @IBOutlet weak var txtDesc: UITextView!
     @IBOutlet weak var lblAnnounceBy: UILabel!
     @IBOutlet weak var lbAnnounceAt: UILabel!
@@ -51,6 +48,8 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         intForSearchFilter = nil
         intForSetAscDes = nil
         self.callGetAnnouncementDetailApi()
+        let abusiveWord = UIMenuItem(title: "Mark as Abusive", action: #selector(markAsAbusive))
+        UIMenuController.shared.menuItems = [abusiveWord]
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -82,7 +81,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = ((self.attachmentsCollection.frame.size.width / 3) - 10)
+        let width = ((self.attachmentsCollection.frame.size.width / 3))
         return CGSize(width: width, height: width)
     }
     
@@ -99,13 +98,27 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         let tmpCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UIAttachmentCollectionViewCell", for: indexPath) as! UIAttachmentCollectionViewCell
         
         let strURL = self.arrAttachmentResponse[indexPath.row].attachmentUrl ?? ""
-        if strURL.contains(".pdf") {
+        if strURL.contains(".pdf") || strURL.contains(".doc") || strURL.contains(".docx"){
 //            let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)")
+//            tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "document"))no-image
             tmpCell.imgPostQuestion.image = UIImage(named: "document")
-//            tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "document"))
-        } else {
-            let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)")
-            tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "empty"))
+
+        } else if strURL.contains(".MOV") || strURL.contains(".mp4"){
+            
+            if let thumbnailImage = self.generateThumbnail(videoUrl: "\(Constant.imageDownloadURL)\(strURL)") {
+                tmpCell.imgPostQuestion.image = thumbnailImage
+            } else {
+                tmpCell.imgPostQuestion.image = UIImage(named: "no-image")
+            }
+            
+        }
+        else {
+            if let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)") {
+                tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "empty"))
+            } else {
+                tmpCell.imgPostQuestion.image = UIImage(named: "no-image")
+            }
+            
         }
         
         tmpCell.btnAdd.isHidden = true
@@ -127,6 +140,27 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
 //        let url = URL(string: "\(Constant.imageDownloadURL)\(strURL ?? "")")!
 //        quickLook(url: url)
     }
+    
+    func generateThumbnail(videoUrl: String) -> UIImage? {
+
+        do {
+            let url                                         = URL(string: videoUrl)
+            let asset                                       = AVURLAsset(url: url!)
+            let imageGenerator                              = AVAssetImageGenerator(asset: asset)
+            imageGenerator.appliesPreferredTrackTransform   = true
+            let cgImage                                     = try imageGenerator.copyCGImage(at: CMTime(seconds: 2.0, preferredTimescale: 60),
+                                                                                             actualTime: nil)
+
+            return UIImage(cgImage: cgImage)
+
+        } catch {
+
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    //MARK: - QuickLookFunction
     
     func quickLook(url: URL) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -263,6 +297,56 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
 
     }
     
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        
+//        print(action)
+        if action == #selector(paste(_:)) || action == #selector(select(_:)) || action == #selector(selectAll(_:)) || action == #selector(cut(_:)) || action == Selector(("_lookup:")) || action == Selector(("_share:")) || action == Selector(("_define:"))
+        {
+            return false
+        }
+//        return true
+        return super.canPerformAction(action, withSender: sender)
+        
+//        if action == #selector(copy(_:))
+//            {
+//                return true
+//            } else {
+//                return false
+//            }
+    }
+    
+    
+    @objc func markAsAbusive() {
+        if let range = txtDesc.selectedTextRange, let selectedText = txtDesc.text(in: range) {
+            print(selectedText)
+            self.callAbuseWordAPI(text: selectedText)
+        }
+    }
+    
+    func callAbuseWordAPI(text: String) {
+        
+        if  Connectivity.isConnectedToInternet {
+            
+            //                startAnimation()
+            let dataModel = AbusiveRequestModel(source: "2", abuseWord: text)
+            let url = Constant.addWord
+            let services = SignInServices()
+            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                print(responseData)
+                //                    self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    print("success")
+                } else {
+                    print("failed")
+                }
+            }
+        } else {
+            
+            //            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+        
+    }
 }
 
 // MARK: - QLPreviewControllerDataSource

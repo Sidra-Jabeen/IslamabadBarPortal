@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ("Lisence/HCR No.","Enter Lisence/HCR No","id card","text",true, ""),
         ("Contact Number 1","xxxxxxxxxxx","172517_phone_icon","number",true, ""),
         ("Contact Number 2","xxxxxxxxxxx","172517_phone_icon","number",true, ""),
-        ("Email","Enter Email","3586360_email_envelope_mail_send_icon","text",true, ""),
+        ("Email","Enter Email","3586360_email_envelope_mail_send_icon","email",true, ""),
         ("Password","Enter Password","lock","text",true, ""),
         ("Lisence","Upload Lisence","Group 98","photo library",false, ""),
         ("Member Of","","","checkboxes",true, "")
@@ -95,7 +95,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func tappedOnSignUp( _sender: UIButton) {
-        self.callSignUpAPI()
+//        self.callSignUpAPI()
+        self.signUpAPi()
     }
     
     @IBAction func tappedOnDone( _sender: UIButton) {
@@ -148,7 +149,9 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         tmpCell.txtInfo.keyboardType = .alphabet
                     } else if self.mainArray[indexPath.row].arrOfTypes == "number" {
                         tmpCell.txtInfo.keyboardType = .numberPad
-                    } else if self.mainArray[indexPath.row].arrOfTypes == "calender" {
+                    } else if self.mainArray[indexPath.row].arrOfTypes == "email" {
+                        tmpCell.txtInfo.keyboardType = .emailAddress
+                    }else if self.mainArray[indexPath.row].arrOfTypes == "calender" {
                         //                        self.calenderView = CalenderViewController()
                         //                        if let calender = self.calenderView {
                         //
@@ -299,13 +302,20 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        if string.isEmpty {return true}
+        if textField.tag == 0 { return string.isValidNameInput }
+//        if textField.tag == 1 { return string.isValidCNICInput }
+//        if textField.tag == 5 { return string.isValidNumberInput gd}
+//        if textField.tag == 6 { return string.isValidNumberInput }
+        if textField.tag == 7 {
+            return string.isValidEmailInput }
         if textField.tag == 1 {
 
             let maxLength = 13
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-            return newString.length <= maxLength
+            return (string.isValidNumberInput && newString.length <= maxLength)
         }
         if textField.tag == 5  {
 
@@ -313,7 +323,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-            return newString.length <= maxLength
+            return (string.isValidNumberInput && newString.length <= maxLength)
         }
 
         if textField.tag == 6 {
@@ -322,9 +332,14 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-            return newString.length <= maxLength
+            return (string.isValidNumberInput && newString.length <= maxLength)
         }
         
+        if textField.tag == 4 {
+            self.callVerifyLisence(text: textField.text ?? "")
+        }
+        
+
         return true
     }
     
@@ -337,14 +352,119 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let validation = Validate()
+//        let validation = Validate()
         if textView.tag == 1 {
-            return validation.isValidAddress(testStr: textView.text)
+            return text.isValidAddressInput
         }
         return true
     }
     
     //MARK: - Calling API
+    
+    func signUpAPi() {
+        
+        if !(self.mainArray[0].inputText.isEmpty) {
+            if !(self.mainArray[1].inputText.isEmpty) && self.mainArray[1].inputText.count == 13 {
+                if !(self.mainArray[2].inputText.isEmpty) {
+                    if !(self.mainArray[3].inputText.isEmpty) {
+                        if !(self.mainArray[4].inputText.isEmpty) {
+                            if !(self.mainArray[5].inputText.isEmpty) && self.mainArray[5].inputText.count == 11 {
+                                if !(self.mainArray[7].inputText.isEmpty) {
+                                    if !(self.mainArray[8].inputText.isEmpty) {
+                                        if !(self.mainArray[9].inputText.isEmpty) {
+                                            if !(self.objOfficeAddress.inputText.isEmpty){
+                                                self.signUPRequest()
+                                            }else{
+                                                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Enter Office Address")
+                                            }
+//                                            self.signUPRequest()
+                                        } else {
+                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Upload Lisence")
+                                        }
+                                    } else {
+                                        self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Enter Password")
+                                    }
+                                } else {
+                                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Enter Email")
+                                }
+                            } else {
+                                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Contact Number Should Be 11 Digits")
+                            }
+                        } else {
+                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Enter Lisence Number")
+                        }
+                    } else {
+                        self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Select Profile Picture")
+                    }
+                } else {
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Enter Date Of Birth")
+                }
+            } else {
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "CNIC Should Be 13 Digits")
+            }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Enter Full Name")
+        }
+    }
+    
+    func signUPRequest() {
+        
+        if  Connectivity.isConnectedToInternet {
+            let file = SignUpAttachmentFileRequestModel(licenseFile: self.mainArray[9].inputText, profilePicture: self.mainArray[3].inputText)
+            let dataModel = Request(Source: "2", fullName: self.mainArray[0].inputText, cnic: self.mainArray[1].inputText, licenseNumber: self.mainArray[4].inputText, contactNumber: self.mainArray[5].inputText, email: self.mainArray[7].inputText, officeAddress: self.objOfficeAddress.inputText, password: self.mainArray[8].inputText, licenseType: self.mainArray[10].inputText, issuanceDateLowerCourt: self.findOut(arrSignUpList: "Issue Date of Lower Court") ?? "", issuanceDateHighCourt: self.findOut(arrSignUpList: "Issue Date of High Court") ?? "", issuanceDateSupremeCourt: self.findOut(arrSignUpList: "Issue Date of Supreme Court") ?? "", dob: self.mainArray[2].inputText, secondaryContactNumber: self.mainArray[6].inputText)
+            self.startAnimation()
+            let signUpUrl = Constant.registrationEP
+            let services = SignUpServices()
+            services.postUploadMethod(files: file.params, urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                print(responseData)
+                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    self.showAlertForSignup(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    //                                            self.mainArray.removeAll()
+                    self.tblRegistration.reloadData()
+                } else {
+                    
+                    self.showAlertForSignup(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    
+                    //                                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Something went wrong!")
+                    
+                    //                                            self.mainArray.removeAll()
+                    self.tblRegistration.reloadData()
+                }
+            }
+        }
+        else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+        
+    }
+    
+    func callVerifyLisence(text: String) {
+        
+        if  Connectivity.isConnectedToInternet {
+            
+//            startAnimation()
+            let dataModel = VerifyRequest(source: "2", user: LisenceNumber(licenseNumber: text))
+            let loginUrl = Constant.verifyLisenceEP
+            let services = SignInServices()
+            services.postMethod(urlString: loginUrl, dataModel: dataModel.params) { (responseData) in
+                print(responseData)
+//                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                } else {
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                }
+            }
+        } else {
+            
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+        
+    }
     
     func callSignUpAPI() {
         if  Connectivity.isConnectedToInternet {

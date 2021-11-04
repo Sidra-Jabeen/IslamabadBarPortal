@@ -22,6 +22,11 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     var bitValueForAscDes = 0
     var strValue = ""
     var fullName = ""
+    var currentMemberId: Int?
+    var currentAdminStatus: Bool?
+    var currentStatus: Int?
+    var roleIDValue = 3
+    var refreshControl: UIRefreshControl?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +39,20 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.collectionMembers.addSubview(self.refreshControl!)
         self.callGetUsersApi(status: "2")
     }
     
     
+    
+    @objc func didPullToRefresh() {
+        
+        self.arrayOfMembers.removeAll()
+        self.callGetUsersApi(status: "2")
+        self.refreshControl?.endRefreshing()
+    }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
@@ -88,12 +103,21 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             adminValue = arrayOfMembers[indexPath.item].isAdmin
             let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
             member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
-            member.btn1.isHidden = true
+//            member.btn1.isHidden = true
             member.btn2.isHidden = true
             member.btn3.isHidden = true
+            if arrayOfMembers[indexPath.item].isAdmin ?? false {
+                member.btn1.setTitle("Remove As Admin", for: .normal)
+            } else {
+                member.btn1.setTitle("Make A Admin", for: .normal)
+            }
             member.btnRejectedHeight.constant = 0
-            member.btnApprovedHeight.constant = 0
+//            member.btnApprovedHeight.constant = 0
             member.btnGiveApprovementHeight.constant = 0
+            self.currentMemberId = arrayOfMembers[indexPath.row].userId
+            self.currentAdminStatus = arrayOfMembers[indexPath.row].isAdmin
+            self.currentStatus = arrayOfMembers[indexPath.row].roleId
+            member.btn1.addTarget(self, action: #selector(clickedOnAButton1), for: .touchUpInside)
         }
     }
     
@@ -106,6 +130,19 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    @objc func clickedOnAButton1() {
+        
+        self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: !(self.currentAdminStatus ?? false))
+        
+//        if self.currentStatus != 3 {
+//
+//            self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, roleID: self.roleIDValue)
+//        } else {
+//
+//            self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: !(self.currentAdminStatus ?? false), roleID: 1 )
+//        }
     }
 
     @IBAction func tappedOnBack( _sender: UIButton) {
@@ -262,7 +299,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         if bitValueForAscDes == 1 {
             self.strValue = "asc"
         } else {
-            self.strValue = "des"
+            self.strValue = "desc"
         }
         
         self.startAnimation()
@@ -293,6 +330,35 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             }
         }
     }
+    
+    func callMakeRemoveAdmin(id: Int? = nil , admin: Bool? = nil , roleID: Int? = nil) {
+        
+        if  Connectivity.isConnectedToInternet {
+            startAnimation()
+            let dataModel = AdminRequestModel(source: "2", user: RemoveAdminUser(userId: id ?? 0, isAdmin: admin ?? false, roleId: roleID))
+            let signUpUrl = "api/User/MakeRemoveAdmin"
+            let services = ApprovalServices()
+            services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    
+//                    self.arrayOfMembers.removeAll()
+                    self.callGetUsersApi(status: "2")
+                    self.collectionMembers.reloadData()
+                    self.memberVC?.willMove(toParent: nil)
+                    self.memberVC?.view.removeFromSuperview()
+                    self.memberVC?.removeFromParent()
+                } else {
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                }
+            }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+        
+    }
+    
     
     func showAlertForMember(alertTitle : String, alertMessage : String) {
         

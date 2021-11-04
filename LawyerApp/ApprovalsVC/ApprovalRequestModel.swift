@@ -119,15 +119,15 @@ struct AdminRequestModel {
 
 struct RemoveAdminUser {
     
-    let userId: Int
-    let isAdmin: Bool
-    let roleId: Int
+    let userId: Int?
+    let isAdmin: Bool?
+    let roleId: Int?
 
     var params: [String: Any] {
         return [
-            "userId" : userId,
-            "isAdmin" : isAdmin,
-            "roleId": roleId
+            "userId" : userId as Any,
+            "isAdmin" : isAdmin as Any,
+            "roleId": roleId as Any
         ]
     }
 }

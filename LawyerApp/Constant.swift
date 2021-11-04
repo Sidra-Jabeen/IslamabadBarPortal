@@ -10,15 +10,16 @@ import Foundation
 class Constant {
     
     static var baseURLWithDebugging = "http://10.250.10.221:8083/IsbBarPortal.Api/" // Local Machine IP
-   // static var baseURL = "http://203.215.160.148:9545/" // live IP
+//    static var baseURL = "http://203.215.160.148:9545/" // live IP
     
-    static var baseURL = "http://172.16.1.234:9444/" // local IP
-    static var imageDownloadURL = "\(baseURL)documents/"
+//    static var baseURL = "http://172.16.1.234:9444/" // local IP
+    static var imageDownloadURL = "\(baseURLWithDebugging)documents/"
     
     //MARK: - AccountModule
     
     static var registrationEP = "api/Account/Registration"
     static var loginEP = "api/Account/Login"
+    static var verifyLisenceEP = "api/Account/VerifyLicense"
     
     //MARK: - UserModule
     
@@ -51,10 +52,14 @@ class Constant {
     static var getQuestionDetailsEP = "api/Question/GetQuestionDetail"
     static var delCommentsEP = "api/Question/DeleteComment"
     static var getCommentsEP = "api/Question/GetComments"
-    static var searchCommentsEP = "api/Question/SearchQuestion"
+    static var searchQuestionEP = "api/Question/SearchQuestion"
     
     //MARK: - OfficialDirectoryModule
     
     static var getOfficialContactsEP = "api/OfficialDirectory/GetOfficialContacts"
     static var addOfficialContactsEp = "api/OfficialDirectory/AddOfficialContact"
+    
+    //MARK: - CensorWord
+    
+    static var addWord = "api/CensorWord/Add"
 }

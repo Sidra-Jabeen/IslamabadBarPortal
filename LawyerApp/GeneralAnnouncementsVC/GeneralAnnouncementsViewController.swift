@@ -13,8 +13,8 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     //MARK: - IBOutlets
     
     @IBOutlet weak var tblAnnouncements: UITableView!
-    @IBOutlet weak var viewPostButton: UIView!
     
+    @IBOutlet weak var viewPostButton: UIView!
     @IBOutlet weak var dataNotFoundView: UIView!
     @IBOutlet weak var tableView: UIView!
     
@@ -33,6 +33,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     let formatter = DateFormatter()
     var toDateText = ""
     var fromDateText = ""
+    var refreshControl: UIRefreshControl?
     
     //MARK: - LifeCycles
 
@@ -45,12 +46,24 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.view.addGestureRecognizer(swipeLeft)
         self.viewPostButton.setCornerRadiusToView()
         self.navigationController?.isNavigationBarHidden = true
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         
+        self.tblAnnouncements.addSubview(self.refreshControl!)
         self.callGetGeneralAnnouncements()
         if roleId == 3 {
             
             self.viewPostButton.isHidden = false
         }
+    }
+    
+    //MARK: - RefreshMethod
+    
+    @objc func didPullToRefresh() {
+        
+        self.listArrays.removeAll()
+        self.callGetGeneralAnnouncements()
+        self.refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,29 +127,14 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     @IBAction func tappedOnBack( _sender: UIButton) {
         
         self.navigationController?.popViewController(animated: true)
-        
-//        self.navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
-//        self.view.removeFromSuperview()
-        
     }
     
     @IBAction func tappedOnPostAnnouncement( _sender: UIButton) {
         
-        
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
-//        postVC.strTitle = "General Announcement"
         postVC.height = 0
         postVC.strTitle = "General Announcements"
         self.navigationController?.pushViewController(postVC, animated: true)
-//        self.postAnnouncementVC = PostAnnouncementViewController()
-//        if let postAnnounc = postAnnouncementVC {
-//
-//            self.view.addSubview(postAnnounc.view)
-//            postAnnounc.btnUpload.addTarget(self, action: #selector(onClickedUpload), for: .touchUpInside)
-//
-//        }
-
     }
     
     @IBAction func tappedOnSearchAnnouncement( _sender: UIButton) {
@@ -144,202 +142,19 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         self.search = SearchForBarCouncilViewController()
         if let searchVC = search {
 
-            
             searchVC.modalPresentationStyle = .overCurrentContext
             searchVC.modalTransitionStyle = .crossDissolve
             searchVC.delegate = self
             self.present(searchVC, animated: true, completion: nil)
-//            self.view.addSubview(searchVC.view)
-//            searchVC.delegate = self
-//            searchVC.btnSearch.addTarget(self, action: #selector(onClickedSearch), for: .touchUpInside)
-//            searchVC.btnAll.addTarget(self, action: #selector(clickedOnAll), for: .touchUpInside)
-//            searchVC.btnToday.addTarget(self, action: #selector(clickedOnToday), for: .touchUpInside)
-//            searchVC.btnYesterday.addTarget(self, action: #selector(clickedOnYesterday), for: .touchUpInside)
-//            searchVC.btnLastweek.addTarget(self, action: #selector(clickedOnLastweek), for: .touchUpInside)
-//
-//            searchVC.btnAscending.addTarget(self, action: #selector(clickedOnAscending), for: .touchUpInside)
-//            searchVC.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
-//            searchVC.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
-//
-//            if self.intValue == 0 {
-//
-//                self.search?.txtToDate.text = ""
-//                self.search?.txtFromDate.text = ""
-//                self.setUpButtonsUI(value: self.intValue)
-//            }
-//            else if self.intValue == 1 {
-//
-//                formatter.dateFormat = "yyyy-MM-dd"
-//                let result = formatter.string(from: date)
-//                self.search?.txtToDate.text = result
-//                self.search?.txtFromDate.text = result
-//                self.setUpButtonsUI(value: self.intValue)
-//            }
-//            else if self.intValue == 2 {
-//
-//                let dateFormatter = DateFormatter()
-//                let previousDay = previousDay()
-//                dateFormatter.dateFormat = "yyyy-MM-dd"
-//                self.search?.txtToDate.text = dateFormatter.string(from: previousDay)
-//                self.search?.txtFromDate.text = dateFormatter.string(from: previousDay)
-//                self.setUpButtonsUI(value: self.intValue)
-//            }
-//            else if self.intValue == 3 {
-//
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "yyyy-MM-dd"
-//                let startDay = getPreviousWeekStartDay()
-//                let endDay = getPreviousWeekEndDay()
-//                self.search?.txtToDate.text = dateFormatter.string(from: startDay ?? Date())
-//                self.search?.txtFromDate.text = dateFormatter.string(from: endDay ?? Date())
-//                self.setUpButtonsUI(value: self.intValue)
-//            }
-//
-//            if self.bitValueForAscDes == 1 {
-//                self.search?.imgAsc.image = UIImage(named: "Group 247")
-//                self.search?.imgDes.image = UIImage(named: "Circle")
-//            } else if self.bitValueForAscDes == 2 {
-//
-//                self.search?.imgDes.image = UIImage(named: "Group 247")
-//                self.search?.imgAsc.image = UIImage(named: "Circle")
-//            }
-            
-        }
-    }
-    
-    func selectedDateTextfield(startDate: String, endDate: String) {
-         
-        self.toDateText = startDate
-        self.fromDateText = endDate
-    }
-    
-    //MARK: - SearchForBarCouncilViewControllerFunctions
-    
-    @objc func handleDatePicker(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        search?.txtToDate.text = dateFormatter.string(from: sender.date)
-    }
 
-    @objc func onClickedUpload() {
-        
-        self.callGetPostAnnouncementApi()
-    }
-    
-    @objc func onClickedSearch() {
-        
-        
-        
-        
-        
-//        if intValue == 0 {
-//
-//
-////            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: nil)
-//            self.searchByDates(strtDate: self.toDateText, frmDate: self.fromDateText, duration: nil)
-//
-//        }
-//        else if intValue == 1 {
-//
-//            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "",  duration: "1")
-//        }
-//        else if intValue == 2 {
-//
-//            self.searchByDates(strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "2")
-//        }
-//        else if intValue == 3 {
-//
-//            self.searchByDates( strtDate: search?.txtToDate.text ?? "", frmDate: search?.txtFromDate.text ?? "", duration: "3")
-//        }
-    }
-    
-    @objc func clickedOnAll() {
-        
-        self.intValue = 0
-        self.search?.txtToDate.text = ""
-        self.search?.txtFromDate.text = ""
-        self.setUpButtonsUI(value: self.intValue)
-    }
-    
-    @objc func clickedOnClear() {
-        
-        self.search?.txtToDate.text = ""
-        self.search?.txtFromDate.text = ""
-    }
-    
-    @objc func clickedOnToday() {
-        
-        self.intValue = 1
-        formatter.dateFormat = "yyyy-MM-dd"
-        let result = formatter.string(from: date)
-        self.search?.txtToDate.text = result
-        self.search?.txtFromDate.text = result
-        self.setUpButtonsUI(value: self.intValue)
-    }
-    
-    @objc func clickedOnYesterday() {
-        
-        self.intValue = 2
-        
-        let dateFormatter = DateFormatter()
-        let previousDay = previousDay()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        self.search?.txtToDate.text = dateFormatter.string(from: previousDay)
-        self.search?.txtFromDate.text = dateFormatter.string(from: previousDay)
-        self.setUpButtonsUI(value: self.intValue)
-    }
-    
-    @objc func clickedOnLastweek() {
-        
-        self.intValue = 3
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let startDay = getPreviousWeekStartDay()
-        let endDay = getPreviousWeekEndDay()
-        self.search?.txtToDate.text = dateFormatter.string(from: startDay ?? Date())
-        self.search?.txtFromDate.text = dateFormatter.string(from: endDay ?? Date())
-        self.setUpButtonsUI(value: self.intValue)
-    }
-    
-    @objc func clickedOnAscending() {
-        
-        self.bitValueForAscDes = 1
-        if self.bitValueForAscDes == 1 {
-            self.search?.imgAsc.image = UIImage(named: "Group 247")
-            self.search?.imgDes.image = UIImage(named: "Circle")
         }
     }
     
-    @objc func clickedOndescending() {
-        
-        self.bitValueForAscDes = 2
-        if self.bitValueForAscDes == 2 {
-            self.search?.imgDes.image = UIImage(named: "Group 247")
-            self.search?.imgAsc.image = UIImage(named: "Circle")
-        }
-    }
-    
-    func previousDay()-> Date{
-        var dayComponent    = DateComponents()
-        dayComponent.day    = -1
-        let theCalendar     = Calendar.current
-        let day        = theCalendar.date(byAdding: dayComponent, to: Date())!
-        return day
-    }
-    
-    func getPreviousWeekStartDay() -> Date? {
-        let gregorian = Calendar(identifier: .gregorian)
-        let sunday = gregorian.date(from:
-        gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
-        return gregorian.date(byAdding: .day, value: -6, to: sunday!)!
-    }
-
-    // Getting last day of previous week
-    func getPreviousWeekEndDay() -> Date? {
-        let gregorian = Calendar(identifier: .gregorian)
-        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
-        return gregorian.date(byAdding: .day, value: 0, to: sunday!)!
-    }
+//    func selectedDateTextfield(startDate: String, endDate: String) {
+//
+//        self.toDateText = startDate
+//        self.fromDateText = endDate
+//    }
     
     //MARK: - CallingApisFunctions
     
@@ -349,7 +164,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             self.startAnimation()
             
             
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "des", limit: 10, offset: listArrays.count), memberAnnouncement: nil)
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: listArrays.count), memberAnnouncement: nil)
             let url = Constant.memGetAnnounceEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -359,15 +174,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 if status {
                     self.listArrays = responseData.memberAnnouncements ?? []
                     self.tblAnnouncements.reloadData()
-//                    self.postAnnouncementVC?.willMove(toParent: nil)
-//                    self.postAnnouncementVC?.view.removeFromSuperview()
-//                    self.postAnnouncementVC?.removeFromParent()
-                    
                     self.dataNotFoundView.isHidden = true
                     self.tableView.isHidden = false
                 } else {
-//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    
                     self.dataNotFoundView.isHidden = false
                     self.tableView.isHidden = true
                 }
@@ -398,7 +207,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                     self.tableView.isHidden = false
                     
                 } else {
-//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    
                     self.search?.dismiss(animated: true)
                     self.dataNotFoundView.isHidden = false
                     self.tableView.isHidden = true
@@ -418,7 +227,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             if bitValueForAscDes == 1 {
                 self.strValue = "asc"
             } else {
-                self.strValue = "des"
+                self.strValue = "desc"
             }
             let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration))
             let url = Constant.memGetAnnounceEP
@@ -441,53 +250,6 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                     self.dataNotFoundView.isHidden = false
                     self.tableView.isHidden = true
 //                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                }
-            }
-        } else {
-            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
-        }
-
-    }
-    
-    func callGetPostAnnouncementApi() {
-        
-        if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = GeneralPostAnnouncementRequestModel(source: "2", memberAnnouncement: MemberAnnouncements(title:  self.postAnnouncementVC?.txtEnterTitle.text ?? "", description: self.postAnnouncementVC?.descTextView.text ?? ""))
-            let url = Constant.memPostAnnouncementEP
-            let services = GeneralAnnouncementServices()
-            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-                    self.listArrays.removeAll()
-                    self.callGetGeneralAnnouncements()
-                } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                }
-            }
-        } else {
-            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
-        }
-
-    }
-    
-    func callGetAnnouncementDetailApi() {
-        
-        if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = GeneralAnnouncementDetailsRequestModel(source: "2", memberAnnouncement: GeneralAnnouncementDetails(memberAnnouncementId: 0))
-            let url = Constant.memGetAnnounceDetailsEP
-            let services = GeneralAnnouncementServices()
-            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-                    self.callGetGeneralAnnouncements()
-                } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 }
             }
         } else {

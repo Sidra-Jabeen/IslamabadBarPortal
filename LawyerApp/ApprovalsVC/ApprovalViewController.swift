@@ -39,6 +39,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
     var currentStatus: Int?
     var selectedTab = 0
     var roleIDValue = 3
+    var refreshControl: UIRefreshControl?
     
     //MARK: - Lifecycle
     
@@ -50,9 +51,6 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         self.approvalsCollection.collectionViewLayout = layout
         self.approvalsCollection.register(UINib(nibName: "MemberCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MemberCollectionViewCell")
         self.navigationController?.isNavigationBarHidden = true
-//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-//        swipeLeft.direction = .right
-//        self.view.addGestureRecognizer(swipeLeft)
         
         let leftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleContentViewGesture))
         leftRecognizer.direction = .left
@@ -60,19 +58,29 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
         rightRecognizer.direction = .right
         self.contentView.addGestureRecognizer(leftRecognizer)
         self.contentView.addGestureRecognizer(rightRecognizer)
-        self.callGetUsersApi(status: "1")
-        self.selectedTab = 1
-        self.setLabelColor()
-        self.setViewColorLine()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.approvalsCollection.addSubview(self.refreshControl!)
 //        self.callGetUsersApi(status: "1")
 //        self.selectedTab = 1
 //        self.setLabelColor()
 //        self.setViewColorLine()
+        
+    }
+    
+    @objc func didPullToRefresh() {
+        
+        self.arrayOfMembers.removeAll()
+        self.callGetUsersApi(status: "1")
+        self.refreshControl?.endRefreshing()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.callGetUsersApi(status: "1")
+        self.selectedTab = 1
+        self.setLabelColor()
+        self.setViewColorLine()
     }
     
 //    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -191,6 +199,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                 
                 let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
                 profileVC.intUserValue = arrayOfMembers[indexPath.item].userId ?? 0
+                profileVC.bitForViewBtns = true
                 self.navigationController?.pushViewController(profileVC, animated: true)
             } else {
                 
@@ -312,7 +321,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
     
     func callGetUsersApi(status: String) {
         
-        
+        self.arrayOfMembers.removeAll()
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
             let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: self.arrayOfMembers.count), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: status))
@@ -356,22 +365,19 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                 let response = responseData.success ?? false
                 if response {
                     if self.selectedTab == 1 {
-                        
                         self.callGetUsersApi(status: "1")
                         
                     } else if self.selectedTab == 2 {
-                        
                         self.callGetUsersApi(status: "2")
                         
                     } else if self.selectedTab == 3 {
-                        
                         self.callGetUsersApi(status: "3")
                         
                     } else if self.selectedTab == 4 {
-                        
                         self.callGetUsersApi(status: "4")
                     }
                     
+//                    self.arrayOfMembers.removeAll()
                     self.memberVC?.willMove(toParent: nil)
                     self.memberVC?.view.removeFromSuperview()
                     self.memberVC?.removeFromParent()
@@ -398,6 +404,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                 let status = responseData.success ?? false
                 if status {
                     
+//                    self.arrayOfMembers.removeAll()
                     self.callGetUsersApi(status: "2")
                     self.approvalsCollection.reloadData()
                     self.memberVC?.willMove(toParent: nil)

@@ -16,7 +16,7 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var txtInfo: UITextField!
     @IBOutlet weak var viewFirstName: UIView!
     @IBOutlet weak var btn: UIButton!
-    @IBOutlet weak var txtfield: UITextField!
+    @IBOutlet weak var lblValidation: UILabel!
     @IBOutlet weak var btnTextFiled: UIButton!
     
 //    let dropDown = DropDown()

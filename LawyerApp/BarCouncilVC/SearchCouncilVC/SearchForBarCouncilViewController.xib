@@ -20,10 +20,15 @@
                 <outlet property="btnSearch" destination="QuI-YM-ncj" id="6un-qB-jiG"/>
                 <outlet property="btnToDate" destination="mAU-zg-VaU" id="yFR-L8-USU"/>
                 <outlet property="btnToday" destination="ShA-H2-nfY" id="sHc-ME-F6a"/>
+                <outlet property="btnView" destination="ex9-jo-pAI" id="wLN-UQ-nnk"/>
                 <outlet property="btnYesterday" destination="C7t-SP-eLr" id="xxK-LK-XBu"/>
                 <outlet property="btndescending" destination="lcY-kV-gpx" id="181-C2-lEa"/>
+                <outlet property="centerView" destination="ZgS-9b-T6E" id="mkK-y1-PO8"/>
                 <outlet property="imgAsc" destination="Nj0-TK-Hv1" id="YeM-08-IO9"/>
                 <outlet property="imgDes" destination="v3x-h8-Muy" id="O2W-oA-6Nq"/>
+                <outlet property="outerView" destination="ujK-QL-A1X" id="Pwx-CE-qpm"/>
+                <outlet property="questionView" destination="GTW-iG-3eM" id="5AR-04-TMx"/>
+                <outlet property="topView" destination="NT7-QV-A6V" id="I57-4C-auf"/>
                 <outlet property="txtFromDate" destination="oOk-rV-aNj" id="5wC-nM-YqZ"/>
                 <outlet property="txtToDate" destination="9w8-4y-zmJ" id="lmR-ue-6IT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

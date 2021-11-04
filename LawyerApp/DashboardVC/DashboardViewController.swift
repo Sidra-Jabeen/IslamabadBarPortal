@@ -330,6 +330,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
             else if named == "My Profile" {
                 profileController = ProfileViewController()
                 if let controller = profileController  {
+                    controller.intUserValue = loginUserID ?? 0
                     setupUI(controller: controller)
                 }
                 

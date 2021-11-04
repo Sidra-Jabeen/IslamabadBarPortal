@@ -194,6 +194,8 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                     if user?.isAdmin ?? false {
                         Generic.setAdminValue(token: "0")
+                    } else {
+                        Generic.setAdminValue(token: "1")
                     }
                 }
             } else {

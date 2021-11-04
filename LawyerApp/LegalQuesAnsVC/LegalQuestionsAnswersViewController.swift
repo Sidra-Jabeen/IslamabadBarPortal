@@ -7,16 +7,23 @@
 
 import UIKit
 import SideMenu
+import Kingfisher
 
-class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate{
     
     @IBOutlet weak var tblQuesAnswers: UITableView!
     @IBOutlet weak var viewPostQuesBtn: UIView!
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchBarView: UIView!
+    @IBOutlet weak var txtSearch: UITextField!
+    @IBOutlet weak var noDataFoundView: UIView!
     
     var navController: UINavigationController?
     var postAQuesVC: PostAQuestionViewController?
-    
+    var commentsVC: CommentsViewController?
     var arrayOfQueries = [QuesResponseModel]()
+    
+    var refreshControl: UIRefreshControl?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +31,27 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
         self.viewPostQuesBtn.setCornerRadiusToView()
         self.tblQuesAnswers.register(UINib(nibName: "QuestionAnswerTableViewCell", bundle: nil), forCellReuseIdentifier: "QuestionAnswerTableViewCell")
         self.navigationController?.isNavigationBarHidden = true
-        
+        self.txtSearch.delegate = self
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-            swipeLeft.direction = .left
-            self.view.addGestureRecognizer(swipeLeft)
+        swipeLeft.direction = .right
+        self.view.addGestureRecognizer(swipeLeft)
+        self.callGetQuestionApi()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.tblQuesAnswers.addSubview(self.refreshControl!)
+    }
+    
+
+    @objc func didPullToRefresh() {
+        
+        self.arrayOfQueries.removeAll()
+        self.callGetQuestionApi()
+        self.refreshControl?.endRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.callGetQuestionApi()
+//        self.callGetQuestionApi()
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -53,27 +72,37 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let tmpCell = tableView.dequeueReusableCell(withIdentifier: "QuestionAnswerTableViewCell", for: indexPath) as! QuestionAnswerTableViewCell
-        tmpCell.layer.shadowOffset = CGSize(width: 0,height: 0)
-        tmpCell.layer.shadowColor = UIColor.black.cgColor
-        tmpCell.layer.shadowOpacity = 0.25
-        tmpCell.layer.shadowRadius = 4
+//        tmpCell.layer.shadowOffset = CGSize(width: 0,height: 0)
+//        tmpCell.layer.shadowColor = UIColor.black.cgColor
+//        tmpCell.layer.shadowOpacity = 0.25
+//        tmpCell.layer.shadowRadius = 4
         tmpCell.lblUsr.text = arrayOfQueries[indexPath.row].postedBy
         tmpCell.lblTime.text = arrayOfQueries[indexPath.row].postedAt
-        tmpCell.lblAnswer.text = arrayOfQueries[indexPath.row].description
-        tmpCell.lblQuestion.text = arrayOfQueries[indexPath.row].title
+        tmpCell.lblAnswer.text = arrayOfQueries[indexPath.row].censoredTitle
+        tmpCell.lblQuestion.text = arrayOfQueries[indexPath.row].censoredDescription
         tmpCell.lblTotalComments.text = arrayOfQueries[indexPath.row].totalComments
+        let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfQueries[indexPath.item].postedByProfileUrl ?? "")")
+        tmpCell.img.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+        tmpCell.selectionStyle = .none
         return tmpCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 80
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vC = CommentsViewController(nibName: "CommentsViewController", bundle: nil)
-        self.navigationController?.pushViewController(vC, animated: true)
+//        let vC = CommentsViewController(nibName: "CommentsViewController", bundle: nil)
+//        self.navigationController?.pushViewController(vC, animated: true)
+        
+        self.tblQuesAnswers.deselectRow(at: indexPath, animated: true)
+        self.commentsVC = CommentsViewController()
+        if let vc = commentsVC {
+            vc.questionId = arrayOfQueries[indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -92,11 +121,25 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
 
     @IBAction func tappedOnPostAQues( _sender: UIButton) {
         
-        postAQuesVC = PostAQuestionViewController()
-        if let postQVC = postAQuesVC {
-
-            self.view.addSubview(postQVC.view)
-            postQVC.btnPostAQuestion.addTarget(self, action: #selector(clickedOnPostAQuestion), for: .touchUpInside)
+        let postVC = PostAQuestionViewController(nibName: "PostAQuestionViewController", bundle: nil)
+        self.navigationController?.pushViewController(postVC, animated: true)
+    }
+    
+    @IBAction func tappedOnSearch( _sender: UIButton) {
+        
+        self.addAnimations(view: self.searchView, options: UIView.AnimationOptions.transitionCurlDown, duration: 0.5, delay: 0.25)
+    }
+    
+    //MARK: - TouchScreenFunction
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        let touch = touches.first
+        if touch?.view == self.searchView
+        {
+            self.searchView.alpha = 0
+//            self.dismiss(animated: true, completion: nil)
+            
         }
     }
     
@@ -107,15 +150,15 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     }
     
     @objc func clickedOnPostAQuestion() {
-        self.callGetPostQuestionApi()
+//        self.callGetPostQuestionApi()
     }
     
     func callGetQuestionApi() {
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = QuestionRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: self.arrayOfQueries.count))
-            let signUpUrl = "api/Question/GetQuestions"
+            let dataModel = QuestionRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0))
+            let signUpUrl = Constant.getQuestionsEP
             let services = QuestionServices()
             services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
                 
@@ -125,8 +168,12 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
                     self.arrayOfQueries = responseData.questions ?? []
                     print(self.arrayOfQueries)
                     self.tblQuesAnswers.reloadData()
+                    self.noDataFoundView.isHidden = true
+                    self.tblQuesAnswers.isHidden = false
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    self.noDataFoundView.isHidden = false
+                    self.tblQuesAnswers.isHidden = true
                 }
             }} else {
                 
@@ -135,26 +182,64 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
 
     }
     
-    func callGetPostQuestionApi() {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       textField.resignFirstResponder()
+        self.callSearchQuestionApi()
+       return true
+    }
+    
+    func callSearchQuestionApi() {
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = PostQuestionRequestModel(source: "2", question: Question(title: postAQuesVC?.questionTextView.text ?? "", description: postAQuesVC?.txtwriteSomething.text ?? ""))
-            let url = "api/Question/PostQuestion"
-            let services = PostQuestionsServices()
+            let lisenceNo = UserDefaults.standard.string(forKey: "lisenceNumber") ?? ""
+            let password = UserDefaults.standard.string(forKey: "password") ?? ""
+            let dataModel = SearchQuestionRequestModel(pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), question: SearchQuestion(isLoadMore: false, id: 0, title: self.txtSearch.text ?? ""), source: "2", user: LoginUser(licenseNumber: lisenceNo, password: password))
+            let url = Constant.searchQuestionEP
+            let services = QuestionServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
                 
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
-                    self.callGetQuestionApi()
+                    self.arrayOfQueries = responseData.questions ?? []
+                    print(self.arrayOfQueries)
+                    self.tblQuesAnswers.reloadData()
+                    self.searchView.alpha = 0
+                    self.noDataFoundView.isHidden = true
+                    self.tblQuesAnswers.isHidden = false
                 } else {
-                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    self.searchView.alpha = 0
+                    self.noDataFoundView.isHidden = false
+                    self.tblQuesAnswers.isHidden = true
                 }
+            }} else {
+                
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
             }
-        } else {
-            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
-        }
 
     }
+    
+//    func callGetPostQuestionApi() {
+//        
+//        if  Connectivity.isConnectedToInternet {
+//            self.startAnimation()
+//            let dataModel = PostQuestionRequestModel(source: "2", question: Question(title: postAQuesVC?.questionTextView.text ?? "", description: postAQuesVC?.txtwriteSomething.text ?? ""))
+//            let url = "api/Question/PostQuestion"
+//            let services = PostQuestionsServices()
+//            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+//                
+//                self.stopAnimation()
+//                let status = responseData.success ?? false
+//                if status {
+//                    self.callGetQuestionApi()
+//                } else {
+//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                }
+//            }
+//        } else {
+//            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+//        }
+//
+//    }
 }

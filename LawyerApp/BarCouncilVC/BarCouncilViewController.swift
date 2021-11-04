@@ -33,6 +33,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     var strDate: String?
     var endDate: String?
     var toDate = Date()
+    var refreshControl: UIRefreshControl?
 //    var strDate: String?
     private lazy var datePickerView: DateTimePicker = {
         
@@ -78,12 +79,22 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
-        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+
+        self.tblBarCouncilList.addSubview(self.refreshControl!)
         self.callGetAnnouncements()
         if roleId == 3 {
             
             self.viewPostButton.isHidden = false
         }
+    }
+    
+    @objc func didPullToRefresh() {
+        
+        self.barListArrays.removeAll()
+        self.callGetAnnouncements()
+        self.refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -188,7 +199,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "des", limit: 10, offset: self.barListArrays.count), barAnnouncement: nil)
+            let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: self.barListArrays.count), barAnnouncement: nil)
             let url = Constant.barGetAnnounceEP
             let services = AnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in

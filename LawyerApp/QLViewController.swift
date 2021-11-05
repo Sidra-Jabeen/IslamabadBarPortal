@@ -43,14 +43,14 @@ class QLViewController: UIViewController {
             previewItem.previewItemURL = previewURL
             self.previewItems.append(previewItem)
         }
-        //        MARK:- make netwok calls and save the url
+        //        MARK:- make network calls and save the url
         else{
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else {return}
                 guard
                     let _ = response as? HTTPURLResponse else {return}
                 do {
-                    try data.write(to: previewURL, options: .atomic)   // atomic option overwrites it if needed
+                    try data.write(to: previewURL, options: .atomic)  
     //                previewURL.hasHiddenExtension = true
                     let previewItem = PreviewItem()
                     previewItem.previewItemURL = previewURL

@@ -98,7 +98,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        FileManager.default.clearTmpDirectory()
 //        self.callGetAnnouncements()
     }
     
@@ -189,9 +189,16 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
             vc.barTitle = "Bar Announcements"
             self.navigationController?.pushViewController(vc, animated: true)
         }
-
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        // need to pass your indexpath then it showing your indicator at bottom
+           tableView.addLoading(indexPath) {
+               self.callGetAnnouncements()
+               tableView.stopLoading() // stop your indicator
+           }
+    }
     
     //MARK: - CallingAPiFunctions
     
@@ -208,38 +215,39 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                 let status = responseData.success ?? false
                 if status {
                     
-                    self.barListArrays = responseData.barAnnouncements ?? []
-                    self.tblBarCouncilList.reloadData()
-//                    self.postAnnouncementVC?.willMove(toParent: nil)
-//                    self.postAnnouncementVC?.view.removeFromSuperview()
-//                    self.postAnnouncementVC?.removeFromParent()
-                    self.dataNotFoundView.isHidden = true
-                    self.tableView.isHidden = false
-//                    
-//                    if self.barListArrays.count > 0 {
-//                        if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
-//                            
-//                            for item in arrayData {
-//                                self.barListArrays.append(item)
-//                            }
-//                        }
-//                    } else {
-//                        self.barListArrays = responseData.barAnnouncements ?? []
-//                        self.tblBarCouncilList.reloadData()
-//                        
-//                        self.postAnnouncementVC?.willMove(toParent: nil)
-//                        self.postAnnouncementVC?.view.removeFromSuperview()
-//                        self.postAnnouncementVC?.removeFromParent()
-//                        
-//                        self.dataNotFoundView.isHidden = true
-//                        self.tableView.isHidden = false
-//                    }
+                    if responseData.barAnnouncements?.count != 0 {
+                        if self.barListArrays.count > 0 {
+                            
+                            if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
+                                
+                                for item in arrayData {
+                                    self.barListArrays.append(item)
+                                    self.tblBarCouncilList.reloadData()
+                                    self.dataNotFoundView.isHidden = true
+                                    self.tableView.isHidden = false
+                                }
+                            }
+                        } else {
+                            self.barListArrays = responseData.barAnnouncements ?? []
+                            self.tblBarCouncilList.reloadData()
+                            self.dataNotFoundView.isHidden = true
+                            self.tableView.isHidden = false
+                        }
+                    
+                    }
+                    
+//                    self.barListArrays = responseData.barAnnouncements ?? []
+//                    self.tblBarCouncilList.reloadData()
+//                    self.dataNotFoundView.isHidden = true
+//                    self.tableView.isHidden = false
                     
                 } else {
 //                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                    if self.barListArrays.count == 0 {
+                        self.dataNotFoundView.isHidden = false
+                        self.tableView.isHidden = true
+                    }
                     
-                    self.dataNotFoundView.isHidden = false
-                    self.tableView.isHidden = true
                 }
             }
         } else {
@@ -260,7 +268,30 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
-//                    self.listArrays.removeAll()
+                    
+//                    if responseData.barAnnouncements?.count != 0 {
+//                        if self.barListArrays.count > 0 {
+//
+//                            if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
+//
+//                                for item in arrayData {
+//                                    self.barListArrays.append(item)
+//                                    self.tblBarCouncilList.reloadData()
+//                                    self.search?.dismiss(animated: true)
+//                                    self.dataNotFoundView.isHidden = true
+//                                    self.tableView.isHidden = false
+//                                }
+//                            }
+//                        } else {
+//                            self.barListArrays = responseData.barAnnouncements ?? []
+//                            self.tblBarCouncilList.reloadData()
+//                            self.search?.dismiss(animated: true)
+//                            self.dataNotFoundView.isHidden = true
+//                            self.tableView.isHidden = false
+//                        }
+//
+//                    }
+                    self.barListArrays.removeAll()
                     self.barListArrays = responseData.barAnnouncements ?? []
                     self.tblBarCouncilList.reloadData()
                     self.search?.dismiss(animated: true)

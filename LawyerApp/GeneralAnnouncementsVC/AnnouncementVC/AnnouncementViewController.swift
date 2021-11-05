@@ -54,8 +54,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+//        FileManager.default.clearTmpDirectory()
     }
     
     //MARK: - HandGestures Function
@@ -166,7 +165,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 //  in case of failure to download your data you need to present alert to the user
-                self.presentAlertController(with: error?.localizedDescription ?? "Failed to download the pdf!!!")
+                self.presentAlertController(with: error?.localizedDescription ?? "Failed to download the File!!!")
                 return
             }
             // you neeed to check if the downloaded data is a valid pdf
@@ -190,7 +189,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                 self.previewItems.append(previewItem)
                 print(self.previewItems)
 //                DispatchQueue.main.async {
-////                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //                    self.previewController.delegate = self
 //                    self.previewController.dataSource = self
 //                    self.previewController.currentPreviewItemIndex = 0
@@ -366,8 +365,29 @@ extension AnnouncementViewController: QLPreviewControllerDataSource {
 //      let strURL = self.arrAttachmentResponse[index].attachmentUrl
 //      return URL(string: "\(Constant.imageDownloadURL)\(strURL ?? "")")! as QLPreviewItem
   }
+    
+    func previewControllerWillDismiss(_ controller: QLPreviewController) {
+        print("preview controller dismiss")
+    }
+    
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        print("preview controller dismiss")
+    }
 }
 
+extension FileManager {
+    func clearTmpDirectory() {
+        do {
+            let tmpDirectory = try contentsOfDirectory(atPath: NSTemporaryDirectory())
+            try tmpDirectory.forEach {[unowned self] file in
+                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                try self.removeItem(atPath: path)
+            }
+        } catch {
+            print(error)
+        }
+    }
+}
 
 //extension URL {
 //    var hasHiddenExtension: Bool {

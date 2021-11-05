@@ -409,8 +409,16 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             if self.arrayForMedia.count > 0 {
                                 
                                 self.uploadFiles(barId: "\(announceID ?? 0)", type: "1", index: 0)
+                            } else{
+                                self.stopAnimation()
+                                let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                    self.navigationController?.popViewController(animated: true)
+                                }))
+                                self.present(alert, animated: true, completion: nil)
                             }
                         } else {
+                            self.stopAnimation()
                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                         }
                     }
@@ -442,7 +450,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.uploadFiles(barId: barId, type: type, index: index)
                         } else {
                             self.stopAnimation()
-                            let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
                                 self.navigationController?.popViewController(animated: true)
                             }))
@@ -482,8 +490,16 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             if self.arrayForMedia.count > 0 {
                                 
                                 self.uploadGeneralFiles(barId: "\(memberID ?? 0)", type: "2", index: 0)
+                            } else{
+                                self.stopAnimation()
+                                let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                    self.navigationController?.popViewController(animated: true)
+                                }))
+                                self.present(alert, animated: true, completion: nil)
                             }
                         } else {
+                            self.stopAnimation()
                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                         }
                     }

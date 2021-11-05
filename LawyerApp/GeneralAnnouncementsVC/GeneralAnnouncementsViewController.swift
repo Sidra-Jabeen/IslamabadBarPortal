@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController {
+class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController, UITableViewDataSourcePrefetching {
     
     //MARK: - IBOutlets
     
@@ -34,6 +34,9 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     var toDateText = ""
     var fromDateText = ""
     var refreshControl: UIRefreshControl?
+    var currentPage : Int = 0
+    var totalPage : Int = 0
+    fileprivate var activityIndicator: LoadMoreActivityIndicator!
     
     //MARK: - LifeCycles
 
@@ -50,11 +53,14 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         
         self.tblAnnouncements.addSubview(self.refreshControl!)
+        self.tblAnnouncements.prefetchDataSource = self
         self.callGetGeneralAnnouncements()
         if roleId == 3 {
             
             self.viewPostButton.isHidden = false
         }
+//        self.tblAnnouncements.tableFooterView = UIView()
+//        self.activityIndicator = LoadMoreActivityIndicator(scrollView: tableView, spacingFromLastCell: 10, spacingFromLastCellWhenLoadMoreActionStart: 60)
     }
     
     //MARK: - RefreshMethod
@@ -68,6 +74,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         
+        FileManager.default.clearTmpDirectory()
 //        self.callGetGeneralAnnouncements()
     }
     
@@ -101,6 +108,11 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         let url = URL(string: "\(Constant.imageDownloadURL)\(listArrays[indexPath.item].announcedByProfile ?? "")")
         tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
         tmpCell.selectionStyle = .none
+        
+        
+//        if indexPath.row == self.listArrays.count {
+//                self.callGetGeneralAnnouncements()
+//            }
         return tmpCell
     }
     
@@ -121,6 +133,43 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
 
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        // need to pass your indexpath then it showing your indicator at bottom
+           tableView.addLoading(indexPath) {
+               // add your code here
+               // append Your array and reload your tableview
+               self.callGetGeneralAnnouncements()
+               tableView.stopLoading() // stop your indicator
+           }
+        
+//        if indexPath.row == self.listArrays.count-1 {
+//                    print("came to last row")
+//            self.callGetGeneralAnnouncements()
+//        }
+//        let lastItem = self.listArrays.count - 1
+//        if indexPath.row == lastItem {
+//            print("IndexRow\(indexPath.row)")
+//            self.totalPage = self.listArrays.count
+//            if currentPage < totalPage {
+//                currentPage += 1
+//               //Get data from Server
+//                self.callGetGeneralAnnouncements()
+//            }
+//        }
+//        self.callGetQuestionApi()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+//            print("prefetchdRowsAtIndexpath \(indexPaths)")
+        }
+
+        func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+//            print("cancelPrefetchingForRowsAtIndexpath \(indexPaths)")
+        }
+    
     
     //MARK: - IBActions
     
@@ -172,13 +221,33 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
-                    self.listArrays = responseData.memberAnnouncements ?? []
-                    self.tblAnnouncements.reloadData()
-                    self.dataNotFoundView.isHidden = true
-                    self.tableView.isHidden = false
+                    if responseData.memberAnnouncements?.count != 0 {
+                        if self.listArrays.count > 0 {
+                            
+                            if let arrayData : [GeneralAnnouncementResponseModel] = responseData.memberAnnouncements {
+                                
+                                for item in arrayData {
+                                    self.listArrays.append(item)
+                                    self.tblAnnouncements.reloadData()
+                                    self.dataNotFoundView.isHidden = true
+                                    self.tableView.isHidden = false
+                                }
+                            }
+                        } else {
+                            self.listArrays = responseData.memberAnnouncements ?? []
+                            self.tblAnnouncements.reloadData()
+                            self.dataNotFoundView.isHidden = true
+                            self.tableView.isHidden = false
+                        }
+                    
+                    }
+                        
                 } else {
-                    self.dataNotFoundView.isHidden = false
-                    self.tableView.isHidden = true
+                    if self.listArrays.count == 0 {
+                        self.dataNotFoundView.isHidden = false
+                        self.tableView.isHidden = true
+                    }
+                    
                 }
             }
         } else {
@@ -199,7 +268,29 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
-//                    self.listArrays.removeAll()
+//                    if responseData.memberAnnouncements?.count != 0 {
+//                        if self.listArrays.count > 0 {
+//                            
+//                            if let arrayData : [GeneralAnnouncementResponseModel] = responseData.memberAnnouncements {
+//                                
+//                                for item in arrayData {
+//                                    self.listArrays.append(item)
+//                                    self.tblAnnouncements.reloadData()
+//                                    self.search?.dismiss(animated: true)
+//                                    self.dataNotFoundView.isHidden = true
+//                                    self.tableView.isHidden = false
+//                                }
+//                            }
+//                        } else {
+//                            self.listArrays = responseData.memberAnnouncements ?? []
+//                            self.tblAnnouncements.reloadData()
+//                            self.search?.dismiss(animated: true)
+//                            self.dataNotFoundView.isHidden = true
+//                            self.tableView.isHidden = false
+//                        }
+//                    
+//                    }
+                    self.listArrays.removeAll()
                     self.listArrays = responseData.memberAnnouncements ?? []
                     self.tblAnnouncements.reloadData()
                     self.search?.dismiss(animated: true)
@@ -207,10 +298,12 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                     self.tableView.isHidden = false
                     
                 } else {
-                    
-                    self.search?.dismiss(animated: true)
-                    self.dataNotFoundView.isHidden = false
-                    self.tableView.isHidden = true
+//                    if self.listArrays.count == 0 {
+                       
+                        self.search?.dismiss(animated: true)
+                        self.dataNotFoundView.isHidden = false
+                        self.tableView.isHidden = true
+//                    }
                 }
             }
         } else {
@@ -257,106 +350,29 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
 
     }
-    
-    //MARK: - Others
-    
-    func setUpButtonsUI(value: Int) {
-        
-        if self.intValue == 0 {
-            
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewAll.removeBorderColorToView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewToday.setBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewYesterday.setBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewLastweek.setBorderColorToView()
-//            self.search?.toAndFromView.isUserInteractionEnabled = true
-//            self.search?.calenderViewHeight.constant = 50
-//            self.search?.serachByViewHeight.constant = 20
-            
+}
+
+extension UITableView {
+
+    func addLoading(_ indexPath:IndexPath, closure: @escaping (() -> Void)){
+        //    indicatorView().startAnimating()
+        if let lastVisibleIndexPath = self.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath && indexPath.row == self.numberOfRows(inSection: 0) - 1 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    closure()
+                }
+            }
         }
-        
-        else if self.intValue == 1 {
-            
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewToday.removeBorderColorToView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewAll.setBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewYesterday.setBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewLastweek.setBorderColorToView()
-//            self.search?.calenderViewHeight.constant = 0
-//            self.search?.serachByViewHeight.constant = 0
-//            self.search?.toAndFromView.isUserInteractionEnabled = false
-            
-        }
-        
-        else if self.intValue == 2 {
-            
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.removeBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewToday.setBorderColorToView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewAll.setBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewLastweek.setBorderColorToView()
-//            self.search?.calenderViewHeight.constant = 0
-//            self.search?.serachByViewHeight.constant = 0
-//            self.search?.toAndFromView.isUserInteractionEnabled = false
-            
-        }
-        
-        else if self.intValue == 3 {
-            
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.removeBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewToday.setBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewYesterday.setBorderColorToView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewAll.setBorderColorToView()
-//            self.search?.calenderViewHeight.constant = 0
-//            self.search?.serachByViewHeight.constant = 0
-//            self.search?.toAndFromView.isUserInteractionEnabled = false
-            
-        }
-        
+    }
+
+    func stopLoading() {
+        print("stopLoading")
+        //    if self.tableFooterView != nil {
+        //        self.indicatorView().stopAnimating()
+        //        self.tableFooterView = nil
+        //    }
+        //    else {
+        //        self.tableFooterView = nil
+        //    }
     }
 }

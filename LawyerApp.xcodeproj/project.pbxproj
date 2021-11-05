@@ -127,6 +127,7 @@
 		3DD92BB32715EE6000C5D0F6 /* ApprovalRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */; };
 		3DD92BB52715EE7100C5D0F6 /* ApprovalResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */; };
 		3DD92BB727160A5D00C5D0F6 /* Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD92BB627160A5D00C5D0F6 /* Generic.swift */; };
+		3DDD4654273516690036CFDC /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDD4653273516690036CFDC /* LoadMoreActivityIndicator.swift */; };
 		3DE5EFE9272134BF00A9512A /* OfficialDirectoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFE8272134BF00A9512A /* OfficialDirectoryModels.swift */; };
 		3DE5EFEB272137C200A9512A /* OfficialDirectoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */; };
 		3DE5EFEE27213CD600A9512A /* AddOfficialDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */; };
@@ -277,6 +278,7 @@
 		3DD92BB22715EE6000C5D0F6 /* ApprovalRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalRequestModel.swift; sourceTree = "<group>"; };
 		3DD92BB42715EE7100C5D0F6 /* ApprovalResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalResponseModel.swift; sourceTree = "<group>"; };
 		3DD92BB627160A5D00C5D0F6 /* Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generic.swift; sourceTree = "<group>"; };
+		3DDD4653273516690036CFDC /* LoadMoreActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreActivityIndicator.swift; sourceTree = "<group>"; };
 		3DE5EFE8272134BF00A9512A /* OfficialDirectoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryModels.swift; sourceTree = "<group>"; };
 		3DE5EFEA272137C200A9512A /* OfficialDirectoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDirectoryServices.swift; sourceTree = "<group>"; };
 		3DE5EFEC27213CD600A9512A /* AddOfficialDirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfficialDirectoryViewController.swift; sourceTree = "<group>"; };
@@ -413,10 +415,10 @@
 				3D650A2D2713026D00786786 /* ProfileVC */,
 				3D650A3227131BA200786786 /* SearchVC */,
 				3DD92BAF2715E03900C5D0F6 /* ApprovalsVC */,
+				3DDD46522734EB730036CFDC /* CalenderVC */,
+				3D50E3E527301DF30045F6AA /* QLViewController.swift */,
 				3D1426F02714783D00DE03BB /* BaseService.swift */,
 				3D1426FE2715520700DE03BB /* CalenderView.swift */,
-				3D1427002715523400DE03BB /* CalenderViewController.swift */,
-				3D1427012715523400DE03BB /* CalenderViewController.xib */,
 				3DD92BB627160A5D00C5D0F6 /* Generic.swift */,
 				3DE9333B2716E18F00B80B7D /* GenericResponseModel.swift */,
 				3DE9333F2716F5D300B80B7D /* SpinnerViewController.swift */,
@@ -425,7 +427,7 @@
 				3D66A4E3271C0C2800221832 /* NetworkConectionModel.swift */,
 				3D66A4E7271D5CF300221832 /* DateTimePicker.swift */,
 				3D36AD132726D73E00DFD509 /* Constant.swift */,
-				3D50E3E527301DF30045F6AA /* QLViewController.swift */,
+				3DDD4653273516690036CFDC /* LoadMoreActivityIndicator.swift */,
 			);
 			path = LawyerApp;
 			sourceTree = "<group>";
@@ -713,6 +715,15 @@
 			path = ApprovalsVC;
 			sourceTree = "<group>";
 		};
+		3DDD46522734EB730036CFDC /* CalenderVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D1427002715523400DE03BB /* CalenderViewController.swift */,
+				3D1427012715523400DE03BB /* CalenderViewController.xib */,
+			);
+			path = CalenderVC;
+			sourceTree = "<group>";
+		};
 		3DE933412717264C00B80B7D /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -977,6 +988,7 @@
 				3DE5EFFA27232A8900A9512A /* PostAttachmentViewController.swift in Sources */,
 				3DE9333C2716E18F00B80B7D /* GenericResponseModel.swift in Sources */,
 				3D1426F327147D3000DE03BB /* SignUpRequestModel.swift in Sources */,
+				3DDD4654273516690036CFDC /* LoadMoreActivityIndicator.swift in Sources */,
 				3DE93343271726A800B80B7D /* UIViewController.swift in Sources */,
 				3D66A4BB271759FF00221832 /* HighCourtTableViewCell.swift in Sources */,
 				C8D4A73F2722F10C007404E2 /* UIAttachmentCollectionViewCell.swift in Sources */,

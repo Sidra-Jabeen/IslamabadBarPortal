@@ -132,17 +132,17 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        collectionView.addLoading(indexPath) {
+            self.callGetUsersApi(status: "2")
+            collectionView.stopLoading() // stop your indicator
+        }
+    }
+    
     @objc func clickedOnAButton1() {
         
         self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: !(self.currentAdminStatus ?? false))
-        
-//        if self.currentStatus != 3 {
-//
-//            self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, roleID: self.roleIDValue)
-//        } else {
-//
-//            self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: !(self.currentAdminStatus ?? false), roleID: 1 )
-//        }
     }
 
     @IBAction func tappedOnBack( _sender: UIButton) {
@@ -267,7 +267,7 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: "2"))
+            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: self.arrayOfMembers.count), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: "2"))
             let signUpUrl = "api/User/GetUsers"
             let services = ApprovalServices()
             services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
@@ -275,16 +275,39 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
                 let status = responseData.success ?? false
                 
                 if status {
+                    if responseData.users?.count != 0 {
+                        if self.arrayOfMembers.count > 0 {
+                            
+                            if let arrayData : [ResponseUsers] = responseData.users {
+                                
+                                for item in arrayData {
+                                    self.arrayOfMembers.append(item)
+                                    self.collectionMembers.reloadData()
+                                    self.noDataFoundView.isHidden = true
+                                    self.collectionView.isHidden = false
+                                }
+                            }
+                        } else {
+                            self.arrayOfMembers = responseData.users ?? []
+                            self.collectionMembers.reloadData()
+                            self.noDataFoundView.isHidden = true
+                            self.collectionView.isHidden = false
+                        }
                     
-                    self.arrayOfMembers = responseData.users ?? []
-                    print(self.arrayOfMembers)
-                    self.noDataFoundView.isHidden = true
-                    self.collectionView.isHidden = false
-                    self.collectionMembers.reloadData()
+                    }
+//                    self.arrayOfMembers = responseData.users ?? []
+//                    print(self.arrayOfMembers)
+//                    self.noDataFoundView.isHidden = true
+//                    self.collectionView.isHidden = false
+//                    self.collectionMembers.reloadData()
                 } else {
 //                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    self.noDataFoundView.isHidden = false
-                    self.collectionView.isHidden = true
+                    if self.arrayOfMembers.count == 0 {
+                        
+                        self.noDataFoundView.isHidden = false
+                        self.collectionView.isHidden = true
+                    }
+                    
 //                    self.arrayOfMembers.removeAll()
                 }
             }
@@ -311,6 +334,33 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             self.stopAnimation()
             let status = responseData.success ?? false
             if status {
+                
+//                if responseData.users?.count != 0 {
+//                    if self.arrayOfMembers.count > 0 {
+//
+//                        if let arrayData : [ResponseUsers] = responseData.users {
+//
+//                            for item in arrayData {
+//                                self.arrayOfMembers.append(item)
+//                                self.collectionMembers.reloadData()
+//                                self.searchVC?.willMove(toParent: nil)
+//                                self.searchVC?.view.removeFromSuperview()
+//                                self.searchVC?.removeFromParent()
+//                                self.noDataFoundView.isHidden = true
+//                                self.collectionView.isHidden = false
+//                            }
+//                        }
+//                    } else {
+//                        self.arrayOfMembers = responseData.users ?? []
+//                        self.searchVC?.willMove(toParent: nil)
+//                        self.searchVC?.view.removeFromSuperview()
+//                        self.searchVC?.removeFromParent()
+//                        self.noDataFoundView.isHidden = true
+//                        self.collectionView.isHidden = false
+//                        self.collectionMembers.reloadData()
+//                    }
+//
+//                }
                 
                 self.arrayOfMembers = responseData.users ?? []
                 print(self.arrayOfMembers)
@@ -451,4 +501,21 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         }
     }
 
+}
+
+extension UICollectionView {
+
+    func addLoading(_ indexPath:IndexPath, closure: @escaping (() -> Void)){
+        if let lastVisibleIndexPath = self.indexPathsForVisibleItems.last {
+            if indexPath == lastVisibleIndexPath && indexPath.row == self.numberOfItems(inSection: 0) - 1 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    closure()
+                }
+            }
+        }
+    }
+
+    func stopLoading() {
+        print("stopLoading")
+    }
 }

@@ -19,8 +19,8 @@ class UIAttachmentCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.btnAdd.setTitle("", for: .normal)
-        self.btnRemove.setTitle("", for: .normal)
-        self.btnRemove.setImage(UIImage(named: "Cancel"), for: .normal)
+//        self.btnRemove.setTitle("", for: .normal)
+        self.btnRemove.setImage(UIImage(named: "remove"), for: .normal)
     }
 
 }

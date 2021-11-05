@@ -29,11 +29,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwl-ev-Ezq">
-                                <rect key="frame" x="70" y="0.0" width="30" height="30"/>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwl-ev-Ezq">
+                                <rect key="frame" x="75" y="0.0" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="ZqO-oK-rob"/>
-                                    <constraint firstAttribute="height" constant="30" id="cwk-yR-FBt"/>
+                                    <constraint firstAttribute="width" constant="25" id="ZqO-oK-rob"/>
+                                    <constraint firstAttribute="height" constant="25" id="cwk-yR-FBt"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>

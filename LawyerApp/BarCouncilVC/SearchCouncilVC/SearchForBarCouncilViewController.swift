@@ -231,7 +231,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
             
         } else if self.intValue == 3 {
             
-            intForSearchFilter = 4
+            intForSearchFilter = 3
             self.intForDuration = "3"
         }
         
@@ -248,8 +248,14 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
     
     @IBAction func tappedOnClear(_ sender: Any) {
         
-        self.txtToDate.text = ""
-        self.txtFromDate.text = ""
+//        self.txtToDate.text = ""
+//        self.txtFromDate.text = ""
+        self.bitValueForAscDes = 2
+        if self.bitValueForAscDes == 2 {
+            self.imgDes.image = UIImage(named: "Group 247")
+            self.imgAsc.image = UIImage(named: "Circle")
+        }
+        self.allTapped(UIButton())
     }
     
     //MARK: - TouchScreenFunction

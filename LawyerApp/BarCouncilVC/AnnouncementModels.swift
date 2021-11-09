@@ -28,13 +28,15 @@ struct BarAnnouncement {
     let toDate: String?
     let fromDate: String?
     let duration: String?
+    let keyword: String?
     
     var params: [String: Any] {
         return [
             "barAnnouncementId": barAnnouncementId as Any,
             "toDate" : toDate as Any,
             "fromDate" : fromDate as Any,
-            "duration" : duration as Any
+            "duration" : duration as Any,
+            "keyword" : keyword as Any
         ]
     }
 }

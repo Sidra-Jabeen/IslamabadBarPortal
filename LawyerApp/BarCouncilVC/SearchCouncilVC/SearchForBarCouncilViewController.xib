@@ -31,6 +31,7 @@
                 <outlet property="topView" destination="NT7-QV-A6V" id="I57-4C-auf"/>
                 <outlet property="txtFromDate" destination="oOk-rV-aNj" id="5wC-nM-YqZ"/>
                 <outlet property="txtToDate" destination="9w8-4y-zmJ" id="lmR-ue-6IT"/>
+                <outlet property="txtname" destination="0ay-Ia-kuZ" id="2kG-Ez-QrE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewAll" destination="dBj-zx-eHn" id="bum-Bv-81Y"/>
                 <outlet property="viewLastweek" destination="H3x-UP-RPi" id="1kc-Ai-3x3"/>
@@ -47,7 +48,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgS-9b-T6E" userLabel="PostQuesView">
-                            <rect key="frame" x="31" y="103.5" width="313" height="460"/>
+                            <rect key="frame" x="31" y="68.5" width="313" height="530"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT7-QV-A6V" userLabel="TopView">
                                     <rect key="frame" x="40" y="0.0" width="233" height="90"/>
@@ -80,10 +81,83 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-iG-3eM" userLabel="QuestionView">
-                                    <rect key="frame" x="10" y="110" width="293" height="260"/>
+                                    <rect key="frame" x="10" y="110" width="293" height="330"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Nk-4d-n10" userLabel="AllButtonView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgb-kT-AeI" userLabel="FullNameView">
                                             <rect key="frame" x="10" y="0.0" width="273" height="50"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2q-Fj-0vR" userLabel="TxtfieldView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="273" height="50"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Full Name On Lisence" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ay-Ia-kuZ">
+                                                            <rect key="frame" x="15" y="10" width="223" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="r29-Qt-cor">
+                                                            <rect key="frame" x="238" y="12" width="25" height="26"/>
+                                                            <color key="tintColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="kkn-19-moA"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="0ay-Ia-kuZ" firstAttribute="leading" secondItem="r2q-Fj-0vR" secondAttribute="leading" constant="15" id="0ab-5f-29g"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0ay-Ia-kuZ" secondAttribute="bottom" constant="10" id="5nT-r9-ZcP"/>
+                                                        <constraint firstItem="0ay-Ia-kuZ" firstAttribute="top" secondItem="r2q-Fj-0vR" secondAttribute="top" constant="10" id="6VA-bE-cD5"/>
+                                                        <constraint firstItem="r29-Qt-cor" firstAttribute="top" secondItem="r2q-Fj-0vR" secondAttribute="top" constant="12" id="SlF-7A-ACi"/>
+                                                        <constraint firstAttribute="trailing" secondItem="r29-Qt-cor" secondAttribute="trailing" constant="10" id="bar-qP-Tew"/>
+                                                        <constraint firstItem="r29-Qt-cor" firstAttribute="leading" secondItem="0ay-Ia-kuZ" secondAttribute="trailing" id="mK4-R2-I32"/>
+                                                        <constraint firstAttribute="bottom" secondItem="r29-Qt-cor" secondAttribute="bottom" constant="12" id="mwq-CC-jdV"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.85872977969999997" green="0.85887759919999995" blue="0.85872042179999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLL-nP-afd">
+                                                    <rect key="frame" x="10" y="-10" width="152" height="20"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name On Lisence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gy-nX-Xg1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="152" height="20"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="2Gy-nX-Xg1" secondAttribute="bottom" id="9gL-NI-VKK"/>
+                                                        <constraint firstItem="2Gy-nX-Xg1" firstAttribute="leading" secondItem="qLL-nP-afd" secondAttribute="leading" id="D30-sF-jME"/>
+                                                        <constraint firstItem="2Gy-nX-Xg1" firstAttribute="top" secondItem="qLL-nP-afd" secondAttribute="top" id="Yez-1W-g11"/>
+                                                        <constraint firstAttribute="trailing" secondItem="2Gy-nX-Xg1" secondAttribute="trailing" id="bD5-jP-tzp"/>
+                                                        <constraint firstAttribute="height" constant="20" id="bIh-NN-k2X"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="qLL-nP-afd" firstAttribute="leading" secondItem="Qgb-kT-AeI" secondAttribute="leading" constant="10" id="0tA-KN-tE0"/>
+                                                <constraint firstAttribute="bottom" secondItem="r2q-Fj-0vR" secondAttribute="bottom" id="23Q-53-hHF"/>
+                                                <constraint firstAttribute="height" constant="50" id="FaD-oX-k7q"/>
+                                                <constraint firstItem="r2q-Fj-0vR" firstAttribute="leading" secondItem="Qgb-kT-AeI" secondAttribute="leading" id="OEO-gp-bfU"/>
+                                                <constraint firstAttribute="trailing" secondItem="r2q-Fj-0vR" secondAttribute="trailing" id="UvV-6W-EUA"/>
+                                                <constraint firstItem="r2q-Fj-0vR" firstAttribute="top" secondItem="Qgb-kT-AeI" secondAttribute="top" id="lLf-hk-0al"/>
+                                                <constraint firstItem="qLL-nP-afd" firstAttribute="top" secondItem="Qgb-kT-AeI" secondAttribute="top" constant="-10" id="okE-ea-bDq"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Nk-4d-n10" userLabel="AllButtonView">
+                                            <rect key="frame" x="10" y="70" width="273" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBj-zx-eHn">
                                                     <rect key="frame" x="5" y="13" width="45.5" height="24"/>
@@ -232,7 +306,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9c-J6-3pz" userLabel="SearchByNameView">
-                                            <rect key="frame" x="15" y="70" width="102" height="20"/>
+                                            <rect key="frame" x="15" y="140" width="102" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gP3-87-O8J">
                                                     <rect key="frame" x="0.0" y="0.0" width="102" height="20"/>
@@ -252,7 +326,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zih-SU-59U" userLabel="CalenderView">
-                                            <rect key="frame" x="10" y="110" width="273" height="50"/>
+                                            <rect key="frame" x="10" y="180" width="273" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Uz-Oo-8Yj" userLabel="From">
                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
@@ -260,6 +334,14 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iW5-tS-De0" userLabel="TxtfieldView">
                                                             <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                             <subviews>
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFX-M1-oat">
+                                                                    <rect key="frame" x="96" y="12" width="20" height="26"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="VPV-Pg-Bwe"/>
+                                                                    </constraints>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="normal" image="layer1"/>
+                                                                </button>
                                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAU-zg-VaU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -272,14 +354,6 @@
                                                                         <outlet property="delegate" destination="-1" id="AjS-jJ-UyD"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFX-M1-oat">
-                                                                    <rect key="frame" x="96" y="12" width="20" height="26"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="VPV-Pg-Bwe"/>
-                                                                    </constraints>
-                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                    <state key="normal" image="layer1"/>
-                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
@@ -345,6 +419,14 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wh7-w0-bnP" userLabel="TxtfieldView">
                                                             <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                             <subviews>
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FW2-Tg-ya7">
+                                                                    <rect key="frame" x="99" y="12" width="20" height="26"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="ecI-JK-OMk"/>
+                                                                    </constraints>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="normal" image="layer1"/>
+                                                                </button>
                                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8px-fX-lwP">
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -357,14 +439,6 @@
                                                                         <outlet property="delegate" destination="-1" id="1N1-J0-yuf"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FW2-Tg-ya7">
-                                                                    <rect key="frame" x="99" y="12" width="20" height="26"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="ecI-JK-OMk"/>
-                                                                    </constraints>
-                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                    <state key="normal" image="layer1"/>
-                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
@@ -439,7 +513,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPK-f5-y0F" userLabel="SearchByOrder">
-                                            <rect key="frame" x="15" y="180" width="102" height="20"/>
+                                            <rect key="frame" x="15" y="250" width="102" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1B-Sa-4No">
                                                     <rect key="frame" x="0.0" y="0.0" width="102" height="20"/>
@@ -459,7 +533,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyE-oS-l1b" userLabel="CheckboxViews">
-                                            <rect key="frame" x="10" y="220" width="273" height="30"/>
+                                            <rect key="frame" x="10" y="290" width="273" height="30"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rt-Ih-VX2" userLabel="AscendingView">
                                                     <rect key="frame" x="0.0" y="0.0" width="136.5" height="30"/>
@@ -559,9 +633,11 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="Qgb-kT-AeI" firstAttribute="leading" secondItem="5Nk-4d-n10" secondAttribute="leading" id="COn-if-ETs"/>
                                         <constraint firstItem="g9c-J6-3pz" firstAttribute="top" secondItem="5Nk-4d-n10" secondAttribute="bottom" constant="20" id="QlL-Q5-cnN"/>
+                                        <constraint firstItem="Qgb-kT-AeI" firstAttribute="trailing" secondItem="5Nk-4d-n10" secondAttribute="trailing" id="S0h-VN-SFO"/>
                                         <constraint firstItem="FyE-oS-l1b" firstAttribute="trailing" secondItem="5Nk-4d-n10" secondAttribute="trailing" id="W0C-gK-rQX"/>
-                                        <constraint firstItem="5Nk-4d-n10" firstAttribute="top" secondItem="GTW-iG-3eM" secondAttribute="top" id="WS6-bt-SeU"/>
+                                        <constraint firstItem="5Nk-4d-n10" firstAttribute="top" secondItem="Qgb-kT-AeI" secondAttribute="bottom" constant="20" id="XZl-b4-hEj"/>
                                         <constraint firstItem="Zih-SU-59U" firstAttribute="top" secondItem="g9c-J6-3pz" secondAttribute="bottom" constant="20" id="bEW-dZ-thx"/>
                                         <constraint firstItem="FyE-oS-l1b" firstAttribute="leading" secondItem="5Nk-4d-n10" secondAttribute="leading" id="cgh-nh-92g"/>
                                         <constraint firstAttribute="trailing" secondItem="5Nk-4d-n10" secondAttribute="trailing" constant="10" id="ecp-Ro-RdT"/>
@@ -574,10 +650,11 @@
                                         <constraint firstItem="g9c-J6-3pz" firstAttribute="leading" secondItem="GTW-iG-3eM" secondAttribute="leading" constant="15" id="q9I-7H-ldA"/>
                                         <constraint firstItem="FPK-f5-y0F" firstAttribute="top" secondItem="Zih-SU-59U" secondAttribute="bottom" constant="20" id="qWf-UP-cXT"/>
                                         <constraint firstItem="FPK-f5-y0F" firstAttribute="trailing" secondItem="g9c-J6-3pz" secondAttribute="trailing" id="qoX-tj-jZo"/>
+                                        <constraint firstItem="Qgb-kT-AeI" firstAttribute="top" secondItem="GTW-iG-3eM" secondAttribute="top" id="uoO-qN-uG2"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex9-jo-pAI" userLabel="BtnsView">
-                                    <rect key="frame" x="20" y="390" width="273" height="50"/>
+                                    <rect key="frame" x="20" y="460" width="273" height="50"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QN8-5S-FT0" userLabel="ButtonView">
                                             <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
@@ -715,6 +792,7 @@
         <image name="Group 195" width="76" height="76"/>
         <image name="layer1" width="20.812000274658203" height="22.881999969482422"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
+        <image name="profile" width="20" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

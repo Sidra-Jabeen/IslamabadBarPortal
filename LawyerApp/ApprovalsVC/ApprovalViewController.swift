@@ -232,7 +232,7 @@ class ApprovalViewController: UIViewController, UICollectionViewDelegate,UIColle
                         member.btn3.setTitle("Remove Rights", for: .normal)
                         
                     } else {
-                        member.btn3.setTitle("Give Approval Rights", for: .normal)
+                        member.btn3.setTitle("Give Bar Announcement Rights", for: .normal)
                     }
                     
                     member.btn2.setTitle("Block", for: .normal)

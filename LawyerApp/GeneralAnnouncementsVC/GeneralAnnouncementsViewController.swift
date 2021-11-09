@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController, UITableViewDataSourcePrefetching {
+class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController, UITableViewDataSourcePrefetching, BackToAnnouncementVC {
     
     //MARK: - IBOutlets
     
@@ -26,9 +26,13 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     var postAttachmentVC: PostAttachmentViewController?
     var announcementsVC:AnnouncementViewController?
     var listArrays = [GeneralAnnouncementResponseModel]()
-    var intValue = 0
     var bitValueForAscDes = 0
     var strValue = ""
+//    var fromDate: String?
+//    var toDate: String?
+//    var orderBy: String?
+//    var name: String?
+//    var duration: String?
     let date = Date()
     let formatter = DateFormatter()
     var toDateText = ""
@@ -36,6 +40,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     var refreshControl: UIRefreshControl?
     var currentPage : Int = 0
     var totalPage : Int = 0
+    
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     
     //MARK: - LifeCycles
@@ -54,11 +59,12 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         
         self.tblAnnouncements.addSubview(self.refreshControl!)
         self.tblAnnouncements.prefetchDataSource = self
-        self.callGetGeneralAnnouncements()
-        if roleId == 3 {
-            
-            self.viewPostButton.isHidden = false
-        }
+        self.callGetGeneralAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
+        self.viewPostButton.isHidden = false
+//        if roleId == 3 {
+//
+//            self.viewPostButton.isHidden = false
+//        }
 //        self.tblAnnouncements.tableFooterView = UIView()
 //        self.activityIndicator = LoadMoreActivityIndicator(scrollView: tableView, spacingFromLastCell: 10, spacingFromLastCellWhenLoadMoreActionStart: 60)
     }
@@ -68,13 +74,15 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     @objc func didPullToRefresh() {
         
         self.listArrays.removeAll()
-        self.callGetGeneralAnnouncements()
+//        self.callGetGeneralAnnouncements(fromDate: nil, toDate: nil, duration: nil, order: nil, fullname: nil)
+        self.callGetGeneralAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
         self.refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         FileManager.default.clearTmpDirectory()
+        
 //        self.callGetGeneralAnnouncements()
     }
     
@@ -90,6 +98,13 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
     }
     
+    func callGetGeneralAnnouncements() {
+        
+        self.listArrays.removeAll()
+        self.callGetGeneralAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
+    }
+    
+    
     //MARK: - UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,19 +116,23 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         
         let tmpCell = tableView.dequeueReusableCell(withIdentifier: "GeneralAnnouncementTableViewCell", for: indexPath) as! GeneralAnnouncementTableViewCell
 
-        tmpCell.lblAnounceTitle.text = listArrays[indexPath.row].title
-        tmpCell.lblAnounceAt.text = listArrays[indexPath.row].announcedAt
-        tmpCell.lblAnounceBy.text = listArrays[indexPath.row].announcedBy
-        tmpCell.lblType.text = listArrays[indexPath.row].typeNames
-        let url = URL(string: "\(Constant.imageDownloadURL)\(listArrays[indexPath.item].announcedByProfile ?? "")")
-        tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
-        tmpCell.selectionStyle = .none
-        
-        
-//        if indexPath.row == self.listArrays.count {
-//                self.callGetGeneralAnnouncements()
-//            }
+        if self.listArrays.count != 0 {
+            tmpCell.lblAnounceTitle.text = listArrays[indexPath.row].title
+            tmpCell.lblAnounceAt.text = listArrays[indexPath.row].announcedAt
+            tmpCell.lblAnounceBy.text = listArrays[indexPath.row].announcedBy
+            tmpCell.lblType.text = listArrays[indexPath.row].typeNames
+            let url = URL(string: "\(Constant.imageDownloadURL)\(listArrays[indexPath.item].announcedByProfile ?? "")")
+            tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+            tmpCell.selectionStyle = .none
+            
+            
+    //        if indexPath.row == self.listArrays.count {
+    //                self.callGetGeneralAnnouncements()
+    //            }
+           
+        }
         return tmpCell
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -140,7 +159,8 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
            tableView.addLoading(indexPath) {
                // add your code here
                // append Your array and reload your tableview
-               self.callGetGeneralAnnouncements()
+//               self.callGetGeneralAnnouncements(fromDate: nil, toDate: nil, duration: nil, order: "desc", fullname: nil)
+               self.callGetGeneralAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
                tableView.stopLoading() // stop your indicator
            }
         
@@ -182,7 +202,8 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
         postVC.height = 0
-        postVC.strTitle = "General Announcements"
+        postVC.strTitle = "Member Announcements"
+        postVC.delegate = self
         self.navigationController?.pushViewController(postVC, animated: true)
     }
     
@@ -199,6 +220,18 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         }
     }
     
+    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String, name: String?) {
+        
+        strForFullName = name ?? ""
+        self.listArrays.removeAll()
+        strFromDate = fromDate
+        strToDate = toDate
+        strOrderBy = order
+        strName = name
+        strDuration = duration
+        self.callGetGeneralAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
+    }
+    
 //    func selectedDateTextfield(startDate: String, endDate: String) {
 //
 //        self.toDateText = startDate
@@ -207,13 +240,13 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     
     //MARK: - CallingApisFunctions
     
-    func callGetGeneralAnnouncements() {
+    func callGetGeneralAnnouncements(fromDate: String?, toDate: String?, duration: String?, order: String?, fullname: String?) {
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
             
             
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: listArrays.count), memberAnnouncement: nil)
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order ?? "desc", limit: 10, offset: listArrays.count), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration, keyword: fullname))
             let url = Constant.memGetAnnounceEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -231,6 +264,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                                     self.tblAnnouncements.reloadData()
                                     self.dataNotFoundView.isHidden = true
                                     self.tableView.isHidden = false
+                                    self.search?.dismiss(animated: true)
                                 }
                             }
                         } else {
@@ -238,6 +272,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                             self.tblAnnouncements.reloadData()
                             self.dataNotFoundView.isHidden = true
                             self.tableView.isHidden = false
+                            self.search?.dismiss(animated: true)
                         }
                     
                     }
@@ -246,6 +281,11 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                     if self.listArrays.count == 0 {
                         self.dataNotFoundView.isHidden = false
                         self.tableView.isHidden = true
+                        self.search?.dismiss(animated: true)
+                    } else{
+//                        self.dataNotFoundView.isHidden = false
+//                        self.tableView.isHidden = true
+//                        self.search?.dismiss(animated: true)
                     }
                     
                 }
@@ -256,61 +296,61 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
 
     }
     
-    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String) {
-        
-        if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration))
-            let url = Constant.memGetAnnounceEP
-            let services = GeneralAnnouncementServices()
-            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-//                    if responseData.memberAnnouncements?.count != 0 {
-//                        if self.listArrays.count > 0 {
-//                            
-//                            if let arrayData : [GeneralAnnouncementResponseModel] = responseData.memberAnnouncements {
-//                                
-//                                for item in arrayData {
-//                                    self.listArrays.append(item)
-//                                    self.tblAnnouncements.reloadData()
-//                                    self.search?.dismiss(animated: true)
-//                                    self.dataNotFoundView.isHidden = true
-//                                    self.tableView.isHidden = false
-//                                }
-//                            }
-//                        } else {
-//                            self.listArrays = responseData.memberAnnouncements ?? []
-//                            self.tblAnnouncements.reloadData()
-//                            self.search?.dismiss(animated: true)
-//                            self.dataNotFoundView.isHidden = true
-//                            self.tableView.isHidden = false
-//                        }
-//                    
-//                    }
-                    self.listArrays.removeAll()
-                    self.listArrays = responseData.memberAnnouncements ?? []
-                    self.tblAnnouncements.reloadData()
-                    self.search?.dismiss(animated: true)
-                    self.dataNotFoundView.isHidden = true
-                    self.tableView.isHidden = false
-                    
-                } else {
-//                    if self.listArrays.count == 0 {
-                       
-                        self.search?.dismiss(animated: true)
-                        self.dataNotFoundView.isHidden = false
-                        self.tableView.isHidden = true
-//                    }
-                }
-            }
-        } else {
-            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
-        }
-
-    }
+//    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String) {
+//
+//        if  Connectivity.isConnectedToInternet {
+//            self.startAnimation()
+//            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration))
+//            let url = Constant.memGetAnnounceEP
+//            let services = GeneralAnnouncementServices()
+//            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+//
+//                self.stopAnimation()
+//                let status = responseData.success ?? false
+//                if status {
+////                    if responseData.memberAnnouncements?.count != 0 {
+////                        if self.listArrays.count > 0 {
+////
+////                            if let arrayData : [GeneralAnnouncementResponseModel] = responseData.memberAnnouncements {
+////
+////                                for item in arrayData {
+////                                    self.listArrays.append(item)
+////                                    self.tblAnnouncements.reloadData()
+////                                    self.search?.dismiss(animated: true)
+////                                    self.dataNotFoundView.isHidden = true
+////                                    self.tableView.isHidden = false
+////                                }
+////                            }
+////                        } else {
+////                            self.listArrays = responseData.memberAnnouncements ?? []
+////                            self.tblAnnouncements.reloadData()
+////                            self.search?.dismiss(animated: true)
+////                            self.dataNotFoundView.isHidden = true
+////                            self.tableView.isHidden = false
+////                        }
+////
+////                    }
+//                    self.listArrays.removeAll()
+//                    self.listArrays = responseData.memberAnnouncements ?? []
+//                    self.tblAnnouncements.reloadData()
+//                    self.search?.dismiss(animated: true)
+//                    self.dataNotFoundView.isHidden = true
+//                    self.tableView.isHidden = false
+//
+//                } else {
+////                    if self.listArrays.count == 0 {
+//
+//                        self.search?.dismiss(animated: true)
+//                        self.dataNotFoundView.isHidden = false
+//                        self.tableView.isHidden = true
+////                    }
+//                }
+//            }
+//        } else {
+//            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+//        }
+//
+//    }
     
     func searchByDates(strtDate: String? = nil, frmDate: String? = nil, duration: String?) {
         
@@ -322,7 +362,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
             } else {
                 self.strValue = "desc"
             }
-            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration))
+            let dataModel = GeneralAnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), memberAnnouncement: GeneralAnnouncement(memberAnnouncementId: nil, toDate: strtDate, fromDate: frmDate, duration: duration, keyword: nil))
             let url = Constant.memGetAnnounceEP
             let services = GeneralAnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in

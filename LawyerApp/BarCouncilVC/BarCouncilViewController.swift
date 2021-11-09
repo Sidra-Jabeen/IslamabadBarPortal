@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController {
+class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,SearchFilterController, BackToAnnouncementVC {
     
     //MARK: - IBOutlets
     
@@ -34,41 +34,6 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     var endDate: String?
     var toDate = Date()
     var refreshControl: UIRefreshControl?
-//    var strDate: String?
-    private lazy var datePickerView: DateTimePicker = {
-        
-//        let picker = DateTimePicker()
-//        picker.setup()
-//        picker.didSelectDates = { [weak self] (selectedDate) in
-//            print(selectedDate)
-//
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy-MM-dd"
-//            self?.strDate = formatter.string(from: selectedDate)
-//        }
-//        fromDatePickerView = DateTimePicker()
-//        return picker
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let picker = DateTimePicker()
-//        picker.setup()
-        
-        print(picker.setup())
-        picker.didSelectDates = { [weak self] (selectedDate) in
-             self!.toDate = selectedDate
-            //print(selectedDate)
-            self?.strDate = formatter.string(from: selectedDate)
-        }
-        fromDatePickerView = DateTimePicker()
-        return picker
-    }()
-    
-    lazy var fromDatePickerView: DateTimePicker = {
-        let picker = DateTimePicker()
-        return picker
-    }()
-    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -83,17 +48,19 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
 
         self.tblBarCouncilList.addSubview(self.refreshControl!)
-        self.callGetAnnouncements()
-        if roleId == 3 {
-            
-            self.viewPostButton.isHidden = false
-        }
+//        self.callGetAnnouncements()
+        self.callGetAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
+        self.viewPostButton.isHidden = false
+//        if roleId == 3 {
+//
+//            self.viewPostButton.isHidden = false
+//        }
     }
     
     @objc func didPullToRefresh() {
         
         self.barListArrays.removeAll()
-        self.callGetAnnouncements()
+        self.callGetAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
         self.refreshControl?.endRefreshing()
     }
     
@@ -139,6 +106,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         let postVC = PostAttachmentViewController(nibName: "PostAttachmentViewController", bundle: nil)
 //        postVC.strTitle = "Bar Announcement"
         postVC.height = 125
+        postVC.delegate = self
         self.navigationController?.pushViewController(postVC, animated: true)
         
 //        self.postAnnouncementVC = PostAnnouncementViewController()
@@ -148,6 +116,12 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
 //            postAnnounc.btnUpload.addTarget(self, action: #selector(onClickedUpload), for: .touchUpInside)
 //
 //        }
+    }
+    
+    func callGetGeneralAnnouncements() {
+        
+        self.barListArrays.removeAll()
+        self.callGetAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
     }
     
     //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -160,14 +134,17 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let tmpCell = tableView.dequeueReusableCell(withIdentifier: "GeneralAnnouncementTableViewCell", for: indexPath) as! GeneralAnnouncementTableViewCell
-
-        tmpCell.lblAnounceTitle.text = barListArrays[indexPath.row].title
-        tmpCell.lblAnounceAt.text = barListArrays[indexPath.row].announcedAt
-        tmpCell.lblAnounceBy.text = barListArrays[indexPath.row].announcedBy
-        tmpCell.lblType.text = barListArrays[indexPath.row].typeNames
-        tmpCell.selectionStyle = .none
-        let url = URL(string: barListArrays[indexPath.item].announcedByProfile ?? "")
-        tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+    
+        if self.barListArrays.count != 0 {
+            tmpCell.lblAnounceTitle.text = barListArrays[indexPath.row].title
+            tmpCell.lblAnounceAt.text = barListArrays[indexPath.row].announcedAt
+            tmpCell.lblAnounceBy.text = barListArrays[indexPath.row].announcedBy
+            tmpCell.lblType.text = barListArrays[indexPath.row].typeNames
+            tmpCell.selectionStyle = .none
+            let url = URL(string: barListArrays[indexPath.item].announcedByProfile ?? "")
+            tmpCell.userImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+        }
+        
         return tmpCell
     }
     
@@ -195,18 +172,30 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // need to pass your indexpath then it showing your indicator at bottom
            tableView.addLoading(indexPath) {
-               self.callGetAnnouncements()
+               self.callGetAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
                tableView.stopLoading() // stop your indicator
            }
     }
     
     //MARK: - CallingAPiFunctions
     
-    func callGetAnnouncements() {
+    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String, name: String?) {
+        
+        strForFullName = name ?? ""
+        self.barListArrays.removeAll()
+        strFromDate = fromDate
+        strToDate = toDate
+        strOrderBy = order
+        strName = name
+        strDuration = duration
+        self.callGetAnnouncements(fromDate: strFromDate, toDate: strToDate, duration: strDuration, order: strOrderBy, fullname: strName)
+    }
+    
+    func callGetAnnouncements(fromDate: String?, toDate: String?, duration: String?, order: String?, fullname: String?) {
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: self.barListArrays.count), barAnnouncement: nil)
+            let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order ?? "desc", limit: 10, offset: barListArrays.count), barAnnouncement: BarAnnouncement(barAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration, keyword: fullname))
             let url = Constant.barGetAnnounceEP
             let services = AnnouncementServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -225,6 +214,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                                     self.tblBarCouncilList.reloadData()
                                     self.dataNotFoundView.isHidden = true
                                     self.tableView.isHidden = false
+                                    self.search?.dismiss(animated: true)
                                 }
                             }
                         } else {
@@ -232,20 +222,15 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                             self.tblBarCouncilList.reloadData()
                             self.dataNotFoundView.isHidden = true
                             self.tableView.isHidden = false
+                            self.search?.dismiss(animated: true)
                         }
-                    
+                        
                     }
-                    
-//                    self.barListArrays = responseData.barAnnouncements ?? []
-//                    self.tblBarCouncilList.reloadData()
-//                    self.dataNotFoundView.isHidden = true
-//                    self.tableView.isHidden = false
-                    
                 } else {
-//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     if self.barListArrays.count == 0 {
                         self.dataNotFoundView.isHidden = false
                         self.tableView.isHidden = true
+                        self.search?.dismiss(animated: true)
                     }
                     
                 }
@@ -256,161 +241,57 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String) {
-        
-        if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order, limit: 10, offset: 0), barAnnouncement: BarAnnouncement(barAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration))
-            let url = Constant.barGetAnnounceEP
-            let services = AnnouncementServices()
-            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-                    
-//                    if responseData.barAnnouncements?.count != 0 {
-//                        if self.barListArrays.count > 0 {
+//    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String, name: String?) {
 //
-//                            if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
-//
-//                                for item in arrayData {
-//                                    self.barListArrays.append(item)
-//                                    self.tblBarCouncilList.reloadData()
-//                                    self.search?.dismiss(animated: true)
-//                                    self.dataNotFoundView.isHidden = true
-//                                    self.tableView.isHidden = false
-//                                }
-//                            }
-//                        } else {
-//                            self.barListArrays = responseData.barAnnouncements ?? []
-//                            self.tblBarCouncilList.reloadData()
-//                            self.search?.dismiss(animated: true)
-//                            self.dataNotFoundView.isHidden = true
-//                            self.tableView.isHidden = false
-//                        }
-//
-//                    }
-                    self.barListArrays.removeAll()
-                    self.barListArrays = responseData.barAnnouncements ?? []
-                    self.tblBarCouncilList.reloadData()
-                    self.search?.dismiss(animated: true)
-                    self.dataNotFoundView.isHidden = true
-                    self.tableView.isHidden = false
-                    
-                } else {
-//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    self.search?.dismiss(animated: true)
-                    self.dataNotFoundView.isHidden = false
-                    self.tableView.isHidden = true
-                }
-            }
-        } else {
-            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
-        }
+////        if  Connectivity.isConnectedToInternet {
+////            self.startAnimation()
+////            let dataModel = AnnouncementRequestModel(source: "2", pagination: PaginationModel(orderBy: order, limit: 10, offset: 0), barAnnouncement: BarAnnouncement(barAnnouncementId: nil, toDate: toDate, fromDate: fromDate, duration: duration))
+////            let url = Constant.barGetAnnounceEP
+////            let services = AnnouncementServices()
+////            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+////
+////                self.stopAnimation()
+////                let status = responseData.success ?? false
+////                if status {
+////
+//////                    if responseData.barAnnouncements?.count != 0 {
+//////                        if self.barListArrays.count > 0 {
+//////
+//////                            if let arrayData : [AnnouncementResponseModel] = responseData.barAnnouncements {
+//////
+//////                                for item in arrayData {
+//////                                    self.barListArrays.append(item)
+//////                                    self.tblBarCouncilList.reloadData()
+//////                                    self.search?.dismiss(animated: true)
+//////                                    self.dataNotFoundView.isHidden = true
+//////                                    self.tableView.isHidden = false
+//////                                }
+//////                            }
+//////                        } else {
+//////                            self.barListArrays = responseData.barAnnouncements ?? []
+//////                            self.tblBarCouncilList.reloadData()
+//////                            self.search?.dismiss(animated: true)
+//////                            self.dataNotFoundView.isHidden = true
+//////                            self.tableView.isHidden = false
+//////                        }
+//////
+//////                    }
+////                    self.barListArrays.removeAll()
+////                    self.barListArrays = responseData.barAnnouncements ?? []
+////                    self.tblBarCouncilList.reloadData()
+////                    self.search?.dismiss(animated: true)
+////                    self.dataNotFoundView.isHidden = true
+////                    self.tableView.isHidden = false
+////
+////                } else {
+//////                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+////                    self.search?.dismiss(animated: true)
+////                    self.dataNotFoundView.isHidden = false
+////                    self.tableView.isHidden = true
+////                }
+////            }
+////        } else {
+//            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+//        }
 
     }
-    
-    //MARK: - Others
-    
-    func setUpButtonsUI(value: Int) {
-        
-        if self.intValue == 0 {
-            
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewAll.removeBorderColorToView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewToday.setBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewYesterday.setBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewLastweek.setBorderColorToView()
-//            self.search?.toAndFromView.isUserInteractionEnabled = true
-            
-//            self.search?.calenderViewHeight.constant = 50
-//            self.search?.serachByViewHeight.constant = 20
-            
-        }
-        
-        else if self.intValue == 1 {
-            
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewToday.removeBorderColorToView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewAll.setBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewYesterday.setBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewLastweek.setBorderColorToView()
-//            self.search?.calenderViewHeight.constant = 0
-//            self.search?.serachByViewHeight.constant = 0
-//            self.search?.toAndFromView.isUserInteractionEnabled = true
-            
-        }
-        
-        else if self.intValue == 2 {
-            
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.removeBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewToday.setBorderColorToView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewAll.setBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewLastweek.setBorderColorToView()
-//            self.search?.calenderViewHeight.constant = 0
-//            self.search?.serachByViewHeight.constant = 0
-//            self.search?.toAndFromView.isUserInteractionEnabled = true
-            
-        }
-        
-        else if self.intValue == 3 {
-            
-            self.search?.viewLastweek.backgroundColor = #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1)
-            self.search?.btnLastweek.setTitleColor( UIColor.white, for: .normal)
-            self.search?.viewToday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnToday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewYesterday.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewAll.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.search?.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
-            self.search?.viewLastweek.removeBorderColorToView()
-            self.search?.viewLastweek.applyCircledView()
-            self.search?.viewToday.applyCircledView()
-            self.search?.viewToday.setBorderColorToView()
-            self.search?.viewYesterday.applyCircledView()
-            self.search?.viewYesterday.setBorderColorToView()
-            self.search?.viewAll.applyCircledView()
-            self.search?.viewAll.setBorderColorToView()
-//            self.search?.calenderViewHeight.constant = 0
-//            self.search?.serachByViewHeight.constant = 0
-//            self.search?.toAndFromView.isUserInteractionEnabled = true
-            
-        }
-        
-    }
-}

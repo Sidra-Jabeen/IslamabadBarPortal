@@ -55,6 +55,9 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
 //        FileManager.default.clearTmpDirectory()
+        strForFullName = ""
+        intForSearchFilter = nil
+        intForSetAscDes = nil
     }
     
     //MARK: - HandGestures Function
@@ -98,8 +101,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         
         let strURL = self.arrAttachmentResponse[indexPath.row].attachmentUrl ?? ""
         if strURL.contains(".pdf") || strURL.contains(".doc") || strURL.contains(".docx"){
-//            let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)")
-//            tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "document"))no-image
+            
             tmpCell.imgPostQuestion.image = UIImage(named: "document")
 
         } else if strURL.contains(".MOV") || strURL.contains(".mp4"){
@@ -122,9 +124,6 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         
         tmpCell.btnAdd.isHidden = true
         tmpCell.btnRemove.isHidden = true
-//            tmpCell.btnRemove.tag = indexPath.row
-        //self.arrayForImages[indexPath.row - 1]
-//            tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
         return tmpCell
     }
     

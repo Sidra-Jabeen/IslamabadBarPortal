@@ -39,9 +39,9 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
     
     @objc func didPullToRefresh() {
         
-        self.officialListArray.removeAll()
-        self.callGetOfficialDirectoryApi()
-        self.refreshControl?.endRefreshing()
+//        self.officialListArray.removeAll()
+//        self.callGetOfficialDirectoryApi()
+//        self.refreshControl?.endRefreshing()
     }
     
     //MARK: - HandGestureFunction

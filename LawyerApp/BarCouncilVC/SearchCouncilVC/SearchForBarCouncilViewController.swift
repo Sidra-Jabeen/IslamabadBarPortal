@@ -9,8 +9,11 @@ import UIKit
 
 protocol SearchFilterController {
     
-    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String)
+    func selectedDateTextfield(fromDate: String, toDate: String, duration: String?, order: String, name: String?)
 }
+
+var strDate: String?
+var endDate: String?
 
 class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, CalenderControllerDetegate {
 
@@ -49,10 +52,12 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
     @IBOutlet weak var btnView: UIView!
     @IBOutlet weak var questionView: UIView!
     
+    @IBOutlet weak var txtname: UITextField!
+    
     //MARK: - Propertities
     
-    var strDate: String?
-    var endDate: String?
+//    var strDate: String?
+//    var endDate: String?
     var toDate = Date()
     let todayDate = Date()
     let dateFormatter = DateFormatter()
@@ -76,6 +81,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         self.txtToDate.delegate = self
         
         dateFormatter.dateFormat = "dd-MM-yyyy"
+        self.txtname.text = strForFullName
         
         if intForSearchFilter == 0 {
             
@@ -132,8 +138,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         self.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
         self.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-        txtToDate.text = ""
-        txtFromDate.text = ""
+        txtToDate.text = strToDate
+        txtFromDate.text = strFromDate
         
     }
     
@@ -243,18 +249,25 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
             self.strValue = "desc"
         }
         
-        delegate?.selectedDateTextfield(fromDate: self.txtFromDate.text ?? "", toDate: self.txtToDate.text ?? "", duration: self.intForDuration, order: self.strValue)
+        delegate?.selectedDateTextfield(fromDate: self.txtFromDate.text ?? "", toDate: self.txtToDate.text ?? "", duration: self.intForDuration, order: self.strValue, name: txtname.text)
     }
     
     @IBAction func tappedOnClear(_ sender: Any) {
         
 //        self.txtToDate.text = ""
 //        self.txtFromDate.text = ""
+//        strFromDate = nil
+//        strToDate = nil
+//        strOrderBy = nil
+//        strName = nil
+//        strDuration = nil
         self.bitValueForAscDes = 2
         if self.bitValueForAscDes == 2 {
             self.imgDes.image = UIImage(named: "Group 247")
             self.imgAsc.image = UIImage(named: "Circle")
         }
+        intForSearchFilter = 0
+        intForSetAscDes = 2
         self.allTapped(UIButton())
     }
     

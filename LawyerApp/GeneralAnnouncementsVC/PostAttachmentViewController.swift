@@ -9,6 +9,11 @@ import UIKit
 import AVKit
 import MobileCoreServices
 
+protocol BackToAnnouncementVC {
+    
+    func callGetGeneralAnnouncements()
+}
+
 class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate , UITextViewDelegate, UITextFieldDelegate {
     
     //MARK: - IBOutltes
@@ -39,6 +44,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     var imagePicker = UIImagePickerController()
     var strTitle = ""
     var height = 0
+    public var delegate: BackToAnnouncementVC?
 
     //MARK: - LifeCycle
     
@@ -80,6 +86,12 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         
         intForSearchFilter = nil
         intForSetAscDes = nil
+        strFromDate = nil
+        strToDate = nil
+        strOrderBy = nil
+        strName = nil
+        strDuration = nil
+        strForFullName = ""
     }
     
     //MARK: - HandGesturesFunction
@@ -88,6 +100,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         if gesture.direction == .right {
             print("Swipe Right")
             self.navigationController?.popViewController(animated: true)
+            
         }
         else if gesture.direction == .left {
             print("Swipe Left")
@@ -123,6 +136,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     @IBAction func tappedOnBack( _sender: UIButton) {
         
         self.navigationController?.popViewController(animated: true)
+//        delegate?.callGetGeneralAnnouncements()
     }
     
     @IBAction func tappedOnUpload( _sender: UIButton) {
@@ -139,7 +153,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
             
             self.callGetPostAnnouncementApi(type: 3)
             
-        } else if self.strTitle == "General Announcements" {
+        } else if self.strTitle == "Member Announcements" {
             
             self.callGeneralPostAnnouncementApi()
         }
@@ -413,6 +427,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                                 self.stopAnimation()
                                 let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                    self.delegate?.callGetGeneralAnnouncements()
                                     self.navigationController?.popViewController(animated: true)
                                 }))
                                 self.present(alert, animated: true, completion: nil)
@@ -450,9 +465,11 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.uploadFiles(barId: barId, type: type, index: index)
                         } else {
                             self.stopAnimation()
+                            
                             let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in self.delegate?.callGetGeneralAnnouncements()
                                 self.navigationController?.popViewController(animated: true)
+                                
                             }))
                             self.present(alert, animated: true, completion: nil)
                         }
@@ -494,7 +511,9 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                                 self.stopAnimation()
                                 let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                    self.delegate?.callGetGeneralAnnouncements()
                                     self.navigationController?.popViewController(animated: true)
+                                    
                                 }))
                                 self.present(alert, animated: true, completion: nil)
                             }
@@ -532,7 +551,9 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.stopAnimation()
                             let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.delegate?.callGetGeneralAnnouncements()
                                 self.navigationController?.popViewController(animated: true)
+                                
                             }))
                             self.present(alert, animated: true, completion: nil)
                         }

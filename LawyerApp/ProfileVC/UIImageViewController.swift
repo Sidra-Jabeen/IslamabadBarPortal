@@ -20,7 +20,7 @@ class UIImageViewController: UIViewController {
 
         let paths = ImageCache.default.cachePath(forKey: name ?? "")
         let image = UIImage(contentsOfFile: paths)
-        let imageView = UIImageView(image: image)
+//        let imageView = UIImageView(image: image)
         self.img.image = image
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))

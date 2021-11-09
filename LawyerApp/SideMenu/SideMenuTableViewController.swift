@@ -15,8 +15,9 @@ class SideMenuTableViewController: UITableViewController {
     
     var navigation:SideMenuTableViewController?
     let tableViewColor: UIColor = #colorLiteral(red: 0.130608201, green: 0.3541451395, blue: 0.3179354072, alpha: 1)
-    var arrMenuList = ["Queries","Member Announcememts","Bar Announcements","Members Directory","Help","My Profile","Official Directory", "Request Approval","Biometric", "Logout"]
+    var arrMenuList = ["Queries","Member Announcements","Bar Announcements","Member Directory","Help","My Profile","Official Directory", "Request Approval","Enable/Disable Fingerprint", "Logout"]
     var listImages: [String] = [ "Layer 25", "Notification", "Notification", "21-List-1","Group 253", "Layer 19", "Path 288","listing_search_magnifier_magnifying_glass_loupe","2538673_biometric_finger_fingerprint_identity_thumb_icon", "logout"]
+    var proURL: URL?
     
     public var delegate: MenuControllerDelegate?
     
@@ -36,6 +37,12 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.proURL = urlProfile
+        self.tblSideMenuList.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +58,7 @@ class SideMenuTableViewController: UITableViewController {
         if indexPath.section == 0 {
             
             let tmpCell = tableView.dequeueReusableCell(withIdentifier: "UserNameTableViewCell", for: indexPath) as! UserNameTableViewCell
-            tmpCell.imgProfile.kf.setImage(with: urlProfile, placeholder: UIImage(named: "Group 242"))
+            tmpCell.imgProfile.kf.setImage(with: self.proURL, placeholder: UIImage(named: "Group 242"))
             tmpCell.lblUserName.text = strUserName
             tmpCell.backgroundColor = .clear
             tmpCell.selectionStyle = .none

@@ -57,26 +57,29 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         formatter.dateFormat = "dd-MM-yyyy"
-//        self.calendar.appearance.headerDateFormat = formatter.string(from: date)
+        self.calendar.appearance.headerDateFormat = formatter.string(from: date)
         self.str = formatter.string(from: date)
         self.bitVale = true
         print(self.str ?? "")
         delegate?.didSelectDate(date: self.str ?? "", isClear: self.bitVale)
-        self.dismiss(animated: true)
+//        self.dismiss(animated: true)
     }
     
     func maximumDate(for calendar: FSCalendar) -> Date {
         
 //        let date = formatter.date(from: self.maxDate)
 //        return date ?? calendar.maximumDate
-        formatter.dateFormat = "dd-MM-yyyy"
-        if maxDate == "" {
-            return calendar.maximumDate
-        } else {
-            let date = formatter.date(from: self.maxDate) ?? Date()
-            return date
-        }
-//        return Date()
+//        formatter.dateFormat = "dd-MM-yyyy"
+//        if maxDate == "" {
+//            return calendar.maximumDate
+//        } else if !(maxDate.isEmpty) {
+//            let date = formatter.date(from: self.maxDate) ?? Date()
+//            return date
+//        } else {
+//            return Date()
+//        }
+        
+        return Date()
 //        var dateComponents:DateComponents = DateComponents()
 //        dateComponents.day = 28
 //        let currentCalander:Calendar = Calendar.current
@@ -96,6 +99,12 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
             return date
         }
 //        return Date()
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+
+//        let currentMonth = calendar.monthPosition(for: calendar.currentPage)
+//        print("this is the current Month \(currentMonth)")
     }
     
     func getNextYear(date:Date)->Date {
@@ -125,6 +134,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         formatter.dateFormat = "dd-MM-YYYY"
 //        self.calendar.appearance.headerDateFormat = formatter.string(from: date)
         self.str = formatter.string(from: date)
+        self.calendar.appearance.headerDateFormat = self.str
         print(self.str ?? "")
         self.calendar.swipeToChooseGesture.isEnabled = true
         self.calendar.placeholderType = .none

@@ -76,14 +76,17 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
 //        tmpCell.layer.shadowColor = UIColor.black.cgColor
 //        tmpCell.layer.shadowOpacity = 0.25
 //        tmpCell.layer.shadowRadius = 4
-        tmpCell.lblUsr.text = arrayOfQueries[indexPath.row].postedBy
-        tmpCell.lblTime.text = arrayOfQueries[indexPath.row].postedAt
-        tmpCell.lblAnswer.text = arrayOfQueries[indexPath.row].censoredTitle
-        tmpCell.lblQuestion.text = arrayOfQueries[indexPath.row].censoredDescription
-        tmpCell.lblTotalComments.text = arrayOfQueries[indexPath.row].totalComments
-        let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfQueries[indexPath.item].postedByProfileUrl ?? "")")
-        tmpCell.img.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
-        tmpCell.selectionStyle = .none
+        if arrayOfQueries.count != 0 {
+            tmpCell.lblUsr.text = arrayOfQueries[indexPath.row].postedBy
+            tmpCell.lblTime.text = arrayOfQueries[indexPath.row].postedAt
+            tmpCell.lblAnswer.text = arrayOfQueries[indexPath.row].censoredTitle
+            tmpCell.lblQuestion.text = arrayOfQueries[indexPath.row].censoredDescription
+            tmpCell.lblTotalComments.text = arrayOfQueries[indexPath.row].totalComments
+            let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfQueries[indexPath.item].postedByProfileUrl ?? "")")
+            tmpCell.img.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
+            tmpCell.selectionStyle = .none
+        }
+        
         return tmpCell
     }
     

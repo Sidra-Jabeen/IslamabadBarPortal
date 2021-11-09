@@ -32,7 +32,7 @@ extension String {
         return emailTest.evaluate(with: self)
     }
     var isValidNumberInput: Bool {
-        let emailRegEx = "[0-9]{0,11}"
+        let emailRegEx = "^[0-9]{0,11}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
@@ -41,6 +41,28 @@ extension String {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
+    
+    func isValidDate(dateString: String) -> Bool {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "dd-MM-yyyy"
+        let someDate = dateString
+        let fromDate = dateFormatterGet.date(from: someDate) ?? Date()
+        let today = Date()
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let age = gregorian.components([.year], from: fromDate, to: today, options: [])
+        if age.year ?? 0 >= 18 {
+            return true
+        } else {
+            return false
+        }
+//        if dateFormatterGet.date(from: someDate) != nil {
+//            return true
+//
+//        } else {
+//            return false
+//        }
+   }
     
     func isValidName(testStr:String) -> Bool {
         
@@ -111,23 +133,23 @@ extension String {
     }
     
 
-    func isValidDate(dateString: String) -> Bool {
-        
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "dd-MM-yyyy"
-        let someDate = dateString
-
-        if dateFormatterGet.date(from: someDate) != nil {
-            return true
-
-        } else {
-            return false
-        }
-   }
+//    func isValidDate(dateString: String) -> Bool {
+//
+//        let dateFormatterGet = DateFormatter()
+//        dateFormatterGet.dateFormat = "dd-MM-yyyy"
+//        let someDate = dateString
+//
+//        if dateFormatterGet.date(from: someDate) != nil {
+//            return true
+//
+//        } else {
+//            return false
+//        }
+//   }
     
     func isValidPhone(testStr:String) -> Bool{
         
-        let regexExp = "^[+]{1}[0-9]{13}$"
+        let regexExp = "^[03]{1}[0-9]{11}$"
         
         let predicateTest = NSPredicate(format:  "SELF MATCHES %@ ", regexExp)
         
@@ -159,6 +181,29 @@ extension String {
             return false
         }
     }
+    
+    var isBlank: Bool {
+            get {
+                let trimmed = trimmingCharacters(in: CharacterSet.whitespaces)
+                return trimmed.isEmpty
+            }
+        }
+
+        //Validate Email
+
+    var isEmail: Bool {
+            do {
+                let regex = try NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}", options: .caseInsensitive)
+                return regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count)) != nil
+            } catch {
+                return false
+            }
+        }
+
+        var isAlphanumeric: Bool {
+            return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
+        }
+
     
     func getRandomNumber() -> String{
         

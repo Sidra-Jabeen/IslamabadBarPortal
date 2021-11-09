@@ -55,7 +55,7 @@ class ProfileViewController: QLViewController, UITextFieldDelegate, UIImagePicke
     var intUserValue = 0
     var calenderView: CalenderViewController?
     var bitForViewBtns = false
-    var bitForViewLisence = false
+    var bitForViewProfile = false
     var profileUrl: String?
     var lisenceUrl: String?
     
@@ -189,10 +189,15 @@ class ProfileViewController: QLViewController, UITextFieldDelegate, UIImagePicke
 //        if let url = self.profileUrl {
 //            self.getURL(url: url)
 //        }
-        let approveVC = UIImageViewController(nibName: "UIImageViewController", bundle: nil)
-        let profileName = self.profileUrl!
-        approveVC.name = profileName
-        self.navigationController?.pushViewController(approveVC, animated: true)
+        if self.bitForViewProfile {
+            print("not showing...")
+        } else {
+            let approveVC = UIImageViewController(nibName: "UIImageViewController", bundle: nil)
+            let profileName = self.profileUrl!
+            approveVC.name = profileName
+            self.navigationController?.pushViewController(approveVC, animated: true)
+        }
+        
     }
     
     //MARK: - UIImagePickerControllerDelegate
@@ -402,6 +407,11 @@ class ProfileViewController: QLViewController, UITextFieldDelegate, UIImagePicke
                     self.btnProfile.isHidden = true
                     self.btnProfile.isUserInteractionEnabled = false
                     self.btnEdit.setTitle("Edit", for: .normal)
+                    let urlUpdateProfile = URL(string: self.strProfileImage ?? "")
+                    urlProfile = urlUpdateProfile
+                    self.bitForViewProfile = true
+                    strUserName = self.txtFullNameOnLisence.text ?? ""
+                    
                     self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 } else{
                     print("failed")

@@ -47,3 +47,10 @@ var strPassword = ""
 var roleId: Int?
 var intForSearchFilter: Int?
 var intForSetAscDes: Int?
+var strForFullName = ""
+var strFromDate: String?
+var strToDate: String?
+var strOrderBy: String?
+var strName: String?
+var strDuration: String?
+var strDOB: Date?

@@ -103,17 +103,31 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             adminValue = arrayOfMembers[indexPath.item].isAdmin
             let url = URL(string: "\(Constant.imageDownloadURL)\(arrayOfMembers[indexPath.item].profileUrl ?? "")")
             member.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "Group 242"))
-//            member.btn1.isHidden = true
+            member.btn1.isHidden = true
             member.btn2.isHidden = true
             member.btn3.isHidden = true
-            if arrayOfMembers[indexPath.item].isAdmin ?? false {
-                member.btn1.setTitle("Remove As Admin", for: .normal)
-            } else {
-                member.btn1.setTitle("Make A Admin", for: .normal)
-            }
             member.btnRejectedHeight.constant = 0
-//            member.btnApprovedHeight.constant = 0
             member.btnGiveApprovementHeight.constant = 0
+            member.btnApprovedHeight.constant = 0
+            let adminStatus = arrayOfMembers[indexPath.item].isAdmin
+            if adminStatus ?? false {
+                if adminStatus ?? false {
+                    member.btn1.isHidden = false
+                    member.btnApprovedHeight.constant = 40
+                    member.btn1.setTitle("Remove As Admin", for: .normal)
+                } else {
+                    member.btn1.isHidden = false
+                    member.btnApprovedHeight.constant = 40
+                    member.btn1.setTitle("Make A Admin", for: .normal)
+                }
+            } else {
+                member.btn1.isHidden = true
+                member.btnApprovedHeight.constant = 0
+//                member.btn1.setTitle("Make A Admin", for: .normal)
+            }
+            
+//            member.btnApprovedHeight.constant = 0
+            
             self.currentMemberId = arrayOfMembers[indexPath.row].userId
             self.currentAdminStatus = arrayOfMembers[indexPath.row].isAdmin
             self.currentStatus = arrayOfMembers[indexPath.row].roleId
@@ -275,38 +289,40 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
                 let status = responseData.success ?? false
                 
                 if status {
-                    if responseData.users?.count != 0 {
-                        if self.arrayOfMembers.count > 0 {
-                            
-                            if let arrayData : [ResponseUsers] = responseData.users {
-                                
-                                for item in arrayData {
-                                    self.arrayOfMembers.append(item)
-                                    self.collectionMembers.reloadData()
-                                    self.noDataFoundView.isHidden = true
-                                    self.collectionView.isHidden = false
-                                }
-                            }
-                        } else {
-                            self.arrayOfMembers = responseData.users ?? []
-                            self.collectionMembers.reloadData()
-                            self.noDataFoundView.isHidden = true
-                            self.collectionView.isHidden = false
-                        }
-                    
-                    }
-//                    self.arrayOfMembers = responseData.users ?? []
-//                    print(self.arrayOfMembers)
-//                    self.noDataFoundView.isHidden = true
-//                    self.collectionView.isHidden = false
-//                    self.collectionMembers.reloadData()
+//                    if responseData.users?.count != 0 {
+//                        if self.arrayOfMembers.count > 0 {
+//
+//                            if let arrayData : [ResponseUsers] = responseData.users {
+//
+//                                for item in arrayData {
+//                                    self.arrayOfMembers.append(item)
+//                                    self.collectionMembers.reloadData()
+//                                    self.noDataFoundView.isHidden = true
+//                                    self.collectionView.isHidden = false
+//                                }
+//                            }
+//                        } else {
+//                            self.arrayOfMembers = responseData.users ?? []
+//                            self.collectionMembers.reloadData()
+//                            self.noDataFoundView.isHidden = true
+//                            self.collectionView.isHidden = false
+//                        }
+//
+//                    }
+                    self.arrayOfMembers = responseData.users ?? []
+                    print(self.arrayOfMembers)
+                    self.noDataFoundView.isHidden = true
+                    self.collectionView.isHidden = false
+                    self.collectionMembers.reloadData()
                 } else {
 //                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    if self.arrayOfMembers.count == 0 {
-                        
-                        self.noDataFoundView.isHidden = false
-                        self.collectionView.isHidden = true
-                    }
+//                    if self.arrayOfMembers.count == 0 {
+//
+//                        self.noDataFoundView.isHidden = false
+//                        self.collectionView.isHidden = true
+//                    }
+                    self.noDataFoundView.isHidden = false
+                    self.collectionView.isHidden = true
                     
 //                    self.arrayOfMembers.removeAll()
                 }

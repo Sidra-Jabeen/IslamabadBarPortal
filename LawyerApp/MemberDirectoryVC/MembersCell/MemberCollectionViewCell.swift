@@ -19,6 +19,8 @@ class MemberCollectionViewCell: UICollectionViewCell {
 //        self.profileImage.layer.masksToBounds = false
 //        self.profileImage.layer.cornerRadius = self.profileImage.frame.height/2
 //        self.profileImage.clipsToBounds = true
+//        self.lblMemberName.setSizeFont(sizeFont: 13)
+//        self.lblCourtName.setSizeFont(sizeFont: 10)
         self.profileImage.applyCircledView()
     }
 

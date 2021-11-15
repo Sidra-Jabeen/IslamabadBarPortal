@@ -66,6 +66,7 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         FileManager.default.clearTmpDirectory()
+        strDOB = nil
 //        self.callGetAnnouncements()
     }
     
@@ -227,6 +228,12 @@ class BarCouncilViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                     }
                 } else {
+                    
+                    if responseData.code == "401" {
+                        self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        return
+                    }
+                    
                     if self.barListArrays.count == 0 {
                         self.dataNotFoundView.isHidden = false
                         self.tableView.isHidden = true

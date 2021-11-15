@@ -48,10 +48,10 @@
                                                 <constraint firstAttribute="height" constant="80" id="OKa-aZ-cXD"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZn-aN-sqa">
-                                            <rect key="frame" x="10" y="105" width="245" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZn-aN-sqa">
+                                            <rect key="frame" x="5" y="105" width="255" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="xJS-Ut-BPI"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="xJS-Ut-BPI"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,8 +63,8 @@
                                         <constraint firstItem="DZn-aN-sqa" firstAttribute="top" secondItem="sYI-4Q-jTS" secondAttribute="bottom" constant="10" id="Kzv-lP-oN8"/>
                                         <constraint firstItem="sYI-4Q-jTS" firstAttribute="top" secondItem="L5u-ao-Yfe" secondAttribute="top" constant="15" id="TjZ-CE-TWH"/>
                                         <constraint firstAttribute="bottom" secondItem="DZn-aN-sqa" secondAttribute="bottom" id="g63-hZ-eXw"/>
-                                        <constraint firstAttribute="trailing" secondItem="DZn-aN-sqa" secondAttribute="trailing" constant="10" id="q3R-GW-XOf"/>
-                                        <constraint firstItem="DZn-aN-sqa" firstAttribute="leading" secondItem="L5u-ao-Yfe" secondAttribute="leading" constant="10" id="xZP-6d-QkO"/>
+                                        <constraint firstAttribute="trailing" secondItem="DZn-aN-sqa" secondAttribute="trailing" constant="5" id="q3R-GW-XOf"/>
+                                        <constraint firstItem="DZn-aN-sqa" firstAttribute="leading" secondItem="L5u-ao-Yfe" secondAttribute="leading" constant="5" id="xZP-6d-QkO"/>
                                         <constraint firstItem="sYI-4Q-jTS" firstAttribute="centerX" secondItem="L5u-ao-Yfe" secondAttribute="centerX" id="xZe-SL-JkD"/>
                                     </constraints>
                                 </view>

@@ -27,6 +27,10 @@ class WelcomeToIslamabadViewController: UIViewController {
 //        self.navigationController?.pushViewController(postAQuesVC, animated: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        strDOB = nil
+    }
+    
     @IBAction func tappedOnSignIn( _sender: UIButton) {
         
         let signInVC = SignInViewController(nibName: "SignInViewController", bundle: nil)

@@ -9,7 +9,8 @@ import UIKit
 import SideMenu
 import Kingfisher
 
-class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate{
+class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate, BackToQuestionVC {
+    
     
     @IBOutlet weak var tblQuesAnswers: UITableView!
     @IBOutlet weak var viewPostQuesBtn: UIView!
@@ -22,6 +23,7 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     var postAQuesVC: PostAQuestionViewController?
     var commentsVC: CommentsViewController?
     var arrayOfQueries = [QuesResponseModel]()
+    var bitForSearchFilter = true
     
     var refreshControl: UIRefreshControl?
 
@@ -45,6 +47,8 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     @objc func didPullToRefresh() {
         
         self.arrayOfQueries.removeAll()
+        self.txtSearch.text = ""
+        self.bitForSearchFilter = true
         self.callGetQuestionApi()
         self.refreshControl?.endRefreshing()
     }
@@ -109,12 +113,14 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-//        if indexPath.row+1 == self.arrayOfQueries.count {
-//                    print("came to last row")
-//            self.callGetQuestionApi()
-//        }
-//        self.callGetQuestionApi()
+           tableView.addLoading(indexPath) {
+               
+               if self.bitForSearchFilter {
+                   self.callGetQuestionApi()
+               }
+//               self.bitForSearchFilter = false
+               tableView.stopLoading() // stop your indicator
+           }
     }
     
     @IBAction func tappedOnBack( _sender: UIButton) {
@@ -131,6 +137,13 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     @IBAction func tappedOnSearch( _sender: UIButton) {
         
         self.addAnimations(view: self.searchView, options: UIView.AnimationOptions.transitionCurlDown, duration: 0.5, delay: 0.25)
+    }
+    
+    
+    func callGetQuestionsApi() {
+        
+        self.arrayOfQueries.removeAll()
+        self.callGetQuestionApi()
     }
     
     //MARK: - TouchScreenFunction
@@ -157,31 +170,66 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     }
     
     func callGetQuestionApi() {
-        
-        if  Connectivity.isConnectedToInternet {
-            self.startAnimation()
-            let dataModel = QuestionRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0))
-            let signUpUrl = Constant.getQuestionsEP
-            let services = QuestionServices()
-            services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
-                
-                self.stopAnimation()
-                let status = responseData.success ?? false
-                if status {
-                    self.arrayOfQueries = responseData.questions ?? []
-                    print(self.arrayOfQueries)
-                    self.tblQuesAnswers.reloadData()
-                    self.noDataFoundView.isHidden = true
-                    self.tblQuesAnswers.isHidden = false
-                } else {
-//                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    self.noDataFoundView.isHidden = false
-                    self.tblQuesAnswers.isHidden = true
+            
+            if  Connectivity.isConnectedToInternet {
+                self.startAnimation()
+                let dataModel = QuestionRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: arrayOfQueries.count))
+                let signUpUrl = Constant.getQuestionsEP
+                let services = QuestionServices()
+                services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                    
+                    self.stopAnimation()
+                    let status = responseData.success ?? false
+                    if status {
+                        
+                        if responseData.questions?.count != 0 {
+                            if self.arrayOfQueries.count > 0 {
+                                
+                                if let arrayData : [QuesResponseModel] = responseData.questions {
+                                    
+                                    for item in arrayData {
+                                        self.arrayOfQueries.append(item)
+                                        self.tblQuesAnswers.reloadData()
+    //                                    self.searchView.alpha = 0
+                                        self.noDataFoundView.isHidden = true
+                                        self.tblQuesAnswers.isHidden = false
+                                    }
+                                }
+                            } else {
+                                self.arrayOfQueries = responseData.questions ?? []
+                                self.tblQuesAnswers.reloadData()
+    //                            self.searchView.alpha = 0
+                                self.noDataFoundView.isHidden = true
+                                self.tblQuesAnswers.isHidden = false
+                            }
+                        
+                        }
+                        
+    //                    self.arrayOfQueries = responseData.questions ?? []
+    //                    print(self.arrayOfQueries)
+    //                    self.tblQuesAnswers.reloadData()
+    //                    self.noDataFoundView.isHidden = true
+    //                    self.tblQuesAnswers.isHidden = false
+                    } else {
+                        
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
+                        
+                        if self.arrayOfQueries.count == 0 {
+                            self.searchView.alpha = 0
+                            self.noDataFoundView.isHidden = false
+                            self.tblQuesAnswers.isHidden = true
+                        }
+    //                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+    //                    self.noDataFoundView.isHidden = false
+    //                    self.tblQuesAnswers.isHidden = true
+                    }
+                }} else {
+                    
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
                 }
-            }} else {
-                
-                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
-            }
 
     }
     
@@ -193,11 +241,13 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     
     func callSearchQuestionApi() {
         
+//        self.arrayOfQueries.removeAll()
+        self.bitForSearchFilter = false
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
             let lisenceNo = UserDefaults.standard.string(forKey: "lisenceNumber") ?? ""
             let password = UserDefaults.standard.string(forKey: "password") ?? ""
-            let dataModel = SearchQuestionRequestModel(pagination: PaginationModel(orderBy: "", limit: 10, offset: 0), question: SearchQuestion(isLoadMore: false, id: 0, title: self.txtSearch.text ?? ""), source: "2", user: LoginUser(licenseNumber: lisenceNo, password: password))
+            let dataModel = SearchQuestionRequestModel(pagination: PaginationModel(orderBy: nil, limit: 10, offset: 0), question: SearchQuestion(isLoadMore: false, id: 0, title: self.txtSearch.text ?? ""), source: "2", user: LoginUser(licenseNumber: lisenceNo, password: password))
             let url = Constant.searchQuestionEP
             let services = QuestionServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -205,13 +255,48 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
                 self.stopAnimation()
                 let status = responseData.success ?? false
                 if status {
+                    
+//                    if responseData.questions?.count != 0 {
+//                        if self.arrayOfQueries.count > 0 {
+//
+//                            if let arrayData : [QuesResponseModel] = responseData.questions {
+//
+//                                for item in arrayData {
+//                                    self.arrayOfQueries.append(item)
+//                                    self.tblQuesAnswers.reloadData()
+//                                    self.searchView.alpha = 0
+//                                    self.noDataFoundView.isHidden = true
+//                                    self.tblQuesAnswers.isHidden = false
+//                                }
+//                            }
+//                        } else {
+//                            self.arrayOfQueries = responseData.questions ?? []
+//                            self.tblQuesAnswers.reloadData()
+//                            self.searchView.alpha = 0
+//                            self.noDataFoundView.isHidden = true
+//                            self.tblQuesAnswers.isHidden = false
+//                        }
+//
+//                    }
+                    
                     self.arrayOfQueries = responseData.questions ?? []
-                    print(self.arrayOfQueries)
                     self.tblQuesAnswers.reloadData()
                     self.searchView.alpha = 0
                     self.noDataFoundView.isHidden = true
                     self.tblQuesAnswers.isHidden = false
+                    
                 } else {
+                    
+                    if responseData.code == "401" {
+                        self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        return
+                    }
+                    
+//                    if self.arrayOfQueries.count == 0 {
+//                        self.searchView.alpha = 0
+//                        self.noDataFoundView.isHidden = false
+//                        self.tblQuesAnswers.isHidden = true
+//                    }
                     self.searchView.alpha = 0
                     self.noDataFoundView.isHidden = false
                     self.tblQuesAnswers.isHidden = true

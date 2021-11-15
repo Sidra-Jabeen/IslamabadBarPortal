@@ -28,6 +28,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var selectedDateIndex = 0
     let validation = Validate()
     var bitForProifle = false
+    var strDateOfBirth: String?
     var btnSelectionArray = [false, false, false]
     var cellArray : [(arrSignUpList: String ,arrPlaceHolderList: String, imagesBtns: String, arrOfTypes: String ,rowSelectedValue: Bool, inputText: String)] = [
         ("Issue Date of Lower Court","dd-mm-yyyy","layer1","calender",false, ""),
@@ -142,6 +143,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 tmpCell.txtInfo.placeholder = cellIndexData.arrPlaceHolderList
                 tmpCell.txtInfo.tag = indexPath.row
+                tmpCell.txtInfo.isSecureTextEntry = (indexPath.row == 8 || indexPath.row == 9)
                 tmpCell.txtInfo.delegate = self
                 tmpCell.txtInfo.text = cellIndexData.inputText
                 if cellIndexData.arrSignUpList == "Contact Number 2" {
@@ -149,6 +151,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 } else {
                     tmpCell.imgStar.image = UIImage(systemName: "staroflife.fill")
                 }
+                
+                
                 
                 if cellIndexData.rowSelectedValue {
                     
@@ -279,6 +283,15 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 calender.modalPresentationStyle = .overCurrentContext
                 calender.modalTransitionStyle = .crossDissolve
                 calender.delegate = self
+                if self.mainArray[self.selectedDateIndex].arrSignUpList == "Issue Date of Lower Court" {
+                    strDOB = self.mainArray[self.selectedDateIndex].inputText
+                } else if self.mainArray[self.selectedDateIndex].arrSignUpList == "Issue Date of High Court" {
+                    strDOB = self.mainArray[self.selectedDateIndex].inputText
+                } else if self.mainArray[self.selectedDateIndex].arrSignUpList == "Issue Date of Supreme Court" {
+                    strDOB = self.mainArray[self.selectedDateIndex].inputText
+                } else if self.mainArray[self.selectedDateIndex].arrSignUpList == "Date of Birth" {
+                    strDOB = self.mainArray[self.selectedDateIndex].inputText
+                }
                 self.present(calender, animated: true, completion: nil)
             }
             
@@ -294,6 +307,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
 //        self.selectedDateIndex = textField.tag
+//        textField.isSecureTextEntry = (textField.tag == 8 || textField.tag == 9)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -346,7 +360,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         if textField.tag == 6 {
 
-            let maxLength = 11
+            let maxLength = 13
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
@@ -401,7 +415,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             if !(self.mainArray[4].inputText.isEmpty) {
                                 if !(self.mainArray[5].inputText.isEmpty) && self.mainArray[5].inputText.count == 11 {
                                     if self.mainArray[5].inputText.starts(with: "03") {
-                                        if self.mainArray[5].inputText.isEmpty || self.mainArray[6].inputText.starts(with: "03") {
+                                        if (self.mainArray[6].inputText.isEmpty) || (!(self.mainArray[6].inputText.isEmpty) &&  self.mainArray[6].inputText.starts(with: "03")) {
                                         if !(self.mainArray[7].inputText.isEmpty) {
                                             if self.validation.isValidEmail(testStr: self.mainArray[7].inputText) {
                                                 if !(self.mainArray[8].inputText.isEmpty) {
@@ -455,6 +469,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                         }
                                     }
                                     else {
+
                                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Contact Number 2 Should Be Starts With 03.")
                                         }
                                 } else {
@@ -763,8 +778,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
 //        self.textTemp.text = date
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-YYYY"
-        strDOB = formatter.date(from: date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        strDOB = date
         self.mainArray[self.selectedDateIndex].inputText = date
         self.tblRegistration.reloadData()
     }

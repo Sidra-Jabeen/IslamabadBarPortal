@@ -12,36 +12,39 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MemberCollectionViewCell" customModule="LawyerApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="123" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="157" height="134"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="123" height="130"/>
+                <rect key="frame" x="0.0" y="0.0" width="157" height="134"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Zb-6A-dX5">
-                        <rect key="frame" x="10" y="10" width="103" height="110"/>
+                        <rect key="frame" x="10" y="10" width="137" height="114"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4VR-fn-9kV" userLabel="Main">
-                                <rect key="frame" x="0.0" y="0.0" width="103" height="110"/>
+                                <rect key="frame" x="0.0" y="0.0" width="137" height="114"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 114" translatesAutoresizingMaskIntoConstraints="NO" id="40J-Kt-z4f">
-                                        <rect key="frame" x="21.5" y="10" width="60" height="60"/>
+                                        <rect key="frame" x="38.5" y="10" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="QMC-2J-SVP"/>
                                             <constraint firstAttribute="height" constant="60" id="h5A-Pm-owc"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Name" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4n-V2-qxN">
-                                        <rect key="frame" x="0.0" y="74" width="103" height="15"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Member Name Member Member" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4n-V2-qxN">
+                                        <rect key="frame" x="5" y="80" width="127" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="uJl-V0-RiF"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="uJl-V0-RiF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supreme Court" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-Cy-BFR">
-                                        <rect key="frame" x="0.0" y="89" width="103" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supreme Court" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-Cy-BFR">
+                                        <rect key="frame" x="5" y="97" width="127" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="1Ku-kb-byS"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -52,9 +55,9 @@
                                     <constraint firstItem="40J-Kt-z4f" firstAttribute="centerX" secondItem="4VR-fn-9kV" secondAttribute="centerX" id="3iF-nJ-Rhg"/>
                                     <constraint firstItem="ZgQ-Cy-BFR" firstAttribute="trailing" secondItem="u4n-V2-qxN" secondAttribute="trailing" id="BJn-Ez-ehE"/>
                                     <constraint firstItem="ZgQ-Cy-BFR" firstAttribute="leading" secondItem="u4n-V2-qxN" secondAttribute="leading" id="FWv-Tn-kTj"/>
-                                    <constraint firstItem="u4n-V2-qxN" firstAttribute="leading" secondItem="4VR-fn-9kV" secondAttribute="leading" id="Mj2-8Y-qW0"/>
-                                    <constraint firstItem="u4n-V2-qxN" firstAttribute="top" secondItem="40J-Kt-z4f" secondAttribute="bottom" constant="4" id="N4G-mN-0Q2"/>
-                                    <constraint firstAttribute="trailing" secondItem="u4n-V2-qxN" secondAttribute="trailing" id="Obb-PE-NPQ"/>
+                                    <constraint firstItem="u4n-V2-qxN" firstAttribute="leading" secondItem="4VR-fn-9kV" secondAttribute="leading" constant="5" id="Mj2-8Y-qW0"/>
+                                    <constraint firstItem="u4n-V2-qxN" firstAttribute="top" secondItem="40J-Kt-z4f" secondAttribute="bottom" constant="10" id="N4G-mN-0Q2"/>
+                                    <constraint firstAttribute="trailing" secondItem="u4n-V2-qxN" secondAttribute="trailing" constant="5" id="Obb-PE-NPQ"/>
                                     <constraint firstAttribute="bottom" secondItem="ZgQ-Cy-BFR" secondAttribute="bottom" constant="5" id="nLS-4d-Vlf"/>
                                     <constraint firstItem="ZgQ-Cy-BFR" firstAttribute="top" secondItem="u4n-V2-qxN" secondAttribute="bottom" id="s7q-5g-RNI"/>
                                     <constraint firstItem="40J-Kt-z4f" firstAttribute="top" secondItem="4VR-fn-9kV" secondAttribute="top" constant="10" id="sTp-PF-MxT"/>
@@ -78,13 +81,13 @@
                 <constraint firstAttribute="trailing" secondItem="7Zb-6A-dX5" secondAttribute="trailing" constant="10" id="UzC-5A-90g"/>
                 <constraint firstItem="7Zb-6A-dX5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="tIc-dY-GZr"/>
             </constraints>
-            <size key="customSize" width="83" height="80"/>
+            <size key="customSize" width="117" height="84"/>
             <connections>
                 <outlet property="lblCourtName" destination="ZgQ-Cy-BFR" id="3Mt-ZS-qSc"/>
                 <outlet property="lblMemberName" destination="u4n-V2-qxN" id="2WV-Yq-l5B"/>
                 <outlet property="profileImage" destination="40J-Kt-z4f" id="9oJ-Be-39d"/>
             </connections>
-            <point key="canvasLocation" x="160.80000000000001" y="106.14692653673164"/>
+            <point key="canvasLocation" x="188" y="107.94602698650675"/>
         </collectionViewCell>
     </objects>
     <resources>

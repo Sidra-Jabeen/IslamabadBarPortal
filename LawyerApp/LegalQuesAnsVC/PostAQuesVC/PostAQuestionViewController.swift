@@ -9,6 +9,11 @@ import UIKit
 import AVKit
 import MobileCoreServices
 
+protocol BackToQuestionVC {
+    
+    func callGetQuestionsApi()
+}
+
 class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate, UITextViewDelegate, UITextFieldDelegate  {
     
     //MARK: - IBOutlet
@@ -37,6 +42,7 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
     var arrayForMedia: [(UIImage, String)] = []
 //    var arrayForImages: [UIImage] = []
     var imagePicker = UIImagePickerController()
+    public var delegate: BackToQuestionVC?
     
     //MARK: - LifeCycle
     
@@ -118,16 +124,16 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         if indexPath.row == 0 {
             
             tmpCell.btnAdd.isHidden = false
-            tmpCell.btnRemove.isHidden = true
+            tmpCell.btnCancel.isHidden = true
             tmpCell.imgPostQuestion.image = UIImage(named: "add-image")
             tmpCell.btnAdd.addTarget(self, action: #selector(onClickGetImage), for: .touchUpInside)
         } else {
             
             tmpCell.btnAdd.isHidden = true
-            tmpCell.btnRemove.isHidden = false
-            tmpCell.btnRemove.tag = indexPath.row
+            tmpCell.btnCancel.isHidden = false
+            tmpCell.btnCancel.tag = indexPath.row
             tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0 //self.arrayForImages[indexPath.row - 1]
-            tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
+            tmpCell.btnCancel.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
         }
         return tmpCell
     }
@@ -337,7 +343,12 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
                                 self.uploadFiles(quesId: "\(quesID ?? 0)", type: "1", index: 0)
                             }
                         } else {
-                            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.delegate?.callGetQuestionsApi()
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
                         }
                     }
                 } else{
@@ -370,6 +381,7 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
                             self.stopAnimation()
                             let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.delegate?.callGetQuestionsApi()
                                 self.navigationController?.popViewController(animated: true)
                             }))
                             self.present(alert, animated: true, completion: nil)

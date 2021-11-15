@@ -82,7 +82,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
     override func viewWillAppear(_ animated: Bool) {
         
         FileManager.default.clearTmpDirectory()
-        
+        strDOB = nil
 //        self.callGetGeneralAnnouncements()
     }
     
@@ -147,7 +147,7 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
         if let vc = announcementsVC {
             vc.userId = listArrays[indexPath.row].memberAnnouncementId
             vc.bitValue = true
-            vc.barTitle = "General Announcements"
+            vc.barTitle = "Member Announcement"
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
@@ -278,14 +278,16 @@ class GeneralAnnouncementsViewController: UIViewController, UITableViewDelegate,
                     }
                         
                 } else {
+                    
+                    if responseData.code == "401" {
+                        self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        return
+                    }
+                    
                     if self.listArrays.count == 0 {
                         self.dataNotFoundView.isHidden = false
                         self.tableView.isHidden = true
                         self.search?.dismiss(animated: true)
-                    } else{
-//                        self.dataNotFoundView.isHidden = false
-//                        self.tableView.isHidden = true
-//                        self.search?.dismiss(animated: true)
                     }
                     
                 }

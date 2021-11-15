@@ -31,6 +31,8 @@ class SearchFilterViewController: UIViewController {
     @IBOutlet weak var btnHighView: UIView!
     @IBOutlet weak var btnLowerView: UIView!
     
+    @IBOutlet weak var btnClear: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -61,6 +61,7 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.txtEnterFullNameOnLisence.text = ""
         self.txtPassword.text = ""
+        strDOB = nil
         if UserDefaults.standard.string(forKey: "isBiometricLogin") == "1" {
             
             self.widthBiometric.constant = 60
@@ -164,6 +165,8 @@ class SignInViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let user = responseData.user
                     let token = user?.loginToken
                     Generic.setToken(token: token ?? "")
+                    let refreshToken = user?.refreshToken
+                    Generic.setRefreshToken(token: refreshToken ?? "")
                     let status = responseData.success ?? false
                     if status {
                         let dashboardVC = DashboardViewController(nibName: "DashboardViewController", bundle: nil)

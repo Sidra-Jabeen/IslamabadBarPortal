@@ -90,10 +90,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdA-Rb-q45" userLabel="TableView">
-                            <rect key="frame" x="0.0" y="62" width="375" height="605"/>
+                            <rect key="frame" x="0.0" y="62" width="375" height="545"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="a3o-KL-kQj">
-                                    <rect key="frame" x="15" y="15" width="345" height="590"/>
+                                    <rect key="frame" x="15" y="15" width="345" height="530"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="WA8-UO-Dp2"/>
@@ -195,7 +195,6 @@
                         <constraint firstItem="yFR-hg-MEN" firstAttribute="top" secondItem="OSr-JA-gmx" secondAttribute="bottom" id="29G-eP-8Uk"/>
                         <constraint firstAttribute="trailing" secondItem="OSr-JA-gmx" secondAttribute="trailing" id="5jC-G1-zKq"/>
                         <constraint firstItem="jdA-Rb-q45" firstAttribute="top" secondItem="OSr-JA-gmx" secondAttribute="bottom" id="6NH-09-NWw"/>
-                        <constraint firstAttribute="bottom" secondItem="jdA-Rb-q45" secondAttribute="bottom" id="ANX-Gl-XoA"/>
                         <constraint firstAttribute="bottom" secondItem="zUb-Xu-dMR" secondAttribute="bottom" constant="10" id="Atv-RZ-gdv"/>
                         <constraint firstAttribute="bottom" secondItem="yFR-hg-MEN" secondAttribute="bottom" id="DKZ-Bq-H2p"/>
                         <constraint firstItem="yFR-hg-MEN" firstAttribute="leading" secondItem="ec3-UO-kkF" secondAttribute="leading" id="K7J-nR-XNo"/>
@@ -204,6 +203,7 @@
                         <constraint firstItem="zUb-Xu-dMR" firstAttribute="leading" secondItem="ec3-UO-kkF" secondAttribute="leading" constant="15" id="Xfo-oG-fm5"/>
                         <constraint firstItem="H7P-xD-gSL" firstAttribute="centerY" secondItem="ec3-UO-kkF" secondAttribute="centerY" id="czv-r7-bWa"/>
                         <constraint firstAttribute="trailing" secondItem="zUb-Xu-dMR" secondAttribute="trailing" constant="15" id="l1k-LC-dUU"/>
+                        <constraint firstItem="zUb-Xu-dMR" firstAttribute="top" secondItem="jdA-Rb-q45" secondAttribute="bottom" id="nxa-g8-btT"/>
                         <constraint firstItem="H7P-xD-gSL" firstAttribute="centerX" secondItem="ec3-UO-kkF" secondAttribute="centerX" id="rPg-Vc-lsl"/>
                         <constraint firstItem="OSr-JA-gmx" firstAttribute="leading" secondItem="ec3-UO-kkF" secondAttribute="leading" id="u2Z-Aa-z4P"/>
                         <constraint firstItem="jdA-Rb-q45" firstAttribute="leading" secondItem="ec3-UO-kkF" secondAttribute="leading" id="ugU-qI-3Zh"/>

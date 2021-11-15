@@ -8,6 +8,7 @@
 import UIKit
 import QuickLook
 import AVKit
+import Alamofire
 
 class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, QLPreviewControllerDelegate {
     
@@ -58,6 +59,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         strForFullName = ""
         intForSearchFilter = nil
         intForSetAscDes = nil
+        strDOB = nil
     }
     
     //MARK: - HandGestures Function
@@ -123,7 +125,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         }
         
         tmpCell.btnAdd.isHidden = true
-        tmpCell.btnRemove.isHidden = true
+        tmpCell.btnCancel.isHidden = true
         return tmpCell
     }
     
@@ -211,7 +213,68 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
             self.present(alert, animated: true)
         }
     }
+    
+    func downloadPdf(url: URL, closure : @escaping (URL) -> Void) {
+        
+        //        let component = url.lastPathComponent
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        
+        if url.checkFileExist(){
+            let previewItem = PreviewItem()
+            previewItem.previewItemURL = url
+            self.previewItems.append(previewItem)
+        } else {
+            AF.download(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil, to: destination).downloadProgress(closure: { (progress) in
+                self.startAnimation()
+            }).response(completionHandler: { (DefaultDownloadResponse) in
+                self.stopAnimation()
+                
+                switch DefaultDownloadResponse.result {
+                case .success:
+                    let fileUrl = DefaultDownloadResponse.fileURL
+                    if fileUrl != nil{
+    //                    self.pdfFile = fileUrl
+                        let previewItem = PreviewItem()
+                        previewItem.previewItemURL = fileUrl
+                        self.previewItems.append(previewItem)
+                    } else {
+                        self.showAlertForDashboard(alertTitle: "Islamabad Bar Connect", alertMessage: "\(String(describing: DefaultDownloadResponse.error?.localizedDescription))")
+                    }
+                    
+                case .failure:
+                    
+//                    if let destinationURL = DefaultDownloadResponse {
+//                        if FileManager.default.fileExists(atPath: destinationURL.path){
+//                            // File exists, so no need to override it. simply return the path.
+//                            self.pdfFile = destinationURL
+//                        }else {
+//    //                        onError(error.localizedDescription)
+//    //                        assertionFailure()
+//                        }
+//                    }
+                    
+                    if ((DefaultDownloadResponse.fileURL?.checkFileExist()) != nil) {
+                        let previewItem = PreviewItem()
+                        previewItem.previewItemURL = url
+                        self.previewItems.append(previewItem)
+                    }
+                    self.showAlertForDashboard(alertTitle: "Islamabad Bar Connect", alertMessage: "\(String(describing: DefaultDownloadResponse.error?.localizedDescription))")
+                    break
+                }
+                
+                
+            })
+        }
+        
+       
+    }
 
+    func showAlertForDashboard(alertTitle : String, alertMessage : String) {
+    let alert = UIAlertController(title: "Islmabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+    }))
+    self.present(alert, animated: true, completion: nil)
+    }
     
     //MARK: - CallingApiFunction
     
@@ -241,13 +304,21 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                         self.previewItems.removeAll()
                         for item in self.arrAttachmentResponse {
                             if let url = URL(string: "\(Constant.imageDownloadURL)\(item.attachmentUrl ?? "")") {
-                                
+//                                self.downloadPdf(url: url, closure: { (file) in
+//                                                print(file)
+//                                            })
                                 self.quickLook(url: url)
                             }
                         }
                         self.attachmentsCollection.reloadData()
                         
                     } else {
+                        
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
+                        
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     }
                 }
@@ -284,6 +355,12 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                         }
                         self.attachmentsCollection.reloadData()
                     } else {
+                        
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
+                        
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     }
                 }

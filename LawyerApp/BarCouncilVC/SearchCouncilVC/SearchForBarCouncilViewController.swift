@@ -155,7 +155,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         self.btnYesterday.setTitleColor( UIColor.lightGray, for: .normal)
         self.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-        
+        strToDate = nil
+        strFromDate = nil
         
         txtToDate.text = self.dateFormatter.string(from: self.todayDate)
         txtFromDate.text = self.dateFormatter.string(from: self.todayDate)
@@ -175,7 +176,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         self.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
         self.viewLastweek.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.btnLastweek.setTitleColor( UIColor.lightGray, for: .normal)
-        
+        strToDate = nil
+        strFromDate = nil
         
         let previousDay = previousDay()
         txtToDate.text = self.dateFormatter.string(from: previousDay)
@@ -196,6 +198,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         self.btnAll.setTitleColor( UIColor.lightGray, for: .normal)
         let startDay = getPreviousWeekStartDay()
         let endDay = getPreviousWeekEndDay()
+        strToDate = nil
+        strFromDate = nil
         txtToDate.text = self.dateFormatter.string(from: endDay ?? Date())
         txtFromDate.text = self.dateFormatter.string(from: startDay ?? Date())
     }
@@ -254,8 +258,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
     
     @IBAction func tappedOnClear(_ sender: Any) {
         
-//        self.txtToDate.text = ""
-//        self.txtFromDate.text = ""
+        self.txtToDate.text = ""
+        self.txtFromDate.text = ""
 //        strFromDate = nil
 //        strToDate = nil
 //        strOrderBy = nil
@@ -268,6 +272,8 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         }
         intForSearchFilter = 0
         intForSetAscDes = 2
+        strFromDate = nil
+        strToDate = nil
         self.allTapped(UIButton())
     }
     
@@ -300,15 +306,54 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
             calender.delegate = self
             calender.maxDate = txtToDate.text ?? ""
             calender.minDate = txtFromDate.text ?? ""
+            if textField == txtToDate {
+                
+                if self.txtToDate.text == "" {
+                    
+                    strDOB = nil
+                    
+                } else  if !(self.txtToDate.text?.isEmpty ?? false) {
+                    
+                    strDOB = self.txtToDate.text
+                }
+            }
+            if textField == txtFromDate {
+                
+                if self.txtFromDate.text == "" {
+                    
+                    strDOB = nil
+                    
+                } else  if !(self.txtFromDate.text?.isEmpty ?? false) {
+                    
+                    strDOB = self.txtFromDate.text
+                    
+                }
+            }
             self.present(calender, animated: true, completion: nil)
             
         }
+        
+//        if self.txtToDate.text == "" {
+//            strDOB = nil
+//            return
+//        } else  if !(self.txtToDate.text?.isEmpty ?? false) {
+//            strDOB = self.txtToDate.text
+//            return
+//        } else if self.txtFromDate.text == "" {
+//            strDOB = nil
+//            return
+//        } else  if !(self.txtFromDate.text?.isEmpty ?? false) {
+//            strDOB = self.txtFromDate.text
+//            return
+//        }
+//
     }
     
      //MARK: - CalenderViewDelegateMethod
     
     func didSelectDate(date: String, isClear: Bool) {
         
+        strDOB = date
         self.tempTextField.text = date
         self.checkDays(allClear: isClear)
     }
@@ -353,9 +398,13 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         }else if self.txtToDate.text == dateFormatter.string(from: weekLastDay!) && self.txtFromDate.text == dateFormatter.string(from: weekFirstDay!){
             
             self.lastWeekTapped(UIButton())
+            
         }else if allClear == false {
             self.allTapped(UIButton())
+            strToDate = nil
+            strFromDate = nil
         }
         
     }
+
 }

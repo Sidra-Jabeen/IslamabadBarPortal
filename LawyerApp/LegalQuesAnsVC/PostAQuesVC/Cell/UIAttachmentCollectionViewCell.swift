@@ -13,6 +13,7 @@ class UIAttachmentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imgPostQuestion: UIImageView!
     @IBOutlet weak var btnRemove: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnAdd: UIButton!
     
     override func awakeFromNib() {
@@ -20,7 +21,7 @@ class UIAttachmentCollectionViewCell: UICollectionViewCell {
         
         self.btnAdd.setTitle("", for: .normal)
 //        self.btnRemove.setTitle("", for: .normal)
-        self.btnRemove.setImage(UIImage(named: "remove"), for: .normal)
+//        self.btnRemove.setImage(UIImage(named: "remove"), for: .normal)
     }
 
 }

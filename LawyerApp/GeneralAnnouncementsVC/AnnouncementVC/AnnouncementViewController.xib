@@ -47,7 +47,7 @@
                                                 <action selector="tappedOnBackWith_sender:" destination="-1" eventType="touchUpInside" id="ueO-pk-jPE"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Announcements" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmG-oU-njJ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Announcement" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmG-oU-njJ">
                                             <rect key="frame" x="60" y="0.0" width="255" height="50"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,21 +87,21 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNF-Az-ORJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are Rights of Consumer in Pakistan?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55q-kJ-959" customClass="SelectableLabel" customModule="LawyerApp" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="38" width="315" height="50.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55q-kJ-959" customClass="SelectableLabel" customModule="LawyerApp" customModuleProvider="target">
+                                                    <rect key="frame" x="30" y="38" width="315" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <color key="textColor" red="0.1074185446" green="0.36596107480000001" blue="0.32985910769999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QqH-ru-iY6" userLabel="LineView">
-                                                    <rect key="frame" x="30" y="98.5" width="315" height="1.5"/>
+                                                    <rect key="frame" x="30" y="48" width="315" height="1.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1.5" id="adu-ZA-OEv"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceR-o0-YLI">
-                                                    <rect key="frame" x="30" y="100" width="315" height="30"/>
+                                                    <rect key="frame" x="30" y="49.5" width="315" height="30"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 114" translatesAutoresizingMaskIntoConstraints="NO" id="MeE-ez-jZ0">
                                                             <rect key="frame" x="0.0" y="5" width="20" height="20"/>
@@ -113,22 +113,22 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Law Legal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgV-k9-7Jy">
-                                                            <rect key="frame" x="30" y="8" width="48" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgV-k9-7Jy">
+                                                            <rect key="frame" x="30" y="8" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" systemColor="systemGray3Color"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NH2-8u-lKi">
-                                                            <rect key="frame" x="108" y="5.5" width="20" height="19"/>
+                                                            <rect key="frame" x="60" y="5.5" width="20" height="19"/>
                                                             <color key="tintColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="Oa9-sW-Nug"/>
                                                                 <constraint firstAttribute="width" constant="20" id="lex-e1-ilK"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Law Legal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDV-LI-TRw">
-                                                            <rect key="frame" x="138" y="8" width="48" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDV-LI-TRw">
+                                                            <rect key="frame" x="90" y="8" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" systemColor="systemGray3Color"/>
                                                             <nil key="highlightedColor"/>
@@ -147,28 +147,28 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc0-lQ-E9z" userLabel="LineView">
-                                                    <rect key="frame" x="30" y="131" width="315" height="1.5"/>
+                                                    <rect key="frame" x="30" y="80.5" width="315" height="1.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1.5" id="Puq-eK-85B"/>
                                                     </constraints>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="sBM-5f-EjA">
-                                                    <rect key="frame" x="30" y="132.5" width="315" height="30.5"/>
+                                                    <rect key="frame" x="30" y="82" width="315" height="30.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKm-gv-6Ft" userLabel="LineView">
-                                                    <rect key="frame" x="30" y="168" width="315" height="1.5"/>
+                                                    <rect key="frame" x="30" y="117.5" width="315" height="1.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1.5" id="fun-hB-nKx"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvL-9Y-Fv4" userLabel="CollectionView">
-                                                    <rect key="frame" x="30" y="179.5" width="315" height="100"/>
+                                                    <rect key="frame" x="30" y="129" width="315" height="100"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VVv-CJ-bAe">
                                                             <rect key="frame" x="0.0" y="0.0" width="315" height="100"/>

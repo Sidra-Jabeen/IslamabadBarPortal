@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
 //        IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.disabledToolbarClasses = [SignInViewController.self]
-//        IQKeyboardManager.shared.disabledToolbarClasses = [SignUpViewController.self]
+        IQKeyboardManager.shared.disabledToolbarClasses = [LegalQuestionsAnswersViewController.self]
         IQKeyboardManager.shared.previousNextDisplayMode = .alwaysHide
 
         return true

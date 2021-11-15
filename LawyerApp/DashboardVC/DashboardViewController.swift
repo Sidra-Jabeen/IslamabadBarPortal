@@ -102,6 +102,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate, UIDocum
         strOrderBy = nil
         strName = nil
         strDuration = nil
+        strDOB = nil
         self.imgProfile.kf.setImage(with: urlProfile, placeholder: UIImage(named: "Group 242"))
     }
     
@@ -553,15 +554,6 @@ class DashboardViewController: UIViewController, MenuControllerDelegate, UIDocum
         
         //        let component = url.lastPathComponent
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
-        //        let url = FileManager.default.temporaryDirectory.appendingPathComponent(component)
-//        if url.checkFileExist(){
-//            print(url)
-//            self.pdfFile = url
-//        }
-        
-//        AF.download(url).responseData { response in
-//            print("Temporary URL: \(response.fileURL)")
-//        }
         
         AF.download(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil, to: destination).downloadProgress(closure: { (progress) in
             self.startAnimation()

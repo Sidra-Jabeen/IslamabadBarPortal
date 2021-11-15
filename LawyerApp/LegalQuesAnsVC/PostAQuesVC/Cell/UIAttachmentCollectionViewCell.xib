@@ -29,7 +29,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwl-ev-Ezq">
+                            <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwl-ev-Ezq">
                                 <rect key="frame" x="75" y="0.0" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="ZqO-oK-rob"/>
@@ -54,11 +54,22 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9G-iE-m4n">
+                                <rect key="frame" x="75" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Rj1-n2-9Ey"/>
+                                    <constraint firstAttribute="height" constant="25" id="rrc-kn-1Nb"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Cancel"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="qwl-ev-Ezq" secondAttribute="trailing" id="6zl-GT-rEz"/>
                             <constraint firstItem="36P-rW-5Qa" firstAttribute="leading" secondItem="vGs-M6-tRD" secondAttribute="leading" id="8bI-7x-Yh1"/>
+                            <constraint firstAttribute="trailing" secondItem="j9G-iE-m4n" secondAttribute="trailing" id="AII-L3-J8I"/>
+                            <constraint firstItem="j9G-iE-m4n" firstAttribute="top" secondItem="oH9-qV-Fz7" secondAttribute="top" id="IL5-sY-4UK"/>
                             <constraint firstItem="qwl-ev-Ezq" firstAttribute="top" secondItem="oH9-qV-Fz7" secondAttribute="top" id="MXX-fY-F2I"/>
                             <constraint firstItem="36P-rW-5Qa" firstAttribute="top" secondItem="vGs-M6-tRD" secondAttribute="top" id="Ucg-Rm-Ibc"/>
                             <constraint firstItem="vGs-M6-tRD" firstAttribute="top" secondItem="oH9-qV-Fz7" secondAttribute="top" constant="10" id="Usy-AO-VTh"/>
@@ -86,10 +97,11 @@
             <size key="customSize" width="100" height="100"/>
             <connections>
                 <outlet property="btnAdd" destination="36P-rW-5Qa" id="Xra-Xa-30Y"/>
+                <outlet property="btnCancel" destination="j9G-iE-m4n" id="cAo-HA-3mu"/>
                 <outlet property="btnRemove" destination="qwl-ev-Ezq" id="Xf0-J1-UKt"/>
                 <outlet property="imgPostQuestion" destination="vGs-M6-tRD" id="Pdh-nv-5Ol"/>
             </connections>
-            <point key="canvasLocation" x="173.91304347826087" y="137.27678571428569"/>
+            <point key="canvasLocation" x="173.91304347826087" y="136.60714285714286"/>
         </collectionViewCell>
     </objects>
     <resources>

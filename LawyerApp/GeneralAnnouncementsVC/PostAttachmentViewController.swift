@@ -37,6 +37,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var attachmentsCollection: UICollectionView!
     
     @IBOutlet weak var heightOfAnnounByView: NSLayoutConstraint!
+    
     //MARK: - Propertities
     
     var bitForLisenceType = 0
@@ -91,6 +92,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         strOrderBy = nil
         strName = nil
         strDuration = nil
+        strDOB = nil
         strForFullName = ""
     }
     
@@ -181,17 +183,17 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         if indexPath.row == 0 {
             
             tmpCell.btnAdd.isHidden = false
-            tmpCell.btnRemove.isHidden = true
+            tmpCell.btnCancel.isHidden = true
             tmpCell.imgPostQuestion.image = UIImage(named: "add-image")
             tmpCell.btnAdd.addTarget(self, action: #selector(onClickGetImage), for: .touchUpInside)
         } else {
             
             tmpCell.btnAdd.isHidden = true
-            tmpCell.btnRemove.isHidden = false
-            tmpCell.btnRemove.tag = indexPath.row
+            tmpCell.btnCancel.isHidden = false
+            tmpCell.btnCancel.tag = indexPath.row
 //            tmpCell.btnRemove.setImage(UIImage(named: "Cancel"), for: .normal)
             tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0 //self.arrayForImages[indexPath.row - 1]
-            tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
+            tmpCell.btnCancel.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
         }
         return tmpCell
     }
@@ -434,6 +436,10 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             }
                         } else {
                             self.stopAnimation()
+                            if responseData.code == "401" {
+                                self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                                return
+                            }
                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                         }
                     }
@@ -475,6 +481,10 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                         }
                     } else{
                         self.stopAnimation()
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                     
@@ -509,6 +519,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                                 self.uploadGeneralFiles(barId: "\(memberID ?? 0)", type: "2", index: 0)
                             } else{
                                 self.stopAnimation()
+                                
                                 let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
                                     self.delegate?.callGetGeneralAnnouncements()
@@ -519,6 +530,10 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             }
                         } else {
                             self.stopAnimation()
+                            if responseData.code == "401" {
+                                self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                                return
+                            }
                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                         }
                     }
@@ -559,6 +574,10 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                         }
                     } else{
                         self.stopAnimation()
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                 })

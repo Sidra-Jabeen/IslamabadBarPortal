@@ -363,6 +363,12 @@ class ProfileViewController: QLViewController, UITextFieldDelegate, UIImagePicke
                         }
                         print("success")
                     } else {
+                        
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
+                        
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "User Not Found")
                     }
                 }
@@ -415,6 +421,10 @@ class ProfileViewController: QLViewController, UITextFieldDelegate, UIImagePicke
                     self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                 } else{
                     print("failed")
+                    if responseData.code == "401" {
+                        self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        return
+                    }
                     self.txtFullNameOnLisence.isUserInteractionEnabled = false
                     self.txtDob.isUserInteractionEnabled = false
                     self.txtEmail.isUserInteractionEnabled = false
@@ -450,6 +460,11 @@ class ProfileViewController: QLViewController, UITextFieldDelegate, UIImagePicke
                     }))
                     self.present(alert, animated: true, completion: nil)
                 } else {
+                    
+                    if responseData.code == "401" {
+                        self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        return
+                    }
                     self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     //                    self.arrayOfMembers.removeAll()
                 }

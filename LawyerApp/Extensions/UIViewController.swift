@@ -8,6 +8,14 @@
 import Foundation
 import UIKit
 
+extension UILabel {
+    func setSizeFont (sizeFont: CGFloat) {
+        self.font =  UIFont(name: self.font.fontName, size: sizeFont)!
+//        self.font =  UIFont(name: UIFont.systemFontSize, size: sizeFont)
+        self.sizeToFit()
+    }
+}
+
 extension UIViewController {
     
     func startAnimation() {
@@ -37,6 +45,19 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func showAlertForLogin(alertTitle : String, alertMessage : String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: SignInViewController.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     func alertView(alertMessage : String, action: UIAlertAction) {
         
         let alert = UIAlertController(title: "Islamabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)

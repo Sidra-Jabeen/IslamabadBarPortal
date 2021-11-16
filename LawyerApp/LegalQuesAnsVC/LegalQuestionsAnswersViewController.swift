@@ -40,6 +40,7 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
         self.callGetQuestionApi()
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        
         self.tblQuesAnswers.addSubview(self.refreshControl!)
     }
     
@@ -131,6 +132,7 @@ class LegalQuestionsAnswersViewController: UIViewController, UITableViewDelegate
     @IBAction func tappedOnPostAQues( _sender: UIButton) {
         
         let postVC = PostAQuestionViewController(nibName: "PostAQuestionViewController", bundle: nil)
+        postVC.delegate = self
         self.navigationController?.pushViewController(postVC, animated: true)
     }
     

@@ -56,7 +56,9 @@ class BaseServices {
     
     func uploadMultipart(filesWithKeysToUpload: [String: String], textdataTobeSentWithKeys: [String: String], strUrl: String, completion: @escaping (Data) -> Void) {
         //Live http://203.215.160.148:9545/
+    
         let urlString = "\(Constant.baseURL)\(strUrl)"
+//        let urlString = "\(Constant.baseURL)\(strUrl)"
 //        let requestBinUrl = "https://enkxdj9i9oy5f.x.pipedream.net/"
         let token = Generic.getToken()
         let headers: HTTPHeaders = [

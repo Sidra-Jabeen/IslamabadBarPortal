@@ -81,6 +81,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         self.img1.image = UIImage(named: "Group 247")
         self.img2.image = UIImage(named: "Circle")
         self.img3.image = UIImage(named: "Circle")
+        self.bitForLisenceType = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {

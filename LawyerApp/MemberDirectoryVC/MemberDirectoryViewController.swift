@@ -429,16 +429,16 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         } else {
             self.strValue = "desc"
         }
-        if self.bitValue == 1 {
+        if self.selectedTab == 1 {
             self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "1", order: self.strValue)
 //            self.searchFilterApi(fullName: self.fullName)
             
-        } else if self.bitValue == 2 {
-            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "3", order: self.strValue)
+        } else if self.selectedTab == 2 {
+            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "2", order: self.strValue)
 //            self.searchFilterApi(fullName: self.fullName, lisenseType: "3")
             
-        } else if self.bitValue == 3 {
-            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "2", order: self.strValue)
+        } else if self.selectedTab == 3 {
+            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "3", order: self.strValue)
 //            self.searchFilterApi(fullName: self.fullName, lisenseType: "2")
             
         }

@@ -260,6 +260,7 @@ class SearchForBarCouncilViewController: UIViewController, UITextFieldDelegate, 
         
         self.txtToDate.text = ""
         self.txtFromDate.text = ""
+        self.txtname.text = ""
 //        strFromDate = nil
 //        strToDate = nil
 //        strOrderBy = nil

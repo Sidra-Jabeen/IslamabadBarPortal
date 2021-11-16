@@ -21,6 +21,17 @@ class Generic {
         return ""
     }
     
+    static func setRefreshToken(token: String) {
+        UserDefaults.standard.set(token, forKey: "refreshToken")
+    }
+    
+    static func getRefreshToken() -> String {
+        if let token = UserDefaults.standard.string(forKey: "refreshToken") {
+            return token
+        }
+        return ""
+    }
+    
     static func setAdminValue(token: String) {
         UserDefaults.standard.set(token, forKey: "admin")
     }
@@ -47,3 +58,11 @@ var strPassword = ""
 var roleId: Int?
 var intForSearchFilter: Int?
 var intForSetAscDes: Int?
+var strForFullName = ""
+var strFromDate: String?
+var strToDate: String?
+var strOrderBy: String?
+var strName: String?
+var strDuration: String?
+//var strDOB: Date?
+var strDOB: String?

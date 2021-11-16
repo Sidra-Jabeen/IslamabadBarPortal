@@ -9,8 +9,12 @@ import UIKit
 import SideMenu
 import LocalAuthentication
 import Kingfisher
+import Alamofire
+import MobileCoreServices
+import PDFKit
 
-class DashboardViewController: UIViewController, MenuControllerDelegate {
+class DashboardViewController: UIViewController, MenuControllerDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
+    
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var approvalView: UIView!
@@ -32,6 +36,8 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
     var profileController: ProfileViewController?
     var officialDirectory: OfficialDirectoryViewController?
     var requestApproval: ApprovalViewController?
+    var documentPicker: UIDocumentPickerViewController?
+    var pdfFile: URL?
     
 //    let kc = KeyChainManager(KeyChain())
     
@@ -41,7 +47,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         self.navigationController?.isNavigationBarHidden = true
 //        self.helpView.applyCircledView()
         
-        self.imgProfile.kf.setImage(with: urlProfile, placeholder: UIImage(named: "Group 242"))
+        self.documentPicker?.delegate = self
         self.sideMenu = SideMenuTableViewController()
         if let list = sideMenu {
             
@@ -71,6 +77,12 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
 
         }
         
+//        let url = URL(string: "\(Constant.imageDownloadURL)\(Constant.pdfDownloadUrl)")
+//        self.downloadPdf(url: url!, closure: { (file) in
+//            self.pdfFile = file
+//            print(file)
+//        })
+        
         let admin = Generic.getAdminValue()
         if admin == "0" {
 //            self.approvalView.isHidden = true
@@ -84,6 +96,14 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
         self.helpContentView.applyCircledView()
         intForSearchFilter = nil
         intForSetAscDes = nil
+        strForFullName = ""
+        strFromDate = nil
+        strToDate = nil
+        strOrderBy = nil
+        strName = nil
+        strDuration = nil
+        strDOB = nil
+        self.imgProfile.kf.setImage(with: urlProfile, placeholder: UIImage(named: "Group 242"))
     }
     
     func authenticateUserTouchID() {
@@ -197,7 +217,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
 
             }
 
-            else if named == "Member Announcememts" {
+            else if named == "Member Announcements" {
                 generalAnnouncements = GeneralAnnouncementsViewController()
                 if let controller = generalAnnouncements  {
                     setupUI(controller: controller)
@@ -330,6 +350,7 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
             else if named == "My Profile" {
                 profileController = ProfileViewController()
                 if let controller = profileController  {
+                    controller.intUserValue = loginUserID ?? 0
                     setupUI(controller: controller)
                 }
                 
@@ -373,7 +394,27 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
             else if named == "Official Directory" {
                 officialDirectory = OfficialDirectoryViewController()
                 if let controller = officialDirectory  {
-                    setupUI(controller: controller)
+                    
+                    let pdfView = PDFView()
+                    
+                    pdfView.translatesAutoresizingMaskIntoConstraints = false
+                    view.addSubview(pdfView)
+                    
+                    pdfView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+                    pdfView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+                    pdfView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+                    pdfView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+                    guard let path = Bundle.main.url(forResource: self.pdfFile?.absoluteString, withExtension: "pdf") else { return }
+
+                    if let document = PDFDocument(url: path) {
+                        pdfView.document = document
+                    }
+//                    setupUI(controller: controller)
+//                    let importMenu = UIDocumentPickerViewController(documentTypes: ["\(String(describing: self.pdfFile))", kUTTypePDF as String], in: UIDocumentPickerMode.import)
+//                    importMenu.delegate = self
+//                    self.present(importMenu, animated: true, completion: nil)
+                    
+                    
                 }
                 
                 if let controller = legalQuestionsAnswers {
@@ -489,5 +530,97 @@ class DashboardViewController: UIViewController, MenuControllerDelegate {
 //        }
 
     }
+    
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let myURL = self.pdfFile else {
+            return
+        }
+        print("import result : \(myURL)")
+    }
+          
 
+//    public func documentMenu(_ documentMenu:UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+//        documentPicker.delegate = self
+//        present(documentPicker, animated: true, completion: nil)
+//    }
+
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print("view was cancelled")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func downloadPdf(url: URL, closure : @escaping (URL) -> Void) {
+        
+        //        let component = url.lastPathComponent
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        
+        AF.download(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil, to: destination).downloadProgress(closure: { (progress) in
+            self.startAnimation()
+        }).response(completionHandler: { (DefaultDownloadResponse) in
+            self.stopAnimation()
+            
+            switch DefaultDownloadResponse.result {
+            case .success:
+                let fileUrl = DefaultDownloadResponse.fileURL
+                if fileUrl != nil{
+                    self.pdfFile = fileUrl
+                } else {
+                    self.showAlertForDashboard(alertTitle: "Islamabad Bar Connect", alertMessage: "\(String(describing: DefaultDownloadResponse.error?.localizedDescription))")
+                }
+                
+            case .failure:
+                
+//                if let destinationURL = DefaultDownloadResponse {
+//                    if FileManager.default.fileExists(atPath: destinationURL.path){
+//                        // File exists, so no need to override it. simply return the path.
+//                        self.pdfFile = destinationURL
+//                    }else {
+////                        onError(error.localizedDescription)
+////                        assertionFailure()
+//                    }
+//                }
+                self.showAlertForDashboard(alertTitle: "Islamabad Bar Connect", alertMessage: "\(String(describing: DefaultDownloadResponse.error?.localizedDescription))")
+                break
+            }
+            
+            
+        })
+        
+        //        let fileManager = FileManager.default
+        //        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        //
+        //        AF.request(url).downloadProgress(closure : { (progress) in
+        //            print(progress.fractionCompleted)
+        //
+        //        }).responseData{ (response) in
+        //            print(response)
+        //            print(response.result.value!)
+        //            print(response.result.description)
+        //            let randomString = NSUUID().uuidString
+        //            if let data = response.result.value {
+        //
+        //                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        //                let videoURL = documentsURL.appendingPathComponent("\(randomString)")
+        //                do {
+        //                    try data.write(to: videoURL)
+        //
+        //                } catch {
+        //                    print("Something went wrong!")
+        //                }
+        //
+        //            }
+        //        }
+        //        }
+    }
+    
+
+    
+    func showAlertForDashboard(alertTitle : String, alertMessage : String) {
+    let alert = UIAlertController(title: "Islmabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+    }))
+    self.present(alert, animated: true, completion: nil)
+    }
 }
+

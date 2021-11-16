@@ -49,19 +49,27 @@ class Validate {
         }
     }
     
-    
-    
-    func isEmailValid(emailStr: String) -> Bool {
-        
-        do {
-            if try NSRegularExpression(pattern: "^[A-Z0-9a-z._-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,}$", options: .caseInsensitive).firstMatch(in: emailStr, options: [], range: NSRange(location: 0, length: emailStr.count)) == nil {
-                return false
-            }
-        } catch {
-            return false
-        }
-        return true
+    func isValidEmail(testStr:String) -> Bool {
+
+        print("validate emilId: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
+
     }
+    
+//    func isEmailValid(emailStr: String) -> Bool {
+//
+//        do {
+//            if try NSRegularExpression(pattern: "^[A-Z0-9a-z._-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,}$", options: .caseInsensitive).firstMatch(in: emailStr, options: [], range: NSRange(location: 0, length: emailStr.count)) == nil {
+//                return false
+//            }
+//        } catch {
+//            return false
+//        }
+//        return true
+//    }
     
     
     func IsValidCNIC(cnicStr:String) -> Bool {
@@ -88,13 +96,11 @@ class Validate {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "dd-MM-yyyy"
         let someDate = dateString
-
-        if dateFormatterGet.date(from: someDate) != nil {
-            return true
-
-        } else {
-            return false
-        }
+        let fromDate = dateFormatterGet.date(from: someDate) ?? Date()
+        let today = Date()
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let age = gregorian.components([.year], from: fromDate, to: today, options: [])
+        return age.year ?? 0 >= 18
    }
     
     func isValidPhone(testStr:String) -> Bool{

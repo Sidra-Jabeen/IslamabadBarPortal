@@ -7,16 +7,14 @@
 
 import UIKit
 import QuickLook
-
-class PreviewItem: NSObject, QLPreviewItem {
-    var previewItemURL: URL?
-}
+import AVKit
+import Alamofire
 
 class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, QLPreviewControllerDelegate {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTitle: SelectableLabel!
     @IBOutlet weak var txtDesc: UITextView!
     @IBOutlet weak var lblAnnounceBy: UILabel!
     @IBOutlet weak var lbAnnounceAt: UILabel!
@@ -51,12 +49,17 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         intForSearchFilter = nil
         intForSetAscDes = nil
         self.callGetAnnouncementDetailApi()
+        let abusiveWord = UIMenuItem(title: "Mark as Abusive", action: #selector(markAsAbusive))
+        UIMenuController.shared.menuItems = [abusiveWord]
         self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+//        FileManager.default.clearTmpDirectory()
+        strForFullName = ""
+        intForSearchFilter = nil
+        intForSetAscDes = nil
+        strDOB = nil
     }
     
     //MARK: - HandGestures Function
@@ -82,7 +85,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = ((self.attachmentsCollection.frame.size.width / 3) - 10)
+        let width = ((self.attachmentsCollection.frame.size.width / 3))
         return CGSize(width: width, height: width)
     }
     
@@ -99,20 +102,30 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
         let tmpCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UIAttachmentCollectionViewCell", for: indexPath) as! UIAttachmentCollectionViewCell
         
         let strURL = self.arrAttachmentResponse[indexPath.row].attachmentUrl ?? ""
-        if strURL.contains(".pdf") {
-//            let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)")
+        if strURL.contains(".pdf") || strURL.contains(".doc") || strURL.contains(".docx"){
+            
             tmpCell.imgPostQuestion.image = UIImage(named: "document")
-//            tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "document"))
-        } else {
-            let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)")
-            tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "empty"))
+
+        } else if strURL.contains(".MOV") || strURL.contains(".mp4"){
+            
+            if let thumbnailImage = self.generateThumbnail(videoUrl: "\(Constant.imageDownloadURL)\(strURL)") {
+                tmpCell.imgPostQuestion.image = thumbnailImage
+            } else {
+                tmpCell.imgPostQuestion.image = UIImage(named: "no-image")
+            }
+            
+        }
+        else {
+            if let url = URL(string: "\(Constant.imageDownloadURL)\(strURL)") {
+                tmpCell.imgPostQuestion.kf.setImage(with: url, placeholder: UIImage(named: "empty"))
+            } else {
+                tmpCell.imgPostQuestion.image = UIImage(named: "no-image")
+            }
+            
         }
         
         tmpCell.btnAdd.isHidden = true
-        tmpCell.btnRemove.isHidden = true
-//            tmpCell.btnRemove.tag = indexPath.row
-        //self.arrayForImages[indexPath.row - 1]
-//            tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
+        tmpCell.btnCancel.isHidden = true
         return tmpCell
     }
     
@@ -128,11 +141,32 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
 //        quickLook(url: url)
     }
     
+    func generateThumbnail(videoUrl: String) -> UIImage? {
+
+        do {
+            let url                                         = URL(string: videoUrl)
+            let asset                                       = AVURLAsset(url: url!)
+            let imageGenerator                              = AVAssetImageGenerator(asset: asset)
+            imageGenerator.appliesPreferredTrackTransform   = true
+            let cgImage                                     = try imageGenerator.copyCGImage(at: CMTime(seconds: 2.0, preferredTimescale: 60),
+                                                                                             actualTime: nil)
+
+            return UIImage(cgImage: cgImage)
+
+        } catch {
+
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    //MARK: - QuickLookFunction
+    
     func quickLook(url: URL) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 //  in case of failure to download your data you need to present alert to the user
-                self.presentAlertController(with: error?.localizedDescription ?? "Failed to download the pdf!!!")
+                self.presentAlertController(with: error?.localizedDescription ?? "Failed to download the File!!!")
                 return
             }
             // you neeed to check if the downloaded data is a valid pdf
@@ -156,7 +190,7 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                 self.previewItems.append(previewItem)
                 print(self.previewItems)
 //                DispatchQueue.main.async {
-////                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //                    self.previewController.delegate = self
 //                    self.previewController.dataSource = self
 //                    self.previewController.currentPreviewItemIndex = 0
@@ -179,7 +213,68 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
             self.present(alert, animated: true)
         }
     }
+    
+    func downloadPdf(url: URL, closure : @escaping (URL) -> Void) {
+        
+        //        let component = url.lastPathComponent
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        
+        if url.checkFileExist(){
+            let previewItem = PreviewItem()
+            previewItem.previewItemURL = url
+            self.previewItems.append(previewItem)
+        } else {
+            AF.download(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil, to: destination).downloadProgress(closure: { (progress) in
+                self.startAnimation()
+            }).response(completionHandler: { (DefaultDownloadResponse) in
+                self.stopAnimation()
+                
+                switch DefaultDownloadResponse.result {
+                case .success:
+                    let fileUrl = DefaultDownloadResponse.fileURL
+                    if fileUrl != nil{
+    //                    self.pdfFile = fileUrl
+                        let previewItem = PreviewItem()
+                        previewItem.previewItemURL = fileUrl
+                        self.previewItems.append(previewItem)
+                    } else {
+                        self.showAlertForDashboard(alertTitle: "Islamabad Bar Connect", alertMessage: "\(String(describing: DefaultDownloadResponse.error?.localizedDescription))")
+                    }
+                    
+                case .failure:
+                    
+//                    if let destinationURL = DefaultDownloadResponse {
+//                        if FileManager.default.fileExists(atPath: destinationURL.path){
+//                            // File exists, so no need to override it. simply return the path.
+//                            self.pdfFile = destinationURL
+//                        }else {
+//    //                        onError(error.localizedDescription)
+//    //                        assertionFailure()
+//                        }
+//                    }
+                    
+                    if ((DefaultDownloadResponse.fileURL?.checkFileExist()) != nil) {
+                        let previewItem = PreviewItem()
+                        previewItem.previewItemURL = url
+                        self.previewItems.append(previewItem)
+                    }
+                    self.showAlertForDashboard(alertTitle: "Islamabad Bar Connect", alertMessage: "\(String(describing: DefaultDownloadResponse.error?.localizedDescription))")
+                    break
+                }
+                
+                
+            })
+        }
+        
+       
+    }
 
+    func showAlertForDashboard(alertTitle : String, alertMessage : String) {
+    let alert = UIAlertController(title: "Islmabad Bar Connect", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+    }))
+    self.present(alert, animated: true, completion: nil)
+    }
     
     //MARK: - CallingApiFunction
     
@@ -209,13 +304,21 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                         self.previewItems.removeAll()
                         for item in self.arrAttachmentResponse {
                             if let url = URL(string: "\(Constant.imageDownloadURL)\(item.attachmentUrl ?? "")") {
-                                
+//                                self.downloadPdf(url: url, closure: { (file) in
+//                                                print(file)
+//                                            })
                                 self.quickLook(url: url)
                             }
                         }
                         self.attachmentsCollection.reloadData()
                         
                     } else {
+                        
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
+                        
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     }
                 }
@@ -252,6 +355,12 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
                         }
                         self.attachmentsCollection.reloadData()
                     } else {
+                        
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
+                        
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                     }
                 }
@@ -263,6 +372,56 @@ class AnnouncementViewController: UIViewController, UICollectionViewDelegate, UI
 
     }
     
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        
+//        print(action)
+        if action == #selector(paste(_:)) || action == #selector(select(_:)) || action == #selector(selectAll(_:)) || action == #selector(cut(_:)) || action == Selector(("_lookup:")) || action == Selector(("_share:")) || action == Selector(("_define:"))
+        {
+            return false
+        }
+//        return true
+        return super.canPerformAction(action, withSender: sender)
+        
+//        if action == #selector(copy(_:))
+//            {
+//                return true
+//            } else {
+//                return false
+//            }
+    }
+    
+    
+    @objc func markAsAbusive() {
+        if let range = txtDesc.selectedTextRange, let selectedText = txtDesc.text(in: range) {
+            print(selectedText)
+            self.callAbuseWordAPI(text: selectedText)
+        }
+    }
+    
+    func callAbuseWordAPI(text: String) {
+        
+        if  Connectivity.isConnectedToInternet {
+            
+            //                startAnimation()
+            let dataModel = AbusiveRequestModel(source: "2", abuseWord: text)
+            let url = Constant.addWord
+            let services = SignInServices()
+            services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                print(responseData)
+                //                    self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    print("success")
+                } else {
+                    print("failed")
+                }
+            }
+        } else {
+            
+            //            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+        
+    }
 }
 
 // MARK: - QLPreviewControllerDataSource
@@ -282,8 +441,29 @@ extension AnnouncementViewController: QLPreviewControllerDataSource {
 //      let strURL = self.arrAttachmentResponse[index].attachmentUrl
 //      return URL(string: "\(Constant.imageDownloadURL)\(strURL ?? "")")! as QLPreviewItem
   }
+    
+    func previewControllerWillDismiss(_ controller: QLPreviewController) {
+        print("preview controller dismiss")
+    }
+    
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        print("preview controller dismiss")
+    }
 }
 
+extension FileManager {
+    func clearTmpDirectory() {
+        do {
+            let tmpDirectory = try contentsOfDirectory(atPath: NSTemporaryDirectory())
+            try tmpDirectory.forEach {[unowned self] file in
+                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                try self.removeItem(atPath: path)
+            }
+        } catch {
+            print(error)
+        }
+    }
+}
 
 //extension URL {
 //    var hasHiddenExtension: Bool {

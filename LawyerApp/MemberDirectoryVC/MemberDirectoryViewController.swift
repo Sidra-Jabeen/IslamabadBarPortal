@@ -15,6 +15,14 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     @IBOutlet weak var noDataFoundView: UIView!
     @IBOutlet weak var collectionView: UIView!
     
+    @IBOutlet weak var lblTab1: UILabel!
+    @IBOutlet weak var lblTab2: UILabel!
+    @IBOutlet weak var lblTab3: UILabel!
+    
+    @IBOutlet weak var viewLine1: UIView!
+    @IBOutlet weak var viewLine2: UIView!
+    @IBOutlet weak var viewLine3: UIView!
+    
     var memberVC: MemberNameViewController?
     var searchVC: SearchFilterViewController?
     var arrayOfMembers = [ResponseUsers]()
@@ -22,6 +30,15 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     var bitValueForAscDes = 0
     var strValue = ""
     var fullName = ""
+    var currentMemberId: Int?
+    var currentAdminStatus: Bool?
+    var currentStatus: Int?
+    var roleIDValue = 3
+    var refreshControl: UIRefreshControl?
+    var selectedTab = 0
+    var swappedViewValue = 1
+    var isPageRefreshing:Bool = false
+//    var roleIDValue = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +48,70 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         self.collectionMembers.collectionViewLayout = layout
         self.collectionMembers.register(UINib(nibName: "MemberCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MemberCollectionViewCell")
         self.navigationController?.isNavigationBarHidden = true
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeLeft.direction = .right
-        self.view.addGestureRecognizer(swipeLeft)
-        self.callGetUsersApi(status: "2")
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+//        swipeLeft.direction = .right
+//
+//        self.view.addGestureRecognizer(swipeLeft)
+//        self.onTapsClicked(value: 1)
+        self.selectedTab = 1
+        self.setLabelColor()
+        self.setViewColorLine()
+        self.callGetUsersApi(status: "2", name: nil, lisenceType: "1", order: nil)
+        let leftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleContentViewGesture))
+        leftRecognizer.direction = .left
+        let rightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleContentViewGesture))
+        rightRecognizer.direction = .right
+        self.collectionView.addGestureRecognizer(leftRecognizer)
+        self.collectionView.addGestureRecognizer(rightRecognizer)
+        
+//        self.refreshControl = UIRefreshControl()
+//        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+//        self.collectionMembers.addSubview(self.refreshControl!)
+        
     }
     
     
+    
+//    @objc func didPullToRefresh() {
+//
+//        self.arrayOfMembers.removeAll()
+//        self.isPageRefreshing = true
+//        if self.selectedTab == 1 {
+//            self.callGetUsersApi(status: "2", name: nil, lisenceType: "1", order: nil)
+//
+//        } else if self.selectedTab == 2 {
+//            self.callGetUsersApi(status: "2", name: nil, lisenceType: "2", order: nil)
+//
+//        } else if self.selectedTab == 3 {
+//            self.callGetUsersApi(status: "2", name: nil, lisenceType: "3", order: nil)
+//
+//        }
+//        self.refreshControl?.endRefreshing()
+//    }
+    
+    @objc func handleContentViewGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == .right {
+            print("Swipe Right")
+            
+            self.swappedViewValue -= 1
+            if self.swappedViewValue < 1 {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                
+                self.onTapsClicked(value: self.swappedViewValue)
+            }
+            
+        }
+        else if gesture.direction == .left {
+            print("Swipe Left")
+            self.swappedViewValue += 1
+            if self.swappedViewValue < 4 {
+                self.onTapsClicked(value: self.swappedViewValue)
+            } else {
+                self.swappedViewValue = 4
+            }
+        }
+    }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
@@ -52,6 +126,37 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
     override func viewWillAppear(_ animated: Bool) {
         
 //        self.callGetUsersApi(status: "2")
+    }
+    
+    //MARK: - IBActions
+    
+    @IBAction func tappedLowerCourt(_sender: UIButton) {
+        
+        
+        self.onTapsClicked(value: 1)
+        self.selectedTab = 1
+    }
+    
+    @IBAction func tappedHighCourt(_sender: UIButton) {
+        
+        self.onTapsClicked(value: 2)
+        self.selectedTab = 2
+    }
+    
+    @IBAction func tappedSupremeCourt(_sender: UIButton) {
+        
+        self.onTapsClicked(value: 3)
+        self.selectedTab = 3
+    }
+    
+    func onTapsClicked(value: Int) {
+        self.arrayOfMembers.removeAll()
+        self.swappedViewValue = value
+        self.selectedTab = value
+        self.setLabelColor()
+        self.setViewColorLine()
+        self.callGetUsersApi(status: "2", name: nil, lisenceType: "\(value)", order: nil)
+//        self.callGetUsersApi(status: "\(value)")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -79,9 +184,6 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             self.view.addSubview(member.view)
             member.lblMemberName.text = arrayOfMembers[indexPath.item].fullName
             member.lblPhoneNumber.text = arrayOfMembers[indexPath.item].contactNumber
-//            member.lblLisenceDateOflower.text = arrayOfMembers[indexPath.item].issuanceDateLowerCourt
-//            member.lblLisenceDateOfHigh.text = arrayOfMembers[indexPath.item].issuanceDateHighCourt
-//            member.lblLisenceDateOfSupreme.text = arrayOfMembers[indexPath.item].issuanceDateSupremeCourt
             member.lblOfcAddress.text = arrayOfMembers[indexPath.item].officeAddress
             member.memberId = arrayOfMembers[indexPath.item].userId
             currentUser = arrayOfMembers[indexPath.item].userId
@@ -92,20 +194,124 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             member.btn2.isHidden = true
             member.btn3.isHidden = true
             member.btnRejectedHeight.constant = 0
-            member.btnApprovedHeight.constant = 0
             member.btnGiveApprovementHeight.constant = 0
+            member.btnApprovedHeight.constant = 0
+            let adminStatus = arrayOfMembers[indexPath.item].isAdmin
+            let admin = Generic.getAdminValue()
+            if admin == "0" {
+                if adminStatus ?? false {
+                    member.btn1.isHidden = false
+                    member.btnApprovedHeight.constant = 40
+                    member.btn1.setTitle("Remove As Admin", for: .normal)
+                } else {
+                    member.btn1.isHidden = false
+                    member.btnApprovedHeight.constant = 40
+                    member.btn1.setTitle("Make A Admin", for: .normal)
+                }
+            } else {
+                member.btn1.isHidden = true
+                member.btnApprovedHeight.constant = 0
+//                member.btn1.setTitle("Make A Admin", for: .normal)
+            }
+//            if adminStatus ?? false {
+//                if adminStatus ?? false {
+//                    member.btn1.isHidden = false
+//                    member.btnApprovedHeight.constant = 40
+//                    member.btn1.setTitle("Remove As Admin", for: .normal)
+//                } else {
+//                    member.btn1.isHidden = false
+//                    member.btnApprovedHeight.constant = 40
+//                    member.btn1.setTitle("Make A Admin", for: .normal)
+//                }
+//            } else {
+//                member.btn1.isHidden = true
+//                member.btnApprovedHeight.constant = 0
+////                member.btn1.setTitle("Make A Admin", for: .normal)
+//            }
+            
+//            member.btnApprovedHeight.constant = 0
+            
+            self.currentMemberId = arrayOfMembers[indexPath.row].userId
+            self.currentAdminStatus = arrayOfMembers[indexPath.row].isAdmin
+            self.currentStatus = arrayOfMembers[indexPath.row].roleId
+            member.btn1.addTarget(self, action: #selector(clickedOnAButton1), for: .touchUpInside)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let widthCollectionView = collectionView.bounds.width
-        return CGSize(width: widthCollectionView/2 , height: widthCollectionView/2.5)
+        return CGSize(width: widthCollectionView/2 , height: widthCollectionView/2)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//
+//        if indexPath.row == self.arrayOfMembers.count - 1 {  //numberofitem count
+//            updateNextSet()
+//        }
+    }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if(self.collectionMembers.contentOffset.y >= (self.collectionMembers.contentSize.height - self.collectionMembers.bounds.size.height)) {
+//            if !isPageRefreshing {
+//                isPageRefreshing = true
+//                if self.selectedTab == 1 {
+//                    self.callGetUsersApi(status: "2", name: nil, lisenceType: "1", order: nil)
+//
+//                } else if self.selectedTab == 2 {
+//                    self.callGetUsersApi(status: "2", name: nil, lisenceType: "2", order: nil)
+//
+//                } else if self.selectedTab == 3 {
+//                    self.callGetUsersApi(status: "2", name: nil, lisenceType: "3", order: nil)
+//
+//                }
+//            }
+//        }
+//    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if(self.collectionMembers.contentOffset.y >= (self.collectionMembers.contentSize.height - self.collectionMembers.bounds.size.height)) {
+            if !isPageRefreshing {
+//                isPageRefreshing = true
+                self.arrayOfMembers.removeAll()
+                if self.selectedTab == 1 {
+                    self.callGetUsersApi(status: "2", name: nil, lisenceType: "1", order: nil)
+                    
+                } else if self.selectedTab == 2 {
+                    self.callGetUsersApi(status: "2", name: nil, lisenceType: "2", order: nil)
+                    
+                } else if self.selectedTab == 3 {
+                    self.callGetUsersApi(status: "2", name: nil, lisenceType: "3", order: nil)
+                    
+                }
+            }
+        }
+    }
+    
+    func updateNextSet(){
+           print("On Completetion")
+        if self.selectedTab == 1 {
+            self.callGetUsersApi(status: "2", name: nil, lisenceType: "1", order: nil)
+            
+        } else if self.selectedTab == 2 {
+            self.callGetUsersApi(status: "2", name: nil, lisenceType: "2", order: nil)
+            
+        } else if self.selectedTab == 3 {
+            self.callGetUsersApi(status: "2", name: nil, lisenceType: "3", order: nil)
+            
+        }
+           //requests another set of data (20 more items) from the server.
+    }
+    
+    @objc func clickedOnAButton1() {
+        
+        self.callMakeRemoveAdmin(id: self.currentMemberId ?? 0, admin: !(self.currentAdminStatus ?? false))
     }
 
     @IBAction func tappedOnBack( _sender: UIButton) {
@@ -128,7 +334,9 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             search.btndescending.addTarget(self, action: #selector(clickedOndescending), for: .touchUpInside)
             
             search.btnSearch.addTarget(self, action: #selector(clickedOnSearch), for: .touchUpInside)
+            search.btnClear.addTarget(self, action: #selector(clickedOnClear), for: .touchUpInside)
             search.txtName.text = self.fullName
+            
             if self.bitValue == 1 {
                 
                 self.setUpButtonsUI(value: self.bitValue)
@@ -202,35 +410,48 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         }
     }
     
+    @objc func clickedOnClear() {
+        
+        self.searchVC?.txtName.text = ""
+        self.bitValueForAscDes = 2
+        if self.bitValueForAscDes == 2 {
+            self.searchVC?.imgDes.image = UIImage(named: "Group 247")
+            self.searchVC?.imgAsc.image = UIImage(named: "Circle")
+        }
+    }
+    
     @objc func clickedOnSearch() {
         
+        self.arrayOfMembers.removeAll()
         self.fullName = self.searchVC?.txtName.text ?? ""
-        if self.bitValue == 1 {
+        if bitValueForAscDes == 1 {
+            self.strValue = "asc"
+        } else {
+            self.strValue = "desc"
+        }
+        if self.selectedTab == 1 {
+            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "1", order: self.strValue)
+//            self.searchFilterApi(fullName: self.fullName)
             
-            self.searchFilterApi(fullName: self.fullName)
+        } else if self.selectedTab == 2 {
+            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "2", order: self.strValue)
+//            self.searchFilterApi(fullName: self.fullName, lisenseType: "3")
             
-        } else if self.bitValue == 2 {
-            
-            self.searchFilterApi(fullName: self.fullName, lisenseType: "3")
-            
-        } else if self.bitValue == 3 {
-            
-            self.searchFilterApi(fullName: self.fullName, lisenseType: "2")
-            
-        } else if self.bitValue == 4 {
-            
-            self.searchFilterApi(fullName: self.fullName, lisenseType: "1")
+        } else if self.selectedTab == 3 {
+            self.callGetUsersApi(status: "2", name: self.fullName, lisenceType: "3", order: self.strValue)
+//            self.searchFilterApi(fullName: self.fullName, lisenseType: "2")
             
         }
     }
     
     //MARK: - CallAPisFunction
     
-    func callGetUsersApi(status: String) {
+    func callGetUsersApi(status: String, name: String?, lisenceType: String?, order: String?) {
+        
         
         if  Connectivity.isConnectedToInternet {
             self.startAnimation()
-            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: "desc", limit: 10, offset: 0), user: ApprovalUser(fullName: nil, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: nil, status: "2"))
+            let dataModel = ApprovalRequestModel(source: "2", Pagination: PaginationModel(orderBy: order ?? "desc", limit: 10, offset: self.arrayOfMembers.count), user: ApprovalUser(fullName: name, cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: lisenceType, status: "2"))
             let signUpUrl = "api/User/GetUsers"
             let services = ApprovalServices()
             services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
@@ -238,17 +459,66 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
                 let status = responseData.success ?? false
                 
                 if status {
-                    
-                    self.arrayOfMembers = responseData.users ?? []
-                    print(self.arrayOfMembers)
-                    self.noDataFoundView.isHidden = true
-                    self.collectionView.isHidden = false
-                    self.collectionMembers.reloadData()
+                    if responseData.users?.count != 0 {
+                        if self.arrayOfMembers.count > 0 {
+
+                            if let arrayData : [ResponseUsers] = responseData.users {
+
+                                for item in arrayData {
+                                    self.arrayOfMembers.append(item)
+                                    self.collectionMembers.reloadData()
+                                    self.noDataFoundView.isHidden = true
+                                    self.collectionMembers.isHidden = false
+                                    self.searchVC?.willMove(toParent: nil)
+                                    self.searchVC?.view.removeFromSuperview()
+                                    self.searchVC?.removeFromParent()
+                                }
+                            }
+                        } else {
+                            self.arrayOfMembers = responseData.users ?? []
+                            self.collectionMembers.reloadData()
+                            self.noDataFoundView.isHidden = true
+                            self.collectionMembers.isHidden = false
+                            self.searchVC?.willMove(toParent: nil)
+                            self.searchVC?.view.removeFromSuperview()
+                            self.searchVC?.removeFromParent()
+                        }
+
+                    }
+//                    self.arrayOfMembers = responseData.users ?? []
+//                    print(self.arrayOfMembers)
+//                    self.noDataFoundView.isHidden = true
+//                    self.collectionView.isHidden = false
+//                    self.searchVC?.willMove(toParent: nil)
+//                    self.searchVC?.view.removeFromSuperview()
+//                    self.searchVC?.removeFromParent()
                 } else {
 //                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                    self.noDataFoundView.isHidden = false
-                    self.collectionView.isHidden = true
-//                    self.arrayOfMembers.removeAll()
+//                    if self.arrayOfMembers.count == 0 {
+//
+//                        self.noDataFoundView.isHidden = false
+//                        self.collectionView.isHidden = true
+//                    }
+                    
+                    if responseData.code == "401" {
+                        self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                        return
+                    }
+                    
+                    if self.arrayOfMembers.count == 0 {
+                        self.noDataFoundView.isHidden = false
+                        self.collectionMembers.isHidden = true
+                        self.searchVC?.willMove(toParent: nil)
+                        self.searchVC?.view.removeFromSuperview()
+                        self.searchVC?.removeFromParent()
+                    }
+//                    else {
+//                        self.noDataFoundView.isHidden = false
+//                        self.collectionMembers.isHidden = true
+//                        self.searchVC?.willMove(toParent: nil)
+//                        self.searchVC?.view.removeFromSuperview()
+//                        self.searchVC?.removeFromParent()
+//                    }
                 }
             }
         } else{
@@ -257,42 +527,107 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
 
     }
     
-    func searchFilterApi(fullName: String, lisenseType: String? = nil) {
+    
+//    func setViewColorLine(
+    
+//    func searchFilterApi(fullName: String, lisenseType: String? = nil) {
+//        
+//        if bitValueForAscDes == 1 {
+//            self.strValue = "asc"
+//        } else {
+//            self.strValue = "desc"
+//        }
+//        
+//        self.startAnimation()
+//        let dataModel = MemberRequestModel(Pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), source: "2", user: MemberUser(fullName: fullName ,cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: lisenseType, status: "2"))
+//        let signUpUrl = "api/User/GetUsers"
+//        let services = ApprovalServices()
+//        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+//            
+//            self.stopAnimation()
+//            let status = responseData.success ?? false
+//            if status {
+//                
+////                if responseData.users?.count != 0 {
+////                    if self.arrayOfMembers.count > 0 {
+////
+////                        if let arrayData : [ResponseUsers] = responseData.users {
+////
+////                            for item in arrayData {
+////                                self.arrayOfMembers.append(item)
+////                                self.collectionMembers.reloadData()
+////                                self.searchVC?.willMove(toParent: nil)
+////                                self.searchVC?.view.removeFromSuperview()
+////                                self.searchVC?.removeFromParent()
+////                                self.noDataFoundView.isHidden = true
+////                                self.collectionView.isHidden = false
+////                            }
+////                        }
+////                    } else {
+////                        self.arrayOfMembers = responseData.users ?? []
+////                        self.searchVC?.willMove(toParent: nil)
+////                        self.searchVC?.view.removeFromSuperview()
+////                        self.searchVC?.removeFromParent()
+////                        self.noDataFoundView.isHidden = true
+////                        self.collectionView.isHidden = false
+////                        self.collectionMembers.reloadData()
+////                    }
+////
+////                }
+//                
+//                self.arrayOfMembers = responseData.users ?? []
+//                print(self.arrayOfMembers)
+//                self.searchVC?.willMove(toParent: nil)
+//                self.searchVC?.view.removeFromSuperview()
+//                self.searchVC?.removeFromParent()
+//                self.noDataFoundView.isHidden = true
+//                self.collectionView.isHidden = false
+//                self.collectionMembers.reloadData()
+//            } else {
+////                self.showAlertForMember(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                
+//                if responseData.code == "401" {
+//                    self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+//                    return
+//                }
+//                
+//                self.searchVC?.willMove(toParent: nil)
+//                self.searchVC?.view.removeFromSuperview()
+//                self.searchVC?.removeFromParent()
+//                self.noDataFoundView.isHidden = false
+//                self.collectionView.isHidden = true
+//            }
+//        }
+//    }
+    
+    func callMakeRemoveAdmin(id: Int? = nil , admin: Bool? = nil , roleID: Int? = nil) {
         
-        if bitValueForAscDes == 1 {
-            self.strValue = "asc"
-        } else {
-            self.strValue = "des"
-        }
-        
-        self.startAnimation()
-        let dataModel = MemberRequestModel(Pagination: PaginationModel(orderBy: self.strValue, limit: 10, offset: 0), source: "2", user: MemberUser(fullName: fullName ,cnic: nil, licenseNumber: nil, contactNumber: nil, licenseType: lisenseType, status: "2"))
-        let signUpUrl = "api/User/GetUsers"
-        let services = ApprovalServices()
-        services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
-            
-            self.stopAnimation()
-            let status = responseData.success ?? false
-            if status {
-                
-                self.arrayOfMembers = responseData.users ?? []
-                print(self.arrayOfMembers)
-                self.searchVC?.willMove(toParent: nil)
-                self.searchVC?.view.removeFromSuperview()
-                self.searchVC?.removeFromParent()
-                self.noDataFoundView.isHidden = true
-                self.collectionView.isHidden = false
-                self.collectionMembers.reloadData()
-            } else {
-//                self.showAlertForMember(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
-                self.searchVC?.willMove(toParent: nil)
-                self.searchVC?.view.removeFromSuperview()
-                self.searchVC?.removeFromParent()
-                self.noDataFoundView.isHidden = false
-                self.collectionView.isHidden = true
+        if  Connectivity.isConnectedToInternet {
+            startAnimation()
+            let dataModel = AdminRequestModel(source: "2", user: RemoveAdminUser(userId: id ?? 0, isAdmin: admin ?? false, roleId: roleID))
+            let signUpUrl = "api/User/MakeRemoveAdmin"
+            let services = ApprovalServices()
+            services.postMethod(urlString: signUpUrl, dataModel: dataModel.params) { (responseData) in
+                self.stopAnimation()
+                let status = responseData.success ?? false
+                if status {
+                    
+                    self.arrayOfMembers.removeAll()
+                    self.callGetUsersApi(status: "2", name: nil, lisenceType: nil, order: nil)
+                    self.collectionMembers.reloadData()
+                    self.memberVC?.willMove(toParent: nil)
+                    self.memberVC?.view.removeFromSuperview()
+                    self.memberVC?.removeFromParent()
+                } else {
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                }
             }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
         }
+        
     }
+    
     
     func showAlertForMember(alertTitle : String, alertMessage : String) {
         
@@ -304,6 +639,22 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setViewColorLine() {
+        
+        self.viewLine1.backgroundColor = selectedTab == 1 ? #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.viewLine2.backgroundColor = selectedTab == 2 ? #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.viewLine3.backgroundColor = selectedTab == 3 ? #colorLiteral(red: 0.8715899587, green: 0.6699344516, blue: 0.3202168643, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+    }
+    
+    func setLabelColor() {
+        
+        self.lblTab1.textColor = selectedTab == 1 ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        self.lblTab2.textColor = selectedTab == 2 ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        self.lblTab3.textColor = selectedTab == 3 ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        
     }
     
     func setUpButtonsUI(value: Int) {
@@ -385,4 +736,21 @@ class MemberDirectoryViewController: UIViewController, UICollectionViewDelegate,
         }
     }
 
+}
+
+extension UICollectionView {
+
+    func addLoading(_ indexPath:IndexPath, closure: @escaping (() -> Void)){
+        if let lastVisibleIndexPath = self.indexPathsForVisibleItems.last {
+            if indexPath == lastVisibleIndexPath && indexPath.row == self.numberOfItems(inSection: 0) - 1 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    closure()
+                }
+            }
+        }
+    }
+
+    func stopLoading() {
+        print("stopLoading")
+    }
 }

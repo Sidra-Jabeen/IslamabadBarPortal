@@ -150,14 +150,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="175" height="126"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <connections>
-                                                        <action selector="tappedOnGeneralAnnouncementsWith_sender:" destination="-1" eventType="touchUpInside" id="lHT-5T-5jS"/>
                                                         <action selector="tappedOnLegalQuesAnsWith_sender:" destination="-1" eventType="touchUpInside" id="Aea-l8-Q6d"/>
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Subtraction 1" translatesAutoresizingMaskIntoConstraints="NO" id="Hlk-dQ-iSF">
                                                     <rect key="frame" x="0.0" y="0.0" width="175" height="126"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="21-List" translatesAutoresizingMaskIntoConstraints="NO" id="3fQ-i5-AHE">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Queries" translatesAutoresizingMaskIntoConstraints="NO" id="3fQ-i5-AHE">
                                                     <rect key="frame" x="45" y="15" width="45" height="45"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -393,13 +392,13 @@
                                     <rect key="frame" x="122.5" y="73.5" width="110" height="110.5"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 15" translatesAutoresizingMaskIntoConstraints="NO" id="j9K-xT-a21">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110.5"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w8-Zj-QRd">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
@@ -411,7 +410,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfn-Ne-xi7">
-                                            <rect key="frame" x="34" y="70" width="41" height="20"/>
+                                            <rect key="frame" x="35" y="70" width="40" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="bHi-ST-Nrk"/>
                                                 <constraint firstAttribute="height" constant="20" id="nZX-VS-6zE"/>
@@ -498,7 +497,8 @@
         <image name="Group 249" width="259.5" height="80.5"/>
         <image name="Group 253" width="50.5" height="47.5"/>
         <image name="Mask Group 2" width="1656" height="2944"/>
-        <image name="Subtraction 1" width="293" height="212"/>
+        <image name="Queries" width="75.5" height="70.5"/>
+        <image name="Subtraction 1" width="195" height="141"/>
         <image name="Subtraction 2" width="585" height="423"/>
         <image name="Subtraction 3" width="147" height="107"/>
         <image name="Subtraction 4" width="195" height="142"/>

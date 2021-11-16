@@ -13,6 +13,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     //MARK: - IBOutlet
     
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var lblDate: UILabel!
     
     //MARK: - Propertities
     
@@ -38,11 +39,15 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     @IBAction func tappedOnBack(_ sender: Any) {
         
         self.calendar.setCurrentPage(getPreviousYear(date: calendar.currentPage), animated: true)
+        self.lblDate.text = ""
+        calendarCurrentPageDidChange(self.calendar)
     }
     
     @IBAction func tappedOnForward(_ sender: Any) {
         
         self.calendar.setCurrentPage(getNextYear(date: calendar.currentPage), animated: true)
+        self.lblDate.text = ""
+        calendarCurrentPageDidChange(self.calendar)
     }
     
     //MARK: - FSCalenderDelegate
@@ -56,8 +61,15 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendar.setCurrentPage(date, animated: true)
+        calendar.select(date)
         formatter.dateFormat = "dd-MM-yyyy"
-//        self.calendar.appearance.headerDateFormat = formatter.string(from: date)
+        formatter.dateFormat = calendar.appearance.headerDateFormat
+        
+        for cell in calendar.calendarHeaderView.collectionView.visibleCells {
+            (cell as! FSCalendarHeaderCell).titleLabel.text = formatter.string(from: date)
+        }
+        self.lblDate.text = strDOB
         self.str = formatter.string(from: date)
         self.bitVale = true
         print(self.str ?? "")
@@ -69,14 +81,17 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         
 //        let date = formatter.date(from: self.maxDate)
 //        return date ?? calendar.maximumDate
-        formatter.dateFormat = "dd-MM-yyyy"
-        if maxDate == "" {
-            return calendar.maximumDate
-        } else {
-            let date = formatter.date(from: self.maxDate) ?? Date()
-            return date
-        }
-//        return Date()
+//        formatter.dateFormat = "dd-MM-yyyy"
+//        if maxDate == "" {
+//            return calendar.maximumDate
+//        } else if !(maxDate.isEmpty) {
+//            let date = formatter.date(from: self.maxDate) ?? Date()
+//            return date
+//        } else {
+//            return Date()
+//        }
+        
+        return Date()
 //        var dateComponents:DateComponents = DateComponents()
 //        dateComponents.day = 28
 //        let currentCalander:Calendar = Calendar.current
@@ -98,6 +113,16 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 //        return Date()
     }
     
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+//            calendar.reloadData()
+        let currentPageDate = calendar.currentPage
+        let year = Calendar.current.component(.year, from: currentPageDate)
+        self.calendar.appearance.headerDateFormat = "dd-MM-YYYY"
+//        let date = Date()
+//        formatter.dateFormat = "dd-MM-YYYY"
+        self.lblDate.text = formatter.string(from: self.calendar.currentPage)
+    }
+    
     func getNextYear(date:Date)->Date {
         return  Calendar.current.date(byAdding: .year, value: 1, to:date) ?? Date()
     }
@@ -105,6 +130,19 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     func getPreviousYear(date:Date)->Date {
         return  Calendar.current.date(byAdding: .year, value: -1, to:date) ?? Date()
     }
+    
+//    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool
+//    {
+//        let date = formatter.date(from: strDOB ?? "")
+//        if(date == date)
+//        {
+//            return false
+//        }
+//        else
+//        {
+//            return true
+//        }
+//    }
     
     //MARK: - TouchScreenFunction
     
@@ -120,17 +158,31 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     func setUPFSCalender() {
         self.calendar.delegate = self
         self.calendar.dataSource = self
-        self.calendar.appearance.headerDateFormat = "dd-MM-YYYY"
-        let date = Date()
-        formatter.dateFormat = "dd-MM-YYYY"
+        let currentDate = Date()
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.calendar.appearance.headerDateFormat = "dd-MM-yyyy"
 //        self.calendar.appearance.headerDateFormat = formatter.string(from: date)
-        self.str = formatter.string(from: date)
-        print(self.str ?? "")
+//        self.str = formatter.string(from: date)
+//        self.calendar.appearance.headerDateFormat = self.str
+//        print(self.str ?? "")
+//        self.calendar.selectedDate.
+        let date = strDOB
+        
+        if let dob = formatter.date(from: date ?? "") {
+            self.lblDate.text = strDOB
+            self.calendar.select(dob)
+            
+        } else {
+            self.lblDate.text = formatter.string(from: currentDate)
+        }
+        
+        
         self.calendar.swipeToChooseGesture.isEnabled = true
         self.calendar.placeholderType = .none
         self.calendar.scrollEnabled = true
         self.calendar.allowsMultipleSelection = false
         self.calendar.scope = .month
+        self.calendar.reloadData()
     }
 
 }

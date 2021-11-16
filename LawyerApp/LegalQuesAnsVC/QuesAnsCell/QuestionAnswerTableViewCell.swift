@@ -9,14 +9,20 @@ import UIKit
 
 class QuestionAnswerTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var lblQuestion: UILabel!
-    @IBOutlet weak var lblAnswer: UILabel!
+    @IBOutlet weak var lblQuestion: SelectableLabel!
+    @IBOutlet weak var lblAnswer: SelectableLabel!
     @IBOutlet weak var lblUsr: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblTotalComments: UILabel!
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var mainView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.mainView.layer.shadowOffset = CGSize(width: 0,height: 0)
+        self.mainView.layer.shadowColor = UIColor.black.cgColor
+        self.mainView.layer.shadowOpacity = 0.25
+        self.mainView.layer.shadowRadius = 4
         // Initialization code
     }
 

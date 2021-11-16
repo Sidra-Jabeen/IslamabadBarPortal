@@ -21,29 +21,39 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OlA-bX-1MM">
                         <rect key="frame" x="0.0" y="0.0" width="358" height="116"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Bc-nrA">
-                                <rect key="frame" x="5" y="5" width="348" height="20"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mck-bP-ly6">
+                                <rect key="frame" x="5" y="5" width="348" height="18"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Bc-nrA">
+                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="staroflife.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tJM-js-Z4u">
+                                        <rect key="frame" x="80.5" y="6" width="8" height="6"/>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0093617555430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="8" id="6iC-YY-nTj"/>
+                                            <constraint firstAttribute="width" constant="8" id="dhR-UV-EMX"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="sCB-gf-rDR"/>
+                                    <constraint firstItem="tJM-js-Z4u" firstAttribute="centerY" secondItem="mck-bP-ly6" secondAttribute="centerY" id="7gm-UC-y4g"/>
+                                    <constraint firstAttribute="bottom" secondItem="XTK-Bc-nrA" secondAttribute="bottom" id="Gxl-a8-Yah"/>
+                                    <constraint firstItem="tJM-js-Z4u" firstAttribute="leading" secondItem="XTK-Bc-nrA" secondAttribute="trailing" id="Rym-n5-i1Y"/>
+                                    <constraint firstItem="XTK-Bc-nrA" firstAttribute="top" secondItem="mck-bP-ly6" secondAttribute="top" id="Wp8-u1-SKi"/>
+                                    <constraint firstItem="XTK-Bc-nrA" firstAttribute="leading" secondItem="mck-bP-ly6" secondAttribute="leading" id="spf-Cs-Jia"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mg9-pe-Ade">
-                                <rect key="frame" x="5" y="30" width="348" height="75"/>
+                                <rect key="frame" x="5" y="28" width="348" height="75"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nER-gn-8pb">
                                         <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1l-vO-5RR">
-                                                <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6r-ho-1I2" userLabel="ChkBox1View">
                                                 <rect key="frame" x="10" y="2.5" width="20" height="15"/>
                                                 <subviews>
@@ -71,6 +81,14 @@
                                                 <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1l-vO-5RR">
+                                                <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -89,14 +107,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Eo-Ha-1bz">
                                         <rect key="frame" x="0.0" y="25" width="348" height="20"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4td-JY-vPZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWl-30-q55" userLabel="ChkBox1View">
                                                 <rect key="frame" x="10" y="2.5" width="20" height="15"/>
                                                 <subviews>
@@ -124,6 +134,14 @@
                                                 <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4td-JY-vPZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -142,14 +160,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ci-Te-PHa">
                                         <rect key="frame" x="0.0" y="50" width="348" height="20"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcV-xO-QoQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHB-Ng-z37" userLabel="ChkBox1View">
                                                 <rect key="frame" x="10" y="2.5" width="20" height="15"/>
                                                 <subviews>
@@ -177,6 +187,14 @@
                                                 <color key="textColor" red="0.089075528089999995" green="0.32275551559999999" blue="0.28653845189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcV-xO-QoQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="348" height="20"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -210,11 +228,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="XTK-Bc-nrA" firstAttribute="top" secondItem="OlA-bX-1MM" secondAttribute="top" constant="5" id="7a5-BN-RoD"/>
+                            <constraint firstItem="mg9-pe-Ade" firstAttribute="top" secondItem="mck-bP-ly6" secondAttribute="bottom" constant="5" id="8sz-Tq-cuH"/>
                             <constraint firstAttribute="trailing" secondItem="mg9-pe-Ade" secondAttribute="trailing" constant="5" id="Bkw-Gw-LFd"/>
-                            <constraint firstItem="XTK-Bc-nrA" firstAttribute="leading" secondItem="OlA-bX-1MM" secondAttribute="leading" constant="5" id="RcY-2C-JK1"/>
-                            <constraint firstItem="mg9-pe-Ade" firstAttribute="top" secondItem="XTK-Bc-nrA" secondAttribute="bottom" constant="5" id="bzc-IG-LDI"/>
-                            <constraint firstAttribute="trailing" secondItem="XTK-Bc-nrA" secondAttribute="trailing" constant="5" id="o2f-Nt-Fbn"/>
+                            <constraint firstItem="mck-bP-ly6" firstAttribute="top" secondItem="OlA-bX-1MM" secondAttribute="top" constant="5" id="WnW-BV-F7Q"/>
+                            <constraint firstAttribute="trailing" secondItem="mck-bP-ly6" secondAttribute="trailing" constant="5" id="at9-Na-4b0"/>
+                            <constraint firstItem="mck-bP-ly6" firstAttribute="leading" secondItem="OlA-bX-1MM" secondAttribute="leading" constant="5" id="ilM-P8-Xf5"/>
                             <constraint firstItem="mg9-pe-Ade" firstAttribute="leading" secondItem="OlA-bX-1MM" secondAttribute="leading" constant="5" id="zsI-BK-oU9"/>
                         </constraints>
                     </view>
@@ -235,11 +253,12 @@
                 <outlet property="img2" destination="MZa-08-TJy" id="eHf-KN-K8C"/>
                 <outlet property="img3" destination="QyO-lA-Zob" id="ESd-KR-IgO"/>
             </connections>
-            <point key="canvasLocation" x="457.60000000000002" y="137.6311844077961"/>
+            <point key="canvasLocation" x="457.60000000000002" y="136.73163418290855"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Circle" width="50" height="50"/>
+        <image name="staroflife.fill" catalog="system" width="124" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

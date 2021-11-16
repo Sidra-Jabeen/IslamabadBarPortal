@@ -28,6 +28,7 @@ struct GeneralAnnouncement {
     let toDate: String?
     let fromDate: String?
     let duration: String?
+    let keyword: String?
     
     var params: [String: Any] {
         return [
@@ -36,6 +37,7 @@ struct GeneralAnnouncement {
             "toDate" : toDate as Any,
             "fromDate" : fromDate as Any,
             "duration" : duration as Any,
+            "keyword" : keyword as Any,
         ]
     }
 }

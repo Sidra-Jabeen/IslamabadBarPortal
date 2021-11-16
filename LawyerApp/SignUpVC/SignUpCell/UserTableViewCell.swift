@@ -16,8 +16,9 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var txtInfo: UITextField!
     @IBOutlet weak var viewFirstName: UIView!
     @IBOutlet weak var btn: UIButton!
-    @IBOutlet weak var txtfield: UITextField!
+    @IBOutlet weak var lblValidation: UILabel!
     @IBOutlet weak var btnTextFiled: UIButton!
+    @IBOutlet weak var imgStar: UIImageView!
     
 //    let dropDown = DropDown()
 //    let dropDownValues = ["Issue Date of Lower Court","Issue Date of High Court","Issue Date of Supreme Court"]

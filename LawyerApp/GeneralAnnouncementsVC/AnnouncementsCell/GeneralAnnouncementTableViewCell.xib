@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mq7-lS-wEV" userLabel="AnnounView">
                                 <rect key="frame" x="5" y="10" width="310" height="77"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment of judges as judge, special court (central), lahore, rawalpindi and gujrawala" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFK-GY-JbD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment of judges as judge, special court (central), lahore, rawalpindi and gujrawala" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFK-GY-JbD" customClass="SelectableLabel" customModule="LawyerApp" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="300" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="0Yi-q4-bFz"/>
@@ -72,12 +72,11 @@
                                                 <constraints>
                                                     <constraint firstItem="07m-TR-q2s" firstAttribute="leading" secondItem="eT4-vI-b1T" secondAttribute="leading" id="1aE-D3-iAo"/>
                                                     <constraint firstAttribute="trailing" secondItem="M3x-81-ZTu" secondAttribute="trailing" id="DfM-kI-O6U"/>
-                                                    <constraint firstItem="07m-TR-q2s" firstAttribute="top" secondItem="eT4-vI-b1T" secondAttribute="top" id="DpI-5q-SbI"/>
                                                     <constraint firstItem="M3x-81-ZTu" firstAttribute="top" secondItem="eT4-vI-b1T" secondAttribute="top" id="S83-CG-MCF"/>
                                                     <constraint firstAttribute="bottom" secondItem="M3x-81-ZTu" secondAttribute="bottom" id="VV2-jp-RRq"/>
                                                     <constraint firstItem="07m-TR-q2s" firstAttribute="leading" secondItem="eT4-vI-b1T" secondAttribute="leading" id="WhD-Qd-BW4"/>
                                                     <constraint firstItem="M3x-81-ZTu" firstAttribute="leading" secondItem="07m-TR-q2s" secondAttribute="trailing" constant="5" id="vu0-ut-xWn"/>
-                                                    <constraint firstAttribute="bottom" secondItem="07m-TR-q2s" secondAttribute="bottom" id="xRH-4d-y5g"/>
+                                                    <constraint firstItem="07m-TR-q2s" firstAttribute="centerY" secondItem="eT4-vI-b1T" secondAttribute="centerY" id="xVj-57-kED"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KO-9w-kwh" userLabel="View2">

@@ -31,6 +31,8 @@ class SearchFilterViewController: UIViewController {
     @IBOutlet weak var btnHighView: UIView!
     @IBOutlet weak var btnLowerView: UIView!
     
+    @IBOutlet weak var btnClear: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +70,16 @@ class SearchFilterViewController: UIViewController {
         self.view.frame.size.height = UIScreen.main.bounds.height
         self.view.frame.size.width = UIScreen.main.bounds.width
     }
+    
+    //MARK: - TouchScreenFunction
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+       {
+           let touch = touches.first
+           if touch?.view != self.centerView
+           { self.dismiss(animated: true, completion: nil) }
+       }
+    
     
     @IBAction func tappedOnCancel( _sender: UIButton) {
         

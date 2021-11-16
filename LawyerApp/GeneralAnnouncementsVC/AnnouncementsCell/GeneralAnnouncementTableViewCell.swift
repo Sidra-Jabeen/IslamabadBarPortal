@@ -12,7 +12,7 @@ class GeneralAnnouncementTableViewCell: UITableViewCell {
     //MARK: - IBOutlets
     
     @IBOutlet weak var announcemementView: UIView!
-    @IBOutlet weak var lblAnounceTitle: UILabel!
+    @IBOutlet weak var lblAnounceTitle: SelectableLabel!
     @IBOutlet weak var lblAnounceBy: UILabel!
     @IBOutlet weak var lblAnounceAt: UILabel!
     @IBOutlet weak var userImage: UIImageView!

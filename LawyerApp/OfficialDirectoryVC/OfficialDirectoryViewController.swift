@@ -18,6 +18,8 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
     var bitValueForAscDes = 0
     var strValue = ""
     var strTextValue = ""
+    var refreshControl: UIRefreshControl?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,17 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .right
         self.view.addGestureRecognizer(swipeLeft)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.tblDirectories.addSubview(self.refreshControl!)
+    }
+    
+    
+    @objc func didPullToRefresh() {
+        
+//        self.officialListArray.removeAll()
+//        self.callGetOfficialDirectoryApi()
+//        self.refreshControl?.endRefreshing()
     }
     
     //MARK: - HandGestureFunction
@@ -196,7 +209,7 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
             self.startAnimation()
             
             
-            let dataModel = OfficialDirectoryRequestModel(source: "2", pagination: PaginationModel(orderBy: "", limit: 10, offset: self.officialListArray.count), OfficialDirectory: OfficialModel(fullName: nil, designation: nil, officeAddress: nil, contactNumber: nil, memberOff: nil))
+            let dataModel = OfficialDirectoryRequestModel(source: "2", pagination: PaginationModel(orderBy: "desc", limit: 10, offset: self.officialListArray.count), OfficialDirectory: OfficialModel(fullName: nil, designation: nil, officeAddress: nil, contactNumber: nil, memberOff: nil))
             let url = "api/OfficialDirectory/GetOfficialContacts"
             let services = OfficialDirectoryServices()
             services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
@@ -255,7 +268,7 @@ class OfficialDirectoryViewController: UIViewController, UITableViewDelegate, UI
             if bitValueForAscDes == 1 {
                 self.strValue = "asc"
             } else {
-                self.strValue = "des"
+                self.strValue = "desc"
             }
             
             self.strTextValue = self.searchVC?.txtName.text ?? ""

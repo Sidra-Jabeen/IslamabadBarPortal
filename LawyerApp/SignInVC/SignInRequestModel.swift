@@ -51,6 +51,7 @@ struct SignInResponseModel: Codable {
     var issuanceDateSupremeCourt: String?
     var officeAddress: String?
     var loginToken: String?
+    var refreshToken: String?
     var status: String?
     var profileUrl: String?
     var roleId: Int?
@@ -63,6 +64,7 @@ struct SignInResponseModel: Codable {
         case cnic = "cnic"
         case dob = "dob"
         case loginToken = "loginToken"
+        case refreshToken = "refreshToken"
         case licenseNumber = "licenseNumber"
         case contactNumber = "contactNumber"
         case secondaryContactNumber = "secondaryContactNumber"
@@ -87,6 +89,7 @@ struct SignInResponseModel: Codable {
         cnic = try values.decodeIfPresent(String.self, forKey: .cnic)
         dob = try values.decodeIfPresent(String.self, forKey: .dob)
         loginToken = try values.decodeIfPresent(String.self, forKey: .loginToken)
+        refreshToken = try values.decodeIfPresent(String.self, forKey: .refreshToken)
         licenseNumber = try values.decodeIfPresent(String.self, forKey: .licenseNumber)
         contactNumber = try values.decodeIfPresent(String.self, forKey: .contactNumber)
         secondaryContactNumber = try values.decodeIfPresent(String.self, forKey: .secondaryContactNumber)

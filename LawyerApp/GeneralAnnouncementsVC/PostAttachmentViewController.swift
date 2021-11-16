@@ -9,6 +9,11 @@ import UIKit
 import AVKit
 import MobileCoreServices
 
+protocol BackToAnnouncementVC {
+    
+    func callGetGeneralAnnouncements()
+}
+
 class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate , UITextViewDelegate, UITextFieldDelegate {
     
     //MARK: - IBOutltes
@@ -32,6 +37,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var attachmentsCollection: UICollectionView!
     
     @IBOutlet weak var heightOfAnnounByView: NSLayoutConstraint!
+    
     //MARK: - Propertities
     
     var bitForLisenceType = 0
@@ -39,6 +45,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     var imagePicker = UIImagePickerController()
     var strTitle = ""
     var height = 0
+    public var delegate: BackToAnnouncementVC?
 
     //MARK: - LifeCycle
     
@@ -74,12 +81,20 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         self.img1.image = UIImage(named: "Group 247")
         self.img2.image = UIImage(named: "Circle")
         self.img3.image = UIImage(named: "Circle")
+        self.bitForLisenceType = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         intForSearchFilter = nil
         intForSetAscDes = nil
+        strFromDate = nil
+        strToDate = nil
+        strOrderBy = nil
+        strName = nil
+        strDuration = nil
+        strDOB = nil
+        strForFullName = ""
     }
     
     //MARK: - HandGesturesFunction
@@ -88,6 +103,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         if gesture.direction == .right {
             print("Swipe Right")
             self.navigationController?.popViewController(animated: true)
+            
         }
         else if gesture.direction == .left {
             print("Swipe Left")
@@ -123,6 +139,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
     @IBAction func tappedOnBack( _sender: UIButton) {
         
         self.navigationController?.popViewController(animated: true)
+//        delegate?.callGetGeneralAnnouncements()
     }
     
     @IBAction func tappedOnUpload( _sender: UIButton) {
@@ -139,7 +156,7 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
             
             self.callGetPostAnnouncementApi(type: 3)
             
-        } else if self.strTitle == "General Announcements" {
+        } else if self.strTitle == "Member Announcements" {
             
             self.callGeneralPostAnnouncementApi()
         }
@@ -167,16 +184,17 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         if indexPath.row == 0 {
             
             tmpCell.btnAdd.isHidden = false
-            tmpCell.btnRemove.isHidden = true
+            tmpCell.btnCancel.isHidden = true
             tmpCell.imgPostQuestion.image = UIImage(named: "add-image")
             tmpCell.btnAdd.addTarget(self, action: #selector(onClickGetImage), for: .touchUpInside)
         } else {
             
             tmpCell.btnAdd.isHidden = true
-            tmpCell.btnRemove.isHidden = false
-            tmpCell.btnRemove.tag = indexPath.row
+            tmpCell.btnCancel.isHidden = false
+            tmpCell.btnCancel.tag = indexPath.row
+//            tmpCell.btnRemove.setImage(UIImage(named: "Cancel"), for: .normal)
             tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0 //self.arrayForImages[indexPath.row - 1]
-            tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
+            tmpCell.btnCancel.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
         }
         return tmpCell
     }
@@ -301,8 +319,6 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
         self.lblDescriptionCount.text = "\((0) + summaryCount)/4000"
     }
     
-    //MARK: - Others
-    
     @objc func onClickGetImage(_ sender: UIButton) {
         
         if arrayForMedia.count < 5 {
@@ -410,8 +426,21 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             if self.arrayForMedia.count > 0 {
                                 
                                 self.uploadFiles(barId: "\(announceID ?? 0)", type: "1", index: 0)
+                            } else{
+                                self.stopAnimation()
+                                let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                    self.delegate?.callGetGeneralAnnouncements()
+                                    self.navigationController?.popViewController(animated: true)
+                                }))
+                                self.present(alert, animated: true, completion: nil)
                             }
                         } else {
+                            self.stopAnimation()
+                            if responseData.code == "401" {
+                                self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                                return
+                            }
                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                         }
                     }
@@ -443,14 +472,20 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.uploadFiles(barId: barId, type: type, index: index)
                         } else {
                             self.stopAnimation()
-                            let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                            
+                            let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in self.delegate?.callGetGeneralAnnouncements()
                                 self.navigationController?.popViewController(animated: true)
+                                
                             }))
                             self.present(alert, animated: true, completion: nil)
                         }
                     } else{
                         self.stopAnimation()
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                     
@@ -483,8 +518,23 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             if self.arrayForMedia.count > 0 {
                                 
                                 self.uploadGeneralFiles(barId: "\(memberID ?? 0)", type: "2", index: 0)
+                            } else{
+                                self.stopAnimation()
+                                
+                                let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                    self.delegate?.callGetGeneralAnnouncements()
+                                    self.navigationController?.popViewController(animated: true)
+                                    
+                                }))
+                                self.present(alert, animated: true, completion: nil)
                             }
                         } else {
+                            self.stopAnimation()
+                            if responseData.code == "401" {
+                                self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                                return
+                            }
                             self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
                         }
                     }
@@ -517,12 +567,18 @@ class PostAttachmentViewController: UIViewController, UICollectionViewDelegate, 
                             self.stopAnimation()
                             let alert = UIAlertController(title: "Islmabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.delegate?.callGetGeneralAnnouncements()
                                 self.navigationController?.popViewController(animated: true)
+                                
                             }))
                             self.present(alert, animated: true, completion: nil)
                         }
                     } else{
                         self.stopAnimation()
+                        if responseData.code == "401" {
+                            self.showAlertForLogin(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "")
+                            return
+                        }
                         self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
                     }
                 })

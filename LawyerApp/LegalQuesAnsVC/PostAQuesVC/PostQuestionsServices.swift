@@ -23,4 +23,18 @@ class PostQuestionsServices: BaseServices {
         })
         
     }
+    
+    func postUploadMethod(files: [String: String] ,urlString: String, dataModel: [String: String], completion: @escaping (GenericResponseModel<PostQuesResponseModel>) -> Void) {
+        
+        uploadMultipart(filesWithKeysToUpload: files, textdataTobeSentWithKeys: dataModel, strUrl: urlString, completion: {(responseData) in
+//            completion(responseData)
+            do {
+                let responseModel = try JSONDecoder().decode(GenericResponseModel<PostQuesResponseModel>.self, from: responseData)
+                completion(responseModel)
+            } catch let err {
+                print("class PostQuestionVC -> Error \(err)")
+            }
+        })
+        
+    }
 }

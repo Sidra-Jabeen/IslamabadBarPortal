@@ -46,6 +46,8 @@ class AddOfficialDirectoryViewController: UIViewController, UITextFieldDelegate 
         
         self.txtContactNumber.keyboardType = .numberPad
         self.txtContactNumber.delegate = self
+        self.view.frame.size.height = UIScreen.main.bounds.height
+        self.view.frame.size.width = UIScreen.main.bounds.width
     }
     
     @IBAction func tappedOnCancel( _sender: UIButton) {
@@ -54,6 +56,16 @@ class AddOfficialDirectoryViewController: UIViewController, UITextFieldDelegate 
         self.view.removeFromSuperview()
         self.removeFromParent()
     }
+    
+    //MARK: - TouchScreenFunction
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+       {
+           let touch = touches.first
+           if touch?.view != self.contentView
+           { self.dismiss(animated: true, completion: nil) }
+       }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

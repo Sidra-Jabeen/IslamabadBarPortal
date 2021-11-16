@@ -58,15 +58,15 @@ struct ApprovalUser {
 
 struct PaginationModel {
     
-    let orderBy: String
-    let limit: Int
-    let offset: Int
+    let orderBy: String?
+    let limit: Int?
+    let offset: Int?
     
     var params: [String:Any] {
         return [
-            "orderBy": orderBy,
-            "limit": limit,
-            "offset": offset
+            "orderBy": orderBy as Any,
+            "limit": limit as Any,
+            "offset": offset as Any
         ]
     }
 }
@@ -119,15 +119,15 @@ struct AdminRequestModel {
 
 struct RemoveAdminUser {
     
-    let userId: Int
-    let isAdmin: Bool
-    let roleId: Int
+    let userId: Int?
+    let isAdmin: Bool?
+    let roleId: Int?
 
     var params: [String: Any] {
         return [
-            "userId" : userId,
-            "isAdmin" : isAdmin,
-            "roleId": roleId
+            "userId" : userId as Any,
+            "isAdmin" : isAdmin as Any,
+            "roleId": roleId as Any
         ]
     }
 }

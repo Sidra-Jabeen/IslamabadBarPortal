@@ -9,7 +9,12 @@ import UIKit
 import AVKit
 import MobileCoreServices
 
-class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
+protocol BackToQuestionVC {
+    
+    func callGetQuestionsApi()
+}
+
+class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate, UITextViewDelegate, UITextFieldDelegate  {
     
     //MARK: - IBOutlet
     
@@ -23,8 +28,12 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnPostAQuestion: UIButton!
     
-    @IBOutlet weak var questionTextView: UITextView!
-    @IBOutlet weak var txtwriteSomething: UITextField!
+    @IBOutlet weak var txtTitle: UITextField!
+    @IBOutlet weak var txtDescription: UITextView!
+    
+    @IBOutlet weak var lblTitleCount: UILabel!
+    @IBOutlet weak var lblDescriptionCount: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
     
     @IBOutlet weak var customCollection: UICollectionView!
     
@@ -33,6 +42,7 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
     var arrayForMedia: [(UIImage, String)] = []
 //    var arrayForImages: [UIImage] = []
     var imagePicker = UIImagePickerController()
+    public var delegate: BackToQuestionVC?
     
     //MARK: - LifeCycle
     
@@ -54,6 +64,14 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         self.view.frame.size.height = UIScreen.main.bounds.height
         self.view.frame.size.width = UIScreen.main.bounds.width
         
+        self.txtTitle.delegate = self
+        self.txtDescription.delegate = self
+        self.updateCharacterCount()
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+            swipeLeft.direction = .right
+        self.view.addGestureRecognizer(swipeLeft)
+        
         self.imagePicker.delegate = self
         self.imagePicker.allowsEditing = true
         self.imagePicker.mediaTypes = ["public.image", "public.movie"]
@@ -61,14 +79,28 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         self.customCollection.register(UINib(nibName: "UIAttachmentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UIAttachmentCollectionViewCell")
     }
     
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == .right {
+            print("Swipe Right")
+            self.navigationController?.popViewController(animated: true)
+        }
+        else if gesture.direction == .left {
+            print("Swipe Left")
+        }
+    }
+    
     //MARK: - IBAction
     
-    @IBAction func tappedOnCancel( _sender: UIButton) {
-
-        self.willMove(toParent: nil)
-        self.view.removeFromSuperview()
-        self.removeFromParent()
+    @IBAction func tappedOnBack( _sender: UIButton) {
+        
+        self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func tappedOnUpload( _sender: UIButton) {
+        
+        self.callGetPostQuestionApi()
+    }
+    
     
     //MARK: - TableView Delegate
     
@@ -92,16 +124,23 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         if indexPath.row == 0 {
             
             tmpCell.btnAdd.isHidden = false
-            tmpCell.btnRemove.isHidden = true
+            tmpCell.btnCancel.isHidden = true
             tmpCell.imgPostQuestion.image = UIImage(named: "add-image")
             tmpCell.btnAdd.addTarget(self, action: #selector(onClickGetImage), for: .touchUpInside)
         } else {
             
             tmpCell.btnAdd.isHidden = true
+<<<<<<< HEAD
             tmpCell.btnRemove.isHidden = false
             tmpCell.btnRemove.tag = indexPath.row
             tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0
             tmpCell.btnRemove.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
+=======
+            tmpCell.btnCancel.isHidden = false
+            tmpCell.btnCancel.tag = indexPath.row
+            tmpCell.imgPostQuestion.image = self.arrayForMedia[indexPath.row - 1].0 //self.arrayForImages[indexPath.row - 1]
+            tmpCell.btnCancel.addTarget(self, action: #selector(onClickRemoveImage), for: .touchUpInside)
+>>>>>>> d723cdd0d1d38eb0165c0d14d46cafd81d51bab1
         }
         return tmpCell
     }
@@ -124,7 +163,10 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         
         let videoURL = info[.imageURL] as? URL
         print(videoURL?.pathExtension ?? "Error in url")
+<<<<<<< HEAD
         
+=======
+>>>>>>> d723cdd0d1d38eb0165c0d14d46cafd81d51bab1
         if let videoURL = info[.mediaURL] as? URL {
 
             let thumbnailImage = self.generateThumbnail(videoUrl: videoURL.absoluteString)
@@ -142,7 +184,7 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
                 let data = image.pngData()! as NSData
                 
                 let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-                let localPath = documentDirectory?.appending("/\(Date()).png")
+                let localPath = documentDirectory?.appending("/\(self.getRandomNumber()).png")
                 data.write(toFile: localPath!, atomically: true)
 
                 let photoURL = URL.init(fileURLWithPath: localPath!)
@@ -153,6 +195,12 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
         
         self.imagePicker.dismiss(animated: true)
         self.customCollection.reloadData()
+    }
+    
+    func getRandomNumber() -> String{
+        
+        let timeStamp: NSNumber = NSNumber(value: Int(NSDate().timeIntervalSince1970))
+        return "\(timeStamp)"
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -221,4 +269,141 @@ class PostAQuestionViewController: UIViewController, UICollectionViewDelegate, U
             return nil
         }
     }
+<<<<<<< HEAD
+=======
+    
+    fileprivate func getThumbnailFromUrl(_ url: URL, _ completion: @escaping ((_ image: UIImage?)->Void)) {
+
+        DispatchQueue.main.async {
+            let asset = AVAsset(url: url)
+            let assetImgGenerate = AVAssetImageGenerator(asset: asset)
+            assetImgGenerate.appliesPreferredTrackTransform = true
+
+            let time = CMTimeMake(value: 2, timescale: 1)
+            do {
+                let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                let thumbnail = UIImage(cgImage: img)
+                completion(thumbnail)
+            } catch {
+                print("Error :: ", error.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func updateCharacterCount() {
+        
+        let summaryCount = self.txtDescription.text.count
+        self.lblDescriptionCount.text = "\((0) + summaryCount)/4000"
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+        if(textView == self.txtDescription){
+               return textView.text.count +  (text.count - range.length) <= 4000
+            }
+        return false
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.updateCharacterCount()
+     }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let summaryCount = self.txtTitle.text?.count
+        self.lblTitleCount.text = "\((0) + (summaryCount ?? 0))"
+        if !(textField.text?.isEmpty ?? true){
+            return textField.text!.count +  (string.count - range.length) <= 400
+        }
+        return true
+    }
+    
+    //MARK: - CallingApiFunction
+    
+    func callGetPostQuestionApi() {
+        
+        if  Connectivity.isConnectedToInternet {
+            if self.txtTitle.text != "" {
+                if self.txtDescription.text != "" {
+                    self.startAnimation()
+                    let dataModel = PostQuestionRequestModel(source: "2", question: Question(title: self.txtTitle.text ?? "", description: self.txtDescription.text ?? ""))
+                    let url = Constant.postQuestionEP
+                    let services = PostQuestionsServices()
+                    services.postMethod(urlString: url, dataModel: dataModel.params) { (responseData) in
+                        let status = responseData.success ?? false
+                        if status {
+                            print("successssss")
+                            let quesID = responseData.question?.id
+                            print(quesID ?? 0)
+                            if self.arrayForMedia.count > 0 {
+                                
+                                self.uploadFiles(quesId: "\(quesID ?? 0)", type: "1", index: 0)
+                            }
+                        } else {
+                            let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.delegate?.callGetQuestionsApi()
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                } else{
+                    self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Description should not be Empty!")
+                }
+            } else{
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "Title should not be Empty!")
+            }
+        } else {
+            self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+        }
+    }
+    
+    func uploadFiles(quesId: String, type: String, index: Int) {
+        
+            if  Connectivity.isConnectedToInternet {
+//                self.startAnimation()
+                let attachmentModel = QuestionPostAttachmentRequestModel(attachmentFile: arrayForMedia[index].1)
+                let dataModel = QuestionPostDataRequestModel(questionId: quesId, type: type)
+                let url = Constant.quesPostAttachmentEP
+                let services = PostQuestionsServices()
+                services.postUploadMethod(files: attachmentModel.params, urlString: url, dataModel: dataModel.params, completion: { (responseData) in
+                    
+                    let status = responseData.success
+                    if status ?? false {
+                        let index = index+1
+                        if index < self.arrayForMedia.count {
+                            self.uploadFiles(quesId: quesId, type: type, index: index)
+                        } else {
+                            self.stopAnimation()
+                            let alert = UIAlertController(title: "Islamabad Bar Connect", message: responseData.desc ?? "", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { alert in
+                                self.delegate?.callGetQuestionsApi()
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    } else{
+                        self.stopAnimation()
+                        self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: responseData.desc ?? "Error")
+                    }
+                    
+                })
+            } else {
+                self.showAlert(alertTitle: "Islamabad Bar Connect", alertMessage: "No Internet Connection")
+            }
+    }
+>>>>>>> d723cdd0d1d38eb0165c0d14d46cafd81d51bab1
 }
